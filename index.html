@@ -170,8 +170,7 @@
       align-items:stretch;
       padding: 22px 0 34px;
       isolation:isolate;
-
-      overflow:hidden; /* IMPORTANT: режем шов */
+      overflow:hidden;
     }
     .hero::before{
       content:"";
@@ -201,7 +200,7 @@
       pointer-events:none;
     }
 
-    /* NEW: размытый переход, который скрывает линию */
+    /* blur to hide seam */
     .hero .edgeBlur{
       position:absolute;
       left:-10%;
@@ -214,8 +213,7 @@
         rgba(4,7,18,.92) 100%
       );
       filter: blur(18px);
-      opacity: 1;
-      z-index: 3;          /* под промо, над фоном */
+      z-index: 3;
       pointer-events:none;
     }
 
@@ -228,28 +226,24 @@
     @media (max-width: 520px){h1{font-size: 34px}}
     .lead{margin:0 0 14px;color: rgba(234,240,255,.82);font-size: 17px}
 
+    /* NEW: hero card centered (one column) */
     .heroGrid{
       width:100%;
       display:grid;
-      grid-template-columns: 1.25fr .75fr;
+      grid-template-columns: 1fr;
       gap:14px;
       align-items:start;
+      justify-items:center;          /* центрируем */
       padding-top: 10px;
       padding-bottom: 90px;
     }
     @media (max-width: 980px){
-      .heroGrid{grid-template-columns:1fr; padding-bottom: 120px;}
       nav{justify-content:flex-start}
+      .heroGrid{padding-bottom: 120px;}
     }
-
-    .mini{
-      padding:14px;border-radius:18px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      box-shadow: var(--shadow2);
-      transition: transform .22s var(--ease), border-color .22s var(--ease);
+    .heroMain{
+      width: min(900px, 100%);      /* аккуратная ширина по центру */
     }
-    .mini:hover{transform: translateY(-2px); border-color: rgba(69,227,255,.22)}
 
     .line{
       height:1px;
@@ -263,7 +257,7 @@
       position:absolute;
       left: 0; right: 0;
       bottom: 18px;
-      z-index: 6; /* выше edgeBlur */
+      z-index: 6;
     }
     .promoBar{
       display:flex;
@@ -450,8 +444,9 @@
       <div class="heroBg" aria-hidden="true"></div>
       <div class="heroShade" aria-hidden="true"></div>
 
+      <!-- HERO CARD CENTERED -->
       <div class="container heroGrid">
-        <div class="card reveal tilt" data-tilt>
+        <div class="card reveal tilt heroMain" data-tilt>
           <div class="shine"></div>
           <h1>1win Casino — бонусы и фишки</h1>
           <p class="lead">Быстрый обзор: акции, бонусы и то, что обычно проверяют перед активацией.</p>
@@ -463,24 +458,9 @@
           </div>
           <p class="small muted" style="margin:12px 0 0">18+ • Условия бонусов могут меняться — проверяй правила на стороне 1win.</p>
         </div>
-
-        <aside class="card reveal tilt" data-tilt>
-          <div class="shine"></div>
-          <div class="mini">
-            <h3 style="margin:0 0 6px">Популярно</h3>
-            <p class="muted" style="margin:0">Welcome • reload • cashback • VIP rewards.</p>
-          </div>
-          <div class="mini" style="margin-top:12px">
-            <h3 style="margin:0 0 6px">Проверь</h3>
-            <p class="muted" style="margin:0">Вейджер • сроки • лимиты • ограничения по играм.</p>
-          </div>
-          <div class="line"></div>
-          <a class="btn btn-primary" data-cta href="#" target="_blank" rel="nofollow sponsored noopener" style="width:100%">
-            <span class="icon" aria-hidden="true"></span>Перейти на 1win
-          </a>
-        </aside>
       </div>
 
+      <!-- PROMO BAR -->
       <div class="promoWrap">
         <div class="container">
           <div class="card promoBar reveal">
@@ -505,7 +485,6 @@
         </div>
       </div>
 
-      <!-- NEW: blur to hide seam -->
       <div class="edgeBlur" aria-hidden="true"></div>
     </section>
 
@@ -530,52 +509,19 @@
           <div class="card reveal tilt" data-tilt>
             <div class="shine"></div>
             <h2 style="margin:0 0 8px">Фишки</h2>
-            <div class="mini">
-              <h3 style="margin:0 0 6px">Промо-раздел</h3>
-              <p class="muted" style="margin:0">Часто там собраны приветственные и регулярные предложения.</p>
-            </div>
-            <div class="mini" style="margin-top:12px">
-              <h3 style="margin:0 0 6px">VIP/уровни</h3>
-              <p class="muted" style="margin:0">Перки обычно зависят от активности и правил площадки.</p>
-            </div>
-            <div class="mini" style="margin-top:12px">
-              <h3 style="margin:0 0 6px">Live</h3>
-              <p class="muted" style="margin:0">Проверь доступность в твоём регионе/устройстве.</p>
-            </div>
+            <p class="muted" style="margin:0">Промо-раздел • VIP/уровни • Live • спец-предложения.</p>
           </div>
 
           <div class="card reveal tilt" data-tilt>
             <div class="shine"></div>
             <h2 style="margin:0 0 8px">Как начать</h2>
-            <div class="mini">
-              <h3 style="margin:0 0 6px">1) Регистрация</h3>
-              <p class="muted" style="margin:0">Открой сайт и создай аккаунт.</p>
-            </div>
-            <div class="mini" style="margin-top:12px">
-              <h3 style="margin:0 0 6px">2) Бонус/промо</h3>
-              <p class="muted" style="margin:0">Выбери предложение и посмотри условия.</p>
-            </div>
-            <div class="mini" style="margin-top:12px">
-              <h3 style="margin:0 0 6px">3) Пополнение</h3>
-              <p class="muted" style="margin:0">Далее — первый депозит (по правилам площадки).</p>
-            </div>
+            <p class="muted" style="margin:0">Регистрация → выбор бонуса → проверка условий → первый депозит (по правилам площадки).</p>
           </div>
 
           <div class="card reveal tilt" data-tilt>
             <div class="shine"></div>
             <h2 style="margin:0 0 8px">Чек-лист</h2>
-            <div class="mini">
-              <h3 style="margin:0 0 6px">Вейджер</h3>
-              <p class="muted" style="margin:0">Сколько оборота нужно сделать по условиям.</p>
-            </div>
-            <div class="mini" style="margin-top:12px">
-              <h3 style="margin:0 0 6px">Срок</h3>
-              <p class="muted" style="margin:0">Когда бонус/акция становится недоступной.</p>
-            </div>
-            <div class="mini" style="margin-top:12px">
-              <h3 style="margin:0 0 6px">Ограничения</h3>
-              <p class="muted" style="margin:0">Какие игры/ставки учитываются.</p>
-            </div>
+            <p class="muted" style="margin:0">Вейджер • срок • ограничения по играм • лимиты.</p>
           </div>
         </div>
 
