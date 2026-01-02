@@ -2,127 +2,849 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Обзор платформы 1win — интерфейс, особенности, условия</title>
-  <meta name="description" content="Независимый обзор 1win: интерфейс, функции, условия бонусов, ответы на вопросы. 18+ Ответственная игра." />
-  <link rel="stylesheet" href="assets/style.css" />
-  <link rel="canonical" href="https://example.com/" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#070b14" />
+  <title>1win Casino — бонусы, фишки, обзор</title>
+  <meta name="description" content="Обзор 1win Casino: бонусы, фишки, FAQ. 18+." />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+
+  <!-- чтобы контент не пропадал, если JS не сработал -->
+  <script>document.documentElement.classList.add('js');</script>
+
+  <style>
+    :root{
+      --bg0:#040712;
+      --bg1:#070b14;
+
+      --text:#eaf0ff;
+      --muted:rgba(234,240,255,.70);
+
+      --blue:#2b8cff;
+      --cyan:#45e3ff;
+      --violet:#7b61ff;
+
+      --r:22px;
+      --shadow:0 22px 70px rgba(0,0,0,.58);
+      --shadow2:0 10px 30px rgba(0,0,0,.35);
+
+      --max:1200px;
+      --ease:cubic-bezier(.2,.8,.2,1);
+    }
+
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color:var(--text);
+      line-height:1.55;
+      overflow-x:hidden;
+      background:
+        radial-gradient(900px 520px at 10% 8%, rgba(43,140,255,.24), transparent 60%),
+        radial-gradient(950px 560px at 92% 12%, rgba(69,227,255,.16), transparent 62%),
+        radial-gradient(1000px 700px at 50% 100%, rgba(123,97,255,.13), transparent 66%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+    }
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--max);margin:0 auto;padding:0 18px}
+    .muted{color:var(--muted)}
+    .small{font-size:13px}
+
+    /* progress */
+    .progress{
+      position:fixed;left:0;top:0;height:2px;width:0%;
+      background: linear-gradient(90deg, rgba(69,227,255,0), rgba(69,227,255,.85), rgba(123,97,255,.70));
+      box-shadow: 0 0 22px rgba(69,227,255,.28);
+      z-index:100;
+    }
+
+    /* Topbar */
+    .topbar{
+      position:sticky;top:0;z-index:60;
+      background: rgba(6,9,18,.55);
+      backdrop-filter: blur(14px);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .topbar .container{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      padding:12px 18px;
+    }
+    .brand{display:flex;align-items:center;gap:10px;font-weight:1000;letter-spacing:.2px}
+    .logo{
+      width:38px;height:38px;border-radius:14px;position:relative;overflow:hidden;
+      background:
+        radial-gradient(14px 14px at 28% 28%, rgba(255,255,255,.90), rgba(255,255,255,0) 58%),
+        linear-gradient(135deg, rgba(43,140,255,.95), rgba(123,97,255,.62));
+      box-shadow: 0 0 0 1px rgba(255,255,255,.10), 0 18px 55px rgba(43,140,255,.26);
+    }
+    .logo:after{
+      content:"";position:absolute;inset:-28px;
+      background: conic-gradient(from 180deg, rgba(69,227,255,0), rgba(69,227,255,.42), rgba(69,227,255,0));
+      animation: spin 5.5s linear infinite;opacity:.65;
+    }
+    nav{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:flex-end}
+    nav a{
+      color:var(--muted);
+      border:1px solid transparent;
+      padding:8px 10px;border-radius:12px;
+      transition:.22s var(--ease);
+    }
+    nav a:hover{
+      color:var(--text);
+      background: rgba(255,255,255,.04);
+      border-color: rgba(255,255,255,.08);
+      transform: translateY(-1px);
+    }
+
+    /* Buttons */
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:11px 14px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      font-weight:1000;
+      transition:.22s var(--ease);
+      box-shadow: var(--shadow2);
+      position:relative;overflow:hidden;user-select:none;
+      cursor:pointer;
+    }
+    .btn:hover{transform: translateY(-2px)}
+    .btn:active{transform: translateY(0) scale(.99)}
+    .btn-primary{
+      border-color: rgba(69,227,255,.40);
+      background:
+        radial-gradient(340px 90px at 18% 0%, rgba(69,227,255,.25), rgba(255,255,255,0) 62%),
+        linear-gradient(135deg, rgba(43,140,255,.42), rgba(123,97,255,.20));
+      box-shadow: 0 26px 80px rgba(43,140,255,.18), var(--shadow2);
+    }
+    .btn-primary:before{
+      content:"";position:absolute;inset:-2px;
+      background: linear-gradient(90deg, rgba(69,227,255,0), rgba(69,227,255,.52), rgba(69,227,255,0));
+      transform: translateX(-140%);
+      animation: sheen 3.2s ease-in-out infinite;
+      opacity:.75;
+    }
+    .btn-ghost{background:transparent;box-shadow:none}
+    .btn-ghost:hover{background: rgba(255,255,255,.04);box-shadow: var(--shadow2)}
+    .icon{
+      width:18px;height:18px;border-radius:6px;flex:0 0 auto;
+      background: linear-gradient(135deg, rgba(69,227,255,.95), rgba(43,140,255,.70));
+      box-shadow: 0 0 18px rgba(69,227,255,.22);
+    }
+
+    /* Cards */
+    .card{
+      border:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+      padding:18px;
+      backdrop-filter: blur(12px);
+      position:relative;
+      overflow:hidden;
+      transform: translateZ(0);
+    }
+    .card:before{
+      content:"";position:absolute;inset:-1px;
+      background:
+        radial-gradient(520px 180px at 12% 0%, rgba(69,227,255,.13), transparent 60%),
+        radial-gradient(520px 180px at 90% 16%, rgba(43,140,255,.12), transparent 62%),
+        radial-gradient(650px 230px at 50% 115%, rgba(123,97,255,.11), transparent 66%);
+      opacity:.95;pointer-events:none;
+    }
+    .card > *{position:relative}
+
+    /* reveal: без JS видно всегда */
+    .reveal{opacity:1; transform:none;}
+    .js .reveal{opacity:0;transform: translateY(18px) scale(.985);transition:.7s var(--ease)}
+    .js .reveal.on{opacity:1;transform: translateY(0) scale(1)}
+
+    .tilt{transform-style:preserve-3d}
+    .shine{
+      position:absolute;inset:-2px;
+      background: radial-gradient(420px 220px at var(--mx,50%) var(--my,50%), rgba(69,227,255,.18), rgba(123,97,255,.10), rgba(0,0,0,0) 58%);
+      opacity:0;
+      transition: opacity .25s var(--ease);
+      pointer-events:none;
+    }
+    .tilt:hover .shine{opacity:.9}
+
+    /* HERO with image */
+    .hero{
+      position:relative;
+      min-height: calc(100vh - 62px);
+      display:flex;
+      align-items:stretch;
+      padding: 22px 0 34px;
+      isolation:isolate;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(1000px 520px at 20% 12%, rgba(43,140,255,.28), transparent 60%),
+        radial-gradient(950px 520px at 85% 8%, rgba(69,227,255,.18), transparent 62%),
+        linear-gradient(180deg, rgba(3,6,16,.85), rgba(3,6,16,.35));
+      z-index:-1;
+      pointer-events:none;
+    }
+    .heroBg{
+      position:absolute; inset:0;
+      background-image: url("hero.jpg");  /* <-- положи фотку рядом и назови hero.jpg */
+      background-size: cover;
+      background-position: center;
+      filter: saturate(1.05) contrast(1.06);
+      transform: scale(1.02);
+      z-index:-2;
+    }
+    .heroShade{
+      position:absolute; inset:0;
+      background:
+        linear-gradient(180deg, rgba(4,7,18,.90) 0%, rgba(4,7,18,.55) 35%, rgba(4,7,18,.85) 100%),
+        radial-gradient(900px 460px at 50% 55%, rgba(0,0,0,.20), rgba(0,0,0,.72));
+      z-index:-1;
+      pointer-events:none;
+    }
+
+    h1{
+      margin:10px 0 10px;
+      font-size: 48px;
+      line-height:1.04;
+      letter-spacing:-.7px;
+    }
+    @media (max-width: 520px){h1{font-size: 34px}}
+    .lead{margin:0 0 14px;color: rgba(234,240,255,.82);font-size: 17px}
+
+    .heroGrid{
+      width:100%;
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:14px;
+      align-items:start;
+      padding-top: 10px;
+      padding-bottom: 90px; /* место под нижнюю длинную карточку */
+    }
+    @media (max-width: 980px){
+      .heroGrid{grid-template-columns:1fr; padding-bottom: 120px;}
+      nav{justify-content:flex-start}
+    }
+
+    .mini{
+      padding:14px;border-radius:18px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      box-shadow: var(--shadow2);
+      position:relative; overflow:hidden;
+      transition: transform .22s var(--ease), border-color .22s var(--ease);
+    }
+    .mini:hover{transform: translateY(-2px); border-color: rgba(69,227,255,.22)}
+
+    .line{
+      height:1px;
+      background: linear-gradient(90deg, rgba(69,227,255,0), rgba(69,227,255,.55), rgba(123,97,255,.40), rgba(69,227,255,0));
+      opacity:.55;
+      margin: 14px 0;
+    }
+
+    /* Bottom long promo card in hero */
+    .promoWrap{
+      position:absolute;
+      left: 0; right: 0;
+      bottom: 18px;
+      z-index: 5;
+    }
+    .promoBar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding: 14px 16px;
+    }
+    @media (max-width: 820px){
+      .promoBar{flex-direction:column; align-items:stretch}
+    }
+
+    .promoLeft{
+      display:flex; flex-direction:column; gap:6px;
+      min-width: 260px;
+    }
+    .promoTitle{
+      font-size: 14px;
+      font-weight: 1000;
+      color: rgba(234,240,255,.90);
+      letter-spacing: .15px;
+    }
+    .promoSub{
+      font-size: 13px;
+      color: rgba(234,240,255,.70);
+    }
+
+    .codeBox{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding: 12px 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(69,227,255,.28);
+      background: rgba(7,12,22,.55);
+      box-shadow: 0 18px 55px rgba(0,0,0,.50);
+      backdrop-filter: blur(12px);
+      flex: 1;
+      min-height: 54px;
+      cursor:pointer;
+      user-select:none;
+      transition: transform .2s var(--ease), border-color .2s var(--ease);
+    }
+    .codeBox:hover{transform: translateY(-1px); border-color: rgba(69,227,255,.45)}
+    .codeText{
+      display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;
+    }
+    .codeLabel{
+      font-size: 12px;
+      font-weight: 900;
+      color: rgba(234,240,255,.70);
+    }
+    .codeValue{
+      font-size: 22px;
+      font-weight: 1100;
+      letter-spacing: 1.6px;
+      color: rgba(234,240,255,.95);
+      text-transform: uppercase;
+    }
+    .copyHint{
+      font-size: 12px;
+      color: rgba(234,240,255,.65);
+      white-space: nowrap;
+    }
+
+    /* toast */
+    .toast{
+      position:fixed;left:50%;bottom:18px;transform: translateX(-50%);
+      background: rgba(6,9,18,.78);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow);
+      border-radius:16px;
+      padding:10px 12px;
+      display:none;
+      z-index:99;
+      backdrop-filter: blur(12px);
+      max-width:min(760px, calc(100% - 20px));
+    }
+    .toast.on{display:flex;align-items:center;gap:10px}
+    .dot{
+      width:10px;height:10px;border-radius:999px;
+      background: radial-gradient(circle at 30% 30%, #fff, rgba(69,227,255,.95));
+      box-shadow: 0 0 18px rgba(69,227,255,.50)
+    }
+    .toast b{white-space:nowrap}
+    .toast .x{
+      margin-left:auto;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color:var(--text);
+      border-radius:12px;
+      padding:6px 10px;
+      cursor:pointer;
+      font-weight:1000;
+    }
+
+    /* Sections after hero */
+    .section{padding: 14px 0 34px}
+    .quad{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      margin-top:14px;
+    }
+    @media (max-width: 920px){.quad{grid-template-columns:1fr}}
+
+    .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    .tab{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      border-radius:999px;
+      padding:8px 10px;
+      font-weight:1000;
+      font-size:12px;
+      cursor:pointer;
+      transition:.2s var(--ease);
+      user-select:none;
+      position:relative;
+      overflow:hidden;
+      color: rgba(234,240,255,.86);
+    }
+    .tab:hover{transform: translateY(-1px)}
+    .tab.active{
+      border-color: rgba(69,227,255,.40);
+      background:
+        radial-gradient(260px 70px at 20% 0%, rgba(69,227,255,.22), rgba(255,255,255,0) 60%),
+        linear-gradient(135deg, rgba(43,140,255,.30), rgba(123,97,255,.16));
+      box-shadow: 0 18px 60px rgba(43,140,255,.16);
+    }
+    .panel{
+      margin-top:12px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      border-radius:18px;
+      padding:12px;
+      box-shadow: var(--shadow2);
+      min-height: 100px;
+      transition: opacity .2s var(--ease), transform .2s var(--ease);
+    }
+    .panel h3{margin:0 0 6px;font-size:16px;letter-spacing:-.15px}
+    .panel p{margin:0;color: rgba(234,240,255,.76)}
+
+    details{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      border-radius:16px;
+      padding: 10px 12px;
+      margin:10px 0;
+      box-shadow: var(--shadow2);
+    }
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+      font-weight:1000;
+      color: rgba(234,240,255,.92);
+    }
+    summary::-webkit-details-marker{display:none}
+
+    footer{
+      padding: 26px 0 36px;
+      border-top:1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.06);
+      margin-top: 12px;
+    }
+    .foot{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:flex-start}
+    .links{display:flex;gap:10px;flex-wrap:wrap}
+    .links a{
+      color: rgba(234,240,255,.68);
+      border:1px solid transparent;
+      padding:8px 10px;border-radius:12px;
+      transition:.18s var(--ease);
+    }
+    .links a:hover{color:var(--text);border-color: rgba(255,255,255,.10);background: rgba(255,255,255,.03)}
+
+    /* Floating CTA */
+    .float{
+      position:fixed;right:16px;bottom:16px;z-index:80;
+      display:flex;align-items:center;gap:10px;
+      padding:10px 12px;border-radius:999px;
+      border:1px solid rgba(69,227,255,.35);
+      background: rgba(6,9,18,.72);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 22px 70px rgba(0,0,0,.55);
+      transform: translateY(12px);
+      opacity:0;
+      pointer-events:none;
+      transition:.35s var(--ease);
+    }
+    .float.on{transform: translateY(0);opacity:1;pointer-events:auto}
+    .float .d{
+      width:10px;height:10px;border-radius:999px;
+      background: radial-gradient(circle at 30% 30%, #fff, rgba(69,227,255,.95));
+      box-shadow: 0 0 18px rgba(69,227,255,.50)
+    }
+    .float .t{font-weight:1000;font-size:13px;line-height:1.1}
+    .float .s{font-size:12px;color: rgba(234,240,255,.68);margin-top:2px}
+    .float .go{
+      margin-left:6px;
+      padding:8px 10px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      font-weight:1000;
+      transition:.2s var(--ease);
+    }
+    .float .go:hover{transform: translateY(-1px)}
+
+    @keyframes spin{to{transform: rotate(360deg)}}
+    @keyframes sheen{
+      0%{transform: translateX(-140%)}
+      45%{transform: translateX(140%)}
+      100%{transform: translateX(140%)}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *{animation:none !important;transition:none !important;scroll-behavior:auto !important}
+      .reveal{opacity:1;transform:none}
+    }
+  </style>
 </head>
+
 <body>
-  <header class="header">
-    <div class="container header__row">
-      <a class="logo" href="/">WinGuide</a>
-      <nav class="nav">
-        <a href="/bonus.html">Бонусы</a>
-        <a href="/faq.html">FAQ</a>
-        <a href="/responsible.html">Ответственная игра</a>
+  <div class="progress" id="progress"></div>
+
+  <header class="topbar">
+    <div class="container">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <div style="font-size:14px;line-height:1;font-weight:1000">1win Casino</div>
+          <div class="small muted" style="margin-top:6px">обзор • бонусы • фишки • FAQ • 18+</div>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#cards">Карточки</a>
+        <a href="#guide">Гайд</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn btn-primary" data-cta href="#" target="_blank" rel="nofollow sponsored noopener">
+          <span class="icon" aria-hidden="true"></span>Перейти на 1win
+        </a>
       </nav>
     </div>
   </header>
 
   <main>
-    <section class="hero">
-      <div class="container hero__grid">
-        <div>
-          <p class="kicker">18+ • Информационный сайт</p>
-          <h1>1win: обзор, интерфейс и условия — без лишних обещаний</h1>
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="heroBg" aria-hidden="true"></div>
+      <div class="heroShade" aria-hidden="true"></div>
+
+      <div class="container heroGrid">
+        <div class="card reveal tilt" data-tilt>
+          <div class="shine"></div>
+          <h1>1win Casino — бонусы и фишки</h1>
           <p class="lead">
-            Мы собираем справочную информацию о платформе: как устроен личный кабинет, какие есть разделы,
-            что важно прочитать в правилах и где чаще всего возникают вопросы.
+            Быстрый обзор: акции, бонусы и то, что обычно проверяют перед активацией.
           </p>
-
-          <div class="cta">
-            <a class="btn btn--primary" href="#" data-aff="true" rel="nofollow noopener">Перейти на сайт</a>
-            <a class="btn btn--ghost" href="/bonus.html">Посмотреть бонусы</a>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
+            <a class="btn btn-primary" data-cta href="#" target="_blank" rel="nofollow sponsored noopener">
+              <span class="icon" aria-hidden="true"></span>Открыть 1win
+            </a>
+            <a class="btn btn-ghost" href="#cards">Смотреть карточки</a>
           </div>
-
-          <p class="small muted">
-            * Материал носит информационный характер. Азартные игры связаны с финансовыми рисками.
+          <p class="small muted" style="margin:12px 0 0">
+            18+ • Условия бонусов и промо могут меняться — проверяй актуальные правила на стороне 1win.
           </p>
         </div>
 
-        <div class="card">
-          <h2 class="h3">Кратко</h2>
-          <ul class="list">
-            <li>Платформа: веб + мобильная версия</li>
-            <li>Разделы: игры, акции, профиль, поддержка</li>
-            <li>Важно: условия бонусов и вейджер</li>
-            <li>Ответственная игра: лимиты, самоконтроль</li>
-          </ul>
-          <hr />
-          <p class="small muted">
-            Мы не являемся оператором азартных игр и не принимаем ставки.
-          </p>
+        <aside class="card reveal tilt" data-tilt>
+          <div class="shine"></div>
+          <div class="mini">
+            <h3 style="margin:0 0 6px">Популярно</h3>
+            <p class="muted" style="margin:0">Welcome • reload • cashback • VIP rewards.</p>
+          </div>
+          <div class="mini" style="margin-top:12px">
+            <h3 style="margin:0 0 6px">Проверь</h3>
+            <p class="muted" style="margin:0">Вейджер • сроки • лимиты • ограничения по играм.</p>
+          </div>
+          <div class="line"></div>
+          <a class="btn btn-primary" data-cta href="#" target="_blank" rel="nofollow sponsored noopener" style="width:100%">
+            <span class="icon" aria-hidden="true"></span>Перейти на 1win
+          </a>
+        </aside>
+      </div>
+
+      <!-- Bottom long promo card -->
+      <div class="promoWrap">
+        <div class="container">
+          <div class="card promoBar reveal" style="padding:14px 16px;">
+            <div class="promoLeft">
+              <div class="promoTitle">Промокод на бонус</div>
+              <div class="promoSub">Нажми на код — он скопируется при нажатии</div>
+            </div>
+
+            <div class="codeBox" id="promoCopy" role="button" tabindex="0" aria-label="Скопировать промокод SMOG">
+              <div class="codeText">
+                <span class="codeLabel">ПРОМОКОД:</span>
+                <span class="codeValue" id="promoValue">SMOG</span>
+                <span class="codeLabel" style="margin-left:4px">+500% и 70FS к первому депозиту</span>
+              </div>
+              <div class="copyHint">копируется при нажатии</div>
+            </div>
+
+            <a class="btn btn-primary" data-cta href="#" target="_blank" rel="nofollow sponsored noopener" style="white-space:nowrap">
+              <span class="icon" aria-hidden="true"></span>Перейти
+            </a>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container grid-3">
-        <article class="card">
-          <h2 class="h3">Интерфейс и навигация</h2>
-          <p>Как устроены меню, поиск, избранное и основные разделы. Что проверить перед использованием.</p>
-          <a class="link" href="/faq.html#interface">Подробнее →</a>
-        </article>
-        <article class="card">
-          <h2 class="h3">Бонусы и условия</h2>
-          <p>На что смотреть: вейджер, сроки, ограничения по играм. Почему важно читать правила акции.</p>
-          <a class="link" href="/bonus.html">Перейти →</a>
-        </article>
-        <article class="card">
-          <h2 class="h3">Безопасность и ответственность</h2>
-          <p>Возрастные ограничения, риски, самоконтроль, куда обратиться за помощью при проблемах.</p>
-          <a class="link" href="/responsible.html">Перейти →</a>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
+    <!-- CONTENT -->
+    <section class="section" id="cards">
       <div class="container">
-        <div class="card">
-          <h2 class="h3">Плюсы и минусы (субъективно)</h2>
-          <div class="cols">
-            <div>
-              <h3 class="h4">Плюсы</h3>
-              <ul class="list">
-                <li>Понятная структура разделов</li>
-                <li>Есть справочные материалы и поддержка</li>
-                <li>Акции (условия нужно читать)</li>
-              </ul>
+        <div class="quad">
+          <div class="card reveal tilt" data-tilt>
+            <div class="shine"></div>
+            <h2 style="margin:0 0 8px">Бонусы (вкладки)</h2>
+            <div class="tabs" role="tablist">
+              <button class="tab active" type="button" data-tab="welcome">Welcome</button>
+              <button class="tab" type="button" data-tab="reload">Reload</button>
+              <button class="tab" type="button" data-tab="cashback">Cashback</button>
+              <button class="tab" type="button" data-tab="vip">VIP</button>
             </div>
-            <div>
-              <h3 class="h4">Минусы</h3>
-              <ul class="list">
-                <li>Условия бонусов могут быть сложными</li>
-                <li>Азартные игры несут риск потерь</li>
-                <li>Не всем подходит такой формат развлечения</li>
-              </ul>
+            <div class="panel" id="panel">
+              <h3>Welcome-бонус</h3>
+              <p>Перед активацией проверь условия: вейджер, сроки, лимиты и ограничения.</p>
             </div>
           </div>
-          <div class="cta cta--right">
-            <a class="btn btn--primary" href="#" data-aff="true" rel="nofollow noopener">Перейти на сайт</a>
+
+          <div class="card reveal tilt" data-tilt>
+            <div class="shine"></div>
+            <h2 style="margin:0 0 8px">Фишки</h2>
+            <div class="mini">
+              <h3 style="margin:0 0 6px">Промо-раздел</h3>
+              <p class="muted" style="margin:0">Часто там собраны приветственные и регулярные предложения.</p>
+            </div>
+            <div class="mini" style="margin-top:12px">
+              <h3 style="margin:0 0 6px">VIP/уровни</h3>
+              <p class="muted" style="margin:0">Перки обычно зависят от активности и правил площадки.</p>
+            </div>
+            <div class="mini" style="margin-top:12px">
+              <h3 style="margin:0 0 6px">Live</h3>
+              <p class="muted" style="margin:0">Проверь доступность в твоём регионе/устройстве.</p>
+            </div>
+          </div>
+
+          <div class="card reveal tilt" data-tilt>
+            <div class="shine"></div>
+            <h2 style="margin:0 0 8px">Как начать</h2>
+            <div class="mini">
+              <h3 style="margin:0 0 6px">1) Регистрация</h3>
+              <p class="muted" style="margin:0">Открой сайт и создай аккаунт.</p>
+            </div>
+            <div class="mini" style="margin-top:12px">
+              <h3 style="margin:0 0 6px">2) Бонус/промо</h3>
+              <p class="muted" style="margin:0">Выбери предложение и посмотри условия.</p>
+            </div>
+            <div class="mini" style="margin-top:12px">
+              <h3 style="margin:0 0 6px">3) Пополнение</h3>
+              <p class="muted" style="margin:0">Далее — первый депозит (по правилам площадки).</p>
+            </div>
+          </div>
+
+          <div class="card reveal tilt" data-tilt>
+            <div class="shine"></div>
+            <h2 style="margin:0 0 8px">Чек-лист</h2>
+            <div class="mini">
+              <h3 style="margin:0 0 6px">Вейджер</h3>
+              <p class="muted" style="margin:0">Сколько оборота нужно сделать по условиям.</p>
+            </div>
+            <div class="mini" style="margin-top:12px">
+              <h3 style="margin:0 0 6px">Срок</h3>
+              <p class="muted" style="margin:0">Когда бонус/акция становится недоступной.</p>
+            </div>
+            <div class="mini" style="margin-top:12px">
+              <h3 style="margin:0 0 6px">Ограничения</h3>
+              <p class="muted" style="margin:0">Какие игры/ставки учитываются.</p>
+            </div>
           </div>
         </div>
+
+        <div class="section" id="guide">
+          <div class="card reveal tilt" data-tilt>
+            <div class="shine"></div>
+            <h2 style="margin:0 0 8px">Гайд</h2>
+            <p class="muted" style="margin:0">
+              Выбирай акцию → читаешь условия → сравниваешь ограничения → только потом активируешь.
+            </p>
+          </div>
+        </div>
+
+        <div class="section" id="faq">
+          <div class="card reveal tilt" data-tilt>
+            <div class="shine"></div>
+            <h2 style="margin:0 0 8px">FAQ</h2>
+
+            <details>
+              <summary>Где искать актуальные условия бонусов?</summary>
+              <p>В промо-разделе на стороне 1win (условия могут меняться).</p>
+            </details>
+
+            <details>
+              <summary>Как использовать промокод?</summary>
+              <p>Скопируй код SMOG и используй его по правилам на сайте 1win.</p>
+            </details>
+
+            <details>
+              <summary>Почему кнопка ведёт на другой сайт?</summary>
+              <p>Это внешний переход на 1win.</p>
+            </details>
+
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
+              <a class="btn btn-primary" data-cta href="#" target="_blank" rel="nofollow sponsored noopener">
+                <span class="icon" aria-hidden="true"></span>Открыть 1win
+              </a>
+              <a class="btn btn-ghost" href="#top">Наверх</a>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
-    <footer class="footer">
-      <div class="container footer__grid">
-        <div>
-          <div class="logo logo--small">WinGuide</div>
-          <p class="small muted">
-            18+ Информационный ресурс. Мы не принимаем ставки и не являемся казино/букмекером.
+    <footer>
+      <div class="container foot">
+        <div style="max-width:860px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <div class="logo" aria-hidden="true" style="width:32px;height:32px;border-radius:14px"></div>
+            <div>
+              <div style="font-weight:1000">1win Casino — обзор</div>
+              <div class="small muted">Карточки • гайд • FAQ • 18+</div>
+            </div>
+          </div>
+          <p class="small muted" style="margin:12px 0 0">
+            18+ • Информация носит ознакомительный характер. Условия бонусов/акций уточняй на стороне 1win.
           </p>
         </div>
-        <div class="footer__links">
-          <a href="/responsible.html">Ответственная игра</a>
-          <a href="/faq.html">FAQ</a>
-          <a href="/bonus.html">Бонусы</a>
+        <div class="links">
+          <a href="#cards">Карточки</a>
+          <a href="#guide">Гайд</a>
+          <a href="#faq">FAQ</a>
         </div>
       </div>
     </footer>
   </main>
 
-  <script src="assets/main.js"></script>
+  <a class="float" id="float" data-cta href="#" target="_blank" rel="nofollow sponsored noopener" aria-label="Перейти на 1win">
+    <span class="d" aria-hidden="true"></span>
+    <div>
+      <div class="t">Перейти на 1win</div>
+      <div class="s">регистрация / вход</div>
+    </div>
+    <span class="go">GO</span>
+  </a>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <span class="dot" aria-hidden="true"></span>
+    <div>
+      <b>Скопировано</b>
+      <div class="small muted" id="toastText"></div>
+    </div>
+    <button class="x" type="button" id="toastClose">OK</button>
+  </div>
+
+  <script>
+    // ===== link =====
+    const AFF = "https://1wfafs.life/casino/list?open=register&p=7jns";
+    document.querySelectorAll("[data-cta]").forEach(a => {
+      a.href = AFF;
+      a.target = "_blank";
+      a.rel = "nofollow sponsored noopener";
+    });
+
+    // ===== smooth scroll =====
+    document.addEventListener("click", (e) => {
+      const a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+      const id = a.getAttribute("href");
+      const el = document.querySelector(id);
+      if (!el) return;
+      e.preventDefault();
+      el.scrollIntoView({behavior:"smooth", block:"start"});
+      history.replaceState(null, "", id);
+    });
+
+    // ===== reveal (безопасно) =====
+    try{
+      const io = new IntersectionObserver((entries)=> {
+        for (const ent of entries) if (ent.isIntersecting) ent.target.classList.add("on");
+      }, { threshold: 0.12 });
+      document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+    }catch{
+      document.querySelectorAll(".reveal").forEach(el => el.classList.add("on"));
+    }
+
+    // ===== tabs =====
+    const panel = document.getElementById("panel");
+    const tabs = [...document.querySelectorAll(".tab")];
+    const TAB = {
+      welcome: {h:"Welcome-бонус", p:"Перед активацией проверь условия: вейджер, сроки, лимиты и ограничения."},
+      reload:  {h:"Reload", p:"Регулярные предложения для активных — сравни периодичность и требования по обороту."},
+      cashback:{h:"Cashback", p:"Условия могут отличаться — смотри правила и ограничения."},
+      vip:     {h:"VIP", p:"VIP-награды обычно зависят от активности и правил площадки."}
+    };
+    function setTab(key){
+      tabs.forEach(t => t.classList.toggle("active", t.dataset.tab===key));
+      panel.style.opacity="0"; panel.style.transform="translateY(6px)";
+      setTimeout(()=>{
+        panel.innerHTML = `<h3>${TAB[key].h}</h3><p>${TAB[key].p}</p>`;
+        panel.style.opacity="1"; panel.style.transform="translateY(0)";
+      }, 120);
+    }
+    tabs.forEach(t=> t.addEventListener("click", ()=> setTab(t.dataset.tab)));
+
+    // ===== tilt =====
+    const tiltEls = [...document.querySelectorAll("[data-tilt]")];
+    const clamp = (n,a,b)=> Math.max(a, Math.min(b,n));
+    tiltEls.forEach(el=>{
+      el.addEventListener("pointermove",(e)=>{
+        const r = el.getBoundingClientRect();
+        const x = (e.clientX - r.left)/r.width;
+        const y = (e.clientY - r.top)/r.height;
+        const rx = clamp((0.5 - y) * 10, -8, 8);
+        const ry = clamp((x - 0.5) * 12, -9, 9);
+        el.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-1px)`;
+        el.style.setProperty("--mx", (x*100).toFixed(2)+"%");
+        el.style.setProperty("--my", (y*100).toFixed(2)+"%");
+      },{passive:true});
+      el.addEventListener("pointerleave", ()=> { el.style.transform=""; }, {passive:true});
+    });
+
+    // ===== progress + floating CTA =====
+    const progress = document.getElementById("progress");
+    const float = document.getElementById("float");
+    function onScroll(){
+      const h = document.documentElement.scrollHeight - innerHeight;
+      const p = h<=0 ? 0 : (scrollY/h);
+      progress.style.width = (p*100).toFixed(2)+"%";
+      if (scrollY > 420) float.classList.add("on"); else float.classList.remove("on");
+    }
+    addEventListener("scroll", onScroll, {passive:true});
+    onScroll();
+
+    // ===== toast =====
+    const toast = document.getElementById("toast");
+    const toastText = document.getElementById("toastText");
+    const toastClose = document.getElementById("toastClose");
+    function showToast(text){
+      toastText.textContent = text || "";
+      toast.classList.add("on");
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(()=> toast.classList.remove("on"), 2600);
+    }
+    toastClose?.addEventListener("click", ()=> toast.classList.remove("on"));
+
+    // ===== PROMO COPY =====
+    const promoValue = "SMOG";
+    const promoCopy = document.getElementById("promoCopy");
+
+    async function copyText(txt){
+      try{
+        await navigator.clipboard.writeText(txt);
+        return true;
+      }catch{
+        try{
+          const ta = document.createElement("textarea");
+          ta.value = txt;
+          ta.style.position = "fixed";
+          ta.style.left = "-9999px";
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          ta.remove();
+          return true;
+        }catch{
+          return false;
+        }
+      }
+    }
+
+    function onPromoClick(){
+      copyText(promoValue).then(ok=>{
+        if(ok) showToast("Промокод: " + promoValue);
+        else showToast("Не удалось скопировать");
+      });
+    }
+
+    promoCopy?.addEventListener("click", onPromoClick);
+    promoCopy?.addEventListener("keydown", (e)=>{
+      if(e.key === "Enter" || e.key === " "){ e.preventDefault(); onPromoClick(); }
+    });
+  </script>
 </body>
 </html>
