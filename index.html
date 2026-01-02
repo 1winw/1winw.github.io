@@ -1,3 +1,14 @@
+Сделал ✅
+
+* **убрал карточку** “1win Casino — бонусы” (ту, что на скрине)
+* заменил “клуб lucky jet” → **“1win”** в FAQ
+* **сильнее осветлил hero.jpg**
+* **снег теперь “настоящий”**: не точки по прямой вниз, а снежинки с разным размером, скоростью, боковым дрейфом и лёгким “вихрем” (canvas)
+* добавил **мягкую гирлянду/блики сверху** (очень аккуратно)
+
+Ниже готовый файл целиком (копируй и замени свой):
+
+```html
 <!doctype html>
 <html lang="ru">
 <head>
@@ -179,7 +190,7 @@
       background:
         radial-gradient(1000px 520px at 20% 12%, rgba(43,140,255,.28), transparent 60%),
         radial-gradient(950px 520px at 85% 8%, rgba(69,227,255,.18), transparent 62%),
-        linear-gradient(180deg, rgba(3,6,16,.85), rgba(3,6,16,.35));
+        linear-gradient(180deg, rgba(3,6,16,.80), rgba(3,6,16,.28));
       z-index:-1;
       pointer-events:none;
     }
@@ -188,57 +199,69 @@
       background-image: url("hero.jpg"); /* положи рядом и назови hero.jpg */
       background-size: cover;
       background-position: center;
-      filter: brightness(1.12) saturate(1.08) contrast(1.05); /* чуть осветлил */
-      transform: scale(1.02);
+      filter: brightness(1.30) saturate(1.10) contrast(1.04); /* сильнее осветлил */
+      transform: scale(1.03);
       z-index:-2;
     }
     .heroShade{
       position:absolute; inset:0;
       background:
-        linear-gradient(180deg, rgba(4,7,18,.90) 0%, rgba(4,7,18,.55) 35%, rgba(4,7,18,.85) 100%),
-        radial-gradient(900px 460px at 50% 55%, rgba(0,0,0,.20), rgba(0,0,0,.72));
+        linear-gradient(180deg, rgba(4,7,18,.82) 0%, rgba(4,7,18,.42) 35%, rgba(4,7,18,.78) 100%),
+        radial-gradient(900px 460px at 50% 55%, rgba(0,0,0,.12), rgba(0,0,0,.62));
       z-index:-1;
       pointer-events:none;
     }
 
-    /* NEW: снежный слой (новогодний вайб) */
-    .snow{
-      position:absolute; inset:0;
-      z-index:1;
+    /* NEW: гирлянда / блики сверху (мягко) */
+    .garland{
+      position:absolute;
+      left:-10%;
+      right:-10%;
+      top:-10px;
+      height:130px;
+      z-index:2;
       pointer-events:none;
       opacity:.55;
-      mix-blend-mode: screen;
       filter: blur(.2px);
+      mix-blend-mode: screen;
     }
-    .snow, .snow:before, .snow:after{
+    .garland:before{
       content:"";
-      position:absolute; inset:-10%;
-      background-repeat: repeat;
-      background-position: 0 0;
-      animation: snowFall 22s linear infinite;
+      position:absolute; inset:0;
+      background:
+        radial-gradient(18px 18px at 6% 42%, rgba(255,255,255,.65), rgba(255,255,255,0) 60%),
+        radial-gradient(22px 22px at 12% 52%, rgba(69,227,255,.55), rgba(69,227,255,0) 62%),
+        radial-gradient(20px 20px at 18% 44%, rgba(123,97,255,.50), rgba(123,97,255,0) 62%),
+        radial-gradient(24px 24px at 24% 56%, rgba(255,255,255,.55), rgba(255,255,255,0) 63%),
+        radial-gradient(20px 20px at 30% 46%, rgba(69,227,255,.52), rgba(69,227,255,0) 62%),
+        radial-gradient(24px 24px at 36% 58%, rgba(123,97,255,.48), rgba(123,97,255,0) 63%),
+        radial-gradient(20px 20px at 42% 44%, rgba(255,255,255,.55), rgba(255,255,255,0) 62%),
+        radial-gradient(22px 22px at 48% 56%, rgba(69,227,255,.50), rgba(69,227,255,0) 62%),
+        radial-gradient(20px 20px at 54% 46%, rgba(123,97,255,.46), rgba(123,97,255,0) 63%),
+        radial-gradient(24px 24px at 60% 58%, rgba(255,255,255,.52), rgba(255,255,255,0) 64%),
+        radial-gradient(20px 20px at 66% 44%, rgba(69,227,255,.48), rgba(69,227,255,0) 62%),
+        radial-gradient(24px 24px at 72% 56%, rgba(123,97,255,.44), rgba(123,97,255,0) 64%),
+        radial-gradient(20px 20px at 78% 46%, rgba(255,255,255,.50), rgba(255,255,255,0) 62%),
+        radial-gradient(24px 24px at 84% 58%, rgba(69,227,255,.46), rgba(69,227,255,0) 63%),
+        radial-gradient(20px 20px at 90% 44%, rgba(123,97,255,.42), rgba(123,97,255,0) 64%),
+        radial-gradient(24px 24px at 96% 56%, rgba(255,255,255,.46), rgba(255,255,255,0) 64%),
+        linear-gradient(180deg, rgba(0,0,0,.20), rgba(0,0,0,0) 70%);
+      animation: twinkle 3.8s ease-in-out infinite;
+      opacity:.95;
     }
-    .snow{
-      opacity:.45;
-      background-size: 240px 240px;
-      background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='180'%20height='180'%3E%3Ccircle%20cx='16'%20cy='22'%20r='1.2'%20fill='white'%20fill-opacity='.85'/%3E%3Ccircle%20cx='62'%20cy='44'%20r='1.0'%20fill='white'%20fill-opacity='.75'/%3E%3Ccircle%20cx='118'%20cy='28'%20r='1.6'%20fill='white'%20fill-opacity='.9'/%3E%3Ccircle%20cx='150'%20cy='74'%20r='1.1'%20fill='white'%20fill-opacity='.7'/%3E%3Ccircle%20cx='28'%20cy='112'%20r='1.5'%20fill='white'%20fill-opacity='.85'/%3E%3Ccircle%20cx='88'%20cy='126'%20r='1.1'%20fill='white'%20fill-opacity='.75'/%3E%3Ccircle%20cx='140'%20cy='132'%20r='1.7'%20fill='white'%20fill-opacity='.9'/%3E%3Ccircle%20cx='170'%20cy='156'%20r='1.2'%20fill='white'%20fill-opacity='.75'/%3E%3C/svg%3E");
+    @keyframes twinkle{
+      0%,100%{filter: brightness(1)}
+      50%{filter: brightness(1.10)}
     }
-    .snow:before{
-      opacity:.28;
-      background-size: 360px 360px;
-      animation-duration: 34s;
-      animation-direction: reverse;
-      background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='240'%20height='240'%3E%3Ccircle%20cx='26'%20cy='40'%20r='1.8'%20fill='white'%20fill-opacity='.55'/%3E%3Ccircle%20cx='92'%20cy='60'%20r='1.4'%20fill='white'%20fill-opacity='.5'/%3E%3Ccircle%20cx='170'%20cy='54'%20r='2.2'%20fill='white'%20fill-opacity='.6'/%3E%3Ccircle%20cx='210'%20cy='104'%20r='1.5'%20fill='white'%20fill-opacity='.5'/%3E%3Ccircle%20cx='58'%20cy='162'%20r='2.0'%20fill='white'%20fill-opacity='.58'/%3E%3Ccircle%20cx='132'%20cy='188'%20r='1.6'%20fill='white'%20fill-opacity='.52'/%3E%3Ccircle%20cx='206'%20cy='206'%20r='2.2'%20fill='white'%20fill-opacity='.6'/%3E%3C/svg%3E");
-      filter: blur(1px);
-    }
-    .snow:after{
-      opacity:.18;
-      background-size: 520px 520px;
-      animation-duration: 46s;
-      background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='320'%20height='320'%3E%3Ccircle%20cx='44'%20cy='54'%20r='2.6'%20fill='white'%20fill-opacity='.35'/%3E%3Ccircle%20cx='146'%20cy='82'%20r='2.0'%20fill='white'%20fill-opacity='.28'/%3E%3Ccircle%20cx='258'%20cy='66'%20r='3.0'%20fill='white'%20fill-opacity='.35'/%3E%3Ccircle%20cx='286'%20cy='168'%20r='2.2'%20fill='white'%20fill-opacity='.3'/%3E%3Ccircle%20cx='108'%20cy='226'%20r='3.0'%20fill='white'%20fill-opacity='.33'/%3E%3Ccircle%20cx='220'%20cy='262'%20r='2.4'%20fill='white'%20fill-opacity='.3'/%3E%3C/svg%3E");
-      filter: blur(1.5px);
-    }
-    @keyframes snowFall{
-      to{ background-position: 0 980px; }
+
+    /* NEW: снег canvas */
+    .snowCanvas{
+      position:absolute;
+      inset:0;
+      z-index:2;
+      pointer-events:none;
+      opacity:.78;
+      mix-blend-mode: screen;
     }
 
     /* blur to hide seam */
@@ -267,7 +290,26 @@
     @media (max-width: 520px){h1{font-size: 34px}}
     .lead{margin:0 0 10px;color: rgba(234,240,255,.82);font-size: 17px}
 
-    /* NEW: слоган по центру */
+    /* centered hero card */
+    .heroGrid{
+      width:100%;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:14px;
+      align-items:start;
+      justify-items:center;
+      padding-top: 10px;
+      padding-bottom: 160px; /* меньше, т.к. верхнюю карточку удалили */
+      position:relative;
+      z-index: 4;
+    }
+    @media (max-width: 980px){
+      nav{justify-content:flex-start}
+      .heroGrid{padding-bottom: 190px;}
+    }
+    .heroMain{width: min(900px, 100%);}
+
+    /* слоган */
     .sloganWrap{display:flex;justify-content:center;margin: 10px 0 6px}
     .slogan{
       display:inline-flex;align-items:center;justify-content:center;
@@ -288,25 +330,6 @@
       color: transparent;
     }
 
-    /* centered hero card */
-    .heroGrid{
-      width:100%;
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:14px;
-      align-items:start;
-      justify-items:center;
-      padding-top: 10px;
-      padding-bottom: 210px; /* увеличил, чтобы 2 карточки промо не перекрывали hero */
-      position:relative;
-      z-index: 4;
-    }
-    @media (max-width: 980px){
-      nav{justify-content:flex-start}
-      .heroGrid{padding-bottom: 250px;}
-    }
-    .heroMain{width: min(900px, 100%);}
-
     /* PROMO */
     .promoWrap{
       position:absolute;
@@ -314,7 +337,6 @@
       bottom: 18px;
       z-index: 6;
     }
-    .promoStack{display:flex;flex-direction:column;gap:12px}
     .promoBar{
       display:flex;
       align-items:center;
@@ -328,41 +350,6 @@
     .promoLeft{display:flex; flex-direction:column; gap:6px; min-width: 260px;}
     .promoTitle{font-size: 14px;font-weight: 1000;color: rgba(234,240,255,.90);letter-spacing: .15px;}
     .promoSub{font-size: 13px;color: rgba(234,240,255,.70);}
-
-    /* NEW: карточка над промокодом */
-    .bonusTop{
-      padding: 14px 16px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-    }
-    .bonusTop .t{
-      font-size: 14px;
-      font-weight: 1200;
-      letter-spacing:.15px;
-      color: rgba(234,240,255,.92);
-    }
-    .bonusTop .d{
-      font-size: 13px;
-      color: rgba(234,240,255,.72);
-      margin-top:6px;
-      max-width: 620px;
-    }
-    .pill{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:9px 12px;border-radius:999px;
-      border:1px solid rgba(69,227,255,.28);
-      background: rgba(7,12,22,.45);
-      font-weight: 1100;
-      white-space: nowrap;
-      box-shadow: 0 18px 55px rgba(0,0,0,.40);
-    }
-    .pill .spark{
-      width:10px;height:10px;border-radius:999px;
-      background: radial-gradient(circle at 30% 30%, #fff, rgba(69,227,255,.95));
-      box-shadow: 0 0 18px rgba(69,227,255,.50);
-    }
 
     .codeBox{
       display:flex;align-items:center;justify-content:space-between;gap:10px;
@@ -381,7 +368,7 @@
     .codeValue{font-size: 22px;font-weight: 1100;letter-spacing: 1.6px;color: rgba(234,240,255,.95);text-transform: uppercase;}
     .copyHint{font-size: 12px;color: rgba(234,240,255,.65);white-space: nowrap;}
 
-    /* NEW: секция карточек под промокодом */
+    /* секции */
     .section{padding: 18px 0 40px}
     .cardsGrid{
       display:grid;
@@ -406,7 +393,7 @@
     .list li{margin: 10px 0}
     .list b{color: rgba(234,240,255,.92)}
 
-    /* FAQ section */
+    /* FAQ */
     details{
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
@@ -485,7 +472,6 @@
     @media (prefers-reduced-motion: reduce){
       *{animation:none !important;transition:none !important}
       .reveal{opacity:1;transform:none}
-      .snow, .snow:before, .snow:after{animation:none !important}
     }
   </style>
 </head>
@@ -517,8 +503,11 @@
       <div class="heroBg" aria-hidden="true"></div>
       <div class="heroShade" aria-hidden="true"></div>
 
-      <!-- NEW snow -->
-      <div class="snow" aria-hidden="true"></div>
+      <!-- гирлянда -->
+      <div class="garland" aria-hidden="true"></div>
+
+      <!-- снег canvas -->
+      <canvas id="snowCanvas" class="snowCanvas" aria-hidden="true"></canvas>
 
       <div class="container heroGrid">
         <div class="card reveal tilt heroMain" data-tilt>
@@ -526,7 +515,6 @@
           <h1>1win Casino — бонусы и фишки</h1>
           <p class="lead">Главное — промокод, бонус и быстрые ответы на частые вопросы.</p>
 
-          <!-- NEW centered slogan -->
           <div class="sloganWrap">
             <div class="slogan"><b>1WIN</b> — когда ставка становится историей</div>
           </div>
@@ -543,41 +531,25 @@
 
       <div class="promoWrap">
         <div class="container">
-          <div class="promoStack">
-
-            <!-- NEW: карточка "1win Casino — бонусы" над промокодом -->
-            <div class="card bonusTop reveal tilt" data-tilt>
-              <div class="shine"></div>
-              <div>
-                <div class="t">1win Casino — бонусы</div>
-                <div class="d">Забирай промокод и смотри разделы с бонусной программой и играми ниже — всё разложено по карточкам.</div>
-              </div>
-              <div class="pill" title="Промо-оффер">
-                <span class="spark" aria-hidden="true"></span>
-                <span>+500% и 70FS</span>
-              </div>
+          <!-- верхнюю карточку (со скрина) УБРАЛ -->
+          <div class="card promoBar reveal">
+            <div class="promoLeft">
+              <div class="promoTitle">Промокод на бонус</div>
+              <div class="promoSub">Нажми на код — он скопируется при нажатии</div>
             </div>
 
-            <div class="card promoBar reveal">
-              <div class="promoLeft">
-                <div class="promoTitle">Промокод на бонус</div>
-                <div class="promoSub">Нажми на код — он скопируется при нажатии</div>
+            <div class="codeBox" id="promoCopy" role="button" tabindex="0" aria-label="Скопировать промокод SMOG">
+              <div class="codeText">
+                <span class="codeLabel">ПРОМОКОД:</span>
+                <span class="codeValue" id="promoValue">SMOG</span>
+                <span class="codeLabel" style="margin-left:4px">+500% и 70FS к первому депозиту</span>
               </div>
-
-              <div class="codeBox" id="promoCopy" role="button" tabindex="0" aria-label="Скопировать промокод SMOG">
-                <div class="codeText">
-                  <span class="codeLabel">ПРОМОКОД:</span>
-                  <span class="codeValue" id="promoValue">SMOG</span>
-                  <span class="codeLabel" style="margin-left:4px">+500% и 70FS к первому депозиту</span>
-                </div>
-                <div class="copyHint">копируется при нажатии</div>
-              </div>
-
-              <a class="btn btn-primary" data-cta href="#" target="_blank" rel="nofollow sponsored noopener" style="white-space:nowrap">
-                <span class="icon" aria-hidden="true"></span>Перейти
-              </a>
+              <div class="copyHint">копируется при нажатии</div>
             </div>
 
+            <a class="btn btn-primary" data-cta href="#" target="_blank" rel="nofollow sponsored noopener" style="white-space:nowrap">
+              <span class="icon" aria-hidden="true"></span>Перейти
+            </a>
           </div>
         </div>
       </div>
@@ -585,7 +557,6 @@
       <div class="edgeBlur" aria-hidden="true"></div>
     </section>
 
-    <!-- NEW: Cards under promo -->
     <section class="section" id="info">
       <div class="container">
         <div class="cardsGrid">
@@ -631,7 +602,6 @@
       </div>
     </section>
 
-    <!-- FAQ updated -->
     <section class="section" id="faq">
       <div class="container">
         <div class="card reveal tilt" data-tilt>
@@ -641,7 +611,7 @@
           <details>
             <summary>1. Безопасно ли играть на сайте 1Вин?</summary>
             <p class="muted" style="margin:8px 0 0">
-              Да, клуб lucky jet предлагает посетителям доступ только к честным ставкам, защите персональных данных, строгому соблюдению политики конфиденциальности.
+              Да, 1win предлагает посетителям доступ только к честным ставкам, защите персональных данных, строгому соблюдению политики конфиденциальности.
               Казино 1Win работает под лицензией Кюрасао №8048/JAZ2018-040, обеспечивая игрокам только стабильную игру и невозможность вмешиваться в работу софта.
             </p>
           </details>
@@ -816,6 +786,126 @@
     promoCopy?.addEventListener("keydown", (e)=>{
       if(e.key === "Enter" || e.key === " "){ e.preventDefault(); onPromoClick(); }
     });
+
+    // NEW: снег (не точки вниз — а снежинки с дрейфом/вихрем)
+    (function(){
+      const reduce = matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+      const canvas = document.getElementById("snowCanvas");
+      if(!canvas || reduce) return;
+
+      const ctx = canvas.getContext("2d");
+      let w=0,h=0,dpr=1;
+      const flakes = [];
+      const FLAKE_COUNT = 140;
+
+      function resize(){
+        dpr = Math.max(1, Math.min(2, devicePixelRatio || 1));
+        w = canvas.clientWidth;
+        h = canvas.clientHeight;
+        canvas.width = Math.floor(w*dpr);
+        canvas.height = Math.floor(h*dpr);
+        ctx.setTransform(dpr,0,0,dpr,0,0);
+      }
+
+      function rnd(a,b){ return a + Math.random()*(b-a); }
+
+      function makeFlake(){
+        const r = rnd(0.8, 3.2);
+        return {
+          x: rnd(0, w),
+          y: rnd(-h, 0),
+          r,
+          vy: rnd(0.45, 1.35) * (0.7 + r/3.2),
+          vx: rnd(-0.25, 0.25),
+          a: rnd(0.35, 0.9),
+          phase: rnd(0, Math.PI*2),
+          wobble: rnd(0.6, 1.6),
+          spin: rnd(-0.02, 0.02)
+        };
+      }
+
+      function reset(f){
+        f.x = rnd(0, w);
+        f.y = rnd(-40, -10);
+      }
+
+      function drawSnowflake(f){
+        // маленькие — мягкие точки, большие — "снежинка" (6 лучей)
+        if(f.r < 2.2){
+          ctx.beginPath();
+          ctx.arc(f.x, f.y, f.r, 0, Math.PI*2);
+          ctx.fill();
+          return;
+        }
+        const arms = 6;
+        const len = f.r * 2.2;
+        ctx.save();
+        ctx.translate(f.x, f.y);
+        ctx.rotate(f.phase);
+        ctx.beginPath();
+        for(let i=0;i<arms;i++){
+          const ang = (Math.PI*2/arms)*i;
+          ctx.moveTo(0,0);
+          ctx.lineTo(Math.cos(ang)*len, Math.sin(ang)*len);
+          // маленькие “веточки”
+          const bx = Math.cos(ang)*len*0.55;
+          const by = Math.sin(ang)*len*0.55;
+          const side = 0.55;
+          ctx.moveTo(bx,by);
+          ctx.lineTo(bx + Math.cos(ang+Math.PI/3)*len*0.28*side, by + Math.sin(ang+Math.PI/3)*len*0.28*side);
+          ctx.moveTo(bx,by);
+          ctx.lineTo(bx + Math.cos(ang-Math.PI/3)*len*0.28*side, by + Math.sin(ang-Math.PI/3)*len*0.28*side);
+        }
+        ctx.stroke();
+        ctx.restore();
+      }
+
+      let last = performance.now();
+      function tick(t){
+        const dt = Math.min(32, t-last);
+        last = t;
+
+        ctx.clearRect(0,0,w,h);
+
+        // лёгкий glow для "снега"
+        ctx.fillStyle = "rgba(255,255,255,0.85)";
+        ctx.strokeStyle = "rgba(255,255,255,0.55)";
+        ctx.lineWidth = 1.1;
+
+        for(const f of flakes){
+          const sway = Math.sin((f.y*0.012) + f.phase) * f.wobble;
+          f.x += (f.vx + sway*0.08) * (dt/16);
+          f.y += f.vy * (dt/16);
+          f.phase += f.spin * (dt/16);
+
+          if(f.y > h + 12) reset(f);
+          if(f.x < -20) f.x = w + 20;
+          if(f.x > w + 20) f.x = -20;
+
+          ctx.save();
+          ctx.globalAlpha = f.a;
+          ctx.shadowColor = "rgba(255,255,255,0.35)";
+          ctx.shadowBlur = f.r > 2.2 ? 8 : 4;
+          drawSnowflake(f);
+          ctx.restore();
+        }
+
+        requestAnimationFrame(tick);
+      }
+
+      function init(){
+        resize();
+        flakes.length = 0;
+        for(let i=0;i<FLAKE_COUNT;i++) flakes.push(makeFlake());
+        requestAnimationFrame(tick);
+      }
+
+      addEventListener("resize", resize, {passive:true});
+      init();
+    })();
   </script>
 </body>
 </html>
+```
+
+Если хочешь — могу сделать снег ещё “пушистее”: добавить **ближний слой крупных снежинок** (медленнее, сильнее блюр) и **дальний слой мелкой метели** (почти туманом).
