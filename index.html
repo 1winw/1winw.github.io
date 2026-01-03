@@ -39,6 +39,9 @@
       color:var(--text);
       line-height:1.55;
       overflow-x:hidden;
+      /* чтобы липкий блок снизу не перекрывал контент */
+      padding-bottom: 120px;
+
       background:
         radial-gradient(900px 520px at 10% 8%, rgba(43,140,255,.22), transparent 60%),
         radial-gradient(950px 560px at 92% 12%, rgba(69,227,255,.14), transparent 62%),
@@ -50,13 +53,13 @@
     .muted{color:var(--muted)}
     .small{font-size:13px}
 
-    /* ❄️ снег на весь сайт */
+    /* ❄️ снег на весь сайт (виден с HERO) */
     #snowGlobal{
       position:fixed;
       inset:0;
-      z-index:1;
+      z-index:48;              /* ✅ выше hero-фона => виден с первого экрана */
       pointer-events:none;
-      opacity:.92; /* заметнее на 1 экране */
+      opacity:.92;
       filter: blur(.10px);
     }
     .snowHaze{
@@ -64,14 +67,12 @@
       left:-10%; right:-10%;
       bottom:-40px;
       height:160px;
-      z-index:1;
+      z-index:47;              /* рядом со снегом */
       pointer-events:none;
       background: radial-gradient(60% 110% at 50% 100%, rgba(255,255,255,.16), rgba(255,255,255,0) 70%);
       filter: blur(18px);
       opacity:.55;
     }
-
-    main, header{position:relative; z-index:2;}
 
     .progress{
       position:fixed;left:0;top:0;height:2px;width:0%;
@@ -129,6 +130,7 @@
       position:relative;overflow:hidden;user-select:none;
       cursor:pointer;
       transform: translateZ(0);
+      z-index: 70; /* поверх снега */
     }
     .btn:hover{transform: translateY(-2px)}
     .btn:active{transform: translateY(0) scale(.99)}
@@ -163,7 +165,6 @@
     .btn-wide{min-width: 310px; padding-left: 26px; padding-right: 26px;}
     @media (max-width:520px){ .btn-wide{min-width: 245px;} }
 
-    /* усиленная CTA (в блоке О 1win) */
     .btn-super{
       min-width: 340px;
       padding: 13px 26px;
@@ -195,6 +196,7 @@
       overflow:hidden;
       transform: translateZ(0);
       transition: transform .22s var(--ease), border-color .22s var(--ease);
+      z-index: 70; /* поверх снега */
     }
     .card:hover{ transform: translateY(-2px); border-color: rgba(255,255,255,.14); }
     .card:before{
@@ -221,14 +223,14 @@
     }
     .tilt:hover .shine{opacity:.9}
 
-    /* 🎄 Гирлянда (провод + лампы), поднята к панели */
+    /* 🎄 Гирлянда (провод + лампы) */
     .garlandTop{
       position:fixed;
       left:-10%;
       right:-10%;
       height:86px;
       top: calc(var(--topbarH) - 30px);
-      z-index:59;
+      z-index:59; /* под меню, над фоном */
       pointer-events:none;
       opacity:.95;
       filter: drop-shadow(0 12px 18px rgba(0,0,0,.45));
@@ -260,24 +262,24 @@
       padding: 22px 0 34px;
       isolation:isolate;
       overflow:hidden;
+      z-index: 50;
     }
     .hero::before{
       content:"";
       position:absolute; inset:0;
       background:
-        radial-gradient(1000px 520px at 20% 12%, rgba(43,140,255,.28), transparent 60%),
-        radial-gradient(950px 520px at 85% 8%, rgba(69,227,255,.16), transparent 62%),
-        linear-gradient(180deg, rgba(3,6,16,.85), rgba(3,6,16,.35));
+        radial-gradient(1000px 520px at 20% 12%, rgba(43,140,255,.20), transparent 60%),
+        radial-gradient(950px 520px at 85% 8%, rgba(69,227,255,.12), transparent 62%);
       z-index:-1;
       pointer-events:none;
     }
     .heroBg{
       position:absolute; inset:0;
-      background-image: url("hero.jpg");
+      background-image: url("hero.png"); /* ✅ hero.png */
       background-size: cover;
       background-position: center;
-      /* ✅ осветлил сильнее */
-      filter: brightness(1.60) saturate(1.16) contrast(1.08);
+      /* ✅ максимально светлая */
+      filter: brightness(2.25) saturate(1.10) contrast(1.02);
       transform: scale(1.06);
       z-index:-2;
       will-change: background-position, transform;
@@ -285,9 +287,10 @@
     }
     .heroShade{
       position:absolute; inset:0;
+      /* ✅ заметно светлее, чтобы картинка была яркой */
       background:
-        linear-gradient(180deg, rgba(4,7,18,.80) 0%, rgba(4,7,18,.38) 35%, rgba(4,7,18,.78) 100%),
-        radial-gradient(900px 460px at 50% 55%, rgba(0,0,0,.16), rgba(0,0,0,.62));
+        linear-gradient(180deg, rgba(4,7,18,.30) 0%, rgba(4,7,18,.12) 35%, rgba(4,7,18,.28) 100%),
+        radial-gradient(900px 460px at 50% 55%, rgba(0,0,0,.06), rgba(0,0,0,.22));
       z-index:-1;
       pointer-events:none;
     }
@@ -303,7 +306,7 @@
       padding-top: clamp(70px, 10vh, 110px);
       padding-bottom: clamp(230px, 24vh, 290px);
       position:relative;
-      z-index: 4;
+      z-index: 70;
     }
     .heroMain{
       width: min(900px, 100%);
@@ -339,7 +342,6 @@
       color: transparent;
     }
 
-    /* “выгоды” рядом с CTA */
     .chips{
       display:flex;
       justify-content:center;
@@ -366,7 +368,6 @@
       font-weight: 1200;
     }
 
-    /* доверие под CTA */
     .trustRow{
       margin-top:12px;
       display:flex;
@@ -393,7 +394,7 @@
       box-shadow: 0 0 16px rgba(69,227,255,.30);
     }
 
-    /* Quick: 3 шага + калькулятор */
+    /* Quick */
     .quick{
       margin-top:14px;
       display:grid;
@@ -406,14 +407,14 @@
       .quick{grid-template-columns: 1fr;}
     }
 
-    .steps{
+    .steps, .calc{
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
       border-radius:18px;
       padding:12px;
       box-shadow: var(--shadow2);
     }
-    .stepsTitle{
+    .stepsTitle, .calcTitle{
       font-weight:1200;
       font-size:13px;
       color: rgba(234,240,255,.88);
@@ -453,20 +454,6 @@
       margin-top:8px;
     }
 
-    .calc{
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      border-radius:18px;
-      padding:12px;
-      box-shadow: var(--shadow2);
-    }
-    .calcTitle{
-      font-weight:1200;
-      font-size:13px;
-      color: rgba(234,240,255,.88);
-      letter-spacing:.2px;
-      margin:0 0 10px;
-    }
     .calcRow{
       display:flex;
       justify-content:space-between;
@@ -507,6 +494,30 @@
       color: rgba(234,240,255,.65);
       font-weight:1000;
     }
+
+    .presetRow{
+      margin-top:10px;
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+    .presetBtn{
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(7,12,22,.35);
+      color: rgba(234,240,255,.85);
+      font-weight:1100;
+      font-size:12px;
+      cursor:pointer;
+      transition:.18s var(--ease);
+    }
+    .presetBtn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(69,227,255,.32);
+      box-shadow: 0 14px 30px rgba(0,0,0,.30);
+    }
+
     .calcOut{
       margin-top:10px;
       padding:10px 12px;
@@ -525,12 +536,12 @@
       font-weight:1200;
     }
 
-    /* PROMO — блок промокода в hero */
+    /* PROMO */
     .promoWrap{
       position:absolute;
       left: 0; right: 0;
       bottom: 58px;
-      z-index: 6;
+      z-index: 75;
     }
     .promoBar{
       display:flex;
@@ -563,24 +574,8 @@
     .codeValue{font-size: 22px;font-weight: 1100;letter-spacing: 1.6px;color: rgba(234,240,255,.95);text-transform: uppercase;}
     .copyHint{font-size: 12px;color: rgba(234,240,255,.65);white-space: nowrap;}
 
-    .hero .edgeBlur{
-      position:absolute;
-      left:-10%;
-      right:-10%;
-      bottom:-55px;
-      height:140px;
-      background: linear-gradient(180deg,
-        rgba(4,7,18,0) 0%,
-        rgba(4,7,18,.55) 45%,
-        rgba(4,7,18,.92) 100%
-      );
-      filter: blur(18px);
-      z-index: 3;
-      pointer-events:none;
-    }
-
     /* секции */
-    .section{padding: 18px 0 40px}
+    .section{padding: 18px 0 40px; position:relative; z-index:70;}
     .sectionTitle{
       margin: 0 0 8px;
       font-size: 26px;
@@ -632,6 +627,8 @@
       border-top:1px solid rgba(255,255,255,.08);
       background: rgba(0,0,0,.06);
       margin-top: 12px;
+      position:relative;
+      z-index:70;
     }
     .foot{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:flex-start}
     .links{display:flex;gap:10px;flex-wrap:wrap}
@@ -684,10 +681,10 @@
     .float .go{margin-left:6px;padding:8px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background: rgba(255,255,255,.04);font-weight:1000;transition:.2s var(--ease);}
     .float .go:hover{transform: translateY(-1px)}
     @media (max-width: 520px){
-      .float{bottom: 92px;} /* чтобы не конфликтовало с липким промо */
+      .float{bottom: 92px;}
     }
 
-    /* Липкий промо-блок снизу */
+    /* Липкий промо снизу (✅ короче по ширине) */
     .stickyPromo{
       position:fixed;
       left:50%;
@@ -696,7 +693,10 @@
       opacity:0;
       pointer-events:none;
       z-index:81;
-      width:min(920px, calc(100% - 20px));
+
+      /* ✅ было 920px, теперь меньше */
+      width:min(760px, calc(100% - 28px));
+
       border:1px solid rgba(255,255,255,.12);
       background: rgba(6,9,18,.80);
       backdrop-filter: blur(14px);
@@ -715,16 +715,17 @@
       gap:12px;
       align-items:center;
       justify-content:space-between;
-      padding:12px 12px;
+      padding:10px 10px;
     }
     .stickyLeft{
       display:flex;
       flex-direction:column;
       gap:4px;
-      min-width: 220px;
+      min-width: 200px;
     }
     .stickyTitle{font-weight:1200;font-size:13px;color: rgba(234,240,255,.90);}
     .stickySub{font-size:12px;color: rgba(234,240,255,.70);}
+
     .stickyCopy{
       flex:1;
       display:flex;
@@ -738,6 +739,7 @@
       cursor:pointer;
       user-select:none;
       transition:.2s var(--ease);
+      min-width: 240px;
     }
     .stickyCopy:hover{transform: translateY(-1px); border-color: rgba(69,227,255,.40);}
     .stickyCode{
@@ -750,6 +752,7 @@
       .stickyInner{flex-direction:column; align-items:stretch}
       .stickyLeft{min-width:auto}
       .stickyHint{display:none}
+      .stickyCopy{min-width:auto}
     }
 
     @keyframes spin{to{transform: rotate(360deg)}}
@@ -784,6 +787,8 @@
     @media (prefers-reduced-motion: reduce){
       *{animation:none !important;transition:none !important}
       .reveal{opacity:1;transform:none}
+      #snowGlobal{display:none;}
+      .snowHaze{display:none;}
     }
   </style>
 </head>
@@ -833,7 +838,7 @@
           </div>
 
           <div class="chips" aria-label="Преимущества">
-            <div class="chip"><strong>+500%</strong> к депозиту</div>
+            <div class="chip"><strong>500%</strong> к депозиту</div>
             <div class="chip"><strong>70FS</strong> на старт</div>
             <div class="chip">Промокод: <strong>SMOG</strong></div>
           </div>
@@ -844,14 +849,12 @@
             </a>
           </div>
 
-          <!-- доверие (без обещаний) -->
           <div class="trustRow" aria-label="Доверие">
             <div class="trust"><span class="trustDot" aria-hidden="true"></span>Поддержка 24/7</div>
             <div class="trust"><span class="trustDot" aria-hidden="true"></span>Безопасные платежи</div>
             <div class="trust"><span class="trustDot" aria-hidden="true"></span>Мобильная версия</div>
           </div>
 
-          <!-- 3 шага + калькулятор -->
           <div class="quick" aria-label="Быстрый старт">
             <div class="steps">
               <p class="stepsTitle">3 шага за 20 секунд</p>
@@ -871,7 +874,7 @@
                 <div class="stepText">Сделай депозит и активируй бонус (смотри условия в аккаунте)</div>
               </div>
 
-              <div class="badge">Промокод: <b style="margin-left:6px">SMOG</b> • до +500% • 70FS</div>
+              <div class="badge">Промокод: <b style="margin-left:6px">SMOG</b> • <b style="margin-left:6px">500%</b> • 70FS</div>
             </div>
 
             <div class="calc">
@@ -885,12 +888,16 @@
                 </div>
               </div>
 
-              <div class="calcOut" id="calcOut">
-                Введи сумму — покажу ориентир по бонусу.
+              <div class="presetRow" aria-label="Быстрый выбор суммы">
+                <button class="presetBtn" type="button" data-preset="500">500 ₽</button>
+                <button class="presetBtn" type="button" data-preset="1000">1000 ₽</button>
+                <button class="presetBtn" type="button" data-preset="3000">3000 ₽</button>
               </div>
 
+              <div class="calcOut" id="calcOut">Введи сумму — покажу ориентир по бонусу.</div>
+
               <div class="small muted" style="margin-top:8px">
-                *Расчёт ориентировочный (по «до +500%»). Точные условия и лимиты — на стороне 1win.
+                *Расчёт ориентировочный (по «500%»). Точные условия и лимиты — на стороне 1win.
               </div>
             </div>
           </div>
@@ -913,7 +920,7 @@
               <div class="codeText">
                 <span class="codeLabel">ПРОМОКОД:</span>
                 <span class="codeValue" id="promoValue">SMOG</span>
-                <span class="codeLabel" style="margin-left:4px">+500% и 70FS к первому депозиту</span>
+                <span class="codeLabel" style="margin-left:4px">500% и 70FS к первому депозиту</span>
               </div>
               <div class="copyHint">копируется при нажатии</div>
             </div>
@@ -924,8 +931,6 @@
           </div>
         </div>
       </div>
-
-      <div class="edgeBlur" aria-hidden="true"></div>
     </section>
 
     <section class="section" id="about">
@@ -951,7 +956,7 @@
             <h3 class="cardTitle">Бонусы в 1Win</h3>
             <p class="cardText">После регистрации доступны акции и поощрения — следуй правилам бонусной программы.</p>
             <ul class="list">
-              <li>Приветственный бонус до <b>500%</b></li>
+              <li>Приветственный бонус <b>500%</b></li>
               <li>Кэшбэк <b>1–20%</b> по итогам недели</li>
             </ul>
           </div>
@@ -964,46 +969,6 @@
               <li>Рулетка, баккара, блэкджек, покер</li>
               <li>Live-казино с дилером</li>
               <li>Слоты с разной тематикой</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="cardsGrid" style="grid-template-columns: repeat(3, 1fr); margin-top:14px">
-          <div class="card reveal tilt" data-tilt>
-            <div class="shine"></div>
-            <h3 class="cardTitle">Мобильная версия и приложение</h3>
-            <p class="cardText">
-              Сайт корректно работает на смартфонах: открыл в браузере — и играешь без повторной регистрации.
-              Для Android может быть доступно приложение (ссылка на сайте).
-            </p>
-            <ul class="list">
-              <li>Адаптация под экран</li>
-              <li>Экономит трафик</li>
-            </ul>
-          </div>
-
-          <div class="card reveal tilt" data-tilt>
-            <div class="shine"></div>
-            <h3 class="cardTitle">Платежи</h3>
-            <p class="cardText">
-              Пополнение и вывод доступны авторизованным игрокам через карты и электронные кошельки.
-              Скорость зависит от выбранного метода.
-            </p>
-            <ul class="list">
-              <li>Понятный финансовый раздел</li>
-              <li>Защита транзакций</li>
-            </ul>
-          </div>
-
-          <div class="card reveal tilt" data-tilt>
-            <div class="shine"></div>
-            <h3 class="cardTitle">Игровой зал</h3>
-            <p class="cardText">
-              Слоты и настольные игры с бонус-раундами и множителями. Для знакомства часто доступен демо-режим.
-            </p>
-            <ul class="list">
-              <li>Ручной или авто-режим</li>
-              <li>Демо/реальная игра</li>
             </ul>
           </div>
         </div>
@@ -1052,27 +1017,6 @@
             <p class="muted" style="margin:8px 0 0">
               Скопируй промокод, зарегистрируйся/войдите и следуй шагам в бонусном разделе.
               Условия активации и отыгрыша могут отличаться — проверяй правила в аккаунте 1win.
-            </p>
-          </details>
-
-          <details>
-            <summary>5. Как сделать депозит и где искать платежные методы?</summary>
-            <p class="muted" style="margin:8px 0 0">
-              В личном кабинете открой финансовый раздел и выбери способ пополнения. Доступные методы и лимиты зависят от региона и выбранного инструмента.
-            </p>
-          </details>
-
-          <details>
-            <summary>6. Сколько времени занимает вывод?</summary>
-            <p class="muted" style="margin:8px 0 0">
-              Скорость вывода зависит от метода оплаты и проверки данных. Обычно информация по срокам отображается в финансовом разделе 1win.
-            </p>
-          </details>
-
-          <details>
-            <summary>7. Можно ли играть с телефона?</summary>
-            <p class="muted" style="margin:8px 0 0">
-              Да. Доступна мобильная версия в браузере и приложение для Android (если доступно в твоём регионе). Интерфейс адаптируется под экран.
             </p>
           </details>
 
@@ -1125,7 +1069,7 @@
         <div class="stickyCode">
           <span class="k">ПРОМО:</span>
           <span class="v">SMOG</span>
-          <span class="k">до +500% • 70FS</span>
+          <span class="k">500% • 70FS</span>
         </div>
         <div class="stickyHint">копировать</div>
       </div>
@@ -1215,7 +1159,6 @@
 
       if (scrollY > 420) float.classList.add("on"); else float.classList.remove("on");
 
-      // показываем липкий промо после выхода из hero (чтобы не мешал верхнему промо)
       const heroBottom = hero ? (hero.getBoundingClientRect().bottom + scrollY) : 700;
       if (scrollY > (heroBottom - innerHeight * 0.25)) stickyPromo?.classList.add("on");
       else stickyPromo?.classList.remove("on");
@@ -1282,7 +1225,7 @@
       if(e.key === "Enter" || e.key === " "){ e.preventDefault(); onStickyCopy(); }
     });
 
-    // mini-calc: депозит -> бонус "до +500%"
+    // mini-calc: депозит -> бонус "500%"
     (function(){
       const inp = document.getElementById("depInput");
       const out = document.getElementById("calcOut");
@@ -1296,19 +1239,29 @@
           out.innerHTML = "Введи сумму — покажу ориентир по бонусу.";
           return;
         }
-        const bonus = v * 5;        // «до +500%» => бонус до 5x от депозита
-        const total = v + bonus;    // депозит + бонус
+        const bonus = v * 5;        // 500% => бонус 5x от депозита
+        const total = v + bonus;
         out.innerHTML =
-          `Бонус до: <b>${fmt(bonus)} ₽</b><br>`+
-          `Итого до: <b>${fmt(total)} ₽</b> (депозит + бонус)<br>`+
+          `Бонус: <b>${fmt(bonus)} ₽</b><br>`+
+          `Итого: <b>${fmt(total)} ₽</b> (депозит + бонус)<br>`+
           `+ дополнительно: <b>70FS</b> (если предусмотрено условиями)`;
       }
 
       inp.addEventListener("input", render, {passive:true});
+
+      // быстрые пресеты
+      document.querySelectorAll("[data-preset]").forEach(btn=>{
+        btn.addEventListener("click", ()=>{
+          inp.value = btn.getAttribute("data-preset");
+          render();
+          inp.focus();
+        }, {passive:true});
+      });
+
       render();
     })();
 
-    // ❄️ мягкий снег: снежинки (не звёздочки), с дрейфом
+    // ❄️ мягкий снег (виден с 1 экрана)
     (function(){
       const reduce = matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
       const canvas = document.getElementById("snowGlobal");
@@ -1317,7 +1270,7 @@
       const ctx = canvas.getContext("2d", { alpha: true });
       let w=0,h=0,dpr=1;
       const flakes = [];
-      const COUNT = 170; // плотнее для “первой страницы”
+      const COUNT = 190;
 
       const rnd=(a,b)=>a+Math.random()*(b-a);
 
