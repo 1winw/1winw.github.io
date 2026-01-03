@@ -103,25 +103,46 @@
       box-shadow: var(--shadow2);
       position:relative;overflow:hidden;user-select:none;
       cursor:pointer;
+      transform: translateZ(0);
     }
     .btn:hover{transform: translateY(-2px)}
     .btn:active{transform: translateY(0) scale(.99)}
+
+    /* ✅ Premium CTA glow */
     .btn-primary{
-      border-color: rgba(69,227,255,.40);
+      border-color: rgba(69,227,255,.44);
       background:
-        radial-gradient(340px 90px at 18% 0%, rgba(69,227,255,.25), rgba(255,255,255,0) 62%),
-        linear-gradient(135deg, rgba(43,140,255,.42), rgba(123,97,255,.20));
-      box-shadow: 0 26px 80px rgba(43,140,255,.18), var(--shadow2);
+        radial-gradient(340px 90px at 18% 0%, rgba(69,227,255,.28), rgba(255,255,255,0) 62%),
+        linear-gradient(135deg, rgba(43,140,255,.46), rgba(123,97,255,.22));
+      box-shadow:
+        0 26px 80px rgba(43,140,255,.18),
+        0 0 0 1px rgba(69,227,255,.12),
+        0 0 24px rgba(69,227,255,.16),
+        var(--shadow2);
+      animation: ctaPulse 3.2s ease-in-out infinite;
     }
     .btn-primary:before{
       content:"";position:absolute;inset:-2px;
       background: linear-gradient(90deg, rgba(69,227,255,0), rgba(69,227,255,.52), rgba(69,227,255,0));
       transform: translateX(-140%);
       animation: sheen 3.2s ease-in-out infinite;
-      opacity:.75;
+      opacity:.70;
+    }
+    .btn-primary:after{
+      content:"";
+      position:absolute; inset:-1px;
+      border-radius: inherit;
+      background: linear-gradient(135deg, rgba(69,227,255,.35), rgba(123,97,255,.25), rgba(255,255,255,0));
+      opacity:.55;
+      pointer-events:none;
+      mix-blend-mode: screen;
+      filter: blur(.25px);
     }
     .btn-ghost{background:transparent;box-shadow:none}
     .btn-ghost:hover{background: rgba(255,255,255,.04);box-shadow: var(--shadow2)}
+    .btn-wide{min-width: 220px; padding-left: 18px; padding-right: 18px;}
+    @media (max-width:520px){ .btn-wide{min-width: 200px;} }
+
     .icon{
       width:18px;height:18px;border-radius:6px;flex:0 0 auto;
       background: linear-gradient(135deg, rgba(69,227,255,.95), rgba(43,140,255,.70));
@@ -188,20 +209,24 @@
       background-image: url("hero.jpg");
       background-size: cover;
       background-position: center;
-      filter: brightness(1.16) saturate(1.08) contrast(1.05);
-      transform: scale(1.02);
+      /* ✅ сильнее осветлил */
+      filter: brightness(1.28) saturate(1.10) contrast(1.06);
+      transform: scale(1.04);
       z-index:-2;
+      will-change: background-position, transform;
+      /* ✅ медленный “параллакс” */
+      animation: heroPan 26s ease-in-out infinite alternate;
     }
     .heroShade{
       position:absolute; inset:0;
       background:
-        linear-gradient(180deg, rgba(4,7,18,.88) 0%, rgba(4,7,18,.50) 35%, rgba(4,7,18,.82) 100%),
-        radial-gradient(900px 460px at 50% 55%, rgba(0,0,0,.18), rgba(0,0,0,.68));
+        linear-gradient(180deg, rgba(4,7,18,.86) 0%, rgba(4,7,18,.46) 35%, rgba(4,7,18,.80) 100%),
+        radial-gradient(900px 460px at 50% 55%, rgba(0,0,0,.18), rgba(0,0,0,.66));
       z-index:-1;
       pointer-events:none;
     }
 
-    /* 🎄 NEW YEAR VIBE (БЕЗ СНЕГА) */
+    /* 🎄 NEW YEAR VIBE (без снега) */
     .holiday{
       position:absolute; inset:0;
       z-index:2;
@@ -245,8 +270,6 @@
       mix-blend-mode: screen;
       animation: bokehDrift2 28s linear infinite;
     }
-
-    /* гирлянда/огоньки сверху — аккуратно */
     .holiday .garland{
       position:absolute;
       left:-10%; right:-10%;
@@ -256,7 +279,6 @@
       mix-blend-mode: screen;
       filter: blur(.15px);
       background:
-        /* bulbs */
         radial-gradient(18px 18px at 6% 46%, rgba(255,255,255,.55), rgba(255,255,255,0) 62%),
         radial-gradient(22px 22px at 12% 58%, rgba(69,227,255,.52), rgba(69,227,255,0) 62%),
         radial-gradient(20px 20px at 18% 48%, rgba(123,97,255,.48), rgba(123,97,255,0) 62%),
@@ -273,12 +295,9 @@
         radial-gradient(24px 24px at 84% 62%, rgba(69,227,255,.40), rgba(69,227,255,0) 63%),
         radial-gradient(20px 20px at 90% 48%, rgba(123,97,255,.38), rgba(123,97,255,0) 64%),
         radial-gradient(24px 24px at 96% 60%, rgba(255,255,255,.40), rgba(255,255,255,0) 64%),
-        /* subtle string */
         linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,0));
       animation: garlandPulse 3.8s ease-in-out infinite;
     }
-
-    /* искры-звёздочки (очень мягко) */
     .holiday .sparkles{
       position:absolute; inset:0;
       opacity:.35;
@@ -308,7 +327,6 @@
       animation: cardSweep 6.8s ease-in-out infinite;
     }
 
-    /* blur to hide seam */
     .hero .edgeBlur{
       position:absolute;
       left:-10%;
@@ -351,7 +369,10 @@
       nav{justify-content:flex-start}
       .heroGrid{padding-bottom: 190px;}
     }
-    .heroMain{width: min(900px, 100%);}
+    .heroMain{
+      width: min(900px, 100%);
+      text-align:center; /* ✅ чтобы всё выглядело ровно */
+    }
 
     /* слоган */
     .sloganWrap{display:flex;justify-content:center;margin: 10px 0 6px}
@@ -428,14 +449,13 @@
       font-weight: 1200;
       letter-spacing: .15px;
     }
-    .cardText{color: rgba(234,240,255,.74); margin: 10px 0 0}
+    .cardText{color: rgba(234,240,255,.74); margin: 8px 0 0}
     .list{
       margin: 10px 0 0;
       padding-left: 18px;
       color: rgba(234,240,255,.74);
     }
-    .list li{margin: 10px 0}
-    .list b{color: rgba(234,240,255,.92)}
+    .list li{margin: 8px 0}
 
     /* FAQ */
     details{
@@ -512,8 +532,14 @@
       45%{transform: translateX(140%)}
       100%{transform: translateX(140%)}
     }
-
-    /* holiday animations */
+    @keyframes ctaPulse{
+      0%,100%{filter: brightness(1)}
+      50%{filter: brightness(1.05)}
+    }
+    @keyframes heroPan{
+      0%{background-position: 50% 50%}
+      100%{background-position: 54% 46%}
+    }
     @keyframes auroraMove{
       0%,100%{transform: translate3d(-2%, -1%, 0) scale(1.02)}
       50%{transform: translate3d(2%, 1%, 0) scale(1.03)}
@@ -577,7 +603,6 @@
       <div class="heroBg" aria-hidden="true"></div>
       <div class="heroShade" aria-hidden="true"></div>
 
-      <!-- 🎄 NEW YEAR VIBE (без снега) -->
       <div class="holiday" aria-hidden="true">
         <div class="aurora"></div>
         <div class="bokeh"></div>
@@ -590,18 +615,19 @@
         <div class="card reveal tilt heroMain" data-tilt>
           <div class="shine"></div>
           <h1>1win Casino — бонусы и фишки</h1>
-          <p class="lead">Главное — промокод, бонус и быстрые ответы на частые вопросы.</p>
+          <p class="lead">Промокод, бонусы и быстрые ответы на частые вопросы.</p>
 
           <div class="sloganWrap">
             <div class="slogan"><b>1WIN</b> — когда ставка становится историей</div>
           </div>
 
-          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
-            <a class="btn btn-primary" data-cta href="#" target="_blank" rel="nofollow sponsored noopener">
+          <!-- ✅ только одна кнопка, по центру, чуть длиннее -->
+          <div style="display:flex;justify-content:center;margin-top:14px">
+            <a class="btn btn-primary btn-wide" data-cta href="#" target="_blank" rel="nofollow sponsored noopener">
               <span class="icon" aria-hidden="true"></span>Открыть 1win
             </a>
-            <a class="btn btn-ghost" href="#faq">FAQ</a>
           </div>
+
           <p class="small muted" style="margin:12px 0 0">18+ • Условия бонусов/акций могут меняться — проверяй правила на стороне 1win.</p>
         </div>
       </div>
@@ -611,7 +637,7 @@
           <div class="card promoBar reveal">
             <div class="promoLeft">
               <div class="promoTitle">Промокод на бонус</div>
-              <div class="promoSub">Нажми на код — он скопируется при нажатии</div>
+              <div class="promoSub">Нажми на код — он скопируется</div>
             </div>
 
             <div class="codeBox" id="promoCopy" role="button" tabindex="0" aria-label="Скопировать промокод SMOG">
@@ -639,39 +665,31 @@
           <div class="card reveal tilt" data-tilt>
             <div class="shine"></div>
             <h3 class="cardTitle">Помощь игрокам</h3>
-            <p class="cardText">
-              На сайте онлайн-казино 1Вин работает круглосуточная помощь операторов службы технической поддержки, с которой игроки могут связываться используя:
-            </p>
+            <p class="cardText">Поддержка 1Win работает 24/7 — можно быстро получить помощь в любой момент.</p>
             <ul class="list">
-              <li>Онлайн чат, расположенный на главной странице</li>
-              <li>Электронную почту или номер телефона</li>
+              <li>Онлайн-чат на сайте</li>
+              <li>Email и телефон</li>
             </ul>
           </div>
 
           <div class="card reveal tilt" data-tilt>
             <div class="shine"></div>
             <h3 class="cardTitle">Бонусы в 1Win</h3>
-            <p class="cardText">
-              Бонусная программа клуба 1Win представляет собой поощрения за пополнение счета и бездепозитные бонусы, которые доступны игрокам после регистрации и выполнения требований платформы.
-              Участникам онлайн-клуба 1Вин предлагается получить такие бонусы как:
-            </p>
+            <p class="cardText">После регистрации доступны акции и поощрения за депозиты.</p>
             <ul class="list">
-              <li><b>Приветственный подарок.</b> Это стартовый бонус, который начисляется игрокам после регистрации, пополнения счета первые 4 раза. В сумме за депозиты игроки могут рассчитывать на получение 500%.</li>
-              <li><b>Кэшбэк.</b> В зависимости от проигранной суммы за последнюю неделю, гости получают от 1% до 20% возврата проигрыша.</li>
+              <li>Приветственный бонус до <b>500%</b> (первые пополнения)</li>
+              <li>Кэшбэк <b>1–20%</b> по итогам недели</li>
             </ul>
           </div>
 
           <div class="card reveal tilt" data-tilt>
             <div class="shine"></div>
-            <h3 class="cardTitle">Игры в букмекерской конторе 1Win</h3>
-            <p class="cardText">
-              Коллекция азартных игр в букмекерской конторе 1Win представляет собой большой выбор разработок, которые имеют разные технические характеристики и правила.
-              На сайте посетители смогут сыграть в:
-            </p>
+            <h3 class="cardTitle">Игры в 1Win</h3>
+            <p class="cardText">Большой выбор: от классики до live-форматов.</p>
             <ul class="list">
-              <li><b>Настольные и карточные игры.</b> У букмекера предлагается огромный выбор рулеток, баккара, блэкджека, доступных в классической версии и современных вариациях, которые участники могут запустить на любом устройстве.</li>
-              <li><b>Лайв казино.</b> Раздел, где игроки могут сыграть с профессиональным дилером в популярные настольные и карточные игры, запуская их в режиме на реальные деньги. Демо-версия для такого формата не предусмотрена.</li>
-              <li><b>Игровые автоматы.</b> Пользователям доступны лучшие слоты, которые имеют высокий процент отдачи, разную тематику и технические характеристики.</li>
+              <li>Рулетка, баккара, блэкджек и покер</li>
+              <li>Live-казино с дилером</li>
+              <li>Слоты с разной тематикой</li>
             </ul>
           </div>
         </div>
@@ -719,7 +737,7 @@
     </section>
 
     <footer>
-      <div class="container foot">
+      <div class="container foot" style="display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:flex-start">
         <div style="max-width:860px">
           <div style="display:flex;align-items:center;gap:10px">
             <div class="logo" aria-hidden="true" style="width:32px;height:32px;border-radius:14px"></div>
@@ -732,7 +750,7 @@
             18+ • Информация носит ознакомительный характер. Условия уточняй на стороне 1win.
           </p>
         </div>
-        <div class="links">
+        <div class="links" style="display:flex;gap:10px;flex-wrap:wrap">
           <a href="#top">Наверх</a>
           <a href="#faq">FAQ</a>
         </div>
