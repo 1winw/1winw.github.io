@@ -39,7 +39,6 @@
       color:var(--text);
       line-height:1.55;
       overflow-x:hidden;
-      /* чтобы липкий блок снизу не перекрывал контент */
       padding-bottom: 120px;
 
       background:
@@ -53,11 +52,11 @@
     .muted{color:var(--muted)}
     .small{font-size:13px}
 
-    /* ❄️ снег на весь сайт (виден с HERO) */
+    /* ❄️ снег на весь сайт */
     #snowGlobal{
       position:fixed;
       inset:0;
-      z-index:48;              /* ✅ выше hero-фона => виден с первого экрана */
+      z-index:48;
       pointer-events:none;
       opacity:.92;
       filter: blur(.10px);
@@ -67,7 +66,7 @@
       left:-10%; right:-10%;
       bottom:-40px;
       height:160px;
-      z-index:47;              /* рядом со снегом */
+      z-index:47;
       pointer-events:none;
       background: radial-gradient(60% 110% at 50% 100%, rgba(255,255,255,.16), rgba(255,255,255,0) 70%);
       filter: blur(18px);
@@ -130,7 +129,7 @@
       position:relative;overflow:hidden;user-select:none;
       cursor:pointer;
       transform: translateZ(0);
-      z-index: 70; /* поверх снега */
+      z-index: 70;
     }
     .btn:hover{transform: translateY(-2px)}
     .btn:active{transform: translateY(0) scale(.99)}
@@ -178,6 +177,34 @@
     }
     @media (max-width:520px){ .btn-super{min-width: 260px;} }
 
+    /* ✨ подсветка "Перейти" после копирования */
+    .goFlash{
+      animation: goFlash 1.6s var(--ease) 1 !important;
+    }
+    @keyframes goFlash{
+      0%{
+        transform: translateY(0) scale(1);
+        box-shadow: 0 0 0 0 rgba(69,227,255,.0), 0 0 0 0 rgba(123,97,255,0);
+        filter: brightness(1);
+      }
+      35%{
+        transform: translateY(-2px) scale(1.01);
+        box-shadow:
+          0 26px 90px rgba(43,140,255,.26),
+          0 0 0 1px rgba(69,227,255,.18),
+          0 0 70px rgba(69,227,255,.28);
+        filter: brightness(1.08);
+      }
+      100%{
+        transform: translateY(0) scale(1);
+        box-shadow:
+          0 26px 80px rgba(43,140,255,.18),
+          0 0 0 1px rgba(69,227,255,.12),
+          0 0 32px rgba(69,227,255,.18);
+        filter: brightness(1);
+      }
+    }
+
     .icon{
       width:18px;height:18px;border-radius:6px;flex:0 0 auto;
       background: linear-gradient(135deg, rgba(69,227,255,.95), rgba(43,140,255,.70));
@@ -196,7 +223,7 @@
       overflow:hidden;
       transform: translateZ(0);
       transition: transform .22s var(--ease), border-color .22s var(--ease);
-      z-index: 70; /* поверх снега */
+      z-index: 70;
     }
     .card:hover{ transform: translateY(-2px); border-color: rgba(255,255,255,.14); }
     .card:before{
@@ -223,14 +250,14 @@
     }
     .tilt:hover .shine{opacity:.9}
 
-    /* 🎄 Гирлянда (провод + лампы) */
+    /* 🎄 Гирлянда */
     .garlandTop{
       position:fixed;
       left:-10%;
       right:-10%;
       height:86px;
       top: calc(var(--topbarH) - 30px);
-      z-index:59; /* под меню, над фоном */
+      z-index:59;
       pointer-events:none;
       opacity:.95;
       filter: drop-shadow(0 12px 18px rgba(0,0,0,.45));
@@ -264,21 +291,11 @@
       overflow:hidden;
       z-index: 50;
     }
-    .hero::before{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        radial-gradient(1000px 520px at 20% 12%, rgba(43,140,255,.20), transparent 60%),
-        radial-gradient(950px 520px at 85% 8%, rgba(69,227,255,.12), transparent 62%);
-      z-index:-1;
-      pointer-events:none;
-    }
     .heroBg{
       position:absolute; inset:0;
-      background-image: url("hero.png"); /* ✅ hero.png */
+      background-image: url("hero.png");
       background-size: cover;
       background-position: center;
-      /* ✅ максимально светлая */
       filter: brightness(2.25) saturate(1.10) contrast(1.02);
       transform: scale(1.06);
       z-index:-2;
@@ -287,7 +304,6 @@
     }
     .heroShade{
       position:absolute; inset:0;
-      /* ✅ заметно светлее, чтобы картинка была яркой */
       background:
         linear-gradient(180deg, rgba(4,7,18,.30) 0%, rgba(4,7,18,.12) 35%, rgba(4,7,18,.28) 100%),
         radial-gradient(900px 460px at 50% 55%, rgba(0,0,0,.06), rgba(0,0,0,.22));
@@ -392,6 +408,35 @@
       width:10px;height:10px;border-radius:999px;
       background: radial-gradient(circle at 30% 30%, #fff, rgba(69,227,255,.95));
       box-shadow: 0 0 16px rgba(69,227,255,.30);
+    }
+
+    /* микро-текст под CTA */
+    .micro{
+      margin-top:10px;
+      font-size:12px;
+      color: rgba(234,240,255,.70);
+      display:flex;
+      gap:8px;
+      justify-content:center;
+      flex-wrap:wrap;
+      align-items:center;
+      line-height:1.2;
+    }
+    .micro .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(7,12,22,.28);
+      box-shadow: var(--shadow2);
+      font-weight:1000;
+    }
+    .micro .dot{
+      width:7px;height:7px;border-radius:999px;
+      background: radial-gradient(circle at 30% 30%, #fff, rgba(69,227,255,.95));
+      box-shadow: 0 0 14px rgba(69,227,255,.35);
     }
 
     /* Quick */
@@ -684,7 +729,7 @@
       .float{bottom: 92px;}
     }
 
-    /* Липкий промо снизу (✅ короче по ширине) */
+    /* Липкий промо снизу (короче) */
     .stickyPromo{
       position:fixed;
       left:50%;
@@ -694,7 +739,6 @@
       pointer-events:none;
       z-index:81;
 
-      /* ✅ было 920px, теперь меньше */
       width:min(760px, calc(100% - 28px));
 
       border:1px solid rgba(255,255,255,.12);
@@ -844,9 +888,15 @@
           </div>
 
           <div style="display:flex;justify-content:center;margin-top:14px">
-            <a class="btn btn-primary btn-wide" data-cta href="#" target="_blank" rel="nofollow sponsored noopener">
+            <a class="btn btn-primary btn-wide" id="heroCtaBtn" data-cta href="#" target="_blank" rel="nofollow sponsored noopener">
               <span class="icon" aria-hidden="true"></span>Открыть 1win
             </a>
+          </div>
+
+          <!-- ✅ пункт 2: микро-текст рядом с CTA -->
+          <div class="micro" id="microCta">
+            <span class="pill"><span class="dot" aria-hidden="true"></span>Откроется в новой вкладке</span>
+            <span class="pill"><span class="dot" aria-hidden="true"></span>Промокод можно скопировать ниже</span>
           </div>
 
           <div class="trustRow" aria-label="Доверие">
@@ -913,7 +963,7 @@
           <div class="card promoBar reveal">
             <div class="promoLeft">
               <div class="promoTitle">Промокод на бонус</div>
-              <div class="promoSub">Нажми на код — он скопируется</div>
+              <div class="promoSub" id="promoSub">Нажми на код — он скопируется</div>
             </div>
 
             <div class="codeBox" id="promoCopy" role="button" tabindex="0" aria-label="Скопировать промокод SMOG">
@@ -925,7 +975,7 @@
               <div class="copyHint">копируется при нажатии</div>
             </div>
 
-            <a class="btn btn-primary" data-cta href="#" target="_blank" rel="nofollow sponsored noopener" style="white-space:nowrap">
+            <a class="btn btn-primary" id="promoGoBtn" data-cta href="#" target="_blank" rel="nofollow sponsored noopener" style="white-space:nowrap">
               <span class="icon" aria-hidden="true"></span>Перейти
             </a>
           </div>
@@ -974,7 +1024,7 @@
         </div>
 
         <div style="display:flex;justify-content:center;margin-top:16px">
-          <a class="btn btn-primary btn-super" data-cta href="#" target="_blank" rel="nofollow sponsored noopener">
+          <a class="btn btn-primary btn-super" id="aboutCtaBtn" data-cta href="#" target="_blank" rel="nofollow sponsored noopener">
             <span class="icon" aria-hidden="true"></span>Начать с бонусом (SMOG)
           </a>
         </div>
@@ -1021,7 +1071,7 @@
           </details>
 
           <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:14px">
-            <a class="btn btn-primary btn-wide" data-cta href="#" target="_blank" rel="nofollow sponsored noopener">
+            <a class="btn btn-primary btn-wide" id="faqCtaBtn" data-cta href="#" target="_blank" rel="nofollow sponsored noopener">
               <span class="icon" aria-hidden="true"></span>Перейти и забрать бонус
             </a>
             <a class="btn btn-ghost" href="#top">Наверх</a>
@@ -1062,7 +1112,7 @@
     <div class="stickyInner">
       <div class="stickyLeft">
         <div class="stickyTitle">Промокод на бонус</div>
-        <div class="stickySub">Нажми — скопируется • затем переход</div>
+        <div class="stickySub" id="stickySub">Нажми — скопируется • затем переход</div>
       </div>
 
       <div class="stickyCopy" id="stickyCopy" role="button" tabindex="0" aria-label="Скопировать промокод SMOG">
@@ -1074,7 +1124,7 @@
         <div class="stickyHint">копировать</div>
       </div>
 
-      <a class="btn btn-primary" data-cta href="#" target="_blank" rel="nofollow sponsored noopener" style="white-space:nowrap">
+      <a class="btn btn-primary" id="stickyGoBtn" data-cta href="#" target="_blank" rel="nofollow sponsored noopener" style="white-space:nowrap">
         <span class="icon" aria-hidden="true"></span>Перейти
       </a>
     </div>
@@ -1200,13 +1250,69 @@
       }
     }
 
+    // ✅ пункт 3: сценарий после копирования — подсветить кнопки "Перейти"
+    const promoGoBtn = document.getElementById("promoGoBtn");
+    const stickyGoBtn = document.getElementById("stickyGoBtn");
+    const heroCtaBtn = document.getElementById("heroCtaBtn");
+
+    function flash(btn){
+      if(!btn) return;
+      btn.classList.remove("goFlash");
+      void btn.offsetWidth; // restart animation
+      btn.classList.add("goFlash");
+      clearTimeout(btn._t);
+      btn._t = setTimeout(()=>btn.classList.remove("goFlash"), 1650);
+    }
+
+    // микро-текст (динамика)
+    const microCta = document.getElementById("microCta");
+    const promoSub = document.getElementById("promoSub");
+    const stickySub = document.getElementById("stickySub");
+
+    const microDefault = `
+      <span class="pill"><span class="dot" aria-hidden="true"></span>Откроется в новой вкладке</span>
+      <span class="pill"><span class="dot" aria-hidden="true"></span>Промокод можно скопировать ниже</span>
+    `;
+    function microCopied(){
+      if(!microCta) return;
+      microCta.innerHTML = `
+        <span class="pill"><span class="dot" aria-hidden="true"></span>Откроется в новой вкладке</span>
+        <span class="pill"><span class="dot" aria-hidden="true"></span><b style="font-weight:1200;color:#fff">Промокод SMOG скопирован</b> — нажми «Перейти»</span>
+      `;
+      clearTimeout(microCopied._t);
+      microCopied._t = setTimeout(()=>{ microCta.innerHTML = microDefault; }, 3200);
+    }
+
+    function promoHintCopied(){
+      if(promoSub){
+        const prev = promoSub.textContent;
+        promoSub.textContent = "Скопировано! Теперь нажми «Перейти»";
+        clearTimeout(promoHintCopied._t);
+        promoHintCopied._t = setTimeout(()=>{ promoSub.textContent = prev; }, 2800);
+      }
+      if(stickySub){
+        const prev = stickySub.textContent;
+        stickySub.textContent = "Скопировано • нажми «Перейти»";
+        clearTimeout(promoHintCopied._t2);
+        promoHintCopied._t2 = setTimeout(()=>{ stickySub.textContent = prev; }, 2800);
+      }
+    }
+
     // promo copy (hero)
     const promoValue = "SMOG";
     const promoCopy = document.getElementById("promoCopy");
+    function afterCopy(ok){
+      showToast(ok ? ("Промокод: " + promoValue) : "Не удалось скопировать");
+      if(ok){
+        flash(promoGoBtn);
+        flash(stickyGoBtn);
+        flash(heroCtaBtn);
+        microCopied();
+        promoHintCopied();
+      }
+    }
     function onPromoClick(){
-      copyText(promoValue).then(ok=>{
-        showToast(ok ? ("Промокод: " + promoValue) : "Не удалось скопировать");
-      });
+      copyText(promoValue).then(afterCopy);
     }
     promoCopy?.addEventListener("click", onPromoClick);
     promoCopy?.addEventListener("keydown", (e)=>{
@@ -1216,9 +1322,7 @@
     // promo copy (sticky)
     const stickyCopy = document.getElementById("stickyCopy");
     function onStickyCopy(){
-      copyText(promoValue).then(ok=>{
-        showToast(ok ? ("Промокод: " + promoValue) : "Не удалось скопировать");
-      });
+      copyText(promoValue).then(afterCopy);
     }
     stickyCopy?.addEventListener("click", onStickyCopy);
     stickyCopy?.addEventListener("keydown", (e)=>{
@@ -1249,7 +1353,6 @@
 
       inp.addEventListener("input", render, {passive:true});
 
-      // быстрые пресеты
       document.querySelectorAll("[data-preset]").forEach(btn=>{
         btn.addEventListener("click", ()=>{
           inp.value = btn.getAttribute("data-preset");
@@ -1261,7 +1364,7 @@
       render();
     })();
 
-    // ❄️ мягкий снег (виден с 1 экрана)
+    // ❄️ мягкий снег
     (function(){
       const reduce = matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
       const canvas = document.getElementById("snowGlobal");
