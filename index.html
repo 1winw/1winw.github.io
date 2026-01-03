@@ -52,11 +52,11 @@
     .muted{color:var(--muted)}
     .small{font-size:13px}
 
-    /* ❄️ снег на весь сайт */
+    /* ❄️ снег на весь сайт (теперь виден и на hero-фото) */
     #snowGlobal{
       position:fixed;
       inset:0;
-      z-index:48;
+      z-index:62;          /* ВАЖНО: выше hero-фона и секций, но ниже карточек */
       pointer-events:none;
       opacity:.92;
       filter: blur(.10px);
@@ -66,7 +66,7 @@
       left:-10%; right:-10%;
       bottom:-40px;
       height:160px;
-      z-index:47;
+      z-index:61;
       pointer-events:none;
       background: radial-gradient(60% 110% at 50% 100%, rgba(255,255,255,.16), rgba(255,255,255,0) 70%);
       filter: blur(18px);
@@ -153,10 +153,6 @@
       animation: sheen 3.2s ease-in-out infinite;
       opacity:.70;
     }
-    .btn-primary:hover{
-      box-shadow: 0 30px 96px rgba(43,140,255,.22), 0 0 40px rgba(69,227,255,.22), var(--shadow2);
-    }
-    .btn-primary:hover .icon{ animation: iconWiggle .68s var(--ease) 1; }
 
     .btn-ghost{background:transparent;box-shadow:none}
     .btn-ghost:hover{background: rgba(255,255,255,.04);box-shadow: var(--shadow2)}
@@ -177,32 +173,11 @@
     }
     @media (max-width:520px){ .btn-super{min-width: 260px;} }
 
-    /* ✨ подсветка "Перейти" после копирования */
-    .goFlash{
-      animation: goFlash 1.6s var(--ease) 1 !important;
-    }
+    .goFlash{ animation: goFlash 1.6s var(--ease) 1 !important; }
     @keyframes goFlash{
-      0%{
-        transform: translateY(0) scale(1);
-        box-shadow: 0 0 0 0 rgba(69,227,255,.0), 0 0 0 0 rgba(123,97,255,0);
-        filter: brightness(1);
-      }
-      35%{
-        transform: translateY(-2px) scale(1.01);
-        box-shadow:
-          0 26px 90px rgba(43,140,255,.26),
-          0 0 0 1px rgba(69,227,255,.18),
-          0 0 70px rgba(69,227,255,.28);
-        filter: brightness(1.08);
-      }
-      100%{
-        transform: translateY(0) scale(1);
-        box-shadow:
-          0 26px 80px rgba(43,140,255,.18),
-          0 0 0 1px rgba(69,227,255,.12),
-          0 0 32px rgba(69,227,255,.18);
-        filter: brightness(1);
-      }
+      0%{transform: translateY(0) scale(1); filter: brightness(1);}
+      35%{transform: translateY(-2px) scale(1.01); filter: brightness(1.08);}
+      100%{transform: translateY(0) scale(1); filter: brightness(1);}
     }
 
     .icon{
@@ -223,7 +198,7 @@
       overflow:hidden;
       transform: translateZ(0);
       transition: transform .22s var(--ease), border-color .22s var(--ease);
-      z-index: 70;
+      z-index: 70; /* карточки выше снега */
     }
     .card:hover{ transform: translateY(-2px); border-color: rgba(255,255,255,.14); }
     .card:before{
@@ -257,7 +232,7 @@
       right:-10%;
       height:86px;
       top: calc(var(--topbarH) - 30px);
-      z-index:59;
+      z-index:64; /* выше снега */
       pointer-events:none;
       opacity:.95;
       filter: drop-shadow(0 12px 18px rgba(0,0,0,.45));
@@ -293,19 +268,18 @@
     }
     .heroBg{
       position:absolute; inset:0;
-      background-image: url("hero.png");
+      background-image: url("hero.png"); /* hero.png рядом с файлом */
       background-size: cover;
       background-position: center;
-      filter: brightness(2.25) saturate(1.10) contrast(1.02);
-      transform: scale(1.06);
+      /* Осветление — мощно, но без «сломанных» смещений */
+      filter: brightness(1.75) saturate(1.10) contrast(1.03);
+      transform: scale(1.03);
       z-index:-2;
-      will-change: background-position, transform;
-      animation: heroPan 26s ease-in-out infinite alternate;
     }
     .heroShade{
       position:absolute; inset:0;
       background:
-        linear-gradient(180deg, rgba(4,7,18,.30) 0%, rgba(4,7,18,.12) 35%, rgba(4,7,18,.28) 100%),
+        linear-gradient(180deg, rgba(4,7,18,.35) 0%, rgba(4,7,18,.14) 35%, rgba(4,7,18,.30) 100%),
         radial-gradient(900px 460px at 50% 55%, rgba(0,0,0,.06), rgba(0,0,0,.22));
       z-index:-1;
       pointer-events:none;
@@ -410,7 +384,6 @@
       box-shadow: 0 0 16px rgba(69,227,255,.30);
     }
 
-    /* микро-текст под CTA */
     .micro{
       margin-top:10px;
       font-size:12px;
@@ -729,7 +702,7 @@
       .float{bottom: 92px;}
     }
 
-    /* Липкий промо снизу (короче) */
+    /* Липкий промо снизу */
     .stickyPromo{
       position:fixed;
       left:50%;
@@ -740,7 +713,6 @@
       z-index:81;
 
       width:min(760px, calc(100% - 28px));
-
       border:1px solid rgba(255,255,255,.12);
       background: rgba(6,9,18,.80);
       backdrop-filter: blur(14px);
@@ -813,16 +785,6 @@
       0%,100%{filter: brightness(1)}
       50%{filter: brightness(1.10)}
     }
-    @keyframes iconWiggle{
-      0%{transform: rotate(0) scale(1)}
-      30%{transform: rotate(-10deg) scale(1.06)}
-      60%{transform: rotate(8deg) scale(1.04)}
-      100%{transform: rotate(0) scale(1)}
-    }
-    @keyframes heroPan{
-      0%{background-position: 50% 50%}
-      100%{background-position: 55% 46%}
-    }
     @keyframes garlandPulse{
       0%,100%{opacity:.88}
       50%{opacity:1}
@@ -893,7 +855,6 @@
             </a>
           </div>
 
-          <!-- ✅ пункт 2: микро-текст рядом с CTA -->
           <div class="micro" id="microCta">
             <span class="pill"><span class="dot" aria-hidden="true"></span>Откроется в новой вкладке</span>
             <span class="pill"><span class="dot" aria-hidden="true"></span>Промокод можно скопировать ниже</span>
@@ -921,7 +882,7 @@
 
               <div class="stepRow">
                 <div class="stepN">3</div>
-                <div class="stepText">Сделай депозит и активируй бонус (смотри условия в аккаунте)</div>
+                <div class="stepText">Сделай депозит и активируй бонус (проверь условия в аккаунте)</div>
               </div>
 
               <div class="badge">Промокод: <b style="margin-left:6px">SMOG</b> • <b style="margin-left:6px">500%</b> • 70FS</div>
@@ -983,42 +944,76 @@
       </div>
     </section>
 
+    <!-- ✅ ВЕРНУЛ КАРТОЧКИ О 1WIN -->
     <section class="section" id="about">
       <div class="container">
         <h2 class="sectionTitle">О 1Win</h2>
         <p class="sectionSub">
-          Самое важное о платформе: поддержка, бонусы, игры, мобильный доступ и платежи.
+          Коротко и по делу: поддержка, бонусы, игры, мобильный доступ и платежи.
         </p>
 
         <div class="cardsGrid">
           <div class="card reveal tilt" data-tilt>
             <div class="shine"></div>
             <h3 class="cardTitle">Помощь игрокам</h3>
-            <p class="cardText">Поддержка 1Win работает 24/7 и помогает с аккаунтом, бонусами и платежами.</p>
+            <p class="cardText">Поддержка 24/7 помогает по аккаунту, бонусам и транзакциям.</p>
             <ul class="list">
               <li>Онлайн-чат на сайте</li>
-              <li>Email и телефон</li>
+              <li>Email / телефон</li>
             </ul>
           </div>
 
           <div class="card reveal tilt" data-tilt>
             <div class="shine"></div>
             <h3 class="cardTitle">Бонусы в 1Win</h3>
-            <p class="cardText">После регистрации доступны акции и поощрения — следуй правилам бонусной программы.</p>
+            <p class="cardText">После регистрации доступны акции и поощрения — следуй правилам программы.</p>
             <ul class="list">
               <li>Приветственный бонус <b>500%</b></li>
-              <li>Кэшбэк <b>1–20%</b> по итогам недели</li>
+              <li>Кэшбэк <b>1–20%</b> (если предусмотрено)</li>
             </ul>
           </div>
 
           <div class="card reveal tilt" data-tilt>
             <div class="shine"></div>
             <h3 class="cardTitle">Игры в 1Win</h3>
-            <p class="cardText">Большой выбор форматов — от классики до live. Всё удобно запускается с любого устройства.</p>
+            <p class="cardText">Слоты, настолки и live-форматы — выбор под любой стиль.</p>
             <ul class="list">
-              <li>Рулетка, баккара, блэкджек, покер</li>
+              <li>Рулетка, баккара, блэкджек</li>
               <li>Live-казино с дилером</li>
-              <li>Слоты с разной тематикой</li>
+              <li>Слоты по тематикам</li>
+            </ul>
+          </div>
+
+          <div class="card reveal tilt" data-tilt>
+            <div class="shine"></div>
+            <h3 class="cardTitle">Мобильная версия</h3>
+            <p class="cardText">Платформа корректно работает со смартфона — вход без повторной регистрации.</p>
+            <ul class="list">
+              <li>Адаптация под экран</li>
+              <li>Удобная навигация</li>
+              <li>Низкий расход трафика</li>
+            </ul>
+          </div>
+
+          <div class="card reveal tilt" data-tilt>
+            <div class="shine"></div>
+            <h3 class="cardTitle">Платежи</h3>
+            <p class="cardText">Пополнение/вывод выполняются в финансовом разделе после авторизации.</p>
+            <ul class="list">
+              <li>Карты и электронные методы</li>
+              <li>Подтверждение в 1–2 шага</li>
+              <li>Сроки зависят от метода</li>
+            </ul>
+          </div>
+
+          <div class="card reveal tilt" data-tilt>
+            <div class="shine"></div>
+            <h3 class="cardTitle">Игровой зал</h3>
+            <p class="cardText">Графика, бонус-раунды и разные режимы (в т.ч. демо — если доступно).</p>
+            <ul class="list">
+              <li>Слоты с разным RTP/темой</li>
+              <li>Множители и бонусы</li>
+              <li>Ручной/авто режим</li>
             </ul>
           </div>
         </div>
@@ -1029,11 +1024,12 @@
           </a>
         </div>
         <p class="small muted" style="text-align:center;margin:10px 0 0">
-          18+ • Перед депозитом проверь актуальные условия бонуса на стороне 1win.
+          18+ • Перед депозитом проверь актуальные условия на стороне 1win.
         </p>
       </div>
     </section>
 
+    <!-- ✅ ВЕРНУЛ И ДОПОЛНИЛ FAQ -->
     <section class="section" id="faq">
       <div class="container">
         <div class="card reveal tilt" data-tilt>
@@ -1043,30 +1039,56 @@
           <details>
             <summary>1. Безопасно ли играть на сайте 1Вин?</summary>
             <p class="muted" style="margin:8px 0 0">
-              Да, 1win предлагает посетителям доступ только к честным ставкам, защите персональных данных, строгому соблюдению политики конфиденциальности.
-              Казино 1Win работает под лицензией Кюрасао №8048/JAZ2018-040. Перед игрой рекомендуем проверять условия и правила на официальной стороне 1win.
+              1win заявляет о защите данных и мерах безопасности. На официальной стороне может быть указана лицензия (например, Кюрасао №8048/JAZ2018-040) — проверь информацию внизу сайта 1win и в правилах.
             </p>
           </details>
 
           <details>
             <summary>2. Во что можно сыграть в 1Win?</summary>
             <p class="muted" style="margin:8px 0 0">
-              Доступны популярные форматы: слоты, настольные игры и live-казино. Для удобства — простая навигация и быстрый поиск.
+              Обычно доступны слоты, настольные игры и live-казино. Точный список и провайдеры зависят от разделов на сайте 1win.
             </p>
           </details>
 
           <details>
             <summary>3. Зачем 1Вин запрашивает верификацию?</summary>
             <p class="muted" style="margin:8px 0 0">
-              Верификация нужна для подтверждения возраста и защиты аккаунта. Обычно достаточно фото/скана документа, чтобы получить доступ к возможностям 1Win.
+              Верификация нужна для подтверждения возраста и защиты аккаунта. Обычно достаточно фото/скана документа — точные требования смотри в профиле 1win.
             </p>
           </details>
 
           <details>
             <summary>4. Как активировать бонус по промокоду SMOG?</summary>
             <p class="muted" style="margin:8px 0 0">
-              Скопируй промокод, зарегистрируйся/войдите и следуй шагам в бонусном разделе.
-              Условия активации и отыгрыша могут отличаться — проверяй правила в аккаунте 1win.
+              Скопируй промокод, зарегистрируйся/войдите и введи его в соответствующем поле. Условия активации и отыгрыша могут отличаться — ориентируйся на правила в аккаунте 1win.
+            </p>
+          </details>
+
+          <details>
+            <summary>5. Где смотреть актуальные условия бонусов?</summary>
+            <p class="muted" style="margin:8px 0 0">
+              В бонусном/промо-разделе на стороне 1win. Условия и ограничения могут меняться.
+            </p>
+          </details>
+
+          <details>
+            <summary>6. Как сделать депозит?</summary>
+            <p class="muted" style="margin:8px 0 0">
+              Войди в аккаунт → открой финансовый раздел → выбери метод → введи сумму → подтверди. Доступные методы зависят от региона и настроек 1win.
+            </p>
+          </details>
+
+          <details>
+            <summary>7. Как связаться с поддержкой?</summary>
+            <p class="muted" style="margin:8px 0 0">
+              Чаще всего — через онлайн-чат на сайте. Также могут быть доступны email/телефон (см. раздел контактов 1win).
+            </p>
+          </details>
+
+          <details>
+            <summary>8. Есть ли мобильная версия/приложение?</summary>
+            <p class="muted" style="margin:8px 0 0">
+              Обычно сайт адаптирован под смартфоны, а приложение (если доступно) размещается на официальной стороне 1win. Уточняй по ссылкам/разделам сайта.
             </p>
           </details>
 
@@ -1107,7 +1129,6 @@
     </footer>
   </main>
 
-  <!-- липкий промо снизу -->
   <div class="stickyPromo" id="stickyPromo" aria-label="Промокод снизу">
     <div class="stickyInner">
       <div class="stickyLeft">
@@ -1250,7 +1271,7 @@
       }
     }
 
-    // ✅ пункт 3: сценарий после копирования — подсветить кнопки "Перейти"
+    // flash buttons after copy
     const promoGoBtn = document.getElementById("promoGoBtn");
     const stickyGoBtn = document.getElementById("stickyGoBtn");
     const heroCtaBtn = document.getElementById("heroCtaBtn");
@@ -1258,13 +1279,13 @@
     function flash(btn){
       if(!btn) return;
       btn.classList.remove("goFlash");
-      void btn.offsetWidth; // restart animation
+      void btn.offsetWidth;
       btn.classList.add("goFlash");
       clearTimeout(btn._t);
       btn._t = setTimeout(()=>btn.classList.remove("goFlash"), 1650);
     }
 
-    // микро-текст (динамика)
+    // micro dynamic
     const microCta = document.getElementById("microCta");
     const promoSub = document.getElementById("promoSub");
     const stickySub = document.getElementById("stickySub");
@@ -1311,9 +1332,7 @@
         promoHintCopied();
       }
     }
-    function onPromoClick(){
-      copyText(promoValue).then(afterCopy);
-    }
+    function onPromoClick(){ copyText(promoValue).then(afterCopy); }
     promoCopy?.addEventListener("click", onPromoClick);
     promoCopy?.addEventListener("keydown", (e)=>{
       if(e.key === "Enter" || e.key === " "){ e.preventDefault(); onPromoClick(); }
@@ -1321,9 +1340,7 @@
 
     // promo copy (sticky)
     const stickyCopy = document.getElementById("stickyCopy");
-    function onStickyCopy(){
-      copyText(promoValue).then(afterCopy);
-    }
+    function onStickyCopy(){ copyText(promoValue).then(afterCopy); }
     stickyCopy?.addEventListener("click", onStickyCopy);
     stickyCopy?.addEventListener("keydown", (e)=>{
       if(e.key === "Enter" || e.key === " "){ e.preventDefault(); onStickyCopy(); }
@@ -1364,7 +1381,7 @@
       render();
     })();
 
-    // ❄️ мягкий снег
+    // ❄️ мягкий снег (лучше виден на hero-фото)
     (function(){
       const reduce = matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
       const canvas = document.getElementById("snowGlobal");
@@ -1373,7 +1390,7 @@
       const ctx = canvas.getContext("2d", { alpha: true });
       let w=0,h=0,dpr=1;
       const flakes = [];
-      const COUNT = 190;
+      const COUNT = 220;
 
       const rnd=(a,b)=>a+Math.random()*(b-a);
 
@@ -1386,31 +1403,31 @@
       }
 
       function makeFlake(){
-        const r = rnd(2.0, 5.2);
+        const r = rnd(2.2, 6.2);
         return {
           x: rnd(0,w),
           y: rnd(-h,0),
           r,
-          vy: rnd(0.35, 1.10) * (0.75 + r/5.2),
-          vx: rnd(-0.22, 0.22),
-          a: rnd(0.22, 0.62),
-          wob: rnd(0.7, 2.2),
+          vy: rnd(0.40, 1.20) * (0.70 + r/6.2),
+          vx: rnd(-0.25, 0.25),
+          a: rnd(0.25, 0.70),
+          wob: rnd(0.8, 2.5),
           seed: rnd(0, 9999)
         };
       }
       function reset(f){
         f.x = rnd(0,w);
-        f.y = rnd(-90,-10);
+        f.y = rnd(-120,-10);
       }
 
       function drawSoftCircle(x,y,r,a){
-        const g = ctx.createRadialGradient(x,y,0,x,y,r*1.9);
+        const g = ctx.createRadialGradient(x,y,0,x,y,r*2.1);
         g.addColorStop(0, `rgba(255,255,255,${a})`);
         g.addColorStop(0.55, `rgba(255,255,255,${a*0.55})`);
         g.addColorStop(1, `rgba(255,255,255,0)`);
         ctx.fillStyle = g;
         ctx.beginPath();
-        ctx.arc(x,y,r*1.7,0,Math.PI*2);
+        ctx.arc(x,y,r*1.9,0,Math.PI*2);
         ctx.fill();
       }
 
@@ -1420,7 +1437,7 @@
       function tick(t){
         const dt = Math.min(32, t-last); last=t;
 
-        if(Math.random() < 0.010) windTarget = rnd(-0.45, 0.45);
+        if(Math.random() < 0.010) windTarget = rnd(-0.50, 0.50);
         wind += (windTarget - wind) * 0.02;
 
         ctx.clearRect(0,0,w,h);
@@ -1430,9 +1447,9 @@
           f.x += (f.vx + wind + sway*0.10) * (dt/16);
           f.y += f.vy * (dt/16);
 
-          if(f.y > h + 30) reset(f);
-          if(f.x < -80) f.x = w + 80;
-          if(f.x > w + 80) f.x = -80;
+          if(f.y > h + 40) reset(f);
+          if(f.x < -90) f.x = w + 90;
+          if(f.x > w + 90) f.x = -90;
 
           drawSoftCircle(f.x, f.y, f.r, f.a);
         }
