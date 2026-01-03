@@ -28,6 +28,8 @@
 
       --max:1200px;
       --ease:cubic-bezier(.2,.8,.2,1);
+
+      --topbarH:62px;
     }
 
     *{box-sizing:border-box}
@@ -38,9 +40,9 @@
       line-height:1.55;
       overflow-x:hidden;
       background:
-        radial-gradient(900px 520px at 10% 8%, rgba(43,140,255,.24), transparent 60%),
-        radial-gradient(950px 560px at 92% 12%, rgba(69,227,255,.16), transparent 62%),
-        radial-gradient(1000px 700px at 50% 100%, rgba(123,97,255,.13), transparent 66%),
+        radial-gradient(900px 520px at 10% 8%, rgba(43,140,255,.22), transparent 60%),
+        radial-gradient(950px 560px at 92% 12%, rgba(69,227,255,.14), transparent 62%),
+        radial-gradient(1000px 700px at 50% 100%, rgba(123,97,255,.12), transparent 66%),
         linear-gradient(180deg, var(--bg0), var(--bg1));
     }
     a{color:inherit;text-decoration:none}
@@ -48,15 +50,28 @@
     .muted{color:var(--muted)}
     .small{font-size:13px}
 
-    /* глобальный снег (за контентом) */
+    /* ❄️ снег на весь сайт */
     #snowGlobal{
       position:fixed;
       inset:0;
       z-index:1;
       pointer-events:none;
-      opacity:.55;
+      opacity:.75;
       filter: blur(.10px);
     }
+    /* лёгкая “снежная дымка” внизу (очень мягко) */
+    .snowHaze{
+      position:fixed;
+      left:-10%; right:-10%;
+      bottom:-40px;
+      height:160px;
+      z-index:1;
+      pointer-events:none;
+      background: radial-gradient(60% 110% at 50% 100%, rgba(255,255,255,.16), rgba(255,255,255,0) 70%);
+      filter: blur(18px);
+      opacity:.55;
+    }
+
     main, header{position:relative; z-index:2;}
 
     .progress{
@@ -119,18 +134,17 @@
     .btn:hover{transform: translateY(-2px)}
     .btn:active{transform: translateY(0) scale(.99)}
 
-    /* premium glow + микродвижение иконки */
     .btn-primary{
       border-color: rgba(69,227,255,.46);
       background:
         radial-gradient(340px 90px at 18% 0%, rgba(69,227,255,.30), rgba(255,255,255,0) 62%),
-        linear-gradient(135deg, rgba(43,140,255,.48), rgba(123,97,255,.24));
+        linear-gradient(135deg, rgba(43,140,255,.50), rgba(123,97,255,.26));
       box-shadow:
         0 26px 80px rgba(43,140,255,.18),
         0 0 0 1px rgba(69,227,255,.12),
-        0 0 30px rgba(69,227,255,.18),
+        0 0 32px rgba(69,227,255,.18),
         var(--shadow2);
-      animation: ctaPulse 3.1s ease-in-out infinite;
+      animation: ctaPulse 3.0s ease-in-out infinite;
     }
     .btn-primary:before{
       content:"";position:absolute;inset:-2px;
@@ -139,15 +153,14 @@
       animation: sheen 3.2s ease-in-out infinite;
       opacity:.70;
     }
+    .btn-primary:hover{ box-shadow: 0 30px 96px rgba(43,140,255,.22), 0 0 40px rgba(69,227,255,.22), var(--shadow2); }
     .btn-primary:hover .icon{ animation: iconWiggle .68s var(--ease) 1; }
-    .btn-primary:hover{ box-shadow: 0 30px 90px rgba(43,140,255,.22), 0 0 38px rgba(69,227,255,.22), var(--shadow2); }
 
     .btn-ghost{background:transparent;box-shadow:none}
     .btn-ghost:hover{background: rgba(255,255,255,.04);box-shadow: var(--shadow2)}
 
-    /* чуть длиннее главная кнопка */
-    .btn-wide{min-width: 280px; padding-left: 22px; padding-right: 22px;}
-    @media (max-width:520px){ .btn-wide{min-width: 240px;} }
+    .btn-wide{min-width: 300px; padding-left: 24px; padding-right: 24px;}
+    @media (max-width:520px){ .btn-wide{min-width: 245px;} }
 
     .icon{
       width:18px;height:18px;border-radius:6px;flex:0 0 auto;
@@ -166,7 +179,9 @@
       position:relative;
       overflow:hidden;
       transform: translateZ(0);
+      transition: transform .22s var(--ease), border-color .22s var(--ease);
     }
+    .card:hover{ transform: translateY(-2px); border-color: rgba(255,255,255,.14); }
     .card:before{
       content:"";position:absolute;inset:-1px;
       background:
@@ -191,10 +206,40 @@
     }
     .tilt:hover .shine{opacity:.9}
 
+    /* 🎄 Гирлянда (глобально) — провод + лампы, поднята к меню */
+    .garlandTop{
+      position:fixed;
+      left:-10%;
+      right:-10%;
+      height:86px;
+      top: calc(var(--topbarH) - 28px);
+      z-index:59;
+      pointer-events:none;
+      opacity:.95;
+      filter: drop-shadow(0 12px 18px rgba(0,0,0,.45));
+      background:
+        radial-gradient(18px 18px at 10% 48%, rgba(255,255,255,.55), rgba(255,255,255,0) 64%),
+        radial-gradient(20px 20px at 18% 62%, rgba(69,227,255,.56), rgba(69,227,255,0) 66%),
+        radial-gradient(18px 18px at 26% 50%, rgba(123,97,255,.52), rgba(123,97,255,0) 66%),
+        radial-gradient(22px 22px at 34% 64%, rgba(255,255,255,.48), rgba(255,255,255,0) 66%),
+        radial-gradient(18px 18px at 42% 50%, rgba(69,227,255,.50), rgba(69,227,255,0) 66%),
+        radial-gradient(22px 22px at 50% 64%, rgba(123,97,255,.46), rgba(123,97,255,0) 66%),
+        radial-gradient(18px 18px at 58% 50%, rgba(255,255,255,.46), rgba(255,255,255,0) 66%),
+        radial-gradient(20px 20px at 66% 64%, rgba(69,227,255,.48), rgba(69,227,255,0) 66%),
+        radial-gradient(18px 18px at 74% 50%, rgba(123,97,255,.44), rgba(123,97,255,0) 66%),
+        radial-gradient(22px 22px at 82% 64%, rgba(255,255,255,.44), rgba(255,255,255,0) 66%),
+        radial-gradient(18px 18px at 90% 50%, rgba(69,227,255,.44), rgba(69,227,255,0) 66%),
+        url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201200%2080'%20preserveAspectRatio='none'%3E%3Cpath%20d='M0%2046%20C%20180%2022%20330%2070%20500%2046%20S%20840%2022%201200%2046'%20fill='none'%20stroke='rgba(0,0,0,0.60)'%20stroke-width='4'%20stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat:no-repeat;
+      background-size:auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto, 100% 100%;
+      animation: garlandPulse 3.6s ease-in-out infinite;
+      mix-blend-mode: screen;
+    }
+
     /* HERO */
     .hero{
       position:relative;
-      min-height: calc(100vh - 62px);
+      min-height: calc(100vh - var(--topbarH));
       display:flex;
       align-items:stretch;
       padding: 22px 0 34px;
@@ -206,7 +251,7 @@
       position:absolute; inset:0;
       background:
         radial-gradient(1000px 520px at 20% 12%, rgba(43,140,255,.28), transparent 60%),
-        radial-gradient(950px 520px at 85% 8%, rgba(69,227,255,.18), transparent 62%),
+        radial-gradient(950px 520px at 85% 8%, rgba(69,227,255,.16), transparent 62%),
         linear-gradient(180deg, rgba(3,6,16,.85), rgba(3,6,16,.35));
       z-index:-1;
       pointer-events:none;
@@ -216,129 +261,39 @@
       background-image: url("hero.jpg");
       background-size: cover;
       background-position: center;
-      /* ✅ сильнее осветлил */
-      filter: brightness(1.34) saturate(1.12) contrast(1.07);
-      transform: scale(1.05);
+      /* ✅ ещё осветлил */
+      filter: brightness(1.52) saturate(1.14) contrast(1.08);
+      transform: scale(1.06);
       z-index:-2;
       will-change: background-position, transform;
-      /* ✅ медленный параллакс */
       animation: heroPan 26s ease-in-out infinite alternate;
     }
     .heroShade{
       position:absolute; inset:0;
       background:
-        linear-gradient(180deg, rgba(4,7,18,.84) 0%, rgba(4,7,18,.42) 35%, rgba(4,7,18,.78) 100%),
+        linear-gradient(180deg, rgba(4,7,18,.82) 0%, rgba(4,7,18,.40) 35%, rgba(4,7,18,.78) 100%),
         radial-gradient(900px 460px at 50% 55%, rgba(0,0,0,.16), rgba(0,0,0,.62));
       z-index:-1;
       pointer-events:none;
     }
 
-    /* 🎄 NEW YEAR vibe */
-    .holiday{
-      position:absolute; inset:0;
-      z-index:2;
-      pointer-events:none;
-      overflow:hidden;
+    /* ✅ главная карточка по центру первого экрана */
+    .heroGrid{
+      width:100%;
+      min-height: calc(100vh - var(--topbarH));
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      gap:14px;
+      padding-top: clamp(70px, 10vh, 110px);
+      padding-bottom: clamp(230px, 24vh, 290px);
+      position:relative;
+      z-index: 4;
     }
-    .holiday .aurora{
-      position:absolute; inset:-25%;
-      background:
-        radial-gradient(650px 320px at 20% 30%, rgba(69,227,255,.22), rgba(0,0,0,0) 60%),
-        radial-gradient(760px 380px at 82% 24%, rgba(123,97,255,.18), rgba(0,0,0,0) 62%),
-        radial-gradient(920px 520px at 55% 70%, rgba(43,140,255,.14), rgba(0,0,0,0) 65%);
-      filter: blur(24px);
-      opacity:.55;
-      mix-blend-mode: screen;
-      animation: auroraMove 16s ease-in-out infinite;
-    }
-    .holiday .bokeh{
-      position:absolute; inset:-18%;
-      background:
-        radial-gradient(160px 160px at 12% 28%, rgba(255,255,255,.10), rgba(0,0,0,0) 62%),
-        radial-gradient(220px 220px at 26% 62%, rgba(69,227,255,.12), rgba(0,0,0,0) 64%),
-        radial-gradient(180px 180px at 72% 36%, rgba(123,97,255,.10), rgba(0,0,0,0) 66%),
-        radial-gradient(260px 260px at 88% 70%, rgba(43,140,255,.10), rgba(0,0,0,0) 66%),
-        radial-gradient(140px 140px at 54% 22%, rgba(255,255,255,.08), rgba(0,0,0,0) 62%);
-      filter: blur(10px);
-      opacity:.52;
-      mix-blend-mode: screen;
-      animation: bokehDrift 22s linear infinite;
-    }
-    .holiday .garland{
-      position:absolute;
-      left:-10%; right:-10%;
-      top:-6px;
-      height:120px;
-      opacity:.70;
-      mix-blend-mode: screen;
-      filter: blur(.15px);
-      background:
-        radial-gradient(18px 18px at 6% 46%, rgba(255,255,255,.55), rgba(255,255,255,0) 62%),
-        radial-gradient(22px 22px at 12% 58%, rgba(69,227,255,.52), rgba(69,227,255,0) 62%),
-        radial-gradient(20px 20px at 18% 48%, rgba(123,97,255,.48), rgba(123,97,255,0) 62%),
-        radial-gradient(24px 24px at 24% 60%, rgba(255,255,255,.48), rgba(255,255,255,0) 64%),
-        radial-gradient(20px 20px at 30% 50%, rgba(69,227,255,.46), rgba(69,227,255,0) 62%),
-        radial-gradient(24px 24px at 36% 62%, rgba(123,97,255,.44), rgba(123,97,255,0) 64%),
-        radial-gradient(20px 20px at 42% 48%, rgba(255,255,255,.46), rgba(255,255,255,0) 62%),
-        radial-gradient(22px 22px at 48% 60%, rgba(69,227,255,.44), rgba(69,227,255,0) 62%),
-        radial-gradient(20px 20px at 54% 50%, rgba(123,97,255,.42), rgba(123,97,255,0) 64%),
-        radial-gradient(24px 24px at 60% 62%, rgba(255,255,255,.44), rgba(255,255,255,0) 64%),
-        radial-gradient(20px 20px at 66% 48%, rgba(69,227,255,.42), rgba(69,227,255,0) 62%),
-        radial-gradient(24px 24px at 72% 60%, rgba(123,97,255,.40), rgba(123,97,255,0) 64%),
-        radial-gradient(20px 20px at 78% 50%, rgba(255,255,255,.42), rgba(255,255,255,0) 62%),
-        radial-gradient(24px 24px at 84% 62%, rgba(69,227,255,.40), rgba(69,227,255,0) 63%),
-        radial-gradient(20px 20px at 90% 48%, rgba(123,97,255,.38), rgba(123,97,255,0) 64%),
-        radial-gradient(24px 24px at 96% 60%, rgba(255,255,255,.40), rgba(255,255,255,0) 64%),
-        linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,0));
-      animation: garlandPulse 3.8s ease-in-out infinite;
-    }
-    .holiday .sparkles{
-      position:absolute; inset:0;
-      opacity:.34;
-      mix-blend-mode: screen;
-      background-size: 260px 260px;
-      background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='260'%20height='260'%3E%3Cg%20fill='none'%20stroke='white'%20stroke-opacity='.55'%20stroke-width='1'%20stroke-linecap='round'%3E%3Cpath%20d='M38%2040%20l6%200%20M41%2037%20l0%206'/%3E%3Cpath%20d='M208%2080%20l7%200%20M211%2076%20l0%207'/%3E%3Cpath%20d='M142%20142%20l8%200%20M146%20138%20l0%208'/%3E%3Cpath%20d='M70%20198%20l7%200%20M73%20195%20l0%207'/%3E%3Cpath%20d='M224%20208%20l6%200%20M227%20205%20l0%206'/%3E%3C/g%3E%3C/svg%3E");
-      animation: sparkleShift 7s ease-in-out infinite;
-      filter: blur(.15px);
-    }
-
-    /* небольшие новогодние атрибуты (шары) */
-    .orn{
-      position:absolute;
-      top: 62px;
-      width: 14px; height: 14px;
-      border-radius: 999px;
-      opacity:.85;
-      mix-blend-mode: screen;
-      filter: drop-shadow(0 10px 16px rgba(0,0,0,.45));
-      animation: ornSwing 3.4s ease-in-out infinite;
-    }
-    .orn:before{
-      content:"";
-      position:absolute;
-      left:50%; top:-56px;
-      width:1px; height:56px;
-      background: linear-gradient(180deg, rgba(255,255,255,.35), rgba(255,255,255,0));
-      transform: translateX(-50%);
-      opacity:.55;
-    }
-    .orn.l{left: 42px; background: radial-gradient(circle at 30% 30%, #fff, rgba(69,227,255,.95));}
-    .orn.r{right: 48px; background: radial-gradient(circle at 30% 30%, #fff, rgba(123,97,255,.92)); animation-delay: .8s;}
-
-    .hero .edgeBlur{
-      position:absolute;
-      left:-10%;
-      right:-10%;
-      bottom:-55px;
-      height:140px;
-      background: linear-gradient(180deg,
-        rgba(4,7,18,0) 0%,
-        rgba(4,7,18,.55) 45%,
-        rgba(4,7,18,.92) 100%
-      );
-      filter: blur(18px);
-      z-index: 3;
-      pointer-events:none;
+    .heroMain{
+      width: min(900px, 100%);
+      text-align:center;
     }
 
     h1{
@@ -350,27 +305,7 @@
     @media (max-width: 520px){h1{font-size: 34px}}
     .lead{margin:0 0 10px;color: rgba(234,240,255,.82);font-size: 17px}
 
-    /* ✅ главная карточка ниже и в центре первого экрана */
-    .heroGrid{
-      width:100%;
-      min-height: calc(100vh - 62px);
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      gap:14px;
-      padding-top: clamp(70px, 10vh, 110px);
-      padding-bottom: clamp(240px, 24vh, 290px);
-      position:relative;
-      z-index: 4;
-    }
-    .heroMain{
-      width: min(900px, 100%);
-      text-align:center;
-    }
-
-    /* слоган */
-    .sloganWrap{display:flex;justify-content:center;margin: 10px 0 6px}
+    .sloganWrap{display:flex;justify-content:center;margin: 10px 0 8px}
     .slogan{
       display:inline-flex;align-items:center;justify-content:center;
       text-align:center;
@@ -390,30 +325,38 @@
       color: transparent;
     }
 
-    /* light sweep по hero-карте */
-    .heroMain::after{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      pointer-events:none;
-      background: linear-gradient(110deg,
-        rgba(255,255,255,0) 0%,
-        rgba(255,255,255,0) 42%,
-        rgba(69,227,255,.14) 50%,
-        rgba(255,255,255,0) 58%,
-        rgba(255,255,255,0) 100%
-      );
-      transform: translateX(-140%);
-      opacity:.70;
-      mix-blend-mode: screen;
-      animation: cardSweep 6.8s ease-in-out infinite;
+    /* “выгоды” рядом с CTA — добавляет кликабельность */
+    .chips{
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top: 10px;
+    }
+    .chip{
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color: rgba(234,240,255,.82);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing:.2px;
+      box-shadow: var(--shadow2);
+    }
+    .chip strong{
+      background: linear-gradient(90deg, rgba(69,227,255,.95), rgba(123,97,255,.85));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color: transparent;
+      font-weight: 1200;
     }
 
-    /* PROMO (✅ поднял чуть выше) */
+    /* PROMO — чуть выше */
     .promoWrap{
       position:absolute;
       left: 0; right: 0;
-      bottom: 58px; /* было 18 */
+      bottom: 58px;
       z-index: 6;
     }
     .promoBar{
@@ -447,6 +390,22 @@
     .codeValue{font-size: 22px;font-weight: 1100;letter-spacing: 1.6px;color: rgba(234,240,255,.95);text-transform: uppercase;}
     .copyHint{font-size: 12px;color: rgba(234,240,255,.65);white-space: nowrap;}
 
+    .hero .edgeBlur{
+      position:absolute;
+      left:-10%;
+      right:-10%;
+      bottom:-55px;
+      height:140px;
+      background: linear-gradient(180deg,
+        rgba(4,7,18,0) 0%,
+        rgba(4,7,18,.55) 45%,
+        rgba(4,7,18,.92) 100%
+      );
+      filter: blur(18px);
+      z-index: 3;
+      pointer-events:none;
+    }
+
     /* секции */
     .section{padding: 18px 0 40px}
     .sectionTitle{
@@ -458,7 +417,7 @@
     .sectionSub{
       margin: 0 0 14px;
       color: rgba(234,240,255,.72);
-      max-width: 820px;
+      max-width: 860px;
     }
 
     .cardsGrid{
@@ -572,32 +531,9 @@
       0%{background-position: 50% 50%}
       100%{background-position: 55% 46%}
     }
-    @keyframes auroraMove{
-      0%,100%{transform: translate3d(-2%, -1%, 0) scale(1.02)}
-      50%{transform: translate3d(2%, 1%, 0) scale(1.03)}
-    }
-    @keyframes bokehDrift{
-      0%{transform: translate3d(-1%, 0%, 0)}
-      50%{transform: translate3d(2%, 1%, 0)}
-      100%{transform: translate3d(-1%, 0%, 0)}
-    }
     @keyframes garlandPulse{
-      0%,100%{opacity:.62; filter: blur(.15px) brightness(1)}
-      50%{opacity:.82; filter: blur(.15px) brightness(1.10)}
-    }
-    @keyframes sparkleShift{
-      0%,100%{opacity:.22; transform: translate3d(0,0,0)}
-      50%{opacity:.42; transform: translate3d(12px, 8px, 0)}
-    }
-    @keyframes cardSweep{
-      0%{transform: translateX(-140%); opacity:0}
-      25%{opacity:.75}
-      55%{opacity:.75}
-      100%{transform: translateX(140%); opacity:0}
-    }
-    @keyframes ornSwing{
-      0%,100%{transform: rotate(-2deg)}
-      50%{transform: rotate(2deg)}
+      0%,100%{opacity:.88}
+      50%{opacity:1}
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -609,6 +545,7 @@
 
 <body>
   <canvas id="snowGlobal" aria-hidden="true"></canvas>
+  <div class="snowHaze" aria-hidden="true"></div>
 
   <div class="progress" id="progress"></div>
 
@@ -623,6 +560,7 @@
       </div>
 
       <nav>
+        <a href="#about">О 1win</a>
         <a href="#faq">FAQ</a>
         <a class="btn btn-primary" data-cta href="#" target="_blank" rel="nofollow sponsored noopener">
           <span class="icon" aria-hidden="true"></span>Перейти на 1win
@@ -631,29 +569,28 @@
     </div>
   </header>
 
+  <div class="garlandTop" aria-hidden="true"></div>
+
   <main>
     <section class="hero" id="top">
       <div class="heroBg" aria-hidden="true"></div>
       <div class="heroShade" aria-hidden="true"></div>
 
-      <div class="holiday" aria-hidden="true">
-        <div class="aurora"></div>
-        <div class="bokeh"></div>
-        <div class="sparkles"></div>
-        <div class="garland"></div>
-      </div>
-
-      <div class="orn l" aria-hidden="true"></div>
-      <div class="orn r" aria-hidden="true"></div>
-
       <div class="container heroGrid">
         <div class="card reveal tilt heroMain" data-tilt>
           <div class="shine"></div>
+
           <h1>1win Casino — бонусы и фишки</h1>
           <p class="lead">Промокод, бонусы и быстрые ответы на частые вопросы.</p>
 
           <div class="sloganWrap">
             <div class="slogan"><b>1WIN</b> — когда ставка становится историей</div>
+          </div>
+
+          <div class="chips" aria-label="Преимущества">
+            <div class="chip"><strong>+500%</strong> к депозиту</div>
+            <div class="chip"><strong>70FS</strong> на старт</div>
+            <div class="chip">Промокод: <strong>SMOG</strong></div>
           </div>
 
           <div style="display:flex;justify-content:center;margin-top:14px">
@@ -662,11 +599,13 @@
             </a>
           </div>
 
-          <p class="small muted" style="margin:12px 0 0">18+ • Условия бонусов/акций могут меняться — проверяй правила на стороне 1win.</p>
+          <p class="small muted" style="margin:12px 0 0">
+            18+ • Условия бонусов/акций могут меняться — проверяй правила на стороне 1win.
+          </p>
         </div>
       </div>
 
-      <div class="promoWrap">
+      <div class="promoWrap" id="promo">
         <div class="container">
           <div class="card promoBar reveal">
             <div class="promoLeft">
@@ -693,19 +632,18 @@
       <div class="edgeBlur" aria-hidden="true"></div>
     </section>
 
-    <!-- ✅ Раздел "О 1Win" -->
     <section class="section" id="about">
       <div class="container">
         <h2 class="sectionTitle">О 1Win</h2>
         <p class="sectionSub">
-          Коротко о возможностях платформы: поддержка, бонусы, игры, мобильный доступ и платежи.
+          Самое важное о платформе: поддержка, бонусы, игры, мобильный доступ и безопасные платежи.
         </p>
 
         <div class="cardsGrid">
           <div class="card reveal tilt" data-tilt>
             <div class="shine"></div>
             <h3 class="cardTitle">Помощь игрокам</h3>
-            <p class="cardText">Поддержка 1Win работает 24/7 — быстро помогает с любыми вопросами.</p>
+            <p class="cardText">Поддержка 1Win работает 24/7 и помогает быстро решить вопросы по аккаунту и платежам.</p>
             <ul class="list">
               <li>Онлайн-чат на сайте</li>
               <li>Email и телефон</li>
@@ -715,7 +653,7 @@
           <div class="card reveal tilt" data-tilt>
             <div class="shine"></div>
             <h3 class="cardTitle">Бонусы в 1Win</h3>
-            <p class="cardText">После регистрации доступны акции и поощрения за депозиты.</p>
+            <p class="cardText">После регистрации доступны акции и поощрения — следуй правилам бонусной программы.</p>
             <ul class="list">
               <li>Приветственный бонус до <b>500%</b></li>
               <li>Кэшбэк <b>1–20%</b> по итогам недели</li>
@@ -725,37 +663,39 @@
           <div class="card reveal tilt" data-tilt>
             <div class="shine"></div>
             <h3 class="cardTitle">Игры в 1Win</h3>
-            <p class="cardText">От классики до live-форматов — удобная навигация и большой выбор.</p>
+            <p class="cardText">Большой выбор форматов — от классики до live. Удобно найти нужную игру за пару кликов.</p>
             <ul class="list">
               <li>Рулетка, баккара, блэкджек, покер</li>
               <li>Live-казино с дилером</li>
               <li>Слоты с разной тематикой</li>
             </ul>
           </div>
+        </div>
 
+        <div class="cardsGrid" style="grid-template-columns: repeat(3, 1fr); margin-top:14px">
           <div class="card reveal tilt" data-tilt>
             <div class="shine"></div>
             <h3 class="cardTitle">Мобильная версия и приложение</h3>
             <p class="cardText">
-              Платформа корректно работает на смартфонах и планшетах — достаточно открыть сайт в браузере.
-              Вход в аккаунт без повторной регистрации, интерфейс адаптирован и экономит трафик.
+              Сайт корректно работает на смартфонах: открыл в браузере — и играешь без повторной регистрации.
+              Для Android доступно приложение (ссылка на сайте).
             </p>
             <ul class="list">
-              <li>Мобильная версия для всех ОС</li>
-              <li>Приложение для Android (ссылка на сайте)</li>
+              <li>Адаптация под экран</li>
+              <li>Экономит трафик</li>
             </ul>
           </div>
 
           <div class="card reveal tilt" data-tilt>
             <div class="shine"></div>
-            <h3 class="cardTitle">Платежи в 1Win</h3>
+            <h3 class="cardTitle">Платежи</h3>
             <p class="cardText">
               Пополнение и вывод доступны авторизованным игрокам через карты и электронные кошельки.
-              Депозиты — обычно мгновенно, вывод — в среднем до суток (зависит от метода).
+              Скорость зависит от выбранного метода.
             </p>
             <ul class="list">
-              <li>Пополнение без комиссии</li>
-              <li>Шифрование и защита транзакций</li>
+              <li>Понятный финансовый раздел</li>
+              <li>Защита транзакций</li>
             </ul>
           </div>
 
@@ -763,15 +703,23 @@
             <div class="shine"></div>
             <h3 class="cardTitle">Игровой зал</h3>
             <p class="cardText">
-              Слоты и настольные игры с высокой отдачей (RTP), бонус-раундами и множителями.
-              Для знакомства доступен демо-режим без риска.
+              Слоты и настольные игры с бонус-раундами и множителями. Для знакомства часто есть демо-режим без риска.
             </p>
             <ul class="list">
-              <li>Демо и игра на деньги</li>
               <li>Ручной или авто-режим</li>
+              <li>Демо/реальная игра</li>
             </ul>
           </div>
         </div>
+
+        <div style="display:flex;justify-content:center;margin-top:16px">
+          <a class="btn btn-primary btn-wide" data-cta href="#" target="_blank" rel="nofollow sponsored noopener">
+            <span class="icon" aria-hidden="true"></span>Начать с бонусом (SMOG)
+          </a>
+        </div>
+        <p class="small muted" style="text-align:center;margin:10px 0 0">
+          18+ • Перед депозитом проверь актуальные условия бонуса на стороне 1win.
+        </p>
       </div>
     </section>
 
@@ -785,32 +733,63 @@
             <summary>1. Безопасно ли играть на сайте 1Вин?</summary>
             <p class="muted" style="margin:8px 0 0">
               Да, 1win предлагает посетителям доступ только к честным ставкам, защите персональных данных, строгому соблюдению политики конфиденциальности.
-              Казино 1Win работает под лицензией Кюрасао №8048/JAZ2018-040, обеспечивая игрокам только стабильную игру и невозможность вмешиваться в работу софта.
+              Казино 1Win работает под лицензией Кюрасао №8048/JAZ2018-040. Перед игрой рекомендуем проверять условия и правила на официальной стороне 1win.
             </p>
           </details>
 
           <details>
             <summary>2. Во что можно сыграть в 1Win?</summary>
             <p class="muted" style="margin:8px 0 0">
-              Коллекция игр включает блэкджек, рулетку, покер, баккара, live-казино и другие популярные форматы.
-              Навигация помогает быстро найти нужную игру.
+              Доступны популярные форматы: слоты, настольные игры и live-казино. Для удобства — простая навигация и быстрый поиск.
             </p>
           </details>
 
           <details>
             <summary>3. Зачем 1Вин запрашивает верификацию?</summary>
             <p class="muted" style="margin:8px 0 0">
-              Верификация нужна для подтверждения возраста и защиты аккаунта.
-              Обычно достаточно фото/скана документа, чтобы получить доступ ко всем возможностям 1Win.
+              Верификация нужна для подтверждения возраста и защиты аккаунта. Обычно достаточно фото/скана документа, чтобы получить доступ к возможностям 1Win.
             </p>
           </details>
 
-          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
-            <a class="btn btn-primary" data-cta href="#" target="_blank" rel="nofollow sponsored noopener">
-              <span class="icon" aria-hidden="true"></span>Открыть 1win
+          <details>
+            <summary>4. Как активировать бонус по промокоду SMOG?</summary>
+            <p class="muted" style="margin:8px 0 0">
+              Скопируй промокод, зарегистрируйся/войдите и следуй шагам в бонусном разделе.
+              Условия активации и отыгрыша могут отличаться — проверяй правила в аккаунте 1win.
+            </p>
+          </details>
+
+          <details>
+            <summary>5. Как сделать депозит и где искать платежные методы?</summary>
+            <p class="muted" style="margin:8px 0 0">
+              В личном кабинете открой финансовый раздел и выбери способ пополнения. Доступные методы и лимиты зависят от региона и выбранного инструмента.
+            </p>
+          </details>
+
+          <details>
+            <summary>6. Сколько времени занимает вывод?</summary>
+            <p class="muted" style="margin:8px 0 0">
+              Скорость вывода зависит от метода оплаты и проверки данных. Обычно информация по срокам отображается в финансовом разделе 1win.
+            </p>
+          </details>
+
+          <details>
+            <summary>7. Можно ли играть с телефона?</summary>
+            <p class="muted" style="margin:8px 0 0">
+              Да. Доступна мобильная версия в браузере и приложение для Android (если доступно в твоём регионе). Интерфейс адаптируется под экран.
+            </p>
+          </details>
+
+          <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:14px">
+            <a class="btn btn-primary btn-wide" data-cta href="#" target="_blank" rel="nofollow sponsored noopener">
+              <span class="icon" aria-hidden="true"></span>Перейти и забрать бонус
             </a>
             <a class="btn btn-ghost" href="#top">Наверх</a>
           </div>
+
+          <p class="small muted" style="margin:10px 0 0;text-align:center">
+            18+ • Игра может вызывать зависимость. Играйте ответственно.
+          </p>
         </div>
       </div>
     </section>
@@ -822,7 +801,7 @@
             <div class="logo" aria-hidden="true" style="width:32px;height:32px;border-radius:14px"></div>
             <div>
               <div style="font-weight:1000">1win Casino — обзор</div>
-              <div class="small muted">Промокод • FAQ • 18+</div>
+              <div class="small muted">Промокод • О 1win • FAQ • 18+</div>
             </div>
           </div>
           <p class="small muted" style="margin:12px 0 0">
@@ -831,6 +810,7 @@
         </div>
         <div class="links">
           <a href="#top">Наверх</a>
+          <a href="#about">О 1win</a>
           <a href="#faq">FAQ</a>
         </div>
       </div>
@@ -960,18 +940,19 @@
       if(e.key === "Enter" || e.key === " "){ e.preventDefault(); onPromoClick(); }
     });
 
-    // ✅ красивый снег (не точки): мягкие снежинки с дрейфом
+    // ❄️ красивый снег: мягкие снежинки (не “звёздочки”), с дрейфом
     (function(){
       const reduce = matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
       const canvas = document.getElementById("snowGlobal");
       if(!canvas || reduce) return;
 
-      const ctx = canvas.getContext("2d");
+      const ctx = canvas.getContext("2d", { alpha: true });
       let w=0,h=0,dpr=1;
       const flakes = [];
-      const COUNT = 140;
+      const COUNT = 130;
 
       const rnd=(a,b)=>a+Math.random()*(b-a);
+
       function resize(){
         dpr = Math.max(1, Math.min(2, devicePixelRatio || 1));
         w = innerWidth; h = innerHeight;
@@ -981,31 +962,31 @@
       }
 
       function makeFlake(){
-        const r = rnd(1.2, 4.2);
+        const r = rnd(2.0, 5.0);
         return {
           x: rnd(0,w),
           y: rnd(-h,0),
           r,
-          vy: rnd(0.35, 1.05) * (0.75 + r/4.2),
-          vx: rnd(-0.20, 0.20),
-          a: rnd(0.18, 0.55),
-          wob: rnd(0.6, 1.8),
+          vy: rnd(0.35, 1.05) * (0.75 + r/5.0),
+          vx: rnd(-0.22, 0.22),
+          a: rnd(0.22, 0.62),
+          wob: rnd(0.7, 2.1),
           seed: rnd(0, 9999)
         };
       }
       function reset(f){
         f.x = rnd(0,w);
-        f.y = rnd(-60,-10);
+        f.y = rnd(-80,-10);
       }
 
       function drawSoftCircle(x,y,r,a){
-        const g = ctx.createRadialGradient(x,y,0,x,y,r*1.8);
+        const g = ctx.createRadialGradient(x,y,0,x,y,r*1.9);
         g.addColorStop(0, `rgba(255,255,255,${a})`);
         g.addColorStop(0.55, `rgba(255,255,255,${a*0.55})`);
         g.addColorStop(1, `rgba(255,255,255,0)`);
         ctx.fillStyle = g;
         ctx.beginPath();
-        ctx.arc(x,y,r*1.6,0,Math.PI*2);
+        ctx.arc(x,y,r*1.7,0,Math.PI*2);
         ctx.fill();
       }
 
@@ -1015,19 +996,19 @@
       function tick(t){
         const dt = Math.min(32, t-last); last=t;
 
-        if(Math.random() < 0.010) windTarget = rnd(-0.42, 0.42);
+        if(Math.random() < 0.010) windTarget = rnd(-0.45, 0.45);
         wind += (windTarget - wind) * 0.02;
 
         ctx.clearRect(0,0,w,h);
 
         for(const f of flakes){
           const sway = Math.sin((f.y*0.012) + f.seed) * f.wob;
-          f.x += (f.vx + wind + sway*0.08) * (dt/16);
+          f.x += (f.vx + wind + sway*0.10) * (dt/16);
           f.y += f.vy * (dt/16);
 
-          if(f.y > h + 20) reset(f);
-          if(f.x < -60) f.x = w + 60;
-          if(f.x > w + 60) f.x = -60;
+          if(f.y > h + 30) reset(f);
+          if(f.x < -80) f.x = w + 80;
+          if(f.x > w + 80) f.x = -80;
 
           drawSoftCircle(f.x, f.y, f.r, f.a);
         }
