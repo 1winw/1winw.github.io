@@ -46,7 +46,6 @@
 
       --garlandWire: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='1200'%20height='60'%20viewBox='0%200%201200%2060'%3E%3Cpath%20d='M0%2032%20C150%200%20300%2060%20450%2032%20C600%200%20750%2060%20900%2032%20C1050%200%201140%2046%201200%2032'%20fill='none'%20stroke='%23ffffff'%20stroke-opacity='.26'%20stroke-width='3'/%3E%3C/svg%3E");
 
-      /* premium noise */
       --noise: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='320'%20height='320'%3E%3Cfilter%20id='n'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='.9'%20numOctaves='3'%20stitchTiles='stitch'/%3E%3C/filter%3E%3Crect%20width='320'%20height='320'%20filter='url(%23n)'%20opacity='.32'/%3E%3C/svg%3E");
     }
 
@@ -71,7 +70,9 @@
         linear-gradient(180deg, var(--bg0), var(--bg1));
       touch-action: pan-y;
       opacity: 1;
-      transition: opacity .45s ease;
+      transition: opacity .35s ease;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
     .js body{opacity:0}
     body.loaded{opacity:1}
@@ -79,6 +80,13 @@
     .container{max-width:var(--max);margin:0 auto;padding:0 18px}
     .muted{color:var(--muted)}
     .small{font-size:13px}
+
+    /* ✅ убираем “свет/подсветку” при тапе на мобиле */
+    *{-webkit-tap-highlight-color: transparent;}
+    a, button, [role="button"]{
+      -webkit-touch-callout: none;
+      touch-action: manipulation;
+    }
 
     /* ===== Premium loader ===== */
     #preloader{
@@ -90,7 +98,7 @@
         radial-gradient(900px 620px at 80% 70%, rgba(123,97,255,.16), transparent 62%),
         linear-gradient(180deg, rgba(4,7,18,.96), rgba(4,7,18,.88));
       backdrop-filter: blur(14px);
-      transition: opacity .45s ease, visibility .45s ease;
+      transition: opacity .35s ease, visibility .35s ease;
     }
     #preloader.done{opacity:0; visibility:hidden}
     .loaderCard{
@@ -191,7 +199,7 @@
       position:fixed; inset:-20%;
       z-index:5;
       pointer-events:none;
-      opacity:.18;
+      opacity:.16;
       background:
         radial-gradient(900px 520px at 18% 18%, rgba(43,140,255,.26), transparent 60%),
         radial-gradient(850px 520px at 78% 28%, rgba(123,97,255,.20), transparent 62%),
@@ -209,13 +217,13 @@
     .snow{
       position:fixed; inset:0; z-index:8;
       pointer-events:none;
-      opacity:.15;
+      opacity:.14;
       background-image:
         radial-gradient(circle, rgba(255,255,255,.60) 0 1.1px, transparent 1.7px),
         radial-gradient(circle, rgba(255,255,255,.42) 0 1.0px, transparent 1.7px);
       background-size: 220px 220px, 320px 320px;
       background-position: 0 -260px, 0 -520px;
-      animation: snowFall 19s linear infinite;
+      animation: snowFall 20s linear infinite;
       mix-blend-mode: screen;
     }
     @keyframes snowFall{
@@ -248,20 +256,6 @@
       opacity:.18;
       pointer-events:none;
       z-index:1;
-    }
-    .topbar::before{
-      content:"";
-      position:absolute; left:-30%; right:-30%; top:0;
-      height:1px;
-      background: linear-gradient(90deg, rgba(69,227,255,0), rgba(69,227,255,.55), rgba(123,97,255,.45), rgba(69,227,255,0));
-      opacity:.45;
-      animation: topLine 6.5s ease-in-out infinite;
-      pointer-events:none;
-      z-index:2;
-    }
-    @keyframes topLine{
-      0%,100%{transform: translateX(-8%)}
-      50%{transform: translateX(8%)}
     }
 
     .topbar .container{
@@ -327,19 +321,6 @@
       pointer-events:none;
       z-index:0;
     }
-    .btn-primary:after{
-      content:"";position:absolute;inset:-8px;
-      border-radius:18px;
-      background: radial-gradient(220px 70px at 50% 40%, rgba(69,227,255,.18), transparent 60%);
-      opacity:.0;
-      animation: ctaPulse 3.2s ease-in-out infinite;
-      pointer-events:none;
-      z-index:0;
-    }
-    @keyframes ctaPulse{
-      0%,100%{opacity:.08; transform: scale(.98)}
-      50%{opacity:.22; transform: scale(1.02)}
-    }
     .icon{
       width:18px;height:18px;border-radius:6px;flex:0 0 auto;
       background: linear-gradient(135deg, rgba(69,227,255,.95), rgba(43,140,255,.70));
@@ -347,23 +328,6 @@
       z-index:1;
     }
     .btn > *{z-index:1; position:relative}
-
-    /* ✅ Ripple “взрыв клика” */
-    .ripple{
-      position:absolute;
-      border-radius:999px;
-      transform: translate(-50%,-50%);
-      pointer-events:none;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.40), rgba(69,227,255,.28), rgba(123,97,255,.14));
-      mix-blend-mode: screen;
-      animation: ripple .62s var(--ease) forwards;
-      filter: blur(.2px);
-      z-index:0;
-    }
-    @keyframes ripple{
-      from{width:0;height:0;opacity:.85}
-      to{width:520px;height:520px;opacity:0}
-    }
 
     /* гирлянда (статичная) */
     .garlandStrip{
@@ -416,7 +380,7 @@
       animation: none !important;
     }
 
-    /* ===== Cards / effects ===== */
+    /* ===== Cards ===== */
     .card{
       border:1px solid rgba(255,255,255,.11);
       background: linear-gradient(180deg, rgba(255,255,255,.085), rgba(255,255,255,.03));
@@ -430,6 +394,7 @@
       z-index:20; /* поверх снега */
       transition: transform .22s var(--ease), box-shadow .22s var(--ease), border-color .22s var(--ease);
       isolation:isolate;
+      touch-action: pan-y;
     }
     .card:before{
       content:"";position:absolute;inset:-1px;
@@ -440,152 +405,59 @@
       opacity:.95;pointer-events:none;
       z-index:0;
     }
-    .card:after{
-      content:"";
-      position:absolute; inset:-2px;
-      border-radius: calc(var(--r) + 2px);
-      background: linear-gradient(90deg, rgba(69,227,255,0), rgba(69,227,255,.25), rgba(123,97,255,.20), rgba(69,227,255,0));
-      opacity:0;
-      filter: blur(10px);
-      transition: opacity .22s var(--ease);
-      pointer-events:none;
-      z-index:0;
-    }
+    .card > *{position:relative; z-index:1}
+
     .card:hover{
       transform: translateY(-3px);
       box-shadow: 0 28px 90px rgba(0,0,0,.60);
       border-color: rgba(255,255,255,.16);
     }
-    .card:hover:after{opacity:1}
-    .card > *{position:relative; z-index:1}
 
     .reveal{opacity:1; transform:none;}
-    .js .reveal{opacity:0;transform: translateY(18px) scale(.985);transition:.75s var(--ease)}
+    .js .reveal{opacity:0;transform: translateY(18px) scale(.985);transition:.7s var(--ease)}
     .js .reveal.on{opacity:1;transform: translateY(0) scale(1)}
 
-    .tilt{transform-style:preserve-3d}
-    .shine{
-      position:absolute;inset:-2px;
-      background: radial-gradient(420px 220px at var(--mx,50%) var(--my,50%), rgba(69,227,255,.18), rgba(123,97,255,.10), rgba(0,0,0,0) 58%);
-      opacity:0;
-      transition: opacity .25s var(--ease);
-      pointer-events:none;
-      z-index:0;
-    }
-    .tilt:hover .shine{opacity:.9}
-
-    /* ✅ Подсветка промо при скролле */
-    .hotPulse{
-      animation: hotPulse 1.25s ease-in-out 2;
-    }
-    @keyframes hotPulse{
-      0%,100%{box-shadow: var(--shadow); border-color: rgba(255,255,255,.11)}
-      50%{
-        box-shadow: 0 32px 120px rgba(43,140,255,.22), 0 22px 70px rgba(0,0,0,.62);
-        border-color: rgba(69,227,255,.28);
-      }
-    }
-
-    /* ===== HERO ===== */
+    /* ===== HERO (НЕ затемняем картинку) ===== */
     .hero{
       position:relative;
-      min-height: calc(92svh - 86px);
+      min-height: 100svh;   /* ✅ чтобы первая страница уходила до панели задач */
       display:flex;
       align-items:center;
-      padding: 18px 0 18px;
+      padding: 14px 0 18px;
       isolation:isolate;
       overflow:hidden;
     }
-    .hero::before{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        radial-gradient(1100px 560px at 18% 12%, rgba(43,140,255,.28), transparent 60%),
-        radial-gradient(980px 560px at 88% 10%, rgba(123,97,255,.18), transparent 62%),
-        linear-gradient(180deg, rgba(3,6,16,.62), rgba(3,6,16,.18));
-      z-index:-1;
-      pointer-events:none;
-    }
 
-    /* ✅ hero.png (осветлил сильнее + мягкий шов с размытием) */
+    /* hero.png как фон */
     .heroBg{
       position:absolute; inset:0;
       background-image: url("hero.png");
       background-size: cover;
       background-position: right center;
-      /* ЕЩЁ СВЕТЛЕЕ */
-      filter: brightness(1.72) contrast(1.05) saturate(1.10);
-      transform: scale(1.03);
+      /* ✅ без затемнения: только осветление/чуть контраста */
+      filter: brightness(1.25) contrast(1.03) saturate(1.08);
+      transform: scale(1.02);
       z-index:-2;
       will-change: transform;
     }
-    /* ✅ Размытие ПРЯМО на границе фото/фона (blur-copy + mask) */
-    .heroBg::before{
-      content:"";
-      position:absolute; inset:0;
-      background-image: url("hero.png");
-      background-size: cover;
-      background-position: right center;
-      filter: blur(26px) brightness(1.72) contrast(1.03) saturate(1.08);
-      opacity:.78;
-      pointer-events:none;
-      /* показываем только “полосу шва” */
-      -webkit-mask-image: linear-gradient(90deg,
-        transparent 0%,
-        transparent 34%,
-        rgba(0,0,0,.95) 52%,
-        transparent 72%,
-        transparent 100%);
-      mask-image: linear-gradient(90deg,
-        transparent 0%,
-        transparent 34%,
-        rgba(0,0,0,.95) 52%,
-        transparent 72%,
-        transparent 100%);
-    }
-    /* ✅ Мягкий переход фото в синий фон (без резкой границы) */
-    .heroBg::after{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        radial-gradient(900px 520px at 64% 54%, rgba(255,255,255,.14), transparent 62%),
-        linear-gradient(90deg,
-          rgba(4,7,18,1) 0%,
-          rgba(4,7,18,.62) 34%,
-          rgba(4,7,18,.18) 56%,
-          rgba(4,7,18,0) 72%);
-      filter: blur(14px);
-      opacity:.90;
-      pointer-events:none;
-    }
 
-    .heroShade{
+    /* ✅ мягкий blur-шов между фото и фоном (без общей тёмной пелены) */
+    .heroBlend{
       position:absolute; inset:0;
-      background:
-        /* меньше затемнения */
-        linear-gradient(180deg, rgba(4,7,18,.52) 0%, rgba(4,7,18,.18) 44%, rgba(4,7,18,.62) 100%),
-        radial-gradient(900px 460px at 50% 55%, rgba(0,0,0,.05), rgba(0,0,0,.50));
       z-index:-1;
       pointer-events:none;
-    }
-
-    .hero .edgeBlur{
-      position:absolute;
-      left:-10%;
-      right:-10%;
-      bottom:-50px;
-      height:120px;
-      background: linear-gradient(180deg,
-        rgba(4,7,18,0) 0%,
-        rgba(4,7,18,.55) 45%,
-        rgba(4,7,18,.92) 100%
-      );
+      /* затемнение ТОЛЬКО слева, чтобы фото не “резалось”, картинку не трогаем справа */
+      background: linear-gradient(90deg,
+        rgba(4,7,18,1) 0%,
+        rgba(4,7,18,.92) 18%,
+        rgba(4,7,18,.55) 32%,
+        rgba(4,7,18,0) 52%);
       filter: blur(18px);
-      z-index: 3;
-      pointer-events:none;
+      opacity: .92;
+      -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 62%, transparent 84%);
+      mask-image: linear-gradient(90deg, #000 0%, #000 62%, transparent 84%);
     }
 
-    /* premium typography */
     h1{
       margin:10px 0 10px;
       font-size: clamp(30px, 4.6vw, 52px);
@@ -629,13 +501,8 @@
       font-size: 13px;
       margin: 8px auto 0;
       backdrop-filter: blur(10px);
-      animation: floaty 4.8s ease-in-out infinite;
     }
     .slogan b{color: rgba(69,227,255,.95); letter-spacing:.4px}
-    @keyframes floaty{
-      0%,100%{transform: translateY(0)}
-      50%{transform: translateY(-2px)}
-    }
 
     .trustRow{
       display:flex; gap:8px; flex-wrap:wrap; justify-content:center;
@@ -650,9 +517,7 @@
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
       backdrop-filter: blur(10px);
-      transition: transform .18s var(--ease), background .18s var(--ease);
     }
-    .trustRow span:hover{transform: translateY(-1px); background: rgba(255,255,255,.05)}
 
     /* PROMO */
     .promoWrap{margin-top: 12px; padding-bottom: 14px;}
@@ -681,20 +546,9 @@
       position:relative;
       overflow:hidden;
       isolation:isolate;
-    }
-    .codeBox::after{
-      content:"";
-      position:absolute; inset:-2px;
-      background: linear-gradient(90deg, rgba(69,227,255,0), rgba(255,255,255,.20), rgba(69,227,255,0));
-      transform: translateX(-140%);
-      opacity:.0;
-      transition: opacity .2s var(--ease);
-      pointer-events:none;
-      mix-blend-mode: screen;
-      z-index:0;
+      touch-action: manipulation;
     }
     .codeBox:hover{transform: translateY(-1px); border-color: rgba(69,227,255,.45); box-shadow: 0 26px 75px rgba(0,0,0,.58)}
-    .codeBox:hover::after{opacity:.55; animation: sheen 2.6s ease-in-out infinite;}
     .codeText{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; position:relative; z-index:1}
     .codeLabel{font-size: 12px;font-weight: 1000;color: rgba(234,240,255,.72);}
     .codeValue{font-size: 22px;font-weight: 1200;letter-spacing: 1.6px;color: rgba(234,240,255,.96);text-transform: uppercase;}
@@ -723,7 +577,10 @@
       box-shadow: var(--shadow2);
       position:relative;
       overflow:hidden;
+      transition: transform .18s var(--ease), background .18s var(--ease);
+      touch-action: pan-y;
     }
+    .panel:hover{transform: translateY(-2px); background: rgba(255,255,255,.04)}
     .panel h3{margin:0 0 10px; font-size: 16px; letter-spacing:-.2px}
     .steps{display:grid; gap:10px}
     .step{
@@ -733,6 +590,7 @@
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
       transition: transform .18s var(--ease), background .18s var(--ease);
+      touch-action: pan-y;
     }
     .step:hover{transform: translateY(-2px); background: rgba(255,255,255,.045)}
     .num{
@@ -773,6 +631,7 @@
       cursor:pointer;
       transition:.2s var(--ease);
       user-select:none;
+      touch-action: manipulation;
     }
     .pill:hover{transform: translateY(-1px)}
     .out{
@@ -807,6 +666,7 @@
       position:relative;
       overflow:hidden;
       transition: transform .18s var(--ease), background .18s var(--ease), border-color .18s var(--ease);
+      touch-action: pan-y;
     }
     .miniCard:hover{transform: translateY(-3px); background: rgba(255,255,255,.045); border-color: rgba(255,255,255,.14)}
     .miniCard h3{margin:0 0 8px; font-size: 15.5px}
@@ -830,6 +690,7 @@
       position:relative;
       overflow:hidden;
       transition: transform .18s var(--ease), background .18s var(--ease);
+      touch-action: pan-y;
     }
     details:hover{transform: translateY(-2px); background: rgba(255,255,255,.045)}
     summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:10px;font-weight:1100}
@@ -888,6 +749,7 @@
       transition:.35s var(--ease);
       isolation:isolate;
       overflow:hidden;
+      touch-action: manipulation;
     }
     .float.on{transform: translateY(0);opacity:1;pointer-events:auto}
     .float .d{width:10px;height:10px;border-radius:999px;background: radial-gradient(circle at 30% 30%, #fff, rgba(69,227,255,.95));box-shadow: 0 0 18px rgba(69,227,255,.50)}
@@ -903,31 +765,60 @@
     }
     @keyframes spin{to{transform: rotate(360deg)}}
 
+    /* ===== Mobile tweaks (меньше карточки/фото + без “двиганья” и без эффектов) ===== */
     @media (max-width: 720px){
       .topbar{padding-bottom: 44px;}
       .garlandStrip{top: 62px; height: 36px;}
       .garlandStrip::before, .garlandStrip::after{background-size: 200px 36px;}
       nav a:not(.btn){display:none}
+
       .heroBg{background-position: center 35%;}
     }
 
     @media (max-width: 520px){
       .container{padding:0 14px}
-      .hero{min-height: calc(88svh - 86px); padding: 14px 0 10px;}
+
+      /* ✅ карточки меньше */
+      .card{padding:14px; border-radius:18px}
+      .panel{padding:12px}
+      .miniCard{padding:12px}
       .promoBar{padding: 12px 12px;}
       .codeValue{font-size: 20px}
-      .snow{opacity:.13; animation-duration: 21s;}
-      .aurora{opacity:.16}
-      /* на мобиле шов мягче */
-      .heroBg::after{filter: blur(18px); opacity:.92;}
-      .heroBg::before{filter: blur(30px) brightness(1.72) contrast(1.03) saturate(1.08); opacity:.72;}
+
+      /* ✅ фото/первый экран чуть компактнее */
+      .hero{min-height: 92svh; padding: 10px 0 12px;}
+      h1{font-size: clamp(24px, 7.2vw, 34px)}
+      .lead{font-size: 14.8px}
+
+      /* ✅ снег чуть слабее и спокойнее */
+      .snow{opacity:.12; animation-duration: 22s;}
+      .aurora{opacity:.14}
+
+      /* чуть мягче шов */
+      .heroBlend{filter: blur(20px); opacity:.90;}
+    }
+
+    /* ✅ ВАЖНО: на телефоне нельзя “двигать” карточки как на ПК, и убираем тяжелые анимации */
+    @media (hover:none) and (pointer:coarse){
+      .card, .panel, .miniCard, details, .step{
+        transform:none !important;
+        transition: none !important;
+      }
+      .card:hover, .panel:hover, .miniCard:hover, details:hover, .step:hover{
+        transform:none !important;
+      }
+      .btn:hover{transform:none}
+      .btn:active{transform:none}
+
+      /* убираем бегущую подсветку на кнопке (меньше лагов) */
+      .btn-primary:before{display:none !important;}
     }
 
     @media (prefers-reduced-motion: reduce){
       html{scroll-behavior:auto}
       *{animation:none !important;transition:none !important}
       .snow,.aurora{animation:none !important}
-      .btn-primary:before,.btn-primary:after{display:none}
+      .btn-primary:before{display:none}
     }
   </style>
 </head>
@@ -939,7 +830,7 @@
         <div class="loaderLogo"></div>
         <div class="loaderText">
           <b>1win Casino</b>
-          <span>Загружаем премиальный интерфейс…</span>
+          <span>Загружаем интерфейс…</span>
         </div>
       </div>
       <div class="loaderBar"><i></i></div>
@@ -980,12 +871,10 @@
   <main>
     <section class="hero" id="top">
       <div class="heroBg" id="heroBg" aria-hidden="true"></div>
-      <div class="heroShade" aria-hidden="true"></div>
+      <div class="heroBlend" aria-hidden="true"></div>
 
       <div class="container heroGrid">
-        <div class="card reveal tilt heroMain" data-tilt>
-          <div class="shine"></div>
-
+        <div class="card reveal heroMain">
           <h1>1win Casino — бонусы и фишки</h1>
           <p class="lead">Промокод, быстрый старт и короткие ответы на частые вопросы — оформлено в премиальном стиле.</p>
 
@@ -1031,8 +920,6 @@
           </div>
         </div>
       </div>
-
-      <div class="edgeBlur" aria-hidden="true"></div>
     </section>
 
     <section class="section" id="start">
@@ -1214,21 +1101,14 @@
           <details>
             <summary>Безопасно ли играть на сайте 1win?</summary>
             <p class="muted" style="margin:8px 0 0">
-              1win заявляет о защите персональных данных и применении правил безопасности. Также указывается лицензия Кюрасао №8048/JAZ2018-040. Рекомендуется использовать сложный пароль и доступные способы защиты аккаунта.
+              1win заявляет о защите данных и применении правил безопасности. Рекомендуется использовать сложный пароль и доступные способы защиты аккаунта.
             </p>
           </details>
 
           <details>
             <summary>Во что можно сыграть в 1win?</summary>
             <p class="muted" style="margin:8px 0 0">
-              Обычно доступны слоты, настольные игры (рулетка, блэкджек, баккара), а также лайв-казино с дилером. Набор зависит от региона и текущего каталога.
-            </p>
-          </details>
-
-          <details>
-            <summary>Зачем 1win запрашивает верификацию?</summary>
-            <p class="muted" style="margin:8px 0 0">
-              Верификация нужна для подтверждения возраста, защиты аккаунта и корректности финансовых операций. Обычно запрашивают документ личности по правилам платформы.
+              Обычно доступны слоты, настольные игры и лайв-казино. Набор зависит от региона и текущего каталога.
             </p>
           </details>
 
@@ -1240,23 +1120,9 @@
           </details>
 
           <details>
-            <summary>Почему кнопка ведёт на другой сайт?</summary>
-            <p class="muted" style="margin:8px 0 0">
-              Это внешний переход на официальный сайт 1win по партнёрской ссылке.
-            </p>
-          </details>
-
-          <details>
             <summary>Что делать, если промокод не применился?</summary>
             <p class="muted" style="margin:8px 0 0">
-              Проверь, что код введён <b>при регистрации</b>, без пробелов и в правильном регистре: <b>SMOG</b>. Также учитывай ограничения по региону/условиям.
-            </p>
-          </details>
-
-          <details>
-            <summary>Можно ли играть с телефона?</summary>
-            <p class="muted" style="margin:8px 0 0">
-              Да, обычно есть мобильная версия сайта. Для стабильной работы лучше использовать хороший интернет и обновлённый браузер.
+              Проверь, что код введён <b>при регистрации</b>, без пробелов и в правильном регистре: <b>SMOG</b>. Также учитывай ограничения по условиям.
             </p>
           </details>
 
@@ -1320,7 +1186,7 @@
       a.rel = "nofollow sponsored noopener";
     });
 
-    // premium load
+    // load
     const pre = document.getElementById("preloader");
     function finishLoad(){
       document.body.classList.add("loaded");
@@ -1329,17 +1195,17 @@
     if (document.readyState === "complete") finishLoad();
     else addEventListener("load", finishLoad, {once:true});
 
-    // smooth scroll
-    document.addEventListener("click", (e) => {
-      const a = e.target.closest('a[href^="#"]');
-      if (!a) return;
-      const id = a.getAttribute("href");
-      const el = document.querySelector(id);
-      if (!el) return;
-      e.preventDefault();
-      el.scrollIntoView({behavior:"smooth", block:"start"});
-      history.replaceState(null, "", id);
-    });
+    // progress + floating CTA
+    const progress = document.getElementById("progress");
+    const float = document.getElementById("float");
+    function onScroll(){
+      const h = document.documentElement.scrollHeight - innerHeight;
+      const p = h<=0 ? 0 : (scrollY/h);
+      progress.style.width = (p*100).toFixed(2)+"%";
+      if (scrollY > 420) float.classList.add("on"); else float.classList.remove("on");
+    }
+    addEventListener("scroll", onScroll, {passive:true});
+    onScroll();
 
     // reveal
     try{
@@ -1351,48 +1217,6 @@
       document.querySelectorAll(".reveal").forEach(el => el.classList.add("on"));
     }
 
-    // tilt
-    const tiltEls = [...document.querySelectorAll("[data-tilt]")];
-    const clamp = (n,a,b)=> Math.max(a, Math.min(b,n));
-    const canTilt = matchMedia("(pointer:fine)").matches && !matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (canTilt){
-      tiltEls.forEach(el=>{
-        el.addEventListener("pointermove",(e)=>{
-          const r = el.getBoundingClientRect();
-          const x = (e.clientX - r.left)/r.width;
-          const y = (e.clientY - r.top)/r.height;
-          const rx = clamp((0.5 - y) * 7, -5.5, 5.5);
-          const ry = clamp((x - 0.5) * 9, -6.5, 6.5);
-          el.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-1px)`;
-          el.style.setProperty("--mx", (x*100).toFixed(2)+"%");
-          el.style.setProperty("--my", (y*100).toFixed(2)+"%");
-        },{passive:true});
-        el.addEventListener("pointerleave", ()=> { el.style.transform=""; }, {passive:true});
-      });
-    }
-
-    // hero parallax
-    const heroBg = document.getElementById("heroBg");
-    const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    function heroParallax(){
-      if (!heroBg || reduceMotion) return;
-      const y = Math.min(22, (scrollY || 0) * 0.035);
-      heroBg.style.transform = `scale(1.03) translateY(${y}px)`;
-    }
-
-    // progress + floating CTA
-    const progress = document.getElementById("progress");
-    const float = document.getElementById("float");
-    function onScroll(){
-      const h = document.documentElement.scrollHeight - innerHeight;
-      const p = h<=0 ? 0 : (scrollY/h);
-      progress.style.width = (p*100).toFixed(2)+"%";
-      if (scrollY > 420) float.classList.add("on"); else float.classList.remove("on");
-      heroParallax();
-    }
-    addEventListener("scroll", onScroll, {passive:true});
-    onScroll();
-
     // toast
     const toast = document.getElementById("toast");
     const toastText = document.getElementById("toastText");
@@ -1401,7 +1225,7 @@
       toastText.textContent = text || "";
       toast.classList.add("on");
       clearTimeout(showToast._t);
-      showToast._t = setTimeout(()=> toast.classList.remove("on"), 2600);
+      showToast._t = setTimeout(()=> toast.classList.remove("on"), 2200);
     }
     toastClose?.addEventListener("click", ()=> toast.classList.remove("on"));
 
@@ -1465,43 +1289,6 @@
         showToast(ok ? ("Промокод (при регистрации): " + promoValue) : "Не удалось скопировать");
       });
     });
-
-    // ✅ Ripple “взрыв клика” для всех CTA/primary
-    function addRipple(el, ev){
-      const rect = el.getBoundingClientRect();
-      const x = (ev.clientX ?? (rect.left + rect.width/2)) - rect.left;
-      const y = (ev.clientY ?? (rect.top + rect.height/2)) - rect.top;
-
-      const r = document.createElement("span");
-      r.className = "ripple";
-      r.style.left = x + "px";
-      r.style.top = y + "px";
-      el.appendChild(r);
-      r.addEventListener("animationend", ()=> r.remove(), {once:true});
-    }
-    document.addEventListener("pointerdown", (ev)=>{
-      const el = ev.target.closest(".btn-primary,[data-cta]");
-      if(!el) return;
-      if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-      addRipple(el, ev);
-    }, {passive:true});
-
-    // ✅ Подсветка промо-карты при появлении на экране
-    const promoCard = document.getElementById("promoCard");
-    if (promoCard){
-      try{
-        const promoIO = new IntersectionObserver((entries)=>{
-          for(const ent of entries){
-            if(ent.isIntersecting){
-              promoCard.classList.remove("hotPulse");
-              void promoCard.offsetWidth; // restart animation
-              promoCard.classList.add("hotPulse");
-            }
-          }
-        }, {threshold: 0.55});
-        promoIO.observe(promoCard);
-      }catch{}
-    }
   </script>
 </body>
 </html>
