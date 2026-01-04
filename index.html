@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#070b14" />
   <title>1win Casino — бонусы, фишки, обзор</title>
   <meta name="description" content="Обзор 1win Casino: бонусы, промокод, FAQ. 18+." />
@@ -39,7 +39,7 @@
       color:var(--text);
       line-height:1.55;
       overflow-x:hidden;
-      padding-bottom: 120px;
+      padding-bottom: 130px;
 
       background:
         radial-gradient(900px 520px at 10% 8%, rgba(43,140,255,.22), transparent 60%),
@@ -52,14 +52,13 @@
     .muted{color:var(--muted)}
     .small{font-size:13px}
 
-    /* ❄️ снег: ниже контента */
+    /* ❄️ снег: фиксированный canvas, но ниже UI */
     #snowGlobal{
       position:fixed;
       inset:0;
       z-index:54;
       pointer-events:none;
-      opacity:.50;
-      filter: blur(.10px);
+      opacity:.44;
     }
     .snowHaze{
       position:fixed;
@@ -70,7 +69,7 @@
       pointer-events:none;
       background: radial-gradient(60% 110% at 50% 100%, rgba(255,255,255,.12), rgba(255,255,255,0) 70%);
       filter: blur(18px);
-      opacity:.26;
+      opacity:.22;
     }
 
     .progress{
@@ -90,13 +89,19 @@
       display:flex;align-items:center;justify-content:space-between;gap:12px;
       padding:12px 18px;
     }
-    .brand{display:flex;align-items:center;gap:10px;font-weight:1000;letter-spacing:.2px}
+
+    .brand{display:flex;align-items:center;gap:10px;font-weight:1000;letter-spacing:.2px;min-width:0;}
+    .brandText{min-width:0;}
+    .brandText .t{font-size:14px;line-height:1;font-weight:1000;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .brandText .s{margin-top:6px}
+
     .logo{
       width:38px;height:38px;border-radius:14px;position:relative;overflow:hidden;
       background:
         radial-gradient(14px 14px at 28% 28%, rgba(255,255,255,.90), rgba(255,255,255,0) 58%),
         linear-gradient(135deg, rgba(43,140,255,.95), rgba(123,97,255,.62));
       box-shadow: 0 0 0 1px rgba(255,255,255,.10), 0 18px 55px rgba(43,140,255,.26);
+      flex:0 0 auto;
     }
     .logo:after{
       content:"";position:absolute;inset:-28px;
@@ -104,18 +109,49 @@
       animation: spin 5.5s linear infinite;opacity:.65;
     }
 
-    nav{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:flex-end}
-    nav a{
+    /* NAV desktop */
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      justify-content:flex-end;
+      flex: 0 0 auto;
+      position:relative;
+    }
+    .navPanel{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:flex-end;
+    }
+    .navPanel a{
       color:var(--muted);
       border:1px solid transparent;
       padding:8px 10px;border-radius:12px;
       transition:.22s var(--ease);
     }
-    nav a:hover{
+    .navPanel a:hover{
       color:var(--text);
       background: rgba(255,255,255,.04);
       border-color: rgba(255,255,255,.08);
       transform: translateY(-1px);
+    }
+
+    /* mobile menu button */
+    .menuBtn{
+      display:none;
+      width:42px;height:42px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: rgba(234,240,255,.92);
+      box-shadow: var(--shadow2);
+      cursor:pointer;
+      font-weight:1200;
+      font-size:18px;
+      line-height:1;
+      user-select:none;
     }
 
     .btn{
@@ -157,9 +193,13 @@
     .btn-ghost{background:transparent;box-shadow:none}
     .btn-ghost:hover{background: rgba(255,255,255,.04);box-shadow: var(--shadow2)}
 
-    .btn-wide{min-width: 320px; padding-left: 28px; padding-right: 28px;}
-    @media (max-width:520px){ .btn-wide{min-width: 250px;} }
+    .icon{
+      width:18px;height:18px;border-radius:6px;flex:0 0 auto;
+      background: linear-gradient(135deg, rgba(69,227,255,.95), rgba(43,140,255,.70));
+      box-shadow: 0 0 18px rgba(69,227,255,.22);
+    }
 
+    .btn-wide{min-width: 320px; padding-left: 28px; padding-right: 28px;}
     .btn-super{
       min-width: 360px;
       padding: 13px 26px;
@@ -170,20 +210,6 @@
         0 0 50px rgba(69,227,255,.20),
         var(--shadow2);
       animation: superPulse 2.6s ease-in-out infinite;
-    }
-    @media (max-width:520px){ .btn-super{min-width: 270px;} }
-
-    .goFlash{ animation: goFlash 1.6s var(--ease) 1 !important; }
-    @keyframes goFlash{
-      0%{transform: translateY(0) scale(1); filter: brightness(1);}
-      35%{transform: translateY(-2px) scale(1.01); filter: brightness(1.08);}
-      100%{transform: translateY(0) scale(1); filter: brightness(1);}
-    }
-
-    .icon{
-      width:18px;height:18px;border-radius:6px;flex:0 0 auto;
-      background: linear-gradient(135deg, rgba(69,227,255,.95), rgba(43,140,255,.70));
-      box-shadow: 0 0 18px rgba(69,227,255,.22);
     }
 
     .card{
@@ -199,7 +225,6 @@
       transition: transform .22s var(--ease), border-color .22s var(--ease);
       z-index: 70;
     }
-    .card:hover{ transform: translateY(-2px); border-color: rgba(255,255,255,.14); }
     .card:before{
       content:"";position:absolute;inset:-1px;
       background:
@@ -254,23 +279,25 @@
       mix-blend-mode: screen;
     }
 
-    /* ✅ HERO: теперь ровно по экрану (до панели задач) */
+    /* ✅ HERO: ровно по экрану + мобильная оптимизация */
     .hero{
       position:relative;
-      height: calc(100vh - var(--topbarH));
-      min-height: calc(100vh - var(--topbarH));
       height: calc(100svh - var(--topbarH));
       min-height: calc(100svh - var(--topbarH));
       display:flex;
       align-items:stretch;
-      padding: 10px 0 10px;
+      padding: 8px 0 8px;
       isolation:isolate;
       overflow:hidden;
       z-index: 50;
     }
     .heroBg{
       position:absolute; inset:0;
-      background-image: url("hero.png");
+      /* Если добавишь hero@2x.png — будет супер на ретина */
+      background-image: image-set(
+        url("hero.png") 1x,
+        url("hero@2x.png") 2x
+      );
       background-size: cover;
       background-position: center;
       filter: brightness(1.70) saturate(1.12) contrast(1.04);
@@ -305,8 +332,7 @@
       justify-content:center;
       align-items:center;
       gap:12px;
-      padding-top: 0;
-      padding-bottom: 120px; /* место под промо, но не показывает следующий блок */
+      padding-bottom: 112px; /* место под промо */
       position:relative;
       z-index: 70;
     }
@@ -318,7 +344,6 @@
       line-height:1.04;
       letter-spacing:-.7px;
     }
-    @media (max-width: 520px){h1{font-size: 32px}}
     .lead{margin:0 0 8px;color: rgba(234,240,255,.82);font-size: 16px}
 
     .sloganWrap{display:flex;justify-content:center;margin: 8px 0 8px}
@@ -367,7 +392,6 @@
       font-weight: 1200;
     }
 
-    /* ✅ “Почему сейчас” — мини-блок около CTA */
     .whyNow{
       margin-top:12px;
       display:grid;
@@ -375,8 +399,6 @@
       gap:10px;
       text-align:left;
     }
-    @media (max-width: 820px){ .whyNow{grid-template-columns:1fr;} }
-
     .whyItem{
       display:flex;
       align-items:flex-start;
@@ -430,11 +452,11 @@
       box-shadow: 0 0 14px rgba(69,227,255,.35);
     }
 
-    /* PROMO */
+    /* PROMO (внутри hero) */
     .promoWrap{
       position:absolute;
       left: 0; right: 0;
-      bottom: 26px;
+      bottom: 18px;
       z-index: 75;
     }
     .promoBar{
@@ -442,30 +464,27 @@
       align-items:center;
       justify-content:space-between;
       gap:12px;
-      padding: 14px 16px;
+      padding: 12px 14px;
     }
-    @media (max-width: 820px){
-      .promoBar{flex-direction:column; align-items:stretch}
-    }
-    .promoLeft{display:flex; flex-direction:column; gap:6px; min-width: 260px;}
+    .promoLeft{display:flex; flex-direction:column; gap:4px; min-width: 220px;}
     .promoTitle{font-size: 14px;font-weight: 1000;color: rgba(234,240,255,.90);letter-spacing: .15px;}
-    .promoSub{font-size: 13px;color: rgba(234,240,255,.70);}
+    .promoSub{font-size: 12px;color: rgba(234,240,255,.70);}
 
     .codeBox{
       display:flex;align-items:center;justify-content:space-between;gap:10px;
-      padding: 12px 14px;border-radius: 18px;
+      padding: 11px 12px;border-radius: 18px;
       border: 1px solid rgba(69,227,255,.28);
       background: rgba(7,12,22,.55);
       box-shadow: 0 18px 55px rgba(0,0,0,.50);
       backdrop-filter: blur(12px);
-      flex: 1; min-height: 54px;
+      flex: 1; min-height: 52px;
       cursor:pointer; user-select:none;
       transition: transform .2s var(--ease), border-color .2s var(--ease);
     }
     .codeBox:hover{transform: translateY(-1px); border-color: rgba(69,227,255,.45)}
     .codeText{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;}
     .codeLabel{font-size: 12px;font-weight: 900;color: rgba(234,240,255,.70);}
-    .codeValue{font-size: 22px;font-weight: 1100;letter-spacing: 1.6px;color: rgba(234,240,255,.95);text-transform: uppercase;}
+    .codeValue{font-size: 20px;font-weight: 1200;letter-spacing: 1.6px;color: rgba(234,240,255,.95);text-transform: uppercase;}
     .copyHint{font-size: 12px;color: rgba(234,240,255,.65);white-space: nowrap;}
 
     /* секции */
@@ -488,8 +507,6 @@
       gap:14px;
       margin-top: 14px;
     }
-    @media (max-width: 980px){ .cardsGrid{grid-template-columns: 1fr;} }
-
     .cardTitle{
       margin:0 0 6px;
       font-size: 18px;
@@ -504,7 +521,6 @@
     }
     .list li{margin: 8px 0}
 
-    /* быстрый старт */
     .quick{
       margin-top:14px;
       display:grid;
@@ -513,7 +529,6 @@
       align-items:stretch;
       text-align:left;
     }
-    @media (max-width: 820px){ .quick{grid-template-columns:1fr;} }
 
     .steps, .calc{
       border:1px solid rgba(255,255,255,.10);
@@ -625,7 +640,6 @@
       font-weight:1200;
     }
 
-    /* FAQ */
     details{
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
@@ -655,58 +669,15 @@
     }
     .links a:hover{color:var(--text);border-color: rgba(255,255,255,.10);background: rgba(255,255,255,.03)}
 
-    .toast{
-      position:fixed;left:50%;bottom:18px;transform: translateX(-50%);
-      background: rgba(6,9,18,.78);
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow: var(--shadow);
-      border-radius:16px;
-      padding:10px 12px;
-      display:none;
-      z-index:99;
-      backdrop-filter: blur(12px);
-      max-width:min(760px, calc(100% - 20px));
-    }
-    .toast.on{display:flex;align-items:center;gap:10px}
-    .dot{width:10px;height:10px;border-radius:999px;background: radial-gradient(circle at 30% 30%, #fff, rgba(69,227,255,.95));box-shadow: 0 0 18px rgba(69,227,255,.50)}
-    .toast .x{
-      margin-left:auto;border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);color:var(--text);
-      border-radius:12px;padding:6px 10px;cursor:pointer;font-weight:1000;
-    }
-
-    /* Floating CTA */
-    .float{
-      position:fixed;right:16px;bottom:16px;z-index:80;
-      display:flex;align-items:center;gap:10px;
-      padding:10px 12px;border-radius:999px;
-      border:1px solid rgba(69,227,255,.35);
-      background: rgba(6,9,18,.72);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 22px 70px rgba(0,0,0,.55);
-      transform: translateY(12px);
-      opacity:0;
-      pointer-events:none;
-      transition:.35s var(--ease);
-    }
-    .float.on{transform: translateY(0);opacity:1;pointer-events:auto}
-    .float .d{width:10px;height:10px;border-radius:999px;background: radial-gradient(circle at 30% 30%, #fff, rgba(69,227,255,.95));box-shadow: 0 0 18px rgba(69,227,255,.50)}
-    .float .t{font-weight:1000;font-size:13px;line-height:1.1}
-    .float .s{font-size:12px;color: rgba(234,240,255,.68);margin-top:2px}
-    .float .go{margin-left:6px;padding:8px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background: rgba(255,255,255,.04);font-weight:1000;transition:.2s var(--ease);}
-    .float .go:hover{transform: translateY(-1px)}
-    @media (max-width: 520px){ .float{bottom: 92px;} }
-
-    /* Sticky promo: короче + бейдж "скопировано" */
+    /* sticky promo */
     .stickyPromo{
       position:fixed;
       left:50%;
-      bottom:16px;
+      bottom: calc(14px + env(safe-area-inset-bottom));
       transform: translateX(-50%) translateY(14px);
       opacity:0;
       pointer-events:none;
       z-index:81;
-
       width:min(720px, calc(100% - 28px));
       border:1px solid rgba(255,255,255,.12);
       background: rgba(6,9,18,.80);
@@ -748,7 +719,6 @@
       min-width: 220px;
       position:relative;
     }
-    .stickyCopy:hover{transform: translateY(-1px); border-color: rgba(69,227,255,.40);}
     .stickyCode{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;}
     .stickyCode .k{font-size:12px;font-weight:900;color: rgba(234,240,255,.70);}
     .stickyCode .v{font-size:18px;font-weight:1200;letter-spacing:1.4px;color: rgba(234,240,255,.95);}
@@ -772,19 +742,53 @@
       pointer-events:none;
       white-space:nowrap;
     }
-    .stickyBadge.on{
-      opacity:1;
-      transform: translateY(0);
+    .stickyBadge.on{opacity:1;transform: translateY(0);}
+
+    .toast{
+      position:fixed;left:50%;
+      bottom: calc(18px + env(safe-area-inset-bottom));
+      transform: translateX(-50%);
+      background: rgba(6,9,18,.78);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow);
+      border-radius:16px;
+      padding:10px 12px;
+      display:none;
+      z-index:99;
+      backdrop-filter: blur(12px);
+      max-width:min(760px, calc(100% - 20px));
+    }
+    .toast.on{display:flex;align-items:center;gap:10px}
+    .dot{width:10px;height:10px;border-radius:999px;background: radial-gradient(circle at 30% 30%, #fff, rgba(69,227,255,.95));box-shadow: 0 0 18px rgba(69,227,255,.50)}
+    .toast .x{
+      margin-left:auto;border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);color:var(--text);
+      border-radius:12px;padding:6px 10px;cursor:pointer;font-weight:1000;
     }
 
-    @media (max-width: 820px){
-      .stickyInner{flex-direction:column; align-items:stretch}
-      .stickyLeft{min-width:auto}
-      .stickyHint{display:none}
-      .stickyCopy{min-width:auto}
-      .stickyBadge{right:10px;}
+    /* Floating CTA */
+    .float{
+      position:fixed;right:16px;
+      bottom: calc(92px + env(safe-area-inset-bottom));
+      z-index:80;
+      display:flex;align-items:center;gap:10px;
+      padding:10px 12px;border-radius:999px;
+      border:1px solid rgba(69,227,255,.35);
+      background: rgba(6,9,18,.72);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 22px 70px rgba(0,0,0,.55);
+      transform: translateY(12px);
+      opacity:0;
+      pointer-events:none;
+      transition:.35s var(--ease);
     }
+    .float.on{transform: translateY(0);opacity:1;pointer-events:auto}
+    .float .d{width:10px;height:10px;border-radius:999px;background: radial-gradient(circle at 30% 30%, #fff, rgba(69,227,255,.95));box-shadow: 0 0 18px rgba(69,227,255,.50)}
+    .float .t{font-weight:1000;font-size:13px;line-height:1.1}
+    .float .s{font-size:12px;color: rgba(234,240,255,.68);margin-top:2px}
+    .float .go{margin-left:6px;padding:8px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background: rgba(255,255,255,.04);font-weight:1000;transition:.2s var(--ease);}
 
+    /* animations */
     @keyframes spin{to{transform: rotate(360deg)}}
     @keyframes sheen{
       0%{transform: translateX(-140%)}
@@ -803,11 +807,101 @@
       0%,100%{opacity:.88}
       50%{opacity:1}
     }
+    .goFlash{ animation: goFlash 1.6s var(--ease) 1 !important; }
+    @keyframes goFlash{
+      0%{transform: translateY(0) scale(1); filter: brightness(1);}
+      35%{transform: translateY(-2px) scale(1.01); filter: brightness(1.08);}
+      100%{transform: translateY(0) scale(1); filter: brightness(1);}
+    }
+
+    /* =========================
+       📱 MOBILE OPTIMIZATION
+       ========================= */
+    @media (max-width: 820px){
+      .container{padding:0 14px;}
+      :root{ --topbarH:56px; }
+
+      .topbar .container{padding:10px 14px; gap:10px;}
+      .logo{width:34px;height:34px;border-radius:13px;}
+      .brandText .t{font-size:13px;}
+      .brandText .s{font-size:12px;margin-top:4px}
+
+      /* mobile nav: hamburger + dropdown */
+      .menuBtn{display:inline-flex;align-items:center;justify-content:center;}
+      .navPanel{
+        position:absolute;
+        right:0;
+        top: calc(100% + 10px);
+        width: min(340px, calc(100vw - 28px));
+        display:none;
+        flex-direction:column;
+        gap:8px;
+        padding:12px;
+        border-radius:18px;
+        border:1px solid rgba(255,255,255,.12);
+        background: rgba(6,9,18,.86);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(14px);
+      }
+      .navPanel.open{display:flex;}
+      .navPanel a{width:100%;}
+
+      /* keep CTA visible */
+      .navCta{padding:10px 12px;border-radius:14px;}
+      .btn:hover{transform:none}
+
+      /* hero photo framing for mobile */
+      .heroBg{
+        background-position: 72% 50%; /* чаще герой справа смотрится лучше */
+        filter: brightness(1.60) saturate(1.08) contrast(1.03);
+        transform: scale(1.06);
+      }
+
+      /* hero content sizing */
+      .heroGrid{padding-bottom: 96px;}
+      .card{padding:16px;border-radius:18px;}
+      h1{font-size:30px; letter-spacing:-.3px;}
+      .lead{font-size:14px}
+
+      .slogan{font-size:12px;padding:8px 10px}
+      .chip{font-size:11px;padding:7px 9px}
+      .whyNow{grid-template-columns:1fr;}
+      .micro{font-size:11px}
+
+      /* CTA buttons full width */
+      .btn-super,.btn-wide{min-width:unset;width:100%;}
+      .btn-super{padding:13px 16px;}
+
+      /* promo bar for mobile */
+      .promoBar{gap:10px;}
+      .promoLeft{min-width:unset}
+      .codeValue{font-size:18px}
+      .copyHint{display:none;}
+
+      /* sections */
+      .sectionTitle{font-size:22px}
+      .cardsGrid{grid-template-columns:1fr;}
+      .quick{grid-template-columns:1fr;}
+      .calcInput{max-width:unset}
+
+      /* sticky promo mobile stack */
+      .stickyInner{flex-direction:column; align-items:stretch}
+      .stickyLeft{min-width:auto}
+      .stickyHint{display:none}
+      .stickyCopy{min-width:auto}
+    }
+
+    @media (max-width: 420px){
+      .garlandTop{opacity:.82}
+      .heroGrid{padding-bottom: 88px;}
+      .promoWrap{bottom: 14px;}
+      .codeLabel{font-size:11px}
+    }
+
     @media (prefers-reduced-motion: reduce){
       *{animation:none !important;transition:none !important}
+      #snowGlobal,.snowHaze,.garlandTop{display:none !important}
       .reveal{opacity:1;transform:none}
-      #snowGlobal{display:none;}
-      .snowHaze{display:none;}
     }
   </style>
 </head>
@@ -822,18 +916,23 @@
     <div class="container">
       <div class="brand">
         <div class="logo" aria-hidden="true"></div>
-        <div>
-          <div style="font-size:14px;line-height:1;font-weight:1000">1win Casino</div>
-          <div class="small muted" style="margin-top:6px">обзор • бонусы • FAQ • 18+</div>
+        <div class="brandText">
+          <div class="t">1win Casino</div>
+          <div class="small muted s">обзор • бонусы • FAQ • 18+</div>
         </div>
       </div>
 
-      <nav>
-        <a href="#start">Старт</a>
-        <a href="#about">О 1win</a>
-        <a href="#faq">FAQ</a>
-        <a class="btn btn-primary" data-cta href="#" target="_blank" rel="nofollow sponsored noopener">
-          <span class="icon" aria-hidden="true"></span>Перейти на 1win
+      <nav class="nav">
+        <button class="menuBtn" id="menuBtn" type="button" aria-controls="navPanel" aria-expanded="false">☰</button>
+
+        <div class="navPanel" id="navPanel" role="menu" aria-label="Меню">
+          <a href="#start" role="menuitem">Старт</a>
+          <a href="#about" role="menuitem">О 1win</a>
+          <a href="#faq" role="menuitem">FAQ</a>
+        </div>
+
+        <a class="btn btn-primary navCta" data-cta href="#" target="_blank" rel="nofollow sponsored noopener">
+          <span class="icon" aria-hidden="true"></span>Перейти
         </a>
       </nav>
     </div>
@@ -869,7 +968,6 @@
             </a>
           </div>
 
-          <!-- ✅ Почему сейчас -->
           <div class="whyNow" aria-label="Почему сейчас">
             <div class="whyItem">
               <span class="whyIcon" aria-hidden="true"></span>
@@ -877,7 +975,7 @@
             </div>
             <div class="whyItem">
               <span class="whyIcon" aria-hidden="true"></span>
-              <div class="whyText"><b>Удобные платежи</b><span>Пополнение в пару шагов (методы зависят от региона)</span></div>
+              <div class="whyText"><b>Удобные платежи</b><span>Методы зависят от региона</span></div>
             </div>
             <div class="whyItem">
               <span class="whyIcon" aria-hidden="true"></span>
@@ -908,9 +1006,9 @@
               <div class="codeText">
                 <span class="codeLabel">ПРОМОКОД:</span>
                 <span class="codeValue" id="promoValue">SMOG</span>
-                <span class="codeLabel" style="margin-left:4px">500% и 70FS к первому депозиту</span>
+                <span class="codeLabel" style="margin-left:4px">500% и 70FS</span>
               </div>
-              <div class="copyHint">копируется при нажатии</div>
+              <div class="copyHint">копируется</div>
             </div>
 
             <a class="btn btn-primary" id="promoGoBtn" data-cta href="#" target="_blank" rel="nofollow sponsored noopener" style="white-space:nowrap">
@@ -992,68 +1090,40 @@
         <p class="sectionSub">Коротко и по делу: поддержка, бонусы, игры, мобильный доступ и платежи.</p>
 
         <div class="cardsGrid">
-          <div class="card reveal tilt" data-tilt>
-            <div class="shine"></div>
+          <div class="card reveal tilt" data-tilt><div class="shine"></div>
             <h3 class="cardTitle">Помощь игрокам</h3>
             <p class="cardText">Поддержка 24/7 помогает по аккаунту, бонусам и транзакциям.</p>
-            <ul class="list">
-              <li>Онлайн-чат на сайте</li>
-              <li>Email / телефон</li>
-            </ul>
+            <ul class="list"><li>Онлайн-чат</li><li>Email / телефон</li></ul>
           </div>
 
-          <div class="card reveal tilt" data-tilt>
-            <div class="shine"></div>
+          <div class="card reveal tilt" data-tilt><div class="shine"></div>
             <h3 class="cardTitle">Бонусы в 1Win</h3>
             <p class="cardText">После регистрации доступны акции и поощрения — следуй правилам программы.</p>
-            <ul class="list">
-              <li>Приветственный бонус <b>500%</b></li>
-              <li>Кэшбэк <b>1–20%</b> (если предусмотрено)</li>
-            </ul>
+            <ul class="list"><li>Приветственный бонус <b>500%</b></li><li>Кэшбэк <b>1–20%</b> (если предусмотрено)</li></ul>
           </div>
 
-          <div class="card reveal tilt" data-tilt>
-            <div class="shine"></div>
+          <div class="card reveal tilt" data-tilt><div class="shine"></div>
             <h3 class="cardTitle">Игры в 1Win</h3>
             <p class="cardText">Слоты, настолки и live-форматы — выбор под любой стиль.</p>
-            <ul class="list">
-              <li>Рулетка, баккара, блэкджек</li>
-              <li>Live-казино с дилером</li>
-              <li>Слоты по тематикам</li>
-            </ul>
+            <ul class="list"><li>Рулетка, баккара, блэкджек</li><li>Live-казино</li><li>Слоты</li></ul>
           </div>
 
-          <div class="card reveal tilt" data-tilt>
-            <div class="shine"></div>
+          <div class="card reveal tilt" data-tilt><div class="shine"></div>
             <h3 class="cardTitle">Мобильная версия</h3>
-            <p class="cardText">Платформа корректно работает со смартфона — вход без повторной регистрации.</p>
-            <ul class="list">
-              <li>Адаптация под экран</li>
-              <li>Удобная навигация</li>
-              <li>Низкий расход трафика</li>
-            </ul>
+            <p class="cardText">Работает на смартфоне без повторной регистрации.</p>
+            <ul class="list"><li>Адаптация под экран</li><li>Удобная навигация</li><li>Экономия трафика</li></ul>
           </div>
 
-          <div class="card reveal tilt" data-tilt>
-            <div class="shine"></div>
+          <div class="card reveal tilt" data-tilt><div class="shine"></div>
             <h3 class="cardTitle">Платежи</h3>
-            <p class="cardText">Пополнение/вывод выполняются в финансовом разделе после авторизации.</p>
-            <ul class="list">
-              <li>Карты и электронные методы</li>
-              <li>Подтверждение в 1–2 шага</li>
-              <li>Сроки зависят от метода</li>
-            </ul>
+            <p class="cardText">Пополнение/вывод через финансовый раздел после входа.</p>
+            <ul class="list"><li>Карты и электронные методы</li><li>Подтверждение в 1–2 шага</li><li>Сроки зависят от метода</li></ul>
           </div>
 
-          <div class="card reveal tilt" data-tilt>
-            <div class="shine"></div>
+          <div class="card reveal tilt" data-tilt><div class="shine"></div>
             <h3 class="cardTitle">Игровой зал</h3>
-            <p class="cardText">Графика, бонус-раунды и разные режимы (в т.ч. демо — если доступно).</p>
-            <ul class="list">
-              <li>Слоты с разным RTP/темой</li>
-              <li>Множители и бонусы</li>
-              <li>Ручной/авто режим</li>
-            </ul>
+            <p class="cardText">Графика, бонус-раунды и разные режимы (если доступны).</p>
+            <ul class="list"><li>Слоты по тематикам</li><li>Множители/бонусы</li><li>Ручной/авто</li></ul>
           </div>
         </div>
 
@@ -1077,56 +1147,35 @@
           <details>
             <summary>1. Безопасно ли играть на сайте 1Вин?</summary>
             <p class="muted" style="margin:8px 0 0">
-              1win заявляет о защите данных и мерах безопасности. На официальной стороне может быть указана лицензия (например, Кюрасао №8048/JAZ2018-040) — проверь информацию внизу сайта 1win и в правилах.
+              1win заявляет о защите данных и мерах безопасности. Информацию о лицензии и правилах смотри на официальной стороне 1win.
             </p>
           </details>
 
           <details>
             <summary>2. Во что можно сыграть в 1Win?</summary>
             <p class="muted" style="margin:8px 0 0">
-              Обычно доступны слоты, настольные игры и live-казино. Точный список и провайдеры зависят от разделов на сайте 1win.
+              Обычно доступны слоты, настольные игры и live-казино. Точный список зависит от разделов на сайте 1win.
             </p>
           </details>
 
           <details>
             <summary>3. Зачем 1Вин запрашивает верификацию?</summary>
             <p class="muted" style="margin:8px 0 0">
-              Верификация нужна для подтверждения возраста и защиты аккаунта. Обычно достаточно фото/скана документа — точные требования смотри в профиле 1win.
+              Для подтверждения возраста и защиты аккаунта. Требования могут отличаться — смотри в профиле 1win.
             </p>
           </details>
 
           <details>
             <summary>4. Как активировать бонус по промокоду SMOG?</summary>
             <p class="muted" style="margin:8px 0 0">
-              Скопируй промокод, зарегистрируйся/войдите и введи его в соответствующем поле. Условия активации и отыгрыша могут отличаться — ориентируйся на правила в аккаунте 1win.
+              Скопируй SMOG и введи в нужном поле при регистрации/в аккаунте. Условия активации и отыгрыша — на стороне 1win.
             </p>
           </details>
 
           <details>
             <summary>5. Где смотреть актуальные условия бонусов?</summary>
             <p class="muted" style="margin:8px 0 0">
-              В бонусном/промо-разделе на стороне 1win. Условия и ограничения могут меняться.
-            </p>
-          </details>
-
-          <details>
-            <summary>6. Как сделать депозит?</summary>
-            <p class="muted" style="margin:8px 0 0">
-              Войди в аккаунт → открой финансовый раздел → выбери метод → введи сумму → подтверди. Доступные методы зависят от региона и настроек 1win.
-            </p>
-          </details>
-
-          <details>
-            <summary>7. Как связаться с поддержкой?</summary>
-            <p class="muted" style="margin:8px 0 0">
-              Чаще всего — через онлайн-чат на сайте. Также могут быть доступны email/телефон (см. раздел контактов 1win).
-            </p>
-          </details>
-
-          <details>
-            <summary>8. Есть ли мобильная версия/приложение?</summary>
-            <p class="muted" style="margin:8px 0 0">
-              Обычно сайт адаптирован под смартфоны, а приложение (если доступно) размещается на официальной стороне 1win. Уточняй по ссылкам/разделам сайта.
+              В промо-разделе на стороне 1win — условия могут меняться.
             </p>
           </details>
 
@@ -1171,7 +1220,7 @@
   <div class="stickyPromo" id="stickyPromo" aria-label="Промокод снизу">
     <div class="stickyInner">
       <div class="stickyLeft">
-        <div class="stickyTitle">Промокод на бонус</div>
+        <div class="stickyTitle">Промокод</div>
         <div class="stickySub" id="stickySub">Нажми — скопируется • затем переход</div>
       </div>
 
@@ -1182,8 +1231,6 @@
           <span class="k">500% • 70FS</span>
         </div>
         <div class="stickyHint">копировать</div>
-
-        <!-- ✅ бейдж "скопировано" -->
         <div class="stickyBadge" id="stickyBadge">SMOG скопирован</div>
       </div>
 
@@ -1192,15 +1239,6 @@
       </a>
     </div>
   </div>
-
-  <a class="float" id="float" data-cta href="#" target="_blank" rel="nofollow sponsored noopener" aria-label="Перейти на 1win">
-    <span class="d" aria-hidden="true"></span>
-    <div>
-      <div class="t">Перейти на 1win</div>
-      <div class="s">регистрация / вход</div>
-    </div>
-    <span class="go">GO</span>
-  </a>
 
   <div class="toast" id="toast" role="status" aria-live="polite">
     <span class="dot" aria-hidden="true"></span>
@@ -1212,13 +1250,31 @@
   </div>
 
   <script>
-    // link
+    // affiliate link
     const AFF = "https://1wfafs.life/casino/list?open=register&p=7jns";
     document.querySelectorAll("[data-cta]").forEach(a => {
       a.href = AFF;
       a.target = "_blank";
       a.rel = "nofollow sponsored noopener";
     });
+
+    // mobile menu toggle
+    const menuBtn = document.getElementById("menuBtn");
+    const navPanel = document.getElementById("navPanel");
+    function closeMenu(){
+      navPanel?.classList.remove("open");
+      if(menuBtn) menuBtn.setAttribute("aria-expanded","false");
+    }
+    menuBtn?.addEventListener("click", ()=>{
+      const open = navPanel.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    document.addEventListener("click",(e)=>{
+      if(!navPanel || !menuBtn) return;
+      if(e.target.closest("#navPanel") || e.target.closest("#menuBtn")) return;
+      closeMenu();
+    });
+    document.addEventListener("keydown",(e)=>{ if(e.key==="Escape") closeMenu(); });
 
     // smooth scroll
     document.addEventListener("click", (e) => {
@@ -1228,6 +1284,7 @@
       const el = document.querySelector(id);
       if (!el) return;
       e.preventDefault();
+      closeMenu();
       el.scrollIntoView({behavior:"smooth", block:"start"});
       history.replaceState(null, "", id);
     });
@@ -1242,26 +1299,28 @@
       document.querySelectorAll(".reveal").forEach(el => el.classList.add("on"));
     }
 
-    // tilt
-    const tiltEls = [...document.querySelectorAll("[data-tilt]")];
-    const clamp = (n,a,b)=> Math.max(a, Math.min(b,n));
-    tiltEls.forEach(el=>{
-      el.addEventListener("pointermove",(e)=>{
-        const r = el.getBoundingClientRect();
-        const x = (e.clientX - r.left)/r.width;
-        const y = (e.clientY - r.top)/r.height;
-        const rx = clamp((0.5 - y) * 10, -8, 8);
-        const ry = clamp((x - 0.5) * 12, -9, 9);
-        el.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-1px)`;
-        el.style.setProperty("--mx", (x*100).toFixed(2)+"%");
-        el.style.setProperty("--my", (y*100).toFixed(2)+"%");
-      },{passive:true});
-      el.addEventListener("pointerleave", ()=> { el.style.transform=""; }, {passive:true});
-    });
+    // tilt (disable on touch)
+    const isCoarse = matchMedia?.("(pointer: coarse)")?.matches;
+    if(!isCoarse){
+      const tiltEls = [...document.querySelectorAll("[data-tilt]")];
+      const clamp = (n,a,b)=> Math.max(a, Math.min(b,n));
+      tiltEls.forEach(el=>{
+        el.addEventListener("pointermove",(e)=>{
+          const r = el.getBoundingClientRect();
+          const x = (e.clientX - r.left)/r.width;
+          const y = (e.clientY - r.top)/r.height;
+          const rx = clamp((0.5 - y) * 10, -8, 8);
+          const ry = clamp((x - 0.5) * 12, -9, 9);
+          el.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-1px)`;
+          el.style.setProperty("--mx", (x*100).toFixed(2)+"%");
+          el.style.setProperty("--my", (y*100).toFixed(2)+"%");
+        },{passive:true});
+        el.addEventListener("pointerleave", ()=> { el.style.transform=""; }, {passive:true});
+      });
+    }
 
-    // progress + floating CTA + sticky promo
+    // progress + sticky promo
     const progress = document.getElementById("progress");
-    const float = document.getElementById("float");
     const stickyPromo = document.getElementById("stickyPromo");
     const hero = document.getElementById("top");
 
@@ -1269,8 +1328,6 @@
       const h = document.documentElement.scrollHeight - innerHeight;
       const p = h<=0 ? 0 : (scrollY/h);
       progress.style.width = (p*100).toFixed(2)+"%";
-
-      if (scrollY > 420) float.classList.add("on"); else float.classList.remove("on");
 
       const heroBottom = hero ? (hero.getBoundingClientRect().bottom + scrollY) : 700;
       if (scrollY > (heroBottom - innerHeight * 0.18)) stickyPromo?.classList.add("on");
@@ -1319,6 +1376,9 @@
     const heroCtaBtn = document.getElementById("heroCtaBtn");
     const startCtaBtn = document.getElementById("startCtaBtn");
     const stickyBadge = document.getElementById("stickyBadge");
+    const microCta = document.getElementById("microCta");
+    const promoSub = document.getElementById("promoSub");
+    const stickySub = document.getElementById("stickySub");
 
     function flash(btn){
       if(!btn) return;
@@ -1329,10 +1389,6 @@
       btn._t = setTimeout(()=>btn.classList.remove("goFlash"), 1650);
     }
 
-    const microCta = document.getElementById("microCta");
-    const promoSub = document.getElementById("promoSub");
-    const stickySub = document.getElementById("stickySub");
-
     const microDefault = `
       <span class="pill"><span class="dot" aria-hidden="true"></span>Откроется в новой вкладке</span>
       <span class="pill"><span class="dot" aria-hidden="true"></span>Скопируй промокод ниже</span>
@@ -1340,8 +1396,8 @@
     function microCopied(){
       if(!microCta) return;
       microCta.innerHTML = `
-        <span class="pill"><span class="dot" aria-hidden="true"></span>Откроется в новой вкладке</span>
-        <span class="pill"><span class="dot" aria-hidden="true"></span><b style="font-weight:1200;color:#fff">SMOG скопирован</b> — осталось нажать «Перейти»</span>
+        <span class="pill"><span class="dot" aria-hidden="true"></span>SMOG скопирован</span>
+        <span class="pill"><span class="dot" aria-hidden="true"></span>Осталось нажать «Перейти»</span>
       `;
       clearTimeout(microCopied._t);
       microCopied._t = setTimeout(()=>{ microCta.innerHTML = microDefault; }, 3400);
@@ -1430,7 +1486,7 @@
       render();
     })();
 
-    // ❄️ мягкий снег (меньше)
+    // ❄️ снег: оптимизация под мобильный
     (function(){
       const reduce = matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
       const canvas = document.getElementById("snowGlobal");
@@ -1439,8 +1495,9 @@
       const ctx = canvas.getContext("2d", { alpha: true });
       let w=0,h=0,dpr=1;
       const flakes = [];
-      const COUNT = 95;
+      const isMobile = matchMedia?.("(max-width: 820px)")?.matches;
 
+      const COUNT = isMobile ? 55 : 95;   // меньше на телефоне
       const rnd=(a,b)=>a+Math.random()*(b-a);
 
       function resize(){
@@ -1452,15 +1509,15 @@
       }
 
       function makeFlake(){
-        const r = rnd(2.0, 4.6);
+        const r = isMobile ? rnd(1.8, 3.8) : rnd(2.0, 4.6);
         return {
           x: rnd(0,w),
           y: rnd(-h,0),
           r,
-          vy: rnd(0.26, 0.72) * (0.75 + r/6.2),
-          vx: rnd(-0.16, 0.16),
-          a: rnd(0.14, 0.42),
-          wob: rnd(0.6, 1.8),
+          vy: rnd(0.24, 0.65) * (0.75 + r/6.2),
+          vx: rnd(-0.14, 0.14),
+          a: isMobile ? rnd(0.12, 0.32) : rnd(0.14, 0.42),
+          wob: rnd(0.6, 1.7),
           seed: rnd(0, 9999)
         };
       }
@@ -1470,26 +1527,32 @@
       }
 
       function drawSoftCircle(x,y,r,a){
-        const g = ctx.createRadialGradient(x,y,0,x,y,r*2.1);
+        const g = ctx.createRadialGradient(x,y,0,x,y,r*2.0);
         g.addColorStop(0, `rgba(255,255,255,${a})`);
         g.addColorStop(0.55, `rgba(255,255,255,${a*0.55})`);
         g.addColorStop(1, `rgba(255,255,255,0)`);
         ctx.fillStyle = g;
         ctx.beginPath();
-        ctx.arc(x,y,r*1.9,0,Math.PI*2);
+        ctx.arc(x,y,r*1.85,0,Math.PI*2);
         ctx.fill();
       }
 
       let last = performance.now();
       let wind = 0, windTarget = 0;
+      let running = true;
 
       function tick(t){
+        if(!running) return;
         const dt = Math.min(32, t-last); last=t;
 
-        if(Math.random() < 0.006) windTarget = rnd(-0.30, 0.30);
+        if(Math.random() < 0.006) windTarget = rnd(-0.28, 0.28);
         wind += (windTarget - wind) * 0.02;
 
         ctx.clearRect(0,0,w,h);
+
+        // ❗ снег начинается “под карточкой” — маска сверху
+        // просто не рисуем верхние 20% на мобиле
+        const cut = isMobile ? h * 0.20 : h * 0.12;
 
         for(const f of flakes){
           const sway = Math.sin((f.y*0.012) + f.seed) * f.wob;
@@ -1500,11 +1563,16 @@
           if(f.x < -90) f.x = w + 90;
           if(f.x > w + 90) f.x = -90;
 
-          drawSoftCircle(f.x, f.y, f.r, f.a);
+          if(f.y > cut) drawSoftCircle(f.x, f.y, f.r, f.a);
         }
 
         requestAnimationFrame(tick);
       }
+
+      document.addEventListener("visibilitychange", ()=>{
+        running = !document.hidden;
+        if(running){ last = performance.now(); requestAnimationFrame(tick); }
+      });
 
       resize();
       flakes.length = 0;
@@ -1512,18 +1580,6 @@
       addEventListener("resize", resize, {passive:true});
       requestAnimationFrame(tick);
     })();
-
-    function onScroll(){
-      const h = document.documentElement.scrollHeight - innerHeight;
-      const p = h<=0 ? 0 : (scrollY/h);
-      progress.style.width = (p*100).toFixed(2)+"%";
-
-      if (scrollY > 420) float.classList.add("on"); else float.classList.remove("on");
-
-      const heroBottom = hero ? (hero.getBoundingClientRect().bottom + scrollY) : 700;
-      if (scrollY > (heroBottom - innerHeight * 0.18)) stickyPromo?.classList.add("on");
-      else stickyPromo?.classList.remove("on");
-    }
   </script>
 </body>
 </html>
