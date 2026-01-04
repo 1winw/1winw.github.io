@@ -39,7 +39,6 @@
       color:var(--text);
       line-height:1.55;
       overflow-x:hidden;
-      padding-bottom: 140px;
 
       background:
         radial-gradient(900px 520px at 14% 10%, rgba(43,140,255,.22), transparent 60%),
@@ -53,7 +52,7 @@
     .muted{color:var(--muted)}
     .small{font-size:13px}
 
-    /* Декор фона: фиолетовые лучи */
+    /* фоновые “лучи” */
     .bgGlow{
       position:fixed; inset:0;
       pointer-events:none;
@@ -67,7 +66,7 @@
       mix-blend-mode: screen;
     }
 
-    /* ✅ НОРМАЛЬНЫЕ ЁЛКИ + ДЕНЬГИ (видно, что это ёлки и деньги) */
+    /* ёлки + деньги (видно, что это ёлки и деньги) */
     .bgTrees{
       position:fixed;
       left:0; right:0; bottom:-10px;
@@ -79,16 +78,16 @@
       background-position: center bottom;
       background-size: 1200px 320px;
       filter: saturate(1.1) contrast(1.05);
-      background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%201200%20320%27%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%27sky%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%270%27%20y2%3D%271%27%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%270%27%20stop-color%3D%27rgba(123%2C97%2C255%2C0.22)%27/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%271%27%20stop-color%3D%27rgba(0%2C0%2C0%2C0)%27/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%27ground%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%270%27%20y2%3D%271%27%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%270%27%20stop-color%3D%27rgba(2%2C10%2C26%2C0)%27/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%271%27%20stop-color%3D%27rgba(2%2C10%2C26%2C0.86)%27/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3CradialGradient%20id%3D%27glow%27%20cx%3D%2750%25%27%20cy%3D%2715%25%27%20r%3D%2775%25%27%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%270%27%20stop-color%3D%27rgba(69%2C227%2C255%2C0.14)%27/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%270.6%27%20stop-color%3D%27rgba(0%2C0%2C0%2C0)%27/%3E%0A%20%20%20%20%3C/radialGradient%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%27tree%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%270%27%20y2%3D%271%27%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%270%27%20stop-color%3D%27rgba(78%2C255%2C198%2C0.26)%27/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%271%27%20stop-color%3D%27rgba(20%2C120%2C95%2C0.18)%27/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%27coin%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%271%27%20y2%3D%271%27%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%270%27%20stop-color%3D%27rgba(255%2C225%2C120%2C0.32)%27/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%271%27%20stop-color%3D%27rgba(255%2C170%2C60%2C0.18)%27/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%27bill%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%271%27%20y2%3D%271%27%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%270%27%20stop-color%3D%27rgba(190%2C255%2C220%2C0.22)%27/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%271%27%20stop-color%3D%27rgba(90%2C220%2C170%2C0.14)%27/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%3C/defs%3E%0A%0A%20%20%3Crect%20width%3D%271200%27%20height%3D%27320%27%20fill%3D%27url(%23sky)%27/%3E%0A%20%20%3Crect%20width%3D%271200%27%20height%3D%27320%27%20fill%3D%27url(%23glow)%27/%3E%0A%20%20%3Cpath%20d%3D%27M0%20250%20C220%20215%20420%20280%20610%20248%20S980%20225%201200%20258%20V320%20H0%20Z%27%20fill%3D%27url(%23ground)%27/%3E%0A%0A%20%20%3Cg%20id%3D%27pine%27%3E%0A%20%20%20%20%3Cpolygon%20points%3D%270%2C88%2034%2C24%2068%2C88%27%20fill%3D%27url(%23tree)%27/%3E%0A%20%20%20%20%3Cpolygon%20points%3D%27-6%2C104%2034%2C36%2074%2C104%27%20fill%3D%27url(%23tree)%27%20opacity%3D%270.95%27/%3E%0A%20%20%20%20%3Cpolygon%20points%3D%27-14%2C122%2034%2C50%2082%2C122%27%20fill%3D%27url(%23tree)%27%20opacity%3D%270.92%27/%3E%0A%20%20%20%20%3Crect%20x%3D%2728%27%20y%3D%27122%27%20width%3D%2712%27%20height%3D%2720%27%20rx%3D%274%27%20fill%3D%27rgba(200%2C255%2C230%2C0.08)%27/%3E%0A%20%20%20%20%3Cpath%20d%3D%27M6%2096%20L62%2096%27%20stroke%3D%27rgba(200%2C255%2C230%2C0.12)%27%20stroke-width%3D%272%27%20stroke-linecap%3D%27round%27/%3E%0A%20%20%20%20%3Cpath%20d%3D%27M0%20112%20L68%20112%27%20stroke%3D%27rgba(200%2C255%2C230%2C0.10)%27%20stroke-width%3D%272%27%20stroke-linecap%3D%27round%27/%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3Cg%20id%3D%27coinOrn%27%3E%0A%20%20%20%20%3Cline%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%270%27%20y2%3D%2710%27%20stroke%3D%27rgba(255%2C255%2C255%2C0.12)%27%20stroke-width%3D%272%27%20stroke-linecap%3D%27round%27/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%270%27%20cy%3D%2718%27%20r%3D%2710%27%20fill%3D%27url(%23coin)%27%20stroke%3D%27rgba(255%2C225%2C140%2C0.26)%27%20stroke-width%3D%272%27/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%270%27%20cy%3D%2718%27%20r%3D%275.5%27%20fill%3D%27rgba(0%2C0%2C0%2C0)%27%20stroke%3D%27rgba(255%2C235%2C160%2C0.26)%27%20stroke-width%3D%272%27/%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3Cg%20id%3D%27billOrn%27%3E%0A%20%20%20%20%3Cline%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%270%27%20y2%3D%2710%27%20stroke%3D%27rgba(255%2C255%2C255%2C0.12)%27%20stroke-width%3D%272%27%20stroke-linecap%3D%27round%27/%3E%0A%20%20%20%20%3Crect%20x%3D%27-14%27%20y%3D%2712%27%20width%3D%2728%27%20height%3D%2716%27%20rx%3D%275%27%20fill%3D%27url(%23bill)%27%20stroke%3D%27rgba(190%2C255%2C220%2C0.22)%27%20stroke-width%3D%272%27/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%270%27%20cy%3D%2720%27%20r%3D%274.2%27%20fill%3D%27rgba(190%2C255%2C220%2C0.16)%27/%3E%0A%20%20%20%20%3Cpath%20d%3D%27M-9%2016%20h6%20M3%2024%20h6%27%20stroke%3D%27rgba(190%2C255%2C220%2C0.20)%27%20stroke-width%3D%272%27%20stroke-linecap%3D%27round%27/%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3Cg%20opacity%3D%270.96%27%3E%0A%20%20%20%20%3Cg%20transform%3D%27translate(70%20148)%20scale(1.2)%27%3E%3Cuse%20href%3D%27%23pine%27/%3E%3C/g%3E%0A%20%20%20%20%3Cg%20transform%3D%27translate(160%20162)%20scale(1.0)%27%3E%3Cuse%20href%3D%27%23pine%27/%3E%3C/g%3E%0A%20%20%20%20%3Cg%20transform%3D%27translate(250%20146)%20scale(1.25)%27%3E%3Cuse%20href%3D%27%23pine%27/%3E%3C/g%3E%0A%20%20%20%20%3Cg%20transform%3D%27translate(350%20168)%20scale(0.95)%27%3E%3Cuse%20href%3D%27%23pine%27/%3E%3C/g%3E%0A%20%20%20%20%3Cg%20transform%3D%27translate(470%20150)%20scale(1.22)%27%3E%3Cuse%20href%3D%27%23pine%27/%3E%3C/g%3E%0A%20%20%20%20%3Cg%20transform%3D%27translate(610%20166)%20scale(0.98)%27%3E%3Cuse%20href%3D%27%23pine%27/%3E%3C/g%3E%0A%20%20%20%20%3Cg%20transform%3D%27translate(735%20148)%20scale(1.18)%27%3E%3Cuse%20href%3D%27%23pine%27/%3E%3C/g%3E%0A%20%20%20%20%3Cg%20transform%3D%27translate(870%20170)%20scale(0.92)%27%3E%3Cuse%20href%3D%27%23pine%27/%3E%3C/g%3E%0A%20%20%20%20%3Cg%20transform%3D%27translate(990%20150)%20scale(1.18)%27%3E%3Cuse%20href%3D%27%23pine%27/%3E%3C/g%3E%0A%20%20%20%20%3Cg%20transform%3D%27translate(1090%20165)%20scale(0.98)%27%3E%3Cuse%20href%3D%27%23pine%27/%3E%3C/g%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3Cg%20opacity%3D%270.95%27%3E%0A%20%20%20%20%3Cg%20transform%3D%27translate(105%20178)%27%3E%3Cuse%20href%3D%27%23coinOrn%27/%3E%3C/g%3E%0A%20%20%20%20%3Cg%20transform%3D%27translate(138%20196)%27%3E%3Cuse%20href%3D%27%23billOrn%27/%3E%3C/g%3E%0A%20%20%20%20%3Cg%20transform%3D%27translate(285%20176)%27%3E%3Cuse%20href%3D%27%23billOrn%27/%3E%3C/g%3E%0A%20%20%20%20%3Cg%20transform%3D%27translate(315%20200)%27%3E%3Cuse%20href%3D%27%23coinOrn%27/%3E%3C/g%3E%0A%20%20%20%20%3Cg%20transform%3D%27translate(505%20182)%27%3E%3Cuse%20href%3D%27%23coinOrn%27/%3E%3C/g%3E%0A%20%20%20%20%3Cg%20transform%3D%27translate(545%20204)%27%3E%3Cuse%20href%3D%27%23billOrn%27/%3E%3C/g%3E%0A%20%20%20%20%3Cg%20transform%3D%27translate(770%20182)%27%3E%3Cuse%20href%3D%27%23billOrn%27/%3E%3C/g%3E%0A%20%20%20%20%3Cg%20transform%3D%27translate(805%20206)%27%3E%3Cuse%20href%3D%27%23coinOrn%27/%3E%3C/g%3E%0A%20%20%20%20%3Cg%20transform%3D%27translate(1020%20182)%27%3E%3Cuse%20href%3D%27%23coinOrn%27/%3E%3C/g%3E%0A%20%20%20%20%3Cg%20transform%3D%27translate(1060%20206)%27%3E%3Cuse%20href%3D%27%23billOrn%27/%3E%3C/g%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3Cpath%20d%3D%27M0%20162%20C220%20130%20420%20198%20610%20160%20S980%20138%201200%20170%27%0A%20%20%20%20%20%20%20%20fill%3D%27none%27%0A%20%20%20%20%20%20%20%20stroke%3D%27rgba(123%2C97%2C255%2C0.16)%27%0A%20%20%20%20%20%20%20%20stroke-width%3D%276%27%0A%20%20%20%20%20%20%20%20stroke-linecap%3D%27round%27/%3E%0A%20%20%3Cg%20opacity%3D%270.85%27%3E%0A%20%20%20%20%3Ccircle%20cx%3D%27110%27%20cy%3D%27150%27%20r%3D%275%27%20fill%3D%27rgba(69%2C227%2C255%2C0.20)%27/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%27280%27%20cy%3D%27140%27%20r%3D%275%27%20fill%3D%27rgba(255%2C225%2C120%2C0.18)%27/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%27450%27%20cy%3D%27170%27%20r%3D%275%27%20fill%3D%27rgba(123%2C97%2C255%2C0.20)%27/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%27640%27%20cy%3D%27155%27%20r%3D%275%27%20fill%3D%27rgba(69%2C227%2C255%2C0.18)%27/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%27820%27%20cy%3D%27145%27%20r%3D%275%27%20fill%3D%27rgba(255%2C225%2C120%2C0.16)%27/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%271030%27%20cy%3D%27160%27%20r%3D%275%27%20fill%3D%27rgba(123%2C97%2C255%2C0.18)%27/%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%201200%20320%27%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%27sky%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%270%27%20y2%3D%271%27%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%270%27%20stop-color%3D%27rgba(123%2C97%2C255%2C0.22)%27/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%271%27%20stop-color%3D%27rgba(0%2C0%2C0%2C0)%27/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%27ground%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%270%27%20y2%3D%271%27%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%270%27%20stop-color%3D%27rgba(2%2C10%2C26%2C0)%27/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%271%27%20stop-color%3D%27rgba(2%2C10%2C26%2C0.86)%27/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3CradialGradient%20id%3D%27glow%27%20cx%3D%2750%25%27%20cy%3D%2715%25%27%20r%3D%2775%25%27%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%270%27%20stop-color%3D%27rgba(69%2C227%2C255%2C0.14)%27/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%270.6%27%20stop-color%3D%27rgba(0%2C0%2C0%2C0)%27/%3E%0A%20%20%20%20%3C/radialGradient%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%27tree%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%270%27%20y2%3D%271%27%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%270%27%20stop-color%3D%27rgba(78%2C255%2C198%2C0.26)%27/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%271%27%20stop-color%3D%27rgba(20%2C120%2C95%2C0.18)%27/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%27coin%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%271%27%20y2%3D%271%27%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%270%27%20stop-color%3D%27rgba(255%2C225%2C120%2C0.32)%27/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%271%27%20stop-color%3D%27rgba(255%2C170%2C60%2C0.18)%27/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%27bill%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%271%27%20y2%3D%271%27%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%270%27%20stop-color%3D%27rgba(190%2C255%2C220%2C0.22)%27/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%271%27%20stop-color%3D%27rgba(90%2C220%2C170%2C0.14)%27/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%3C/defs%3E%0A%0A%20%20%3Crect%20width%3D%271200%27%20height%3D%27320%27%20fill%3D%27url(%23sky)%27/%3E%0A%20%20%3Crect%20width%3D%271200%27%20height%3D%27320%27%20fill%3D%27url(%23glow)%27/%3E%0A%20%20%3Cpath%20d%3D%27M0%20250%20C220%20215%20420%20280%20610%20248%20S980%20225%201200%20258%20V320%20H0%20Z%27%20fill%3D%27url(%23ground)%27/%3E%0A%0A%20%20%3Cg%20id%3D%27pine%27%3E%0A%20%20%20%20%3Cpolygon%20points%3D%270%2C88%2034%2C24%2068%2C88%27%20fill%3D%27url(%23tree)%27/%3E%0A%20%20%20%20%3Cpolygon%20points%3D%27-6%2C104%2034%2C36%2074%2C104%27%20fill%3D%27url(%23tree)%27%20opacity%3D%270.95%27/%3E%0A%20%20%20%20%3Cpolygon%20points%3D%27-14%2C122%2034%2C50%2082%2C122%27%20fill%3D%27url(%23tree)%27%20opacity%3D%270.92%27/%3E%0A%20%20%20%20%3Crect%20x%3D%2728%27%20y%3D%27122%27%20width%3D%2712%27%20height%3D%2720%27%20rx%3D%274%27%20fill%3D%27rgba(200%2C255%2C230%2C0.08)%27/%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3Cg%20id%3D%27coinOrn%27%3E%0A%20%20%20%20%3Cline%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%270%27%20y2%3D%2710%27%20stroke%3D%27rgba(255%2C255%2C255%2C0.12)%27%20stroke-width%3D%272%27%20stroke-linecap%3D%27round%27/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%270%27%20cy%3D%2718%27%20r%3D%2710%27%20fill%3D%27url(%23coin)%27%20stroke%3D%27rgba(255%2C225%2C140%2C0.26)%27%20stroke-width%3D%272%27/%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3Cg%20id%3D%27billOrn%27%3E%0A%20%20%20%20%3Cline%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%270%27%20y2%3D%2710%27%20stroke%3D%27rgba(255%2C255%2C255%2C0.12)%27%20stroke-width%3D%272%27%20stroke-linecap%3D%27round%27/%3E%0A%20%20%20%20%3Crect%20x%3D%27-14%27%20y%3D%2712%27%20width%3D%2728%27%20height%3D%2716%27%20rx%3D%275%27%20fill%3D%27url(%23bill)%27%20stroke%3D%27rgba(190%2C255%2C220%2C0.22)%27%20stroke-width%3D%272%27/%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3Cg%20opacity%3D%270.96%27%3E%0A%20%20%20%20%3Cg%20transform%3D%27translate(70%20148)%20scale(1.2)%27%3E%3Cuse%20href%3D%27%23pine%27/%3E%3C/g%3E%0A%20%20%20%20%3Cg%20transform%3D%27translate(250%20146)%20scale(1.25)%27%3E%3Cuse%20href%3D%27%23pine%27/%3E%3C/g%3E%0A%20%20%20%20%3Cg%20transform%3D%27translate(470%20150)%20scale(1.22)%27%3E%3Cuse%20href%3D%27%23pine%27/%3E%3C/g%3E%0A%20%20%20%20%3Cg%20transform%3D%27translate(735%20148)%20scale(1.18)%27%3E%3Cuse%20href%3D%27%23pine%27/%3E%3C/g%3E%0A%20%20%20%20%3Cg%20transform%3D%27translate(990%20150)%20scale(1.18)%27%3E%3Cuse%20href%3D%27%23pine%27/%3E%3C/g%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3Cg%20opacity%3D%270.95%27%3E%0A%20%20%20%20%3Cg%20transform%3D%27translate(105%20178)%27%3E%3Cuse%20href%3D%27%23coinOrn%27/%3E%3C/g%3E%0A%20%20%20%20%3Cg%20transform%3D%27translate(285%20176)%27%3E%3Cuse%20href%3D%27%23billOrn%27/%3E%3C/g%3E%0A%20%20%20%20%3Cg%20transform%3D%27translate(505%20182)%27%3E%3Cuse%20href%3D%27%23coinOrn%27/%3E%3C/g%3E%0A%20%20%20%20%3Cg%20transform%3D%27translate(770%20182)%27%3E%3Cuse%20href%3D%27%23billOrn%27/%3E%3C/g%3E%0A%20%20%20%20%3Cg%20transform%3D%27translate(1020%20182)%27%3E%3Cuse%20href%3D%27%23coinOrn%27/%3E%3C/g%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E");
     }
 
-    /* ❄️ снег: под карточками */
+    /* ❄️ снег (ЗА карточками) */
     #snowGlobal{
       position:fixed;
       inset:0;
-      z-index: 25;
+      z-index: 4;
       pointer-events:none;
-      opacity:.33; /* чуть мягче */
+      opacity:.25; /* меньше снега */
     }
 
     .progress{
@@ -103,10 +102,29 @@
       background: rgba(6,9,18,.55);
       backdrop-filter: blur(14px);
       border-bottom:1px solid rgba(255,255,255,.08);
+      overflow:hidden;
     }
     .topbar .container{
       display:flex;align-items:center;justify-content:space-between;gap:12px;
       padding:12px 18px;
+      position:relative;
+      z-index: 3;
+    }
+
+    /* гирлянда под меню (аккуратно) */
+    .garland{
+      position:absolute;
+      left:0; right:0;
+      top: 44px;
+      height: 22px;
+      z-index: 2;
+      pointer-events:none;
+      opacity:.75;
+      background-repeat: repeat-x;
+      background-position: center top;
+      background-size: 820px 22px;
+      filter: drop-shadow(0 6px 18px rgba(0,0,0,.35));
+      background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20820%2022%27%3E%0A%20%20%3Cpath%20d%3D%27M0%2011%20C120%2020%20240%202%20360%2011%20S600%2020%20720%2011%20S780%206%20820%2011%27%20fill%3D%27none%27%20stroke%3D%27rgba(0%2C0%2C0%2C0.55)%27%20stroke-width%3D%273%27%20stroke-linecap%3D%27round%27/%3E%0A%20%20%3Cg%20opacity%3D%270.95%27%3E%0A%20%20%20%20%3Ccircle%20cx%3D%27110%27%20cy%3D%2711%27%20r%3D%274%27%20fill%3D%27rgba(69%2C227%2C255%2C0.55)%27/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%27240%27%20cy%3D%279%27%20r%3D%274%27%20fill%3D%27rgba(255%2C225%2C120%2C0.45)%27/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%27370%27%20cy%3D%2713%27%20r%3D%274%27%20fill%3D%27rgba(123%2C97%2C255%2C0.55)%27/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%27520%27%20cy%3D%2710%27%20r%3D%274%27%20fill%3D%27rgba(69%2C227%2C255%2C0.45)%27/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%27660%27%20cy%3D%2712%27%20r%3D%274%27%20fill%3D%27rgba(255%2C225%2C120%2C0.40)%27/%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E");
     }
 
     .brand{display:flex;align-items:center;gap:10px;font-weight:1000;letter-spacing:.2px;min-width:0;}
@@ -134,7 +152,7 @@
       gap:10px;
       justify-content:flex-end;
       position:relative;
-      z-index: 60;
+      z-index: 10;
     }
     .navPanel{
       display:flex;
@@ -177,11 +195,11 @@
       background: rgba(255,255,255,.04);
       font-weight:1000;
       transition:.22s var(--ease);
-      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      box-shadow: var(--shadow2);
       position:relative;overflow:hidden;user-select:none;
       cursor:pointer;
       transform: translateZ(0);
-      z-index: 65;
+      z-index: 20;
     }
     .btn:hover{transform: translateY(-2px)}
     .btn:active{transform: translateY(0) scale(.99)}
@@ -195,7 +213,7 @@
         0 26px 80px rgba(43,140,255,.18),
         0 0 0 1px rgba(69,227,255,.12),
         0 0 32px rgba(69,227,255,.16),
-        0 10px 30px rgba(0,0,0,.35);
+        var(--shadow2);
       animation: ctaPulse 3.0s ease-in-out infinite;
     }
     .btn-primary:before{
@@ -207,14 +225,13 @@
     }
 
     .btn-ghost{background:transparent;box-shadow:none}
-    .btn-ghost:hover{background: rgba(255,255,255,.04);box-shadow: 0 10px 30px rgba(0,0,0,.35)}
+    .btn-ghost:hover{background: rgba(255,255,255,.04);box-shadow: var(--shadow2)}
 
     .icon{
       width:18px;height:18px;border-radius:6px;flex:0 0 auto;
       background: linear-gradient(135deg, rgba(69,227,255,.95), rgba(43,140,255,.70));
       box-shadow: 0 0 18px rgba(69,227,255,.22);
     }
-    .btn-wide{min-width: 320px; padding-left: 28px; padding-right: 28px;}
     .btn-super{
       min-width: 360px;
       padding: 13px 26px;
@@ -223,7 +240,7 @@
         0 34px 110px rgba(43,140,255,.24),
         0 0 0 1px rgba(69,227,255,.16),
         0 0 50px rgba(69,227,255,.18),
-        0 10px 30px rgba(0,0,0,.35);
+        var(--shadow2);
       animation: superPulse 2.6s ease-in-out infinite;
     }
 
@@ -238,7 +255,7 @@
       overflow:hidden;
       transform: translateZ(0);
       transition: transform .22s var(--ease), border-color .22s var(--ease);
-      z-index: 70;
+      z-index: 30; /* выше снега */
     }
     .card:before{
       content:"";position:absolute;inset:-1px;
@@ -267,47 +284,37 @@
     /* HERO */
     .hero{
       position:relative;
-      height: calc(100svh - var(--topbarH));
       min-height: calc(100svh - var(--topbarH));
       display:flex;
       align-items:stretch;
-      padding: 8px 0 8px;
+      padding: 10px 0 14px;
       isolation:isolate;
       overflow:hidden;
-      z-index: 50;
+      z-index: 10;
     }
 
     .heroBg{
       position:absolute; inset:0;
-
       background-image: url("hero.png");
-      background-image: -webkit-image-set(url("hero.png") 1x, url("hero@2x.png") 2x);
-      background-image: image-set(url("hero.png") 1x, url("hero@2x.png") 2x);
-
       background-size: cover;
       background-position: 70% 45%;
-      /* чуть светлее и чище */
-      filter: brightness(1.45) saturate(1.10) contrast(1.06);
-      transform: scale(1.04);
+      filter: brightness(1.55) saturate(1.10) contrast(1.06);
+      transform: scale(1.05);
       z-index:-2;
     }
 
-    /* ✅ МЯГЧЕ СКЛЕЙКА ФОТО С СИНИМ ФОНОМ */
     .heroShade{
       position:absolute; inset:0;
       background:
-        /* верх — чтобы хедер не отрывался от фото */
         linear-gradient(180deg,
-          rgba(6,9,18,.38) 0%,
-          rgba(6,9,18,.16) 22%,
+          rgba(6,9,18,.44) 0%,
+          rgba(6,9,18,.18) 22%,
           rgba(6,9,18,.06) 48%,
-          rgba(6,24,58,.28) 100%
+          rgba(6,24,58,.32) 100%
         ),
-        /* виньетка */
-        radial-gradient(900px 560px at 50% 55%, rgba(0,0,0,.05), rgba(0,0,0,.26)),
-        /* боковая растушёвка к синему */
-        radial-gradient(900px 520px at 10% 50%, rgba(6,24,58,.38), rgba(0,0,0,0) 62%),
-        radial-gradient(900px 520px at 90% 50%, rgba(6,24,58,.34), rgba(0,0,0,0) 62%);
+        radial-gradient(900px 560px at 50% 55%, rgba(0,0,0,.06), rgba(0,0,0,.28)),
+        radial-gradient(900px 520px at 10% 50%, rgba(6,24,58,.40), rgba(0,0,0,0) 62%),
+        radial-gradient(900px 520px at 90% 50%, rgba(6,24,58,.36), rgba(0,0,0,0) 62%);
       z-index:-1;
       pointer-events:none;
     }
@@ -331,17 +338,17 @@
 
     .heroGrid{
       width:100%;
-      height: 100%;
       display:flex;
       flex-direction:column;
       justify-content:center;
       align-items:center;
       gap:12px;
-      padding-bottom: 110px;
+      padding-top: 10px;
+      padding-bottom: 90px;
       position:relative;
-      z-index: 70;
+      z-index: 20;
     }
-    .heroMain{width: min(900px, 100%);text-align:center;}
+    .heroMain{width: min(920px, 100%);text-align:center;}
 
     h1{
       margin:10px 0 10px;
@@ -358,7 +365,7 @@
       padding:9px 13px;border-radius:999px;
       border:1px solid rgba(69,227,255,.26);
       background: rgba(7,12,22,.42);
-      box-shadow: 0 18px 55px rgba(0,0,0,.38);
+      box-shadow: var(--shadow2);
       font-weight: 1100;
       letter-spacing:.25px;
       color: rgba(234,240,255,.92);
@@ -425,11 +432,12 @@
       box-shadow: 0 0 14px rgba(69,227,255,.35);
     }
 
+    /* PROMO bar (чуть уже) */
     .promoWrap{
       position:absolute;
       left: 0; right: 0;
       bottom: 18px;
-      z-index: 75;
+      z-index: 25;
     }
     .promoBar{
       display:flex;
@@ -437,6 +445,8 @@
       justify-content:space-between;
       gap:12px;
       padding: 12px 14px;
+      width:min(980px, 100%);
+      margin:0 auto;
     }
     .promoLeft{display:flex; flex-direction:column; gap:4px; min-width: 220px;}
     .promoTitle{font-size: 14px;font-weight: 1000;color: rgba(234,240,255,.90);letter-spacing: .15px;}
@@ -447,7 +457,7 @@
       padding: 11px 12px;border-radius: 18px;
       border: 1px solid rgba(69,227,255,.28);
       background: rgba(7,12,22,.55);
-      box-shadow: 0 18px 55px rgba(0,0,0,.50);
+      box-shadow: var(--shadow2);
       backdrop-filter: blur(12px);
       flex: 1; min-height: 52px;
       cursor:pointer; user-select:none;
@@ -460,7 +470,8 @@
     .codeValue{font-size: 20px;font-weight: 1200;letter-spacing: 1.6px;color: rgba(234,240,255,.95);text-transform: uppercase;}
     .copyHint{font-size: 12px;color: rgba(234,240,255,.65);white-space: nowrap;}
 
-    .section{padding: 18px 0 40px; position:relative; z-index:70;}
+    /* sections */
+    .section{padding: 18px 0 40px; position:relative; z-index:30;}
     .sectionTitle{margin: 0 0 8px;font-size: 26px;font-weight: 1200;letter-spacing: -.2px;}
     .sectionSub{margin: 0 0 14px;color: rgba(234,240,255,.72);max-width: 860px;}
 
@@ -609,7 +620,7 @@
       background: rgba(0,0,0,.06);
       margin-top: 12px;
       position:relative;
-      z-index:70;
+      z-index:30;
     }
     .foot{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:flex-start}
     .links{display:flex;gap:10px;flex-wrap:wrap}
@@ -621,6 +632,7 @@
     }
     .links a:hover{color:var(--text);border-color: rgba(255,255,255,.10);background: rgba(255,255,255,.03)}
 
+    /* sticky promo */
     .stickyPromo{
       position:fixed;
       left:50%;
@@ -634,7 +646,7 @@
       background: rgba(6,9,18,.80);
       backdrop-filter: blur(14px);
       border-radius:18px;
-      box-shadow: 0 22px 70px rgba(0,0,0,.58);
+      box-shadow: var(--shadow);
       transition:.35s var(--ease);
       overflow:hidden;
     }
@@ -674,26 +686,6 @@
     .stickyCode .k{font-size:12px;font-weight:900;color: rgba(234,240,255,.70);}
     .stickyCode .v{font-size:18px;font-weight:1200;letter-spacing:1.4px;color: rgba(234,240,255,.95);}
     .stickyHint{font-size:12px;color: rgba(234,240,255,.60);white-space:nowrap;}
-
-    .stickyBadge{
-      position:absolute;
-      right:12px;
-      top:-10px;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid rgba(69,227,255,.35);
-      background: rgba(69,227,255,.10);
-      color: rgba(234,240,255,.92);
-      font-size:12px;
-      font-weight:1200;
-      box-shadow: 0 18px 40px rgba(0,0,0,.35);
-      opacity:0;
-      transform: translateY(6px);
-      transition:.25s var(--ease);
-      pointer-events:none;
-      white-space:nowrap;
-    }
-    .stickyBadge.on{opacity:1;transform: translateY(0);}
 
     .toast{
       position:fixed;left:50%;
@@ -742,6 +734,8 @@
       .brandText .t{font-size:13px;}
       .brandText .s{font-size:12px;margin-top:4px}
 
+      .garland{top: 40px; opacity:.62;}
+
       .menuBtn{display:inline-flex;align-items:center;justify-content:center;}
       .navPanel{
         position:absolute;
@@ -757,6 +751,7 @@
         background: rgba(6,9,18,.86);
         box-shadow: var(--shadow);
         backdrop-filter: blur(14px);
+        z-index: 80;
       }
       .navPanel.open{display:flex;}
       .navPanel a{width:100%;}
@@ -765,27 +760,20 @@
 
       .heroBg{
         background-position: 62% 35%;
-        filter: brightness(1.35) saturate(1.08) contrast(1.06);
+        filter: brightness(1.40) saturate(1.08) contrast(1.06);
         transform: scale(1.06);
       }
 
-      .heroGrid{padding-bottom: 96px;}
-      .card{padding:16px;border-radius:18px;}
       h1{font-size:30px; letter-spacing:-.3px;}
       .lead{font-size:14px}
-      .slogan{font-size:12px;padding:8px 10px}
-      .chip{font-size:11px;padding:7px 9px}
+      .btn-super{min-width:unset;width:100%;}
 
-      .btn-super,.btn-wide{min-width:unset;width:100%;}
-      .btn-super{padding:13px 16px;}
-
+      .promoBar{flex-direction:column; align-items:stretch}
       .promoLeft{min-width:unset}
-      .codeValue{font-size:18px}
       .copyHint{display:none;}
 
-      .cardsGrid{grid-template-columns:1fr;}
       .quick{grid-template-columns:1fr;}
-      .calcInput{max-width:unset}
+      .cardsGrid{grid-template-columns:1fr;}
 
       .stickyInner{flex-direction:column; align-items:stretch}
       .stickyLeft{min-width:auto}
@@ -809,6 +797,8 @@
   <div class="progress" id="progress"></div>
 
   <header class="topbar">
+    <div class="garland" aria-hidden="true"></div>
+
     <div class="container">
       <div class="brand">
         <div class="logo" aria-hidden="true"></div>
@@ -827,7 +817,7 @@
           <a href="#faq" role="menuitem">FAQ</a>
         </div>
 
-        <a class="btn btn-primary navCta" data-cta href="#" target="_blank" rel="nofollow sponsored noopener">
+        <a class="btn btn-primary" data-cta href="#" target="_blank" rel="nofollow sponsored noopener">
           <span class="icon" aria-hidden="true"></span>Перейти
         </a>
       </nav>
@@ -844,41 +834,44 @@
           <div class="shine"></div>
 
           <h1>1win Casino — бонусы и фишки</h1>
-          <p class="lead">Промокод <b>SMOG</b> вводится <b>при регистрации</b>. Дальше — депозит и активация бонуса (по правилам 1win).</p>
+          <p class="lead">
+            Промокод <b>SMOG</b> вводится <b>при регистрации</b>. Дальше — депозит и активация бонуса (по правилам 1win).
+          </p>
 
           <div class="sloganWrap">
             <div class="slogan"><b>1WIN</b> — когда ставка становится историей</div>
           </div>
 
-          <div class="chips" aria-label="Преимущества">
+          <div class="chips">
             <div class="chip"><strong>500%</strong> к депозиту</div>
             <div class="chip"><strong>70FS</strong> на старт</div>
             <div class="chip">Промокод: <strong>SMOG</strong> (при регистрации)</div>
           </div>
 
           <div style="display:flex;justify-content:center;margin-top:12px">
-            <a class="btn btn-primary btn-super" id="heroCtaBtn" data-cta href="#" target="_blank" rel="nofollow sponsored noopener">
+            <a class="btn btn-primary btn-super" data-cta href="#" target="_blank" rel="nofollow sponsored noopener">
               <span class="icon" aria-hidden="true"></span>Открыть 1win
             </a>
           </div>
 
-          <div class="micro" id="microCta">
+          <div class="micro">
             <span class="pill"><span class="dot" aria-hidden="true"></span>SMOG — вводится при регистрации</span>
             <span class="pill"><span class="dot" aria-hidden="true"></span>Скопируй код ниже → затем «Перейти»</span>
+            <span class="pill"><span class="dot" aria-hidden="true"></span>Поддержка 24/7 • безопасные платежи</span>
           </div>
 
           <p class="small muted" style="margin:10px 0 0">
-            18+ • Условия бонусов/акций могут меняться — проверяй правила на стороне 1win.
+            18+ • Информация ознакомительная. Условия бонусов/акций могут меняться — проверяй правила на стороне 1win.
           </p>
         </div>
       </div>
 
-      <div class="promoWrap" id="promo">
+      <div class="promoWrap">
         <div class="container">
           <div class="card promoBar reveal">
             <div class="promoLeft">
               <div class="promoTitle">Промокод на бонус</div>
-              <div class="promoSub" id="promoSub">Нажми — скопируется. Введи <b>при регистрации</b>.</div>
+              <div class="promoSub">Нажми — скопируется. Введи <b>при регистрации</b>.</div>
             </div>
 
             <div class="codeBox" id="promoCopy" role="button" tabindex="0" aria-label="Скопировать промокод SMOG">
@@ -890,7 +883,7 @@
               <div class="copyHint">копируется</div>
             </div>
 
-            <a class="btn btn-primary" id="promoGoBtn" data-cta href="#" target="_blank" rel="nofollow sponsored noopener" style="white-space:nowrap">
+            <a class="btn btn-primary" data-cta href="#" target="_blank" rel="nofollow sponsored noopener" style="white-space:nowrap">
               <span class="icon" aria-hidden="true"></span>Перейти
             </a>
           </div>
@@ -900,12 +893,247 @@
       <div class="heroEdge" aria-hidden="true"></div>
     </section>
 
-    <!-- дальше твои секции start/about/faq/footer — оставил без изменений -->
-    <!-- (чтобы не раздувать ответ ещё сильнее, но функционал тот же) -->
+    <!-- START -->
+    <section class="section" id="start">
+      <div class="container">
+        <div class="card reveal tilt" data-tilt>
+          <div class="shine"></div>
+          <h2 class="sectionTitle">Быстрый старт</h2>
+          <p class="sectionSub">
+            Коротко: регистрация → промокод <b>SMOG</b> (вводится <b>при регистрации</b>) → депозит → активация бонуса по условиям 1win.
+          </p>
 
+          <div class="quick">
+            <div class="steps">
+              <div class="stepsTitle">3 шага за 20 секунд</div>
+
+              <div class="stepRow">
+                <div class="stepN">1</div>
+                <div class="stepText">Открой 1win и начни <b>регистрацию</b>.</div>
+              </div>
+
+              <div class="stepRow">
+                <div class="stepN">2</div>
+                <div class="stepText">Введи промокод <b>SMOG</b> <b>при регистрации</b>.</div>
+              </div>
+
+              <div class="stepRow">
+                <div class="stepN">3</div>
+                <div class="stepText">Сделай депозит и активируй бонус (точные условия — в аккаунте 1win).</div>
+              </div>
+
+              <div class="badge">Подсказка: скопируй SMOG вверху — вставишь при регистрации</div>
+            </div>
+
+            <div class="calc">
+              <div class="calcTitle">Мини-калькулятор бонуса (ориентир)</div>
+
+              <div class="calcRow">
+                <div class="calcLabel">Депозит</div>
+                <div class="calcInput">
+                  <input id="dep" inputmode="numeric" placeholder="Напр. 1000" />
+                  <div class="calcUnit">₽</div>
+                </div>
+              </div>
+
+              <div class="presetRow">
+                <button class="presetBtn" type="button" data-sum="500">500 ₽</button>
+                <button class="presetBtn" type="button" data-sum="1000">1000 ₽</button>
+                <button class="presetBtn" type="button" data-sum="3000">3000 ₽</button>
+                <button class="presetBtn" type="button" data-sum="5000">5000 ₽</button>
+              </div>
+
+              <div class="calcOut" id="calcOut">
+                Введи сумму — покажу ориентир по бонусу. <br>
+                <span class="muted">Важно: это подсказка, не гарантия. Точные условия и лимиты — на стороне 1win.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="card reveal tilt" data-tilt>
+          <div class="shine"></div>
+          <h2 class="sectionTitle">О 1win</h2>
+          <p class="sectionSub">
+            Самое важное по делу: поддержка, бонусы и игры — коротко и по карточкам.
+          </p>
+
+          <div class="cardsGrid">
+            <div class="card" style="box-shadow:var(--shadow2)">
+              <h3 class="cardTitle">Помощь игрокам</h3>
+              <p class="cardText">Поддержка работает 24/7. Связь обычно через:</p>
+              <ul class="list">
+                <li>Онлайн-чат на главной странице</li>
+                <li>Почту или телефон (в разделе контактов)</li>
+              </ul>
+            </div>
+
+            <div class="card" style="box-shadow:var(--shadow2)">
+              <h3 class="cardTitle">Бонусы в 1Win</h3>
+              <p class="cardText">Основные варианты (после регистрации и по требованиям платформы):</p>
+              <ul class="list">
+                <li>Приветственный пакет: суммарно <b>500%</b> за первые пополнения</li>
+                <li>Кэшбэк: ориентир 1–20% (по правилам недели)</li>
+              </ul>
+            </div>
+
+            <div class="card" style="box-shadow:var(--shadow2)">
+              <h3 class="cardTitle">Игры в 1Win</h3>
+              <p class="cardText">На площадке обычно доступны популярные разделы:</p>
+              <ul class="list">
+                <li>Рулетка, покер, блэкджек, баккара</li>
+                <li>Live-казино с дилером</li>
+                <li>Слоты с разной тематикой и RTP</li>
+              </ul>
+            </div>
+          </div>
+
+          <div style="margin-top:14px">
+            <details>
+              <summary>Мобильная версия и приложение</summary>
+              <p class="muted" style="margin:8px 0 0">
+                Платформа корректно работает на смартфонах и планшетах через мобильную версию. Как правило, вход тот же — повторная регистрация не нужна.
+                Для Android обычно доступно приложение (ссылка/инструкция — на стороне 1win).
+              </p>
+            </details>
+
+            <details>
+              <summary>Платежи и вывод</summary>
+              <p class="muted" style="margin:8px 0 0">
+                Пополнение и вывод проводятся через доступные методы (карты/кошельки/системы) в финансовом разделе. Сроки зависят от метода и правил платформы.
+                Всегда сверяй лимиты и комиссии на стороне 1win.
+              </p>
+            </details>
+
+            <details>
+              <summary>Игровой зал</summary>
+              <p class="muted" style="margin:8px 0 0">
+                Обычно доступны слоты и настольные игры с бонус-раундами/множителями и режимами игры. Для ознакомления часто есть демо-режим (если предусмотрен игрой).
+              </p>
+            </details>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="card reveal tilt" data-tilt>
+          <div class="shine"></div>
+          <h2 class="sectionTitle">FAQ</h2>
+          <p class="sectionSub">Короткие ответы на самые частые вопросы.</p>
+
+          <details>
+            <summary>Безопасно ли играть на сайте 1Win?</summary>
+            <p class="muted" style="margin:8px 0 0">
+              Безопасность зависит от соблюдения правил платформы и защиты аккаунта (пароль, 2FA при наличии, проверка устройства). Всегда проверяй домен и переходи по официальной ссылке.
+            </p>
+          </details>
+
+          <details>
+            <summary>Во что можно сыграть в 1Win?</summary>
+            <p class="muted" style="margin:8px 0 0">
+              Обычно доступны слоты, рулетки, покер, блэкджек, баккара и live-казино. Конкретный набор игр зависит от региона и доступности провайдеров.
+            </p>
+          </details>
+
+          <details>
+            <summary>Зачем 1Win запрашивает верификацию?</summary>
+            <p class="muted" style="margin:8px 0 0">
+              Верификация нужна для подтверждения возраста, защиты аккаунта и корректного вывода средств. Как правило, достаточно документов по требованиям платформы.
+            </p>
+          </details>
+
+          <details>
+            <summary>Где вводить промокод SMOG?</summary>
+            <p class="muted" style="margin:8px 0 0">
+              Промокод <b>SMOG</b> вводится <b>при регистрации</b> в соответствующем поле. Скопируй код сверху и вставь при создании аккаунта.
+            </p>
+          </details>
+
+          <details>
+            <summary>Где смотреть актуальные условия бонусов?</summary>
+            <p class="muted" style="margin:8px 0 0">
+              В промо-разделе и правилах бонусов на стороне 1win — условия могут меняться.
+            </p>
+          </details>
+
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;justify-content:center">
+            <a class="btn btn-primary" data-cta href="#" target="_blank" rel="nofollow sponsored noopener">
+              <span class="icon" aria-hidden="true"></span>Открыть 1win
+            </a>
+            <a class="btn btn-ghost" href="#top">Наверх</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container foot">
+        <div style="max-width:860px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <div class="logo" aria-hidden="true" style="width:32px;height:32px;border-radius:14px"></div>
+            <div>
+              <div style="font-weight:1000">1win Casino — обзор</div>
+              <div class="small muted">Промокод • бонусы • FAQ • 18+</div>
+            </div>
+          </div>
+          <p class="small muted" style="margin:12px 0 0">
+            18+ • Информация носит ознакомительный характер. Условия уточняй на стороне 1win.
+          </p>
+        </div>
+        <div class="links">
+          <a href="#top">Наверх</a>
+          <a href="#start">Старт</a>
+          <a href="#about">О 1win</a>
+          <a href="#faq">FAQ</a>
+        </div>
+      </div>
+    </footer>
   </main>
 
+  <!-- sticky promo -->
+  <div class="stickyPromo" id="stickyPromo" role="region" aria-label="Промокод и переход">
+    <div class="stickyInner">
+      <div class="stickyLeft">
+        <div class="stickyTitle">Промокод SMOG</div>
+        <div class="stickySub">Вводится <b>при регистрации</b></div>
+      </div>
+
+      <div class="stickyCopy" id="stickyCopy" role="button" tabindex="0" aria-label="Скопировать промокод SMOG">
+        <div class="stickyCode">
+          <span class="k">PROMO:</span>
+          <span class="v">SMOG</span>
+          <span class="k">500% • 70FS</span>
+        </div>
+        <div class="stickyHint">нажми — копировать</div>
+      </div>
+
+      <a class="btn btn-primary" data-cta href="#" target="_blank" rel="nofollow sponsored noopener">
+        <span class="icon" aria-hidden="true"></span>Перейти
+      </a>
+    </div>
+  </div>
+
+  <!-- toast -->
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <span class="dot" aria-hidden="true"></span>
+    <div>
+      <b>Скопировано</b>
+      <div class="small muted" id="toastText"></div>
+    </div>
+    <button class="x" type="button" id="toastClose">OK</button>
+  </div>
+
   <script>
+    // affiliate link
     const AFF = "https://1wfafs.life/casino/list?open=register&p=7jns";
     document.querySelectorAll("[data-cta]").forEach(a => {
       a.href = AFF;
@@ -913,6 +1141,7 @@
       a.rel = "nofollow sponsored noopener";
     });
 
+    // mobile menu
     const menuBtn = document.getElementById("menuBtn");
     const navPanel = document.getElementById("navPanel");
     function closeMenu(){
@@ -930,7 +1159,135 @@
     });
     document.addEventListener("keydown",(e)=>{ if(e.key==="Escape") closeMenu(); });
 
-    // ❄️ СНЕГ: теперь есть и на hero (первая страница), но плавно появляется и не мешает.
+    // smooth scroll
+    document.addEventListener("click", (e) => {
+      const a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+      const id = a.getAttribute("href");
+      const el = document.querySelector(id);
+      if (!el) return;
+      e.preventDefault();
+      closeMenu();
+      el.scrollIntoView({behavior:"smooth", block:"start"});
+      history.replaceState(null, "", id);
+    });
+
+    // reveal (ВАЖНО: это вернул, иначе всё "пропадает")
+    try{
+      const io = new IntersectionObserver((entries)=> {
+        for (const ent of entries) if (ent.isIntersecting) ent.target.classList.add("on");
+      }, { threshold: 0.12 });
+      document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+    }catch{
+      document.querySelectorAll(".reveal").forEach(el => el.classList.add("on"));
+    }
+
+    // tilt
+    const tiltEls = [...document.querySelectorAll("[data-tilt]")];
+    const clamp = (n,a,b)=> Math.max(a, Math.min(b,n));
+    tiltEls.forEach(el=>{
+      el.addEventListener("pointermove",(e)=>{
+        const r = el.getBoundingClientRect();
+        const x = (e.clientX - r.left)/r.width;
+        const y = (e.clientY - r.top)/r.height;
+        const rx = clamp((0.5 - y) * 10, -8, 8);
+        const ry = clamp((x - 0.5) * 12, -9, 9);
+        el.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-1px)`;
+        el.style.setProperty("--mx", (x*100).toFixed(2)+"%");
+        el.style.setProperty("--my", (y*100).toFixed(2)+"%");
+      },{passive:true});
+      el.addEventListener("pointerleave", ()=> { el.style.transform=""; }, {passive:true});
+    });
+
+    // progress + sticky promo
+    const progress = document.getElementById("progress");
+    const stickyPromo = document.getElementById("stickyPromo");
+    function onScroll(){
+      const h = document.documentElement.scrollHeight - innerHeight;
+      const p = h<=0 ? 0 : (scrollY/h);
+      progress.style.width = (p*100).toFixed(2)+"%";
+      if (scrollY > 520) stickyPromo.classList.add("on"); else stickyPromo.classList.remove("on");
+    }
+    addEventListener("scroll", onScroll, {passive:true});
+    onScroll();
+
+    // toast
+    const toast = document.getElementById("toast");
+    const toastText = document.getElementById("toastText");
+    const toastClose = document.getElementById("toastClose");
+    function showToast(text){
+      toastText.textContent = text || "";
+      toast.classList.add("on");
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(()=> toast.classList.remove("on"), 2400);
+    }
+    toastClose?.addEventListener("click", ()=> toast.classList.remove("on"));
+
+    // copy
+    const promoValue = "SMOG";
+    async function copyText(txt){
+      try{
+        await navigator.clipboard.writeText(txt);
+        return true;
+      }catch{
+        try{
+          const ta = document.createElement("textarea");
+          ta.value = txt;
+          ta.style.position = "fixed";
+          ta.style.left = "-9999px";
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          ta.remove();
+          return true;
+        }catch{
+          return false;
+        }
+      }
+    }
+    function onCopy(){
+      copyText(promoValue).then(ok=>{
+        showToast(ok ? ("Промокод: " + promoValue + " (вводится при регистрации)") : "Не удалось скопировать");
+      });
+    }
+    document.getElementById("promoCopy")?.addEventListener("click", onCopy);
+    document.getElementById("promoCopy")?.addEventListener("keydown", (e)=>{
+      if(e.key === "Enter" || e.key === " "){ e.preventDefault(); onCopy(); }
+    });
+    document.getElementById("stickyCopy")?.addEventListener("click", onCopy);
+    document.getElementById("stickyCopy")?.addEventListener("keydown", (e)=>{
+      if(e.key === "Enter" || e.key === " "){ e.preventDefault(); onCopy(); }
+    });
+
+    // calculator
+    const dep = document.getElementById("dep");
+    const out = document.getElementById("calcOut");
+    function fmt(n){
+      return (Math.round(n)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    }
+    function recalc(){
+      const raw = (dep?.value || "").replace(/[^\d]/g,"");
+      const v = Number(raw || 0);
+      if(!v){
+        out.innerHTML = `Введи сумму — покажу ориентир по бонусу.<br><span class="muted">Важно: это подсказка, не гарантия. Точные условия и лимиты — на стороне 1win.</span>`;
+        return;
+      }
+      const bonus = v * 5;          // 500% ориентир
+      const total = v + bonus;
+      out.innerHTML =
+        `Ориентир бонуса при <b>500%</b>: <b>${fmt(bonus)} ₽</b><br>`+
+        `Ориентир “депозит + бонус”: <b>${fmt(total)} ₽</b><br>`+
+        `<span class="muted">Это подсказка. Точные условия, лимиты и вейджер — на стороне 1win.</span>`;
+    }
+    dep?.addEventListener("input", recalc);
+    document.querySelectorAll(".presetBtn").forEach(b=>{
+      b.addEventListener("click", ()=>{
+        dep.value = b.getAttribute("data-sum") || "";
+        recalc();
+      });
+    });
+
+    // ❄️ snow (мягкий, меньше, и всегда за карточками)
     (function(){
       const reduce = matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
       const canvas = document.getElementById("snowGlobal");
@@ -941,7 +1298,7 @@
       const flakes = [];
       const isMobile = matchMedia?.("(max-width: 820px)")?.matches;
 
-      const COUNT = isMobile ? 46 : 86;   // умеренно
+      const COUNT = isMobile ? 34 : 62;   // меньше снега
       const rnd=(a,b)=>a+Math.random()*(b-a);
 
       function resize(){
@@ -953,15 +1310,15 @@
       }
 
       function makeFlake(){
-        const r = isMobile ? rnd(1.6, 3.3) : rnd(1.8, 4.0);
+        const r = isMobile ? rnd(1.6, 3.0) : rnd(1.7, 3.6);
         return {
           x: rnd(0,w),
           y: rnd(-h,0),
           r,
-          vy: rnd(0.22, 0.62) * (0.75 + r/6.2),
-          vx: rnd(-0.10, 0.10),
-          a: isMobile ? rnd(0.10, 0.25) : rnd(0.12, 0.33),
-          wob: rnd(0.6, 1.6),
+          vy: rnd(0.18, 0.50) * (0.78 + r/7.0),
+          vx: rnd(-0.08, 0.08),
+          a: isMobile ? rnd(0.09, 0.18) : rnd(0.10, 0.22),
+          wob: rnd(0.5, 1.3),
           seed: rnd(0, 9999)
         };
       }
@@ -989,7 +1346,7 @@
         if(!running) return;
         const dt = Math.min(32, t-last); last=t;
 
-        if(Math.random() < 0.006) windTarget = rnd(-0.22, 0.22);
+        if(Math.random() < 0.006) windTarget = rnd(-0.18, 0.18);
         wind += (windTarget - wind) * 0.02;
 
         ctx.clearRect(0,0,w,h);
@@ -1003,9 +1360,8 @@
           if(f.x < -90) f.x = w + 90;
           if(f.x > w + 90) f.x = -90;
 
-          // ✅ плавное появление: сверху мягко (снег есть на hero, но не давит)
-          const fadeIn = Math.max(0, Math.min(1, f.y / (h * 0.22))); // 0..1
-          const a = f.a * (0.22 + 0.78 * fadeIn);
+          const fadeIn = Math.max(0, Math.min(1, f.y / (h * 0.22)));
+          const a = f.a * (0.24 + 0.76 * fadeIn);
           drawSoftCircle(f.x, f.y, f.r, a);
         }
 
@@ -1023,7 +1379,6 @@
       addEventListener("resize", resize, {passive:true});
       requestAnimationFrame(tick);
     })();
-
   </script>
 </body>
 </html>
