@@ -155,7 +155,7 @@
       100%{transform: translateX(220%)}
     }
 
-    /* ===== New Year layers (как пример) ===== */
+    /* ===== Layers ===== */
     .trees{
       position:fixed; inset:0; z-index:1;
       pointer-events:none;
@@ -187,7 +187,6 @@
       mix-blend-mode: overlay;
       filter: contrast(115%);
     }
-    /* aurora premium */
     .aurora{
       position:fixed; inset:-20%;
       z-index:5;
@@ -206,7 +205,7 @@
       50%{transform: translate3d(2%, 1%, 0) scale(1.02)}
     }
 
-    /* снег по всему сайту, но ЗА карточками */
+    /* снег (за карточками) */
     .snow{
       position:fixed; inset:0; z-index:8;
       pointer-events:none;
@@ -250,7 +249,6 @@
       pointer-events:none;
       z-index:1;
     }
-    /* moving premium highlight line */
     .topbar::before{
       content:"";
       position:absolute; left:-30%; right:-30%; top:0;
@@ -307,6 +305,7 @@
       box-shadow: var(--shadow2);
       position:relative;overflow:hidden;user-select:none;
       cursor:pointer;
+      isolation:isolate;
     }
     .btn:hover{transform: translateY(-2px)}
     .btn:active{transform: translateY(0) scale(.99)}
@@ -318,7 +317,6 @@
       box-shadow: 0 26px 90px rgba(43,140,255,.20), var(--shadow2);
       transform: translateZ(0);
     }
-    /* premium sheen */
     .btn-primary:before{
       content:"";position:absolute;inset:-2px;
       background: linear-gradient(90deg, rgba(69,227,255,0), rgba(255,255,255,.22), rgba(69,227,255,0));
@@ -326,8 +324,9 @@
       animation: sheen 2.8s ease-in-out infinite;
       opacity:.55;
       mix-blend-mode: screen;
+      pointer-events:none;
+      z-index:0;
     }
-    /* premium pulse */
     .btn-primary:after{
       content:"";position:absolute;inset:-8px;
       border-radius:18px;
@@ -335,6 +334,7 @@
       opacity:.0;
       animation: ctaPulse 3.2s ease-in-out infinite;
       pointer-events:none;
+      z-index:0;
     }
     @keyframes ctaPulse{
       0%,100%{opacity:.08; transform: scale(.98)}
@@ -344,6 +344,25 @@
       width:18px;height:18px;border-radius:6px;flex:0 0 auto;
       background: linear-gradient(135deg, rgba(69,227,255,.95), rgba(43,140,255,.70));
       box-shadow: 0 0 18px rgba(69,227,255,.22);
+      z-index:1;
+    }
+    .btn > *{z-index:1; position:relative}
+
+    /* ✅ Ripple “взрыв клика” */
+    .ripple{
+      position:absolute;
+      border-radius:999px;
+      transform: translate(-50%,-50%);
+      pointer-events:none;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.40), rgba(69,227,255,.28), rgba(123,97,255,.14));
+      mix-blend-mode: screen;
+      animation: ripple .62s var(--ease) forwards;
+      filter: blur(.2px);
+      z-index:0;
+    }
+    @keyframes ripple{
+      from{width:0;height:0;opacity:.85}
+      to{width:520px;height:520px;opacity:0}
     }
 
     /* гирлянда (статичная) */
@@ -410,6 +429,7 @@
       transform: translateZ(0);
       z-index:20; /* поверх снега */
       transition: transform .22s var(--ease), box-shadow .22s var(--ease), border-color .22s var(--ease);
+      isolation:isolate;
     }
     .card:before{
       content:"";position:absolute;inset:-1px;
@@ -418,8 +438,8 @@
         radial-gradient(520px 180px at 90% 16%, rgba(43,140,255,.13), transparent 62%),
         radial-gradient(650px 230px at 50% 115%, rgba(123,97,255,.12), transparent 66%);
       opacity:.95;pointer-events:none;
+      z-index:0;
     }
-    /* premium border glow on hover */
     .card:after{
       content:"";
       position:absolute; inset:-2px;
@@ -429,6 +449,7 @@
       filter: blur(10px);
       transition: opacity .22s var(--ease);
       pointer-events:none;
+      z-index:0;
     }
     .card:hover{
       transform: translateY(-3px);
@@ -436,8 +457,7 @@
       border-color: rgba(255,255,255,.16);
     }
     .card:hover:after{opacity:1}
-
-    .card > *{position:relative}
+    .card > *{position:relative; z-index:1}
 
     .reveal{opacity:1; transform:none;}
     .js .reveal{opacity:0;transform: translateY(18px) scale(.985);transition:.75s var(--ease)}
@@ -450,8 +470,21 @@
       opacity:0;
       transition: opacity .25s var(--ease);
       pointer-events:none;
+      z-index:0;
     }
     .tilt:hover .shine{opacity:.9}
+
+    /* ✅ Подсветка промо при скролле */
+    .hotPulse{
+      animation: hotPulse 1.25s ease-in-out 2;
+    }
+    @keyframes hotPulse{
+      0%,100%{box-shadow: var(--shadow); border-color: rgba(255,255,255,.11)}
+      50%{
+        box-shadow: 0 32px 120px rgba(43,140,255,.22), 0 22px 70px rgba(0,0,0,.62);
+        border-color: rgba(69,227,255,.28);
+      }
+    }
 
     /* ===== HERO ===== */
     .hero{
@@ -474,39 +507,64 @@
       pointer-events:none;
     }
 
-    /* hero.png */
+    /* ✅ hero.png (осветлил сильнее + мягкий шов с размытием) */
     .heroBg{
       position:absolute; inset:0;
-      background-image:
-        /* мягкий премиальный градиент на стыке */
-        radial-gradient(900px 520px at 64% 54%, rgba(255,255,255,.14), transparent 62%),
-        linear-gradient(90deg, rgba(4,7,18,.92) 0%, rgba(4,7,18,.62) 36%, rgba(4,7,18,0) 66%),
-        url("hero.png");
+      background-image: url("hero.png");
       background-size: cover;
       background-position: right center;
-      /* ✅ СИЛЬНЕЕ ОСВЕТЛИЛ */
-      filter: brightness(1.50) contrast(1.06) saturate(1.06);
+      /* ЕЩЁ СВЕТЛЕЕ */
+      filter: brightness(1.72) contrast(1.05) saturate(1.10);
       transform: scale(1.03);
       z-index:-2;
       will-change: transform;
     }
-    /* мягкое размытие стыка фото/фона */
+    /* ✅ Размытие ПРЯМО на границе фото/фона (blur-copy + mask) */
+    .heroBg::before{
+      content:"";
+      position:absolute; inset:0;
+      background-image: url("hero.png");
+      background-size: cover;
+      background-position: right center;
+      filter: blur(26px) brightness(1.72) contrast(1.03) saturate(1.08);
+      opacity:.78;
+      pointer-events:none;
+      /* показываем только “полосу шва” */
+      -webkit-mask-image: linear-gradient(90deg,
+        transparent 0%,
+        transparent 34%,
+        rgba(0,0,0,.95) 52%,
+        transparent 72%,
+        transparent 100%);
+      mask-image: linear-gradient(90deg,
+        transparent 0%,
+        transparent 34%,
+        rgba(0,0,0,.95) 52%,
+        transparent 72%,
+        transparent 100%);
+    }
+    /* ✅ Мягкий переход фото в синий фон (без резкой границы) */
     .heroBg::after{
       content:"";
       position:absolute; inset:0;
       background:
-        linear-gradient(90deg, rgba(4,7,18,1) 0%, rgba(4,7,18,.28) 56%, rgba(4,7,18,0) 74%);
-      filter: blur(12px);
-      opacity:.85;
+        radial-gradient(900px 520px at 64% 54%, rgba(255,255,255,.14), transparent 62%),
+        linear-gradient(90deg,
+          rgba(4,7,18,1) 0%,
+          rgba(4,7,18,.62) 34%,
+          rgba(4,7,18,.18) 56%,
+          rgba(4,7,18,0) 72%);
+      filter: blur(14px);
+      opacity:.90;
       pointer-events:none;
     }
 
     .heroShade{
       position:absolute; inset:0;
       background:
-        /* меньше затемнения чтобы фото было светлее */
-        linear-gradient(180deg, rgba(4,7,18,.56) 0%, rgba(4,7,18,.22) 44%, rgba(4,7,18,.62) 100%),
-        radial-gradient(900px 460px at 50% 55%, rgba(0,0,0,.06), rgba(0,0,0,.52));
+        /* меньше затемнения */
+        linear-gradient(180deg, rgba(4,7,18,.52) 0%, rgba(4,7,18,.18) 44%, rgba(4,7,18,.62) 100%),
+        radial-gradient(900px 460px at 50% 55%, rgba(0,0,0,.05), rgba(0,0,0,.50));
       z-index:-1;
       pointer-events:none;
     }
@@ -527,7 +585,7 @@
       pointer-events:none;
     }
 
-    /* ✅ премиальная типографика (лендинг) */
+    /* premium typography */
     h1{
       margin:10px 0 10px;
       font-size: clamp(30px, 4.6vw, 52px);
@@ -622,6 +680,7 @@
       transition: transform .2s var(--ease), border-color .2s var(--ease), box-shadow .2s var(--ease);
       position:relative;
       overflow:hidden;
+      isolation:isolate;
     }
     .codeBox::after{
       content:"";
@@ -632,13 +691,14 @@
       transition: opacity .2s var(--ease);
       pointer-events:none;
       mix-blend-mode: screen;
+      z-index:0;
     }
     .codeBox:hover{transform: translateY(-1px); border-color: rgba(69,227,255,.45); box-shadow: 0 26px 75px rgba(0,0,0,.58)}
     .codeBox:hover::after{opacity:.55; animation: sheen 2.6s ease-in-out infinite;}
-    .codeText{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;}
+    .codeText{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; position:relative; z-index:1}
     .codeLabel{font-size: 12px;font-weight: 1000;color: rgba(234,240,255,.72);}
     .codeValue{font-size: 22px;font-weight: 1200;letter-spacing: 1.6px;color: rgba(234,240,255,.96);text-transform: uppercase;}
-    .copyHint{font-size: 12px;color: rgba(234,240,255,.65);white-space: nowrap;}
+    .copyHint{font-size: 12px;color: rgba(234,240,255,.65);white-space: nowrap; position:relative; z-index:1;}
 
     /* sections */
     .section{padding: 26px 0 42px; position:relative; z-index:20;}
@@ -826,6 +886,8 @@
       opacity:0;
       pointer-events:none;
       transition:.35s var(--ease);
+      isolation:isolate;
+      overflow:hidden;
     }
     .float.on{transform: translateY(0);opacity:1;pointer-events:auto}
     .float .d{width:10px;height:10px;border-radius:999px;background: radial-gradient(circle at 30% 30%, #fff, rgba(69,227,255,.95));box-shadow: 0 0 18px rgba(69,227,255,.50)}
@@ -856,6 +918,9 @@
       .codeValue{font-size: 20px}
       .snow{opacity:.13; animation-duration: 21s;}
       .aurora{opacity:.16}
+      /* на мобиле шов мягче */
+      .heroBg::after{filter: blur(18px); opacity:.92;}
+      .heroBg::before{filter: blur(30px) brightness(1.72) contrast(1.03) saturate(1.08); opacity:.72;}
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -868,7 +933,6 @@
 </head>
 
 <body>
-  <!-- Premium loader -->
   <div id="preloader" aria-hidden="true">
     <div class="loaderCard">
       <div class="loaderInner">
@@ -882,7 +946,6 @@
     </div>
   </div>
 
-  <!-- New Year + premium layers -->
   <div class="trees" aria-hidden="true"></div>
   <div class="wolf-scratches" aria-hidden="true"></div>
   <div class="noise" aria-hidden="true"></div>
@@ -947,7 +1010,7 @@
         </div>
 
         <div class="promoWrap reveal" id="promo">
-          <div class="card promoBar">
+          <div class="card promoBar" id="promoCard">
             <div class="promoLeft">
               <div class="promoTitle">Промокод на бонус</div>
               <div class="promoSub">Нажми на код — он скопируется. Вводится <b>при регистрации</b>.</div>
@@ -1257,7 +1320,7 @@
       a.rel = "nofollow sponsored noopener";
     });
 
-    // premium load: show page + hide loader
+    // premium load
     const pre = document.getElementById("preloader");
     function finishLoad(){
       document.body.classList.add("loaded");
@@ -1288,7 +1351,7 @@
       document.querySelectorAll(".reveal").forEach(el => el.classList.add("on"));
     }
 
-    // tilt (без фанатизма)
+    // tilt
     const tiltEls = [...document.querySelectorAll("[data-tilt]")];
     const clamp = (n,a,b)=> Math.max(a, Math.min(b,n));
     const canTilt = matchMedia("(pointer:fine)").matches && !matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -1308,7 +1371,7 @@
       });
     }
 
-    // hero premium parallax (очень мягкий)
+    // hero parallax
     const heroBg = document.getElementById("heroBg");
     const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
     function heroParallax(){
@@ -1402,6 +1465,43 @@
         showToast(ok ? ("Промокод (при регистрации): " + promoValue) : "Не удалось скопировать");
       });
     });
+
+    // ✅ Ripple “взрыв клика” для всех CTA/primary
+    function addRipple(el, ev){
+      const rect = el.getBoundingClientRect();
+      const x = (ev.clientX ?? (rect.left + rect.width/2)) - rect.left;
+      const y = (ev.clientY ?? (rect.top + rect.height/2)) - rect.top;
+
+      const r = document.createElement("span");
+      r.className = "ripple";
+      r.style.left = x + "px";
+      r.style.top = y + "px";
+      el.appendChild(r);
+      r.addEventListener("animationend", ()=> r.remove(), {once:true});
+    }
+    document.addEventListener("pointerdown", (ev)=>{
+      const el = ev.target.closest(".btn-primary,[data-cta]");
+      if(!el) return;
+      if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      addRipple(el, ev);
+    }, {passive:true});
+
+    // ✅ Подсветка промо-карты при появлении на экране
+    const promoCard = document.getElementById("promoCard");
+    if (promoCard){
+      try{
+        const promoIO = new IntersectionObserver((entries)=>{
+          for(const ent of entries){
+            if(ent.isIntersecting){
+              promoCard.classList.remove("hotPulse");
+              void promoCard.offsetWidth; // restart animation
+              promoCard.classList.add("hotPulse");
+            }
+          }
+        }, {threshold: 0.55});
+        promoIO.observe(promoCard);
+      }catch{}
+    }
   </script>
 </body>
 </html>
