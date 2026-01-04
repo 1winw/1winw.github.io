@@ -52,13 +52,13 @@
     .muted{color:var(--muted)}
     .small{font-size:13px}
 
-    /* ❄️ снег на весь сайт — теперь ПОД карточками (за контентом) и его меньше */
+    /* ❄️ снег: ниже контента */
     #snowGlobal{
       position:fixed;
       inset:0;
-      z-index:54;          /* ниже карточек/кнопок */
+      z-index:54;
       pointer-events:none;
-      opacity:.55;
+      opacity:.50;
       filter: blur(.10px);
     }
     .snowHaze{
@@ -70,7 +70,7 @@
       pointer-events:none;
       background: radial-gradient(60% 110% at 50% 100%, rgba(255,255,255,.12), rgba(255,255,255,0) 70%);
       filter: blur(18px);
-      opacity:.30;
+      opacity:.26;
     }
 
     .progress{
@@ -188,7 +188,7 @@
 
     .card{
       border:1px solid rgba(255,255,255,.10);
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.02));
       border-radius: var(--r);
       box-shadow: var(--shadow);
       padding:18px;
@@ -197,15 +197,15 @@
       overflow:hidden;
       transform: translateZ(0);
       transition: transform .22s var(--ease), border-color .22s var(--ease);
-      z-index: 70; /* выше снега */
+      z-index: 70;
     }
     .card:hover{ transform: translateY(-2px); border-color: rgba(255,255,255,.14); }
     .card:before{
       content:"";position:absolute;inset:-1px;
       background:
-        radial-gradient(520px 180px at 12% 0%, rgba(69,227,255,.13), transparent 60%),
-        radial-gradient(520px 180px at 90% 16%, rgba(43,140,255,.12), transparent 62%),
-        radial-gradient(650px 230px at 50% 115%, rgba(123,97,255,.11), transparent 66%);
+        radial-gradient(520px 180px at 12% 0%, rgba(69,227,255,.12), transparent 60%),
+        radial-gradient(520px 180px at 90% 16%, rgba(43,140,255,.10), transparent 62%),
+        radial-gradient(650px 230px at 50% 115%, rgba(123,97,255,.10), transparent 66%);
       opacity:.95;pointer-events:none;
     }
     .card > *{position:relative}
@@ -217,12 +217,12 @@
     .tilt{transform-style:preserve-3d}
     .shine{
       position:absolute;inset:-2px;
-      background: radial-gradient(420px 220px at var(--mx,50%) var(--my,50%), rgba(69,227,255,.18), rgba(123,97,255,.10), rgba(0,0,0,0) 58%);
+      background: radial-gradient(420px 220px at var(--mx,50%) var(--my,50%), rgba(69,227,255,.16), rgba(123,97,255,.10), rgba(0,0,0,0) 58%);
       opacity:0;
       transition: opacity .25s var(--ease);
       pointer-events:none;
     }
-    .tilt:hover .shine{opacity:.9}
+    .tilt:hover .shine{opacity:.85}
 
     /* 🎄 гирлянда */
     .garlandTop{
@@ -254,13 +254,16 @@
       mix-blend-mode: screen;
     }
 
-    /* HERO (сделан короче) */
+    /* ✅ HERO: теперь ровно по экрану (до панели задач) */
     .hero{
       position:relative;
-      min-height: calc(78vh - var(--topbarH));
+      height: calc(100vh - var(--topbarH));
+      min-height: calc(100vh - var(--topbarH));
+      height: calc(100svh - var(--topbarH));
+      min-height: calc(100svh - var(--topbarH));
       display:flex;
       align-items:stretch;
-      padding: 14px 0 18px;
+      padding: 10px 0 10px;
       isolation:isolate;
       overflow:hidden;
       z-index: 50;
@@ -270,28 +273,40 @@
       background-image: url("hero.png");
       background-size: cover;
       background-position: center;
-      filter: brightness(1.75) saturate(1.10) contrast(1.03);
+      filter: brightness(1.70) saturate(1.12) contrast(1.04);
       transform: scale(1.03);
       z-index:-2;
     }
     .heroShade{
       position:absolute; inset:0;
       background:
-        linear-gradient(180deg, rgba(4,7,18,.35) 0%, rgba(4,7,18,.14) 35%, rgba(4,7,18,.30) 100%),
-        radial-gradient(900px 460px at 50% 55%, rgba(0,0,0,.06), rgba(0,0,0,.22));
+        linear-gradient(180deg, rgba(4,7,18,.30) 0%, rgba(4,7,18,.12) 40%, rgba(4,7,18,.26) 100%),
+        radial-gradient(900px 460px at 50% 55%, rgba(0,0,0,.06), rgba(0,0,0,.24));
       z-index:-1;
       pointer-events:none;
     }
+    .heroEdge{
+      position:absolute;
+      left:-10%; right:-10%;
+      bottom:-40px;
+      height:120px;
+      z-index: 2;
+      pointer-events:none;
+      background: linear-gradient(180deg, rgba(4,7,18,0) 0%, rgba(4,7,18,.22) 45%, rgba(4,7,18,.52) 100%);
+      filter: blur(14px);
+      opacity:.9;
+    }
+
     .heroGrid{
       width:100%;
-      min-height:auto;
+      height: 100%;
       display:flex;
       flex-direction:column;
       justify-content:center;
       align-items:center;
       gap:12px;
-      padding-top: clamp(52px, 7vh, 80px);
-      padding-bottom: clamp(160px, 14vh, 200px);
+      padding-top: 0;
+      padding-bottom: 120px; /* место под промо, но не показывает следующий блок */
       position:relative;
       z-index: 70;
     }
@@ -299,20 +314,20 @@
 
     h1{
       margin:10px 0 10px;
-      font-size: 48px;
+      font-size: 46px;
       line-height:1.04;
       letter-spacing:-.7px;
     }
-    @media (max-width: 520px){h1{font-size: 34px}}
-    .lead{margin:0 0 10px;color: rgba(234,240,255,.82);font-size: 17px}
+    @media (max-width: 520px){h1{font-size: 32px}}
+    .lead{margin:0 0 8px;color: rgba(234,240,255,.82);font-size: 16px}
 
-    .sloganWrap{display:flex;justify-content:center;margin: 10px 0 8px}
+    .sloganWrap{display:flex;justify-content:center;margin: 8px 0 8px}
     .slogan{
       display:inline-flex;align-items:center;justify-content:center;
       text-align:center;
-      padding:10px 14px;border-radius:999px;
-      border:1px solid rgba(69,227,255,.28);
-      background: rgba(7,12,22,.45);
+      padding:9px 13px;border-radius:999px;
+      border:1px solid rgba(69,227,255,.26);
+      background: rgba(7,12,22,.42);
       box-shadow: 0 18px 55px rgba(0,0,0,.38);
       font-weight: 1100;
       letter-spacing:.25px;
@@ -331,7 +346,7 @@
       justify-content:center;
       gap:10px;
       flex-wrap:wrap;
-      margin-top: 10px;
+      margin-top: 8px;
     }
     .chip{
       padding:8px 10px;
@@ -352,31 +367,40 @@
       font-weight: 1200;
     }
 
-    .trustRow{
+    /* ✅ “Почему сейчас” — мини-блок около CTA */
+    .whyNow{
       margin-top:12px;
-      display:flex;
-      justify-content:center;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
       gap:10px;
-      flex-wrap:wrap;
+      text-align:left;
     }
-    .trust{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 10px;
-      border-radius:999px;
+    @media (max-width: 820px){ .whyNow{grid-template-columns:1fr;} }
+
+    .whyItem{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      padding:10px 12px;
+      border-radius:16px;
       border:1px solid rgba(255,255,255,.10);
-      background: rgba(7,12,22,.30);
+      background: rgba(7,12,22,.28);
       box-shadow: var(--shadow2);
-      color: rgba(234,240,255,.78);
+    }
+    .whyIcon{
+      width:18px;height:18px;border-radius:8px;
+      background: linear-gradient(135deg, rgba(69,227,255,.95), rgba(123,97,255,.70));
+      box-shadow: 0 0 16px rgba(69,227,255,.18);
+      flex: 0 0 auto;
+      margin-top: 2px;
+    }
+    .whyText{
       font-size:12px;
-      font-weight:1000;
+      color: rgba(234,240,255,.78);
+      line-height:1.25;
     }
-    .trustDot{
-      width:10px;height:10px;border-radius:999px;
-      background: radial-gradient(circle at 30% 30%, #fff, rgba(69,227,255,.95));
-      box-shadow: 0 0 16px rgba(69,227,255,.30);
-    }
+    .whyText b{font-weight:1200;color: rgba(234,240,255,.92);}
+    .whyText span{display:block;color: rgba(234,240,255,.64);margin-top:3px;}
 
     .micro{
       margin-top:10px;
@@ -406,11 +430,11 @@
       box-shadow: 0 0 14px rgba(69,227,255,.35);
     }
 
-    /* PROMO (чуть выше, компактнее) */
+    /* PROMO */
     .promoWrap{
       position:absolute;
       left: 0; right: 0;
-      bottom: 34px;
+      bottom: 26px;
       z-index: 75;
     }
     .promoBar{
@@ -480,7 +504,7 @@
     }
     .list li{margin: 8px 0}
 
-    /* быстрый старт (вторая зона) */
+    /* быстрый старт */
     .quick{
       margin-top:14px;
       display:grid;
@@ -673,7 +697,7 @@
     .float .go:hover{transform: translateY(-1px)}
     @media (max-width: 520px){ .float{bottom: 92px;} }
 
-    /* Липкий промо снизу (короче) */
+    /* Sticky promo: короче + бейдж "скопировано" */
     .stickyPromo{
       position:fixed;
       left:50%;
@@ -683,7 +707,7 @@
       pointer-events:none;
       z-index:81;
 
-      width:min(720px, calc(100% - 28px)); /* короче */
+      width:min(720px, calc(100% - 28px));
       border:1px solid rgba(255,255,255,.12);
       background: rgba(6,9,18,.80);
       backdrop-filter: blur(14px);
@@ -722,17 +746,43 @@
       user-select:none;
       transition:.2s var(--ease);
       min-width: 220px;
+      position:relative;
     }
     .stickyCopy:hover{transform: translateY(-1px); border-color: rgba(69,227,255,.40);}
     .stickyCode{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;}
     .stickyCode .k{font-size:12px;font-weight:900;color: rgba(234,240,255,.70);}
     .stickyCode .v{font-size:18px;font-weight:1200;letter-spacing:1.4px;color: rgba(234,240,255,.95);}
     .stickyHint{font-size:12px;color: rgba(234,240,255,.60);white-space:nowrap;}
+
+    .stickyBadge{
+      position:absolute;
+      right:12px;
+      top:-10px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(69,227,255,.35);
+      background: rgba(69,227,255,.10);
+      color: rgba(234,240,255,.92);
+      font-size:12px;
+      font-weight:1200;
+      box-shadow: 0 18px 40px rgba(0,0,0,.35);
+      opacity:0;
+      transform: translateY(6px);
+      transition:.25s var(--ease);
+      pointer-events:none;
+      white-space:nowrap;
+    }
+    .stickyBadge.on{
+      opacity:1;
+      transform: translateY(0);
+    }
+
     @media (max-width: 820px){
       .stickyInner{flex-direction:column; align-items:stretch}
       .stickyLeft{min-width:auto}
       .stickyHint{display:none}
       .stickyCopy{min-width:auto}
+      .stickyBadge{right:10px;}
     }
 
     @keyframes spin{to{transform: rotate(360deg)}}
@@ -813,10 +863,26 @@
             <div class="chip">Промокод: <strong>SMOG</strong></div>
           </div>
 
-          <div style="display:flex;justify-content:center;margin-top:14px">
+          <div style="display:flex;justify-content:center;margin-top:12px">
             <a class="btn btn-primary btn-super" id="heroCtaBtn" data-cta href="#" target="_blank" rel="nofollow sponsored noopener">
               <span class="icon" aria-hidden="true"></span>Открыть 1win
             </a>
+          </div>
+
+          <!-- ✅ Почему сейчас -->
+          <div class="whyNow" aria-label="Почему сейчас">
+            <div class="whyItem">
+              <span class="whyIcon" aria-hidden="true"></span>
+              <div class="whyText"><b>Быстрый старт</b><span>Открыл → ввёл SMOG → активировал бонус</span></div>
+            </div>
+            <div class="whyItem">
+              <span class="whyIcon" aria-hidden="true"></span>
+              <div class="whyText"><b>Удобные платежи</b><span>Пополнение в пару шагов (методы зависят от региона)</span></div>
+            </div>
+            <div class="whyItem">
+              <span class="whyIcon" aria-hidden="true"></span>
+              <div class="whyText"><b>Поддержка 24/7</b><span>Помогут по бонусам и аккаунту</span></div>
+            </div>
           </div>
 
           <div class="micro" id="microCta">
@@ -824,13 +890,7 @@
             <span class="pill"><span class="dot" aria-hidden="true"></span>Скопируй промокод ниже</span>
           </div>
 
-          <div class="trustRow" aria-label="Доверие">
-            <div class="trust"><span class="trustDot" aria-hidden="true"></span>Поддержка 24/7</div>
-            <div class="trust"><span class="trustDot" aria-hidden="true"></span>Безопасные платежи</div>
-            <div class="trust"><span class="trustDot" aria-hidden="true"></span>Мобильная версия</div>
-          </div>
-
-          <p class="small muted" style="margin:12px 0 0">
+          <p class="small muted" style="margin:10px 0 0">
             18+ • Условия бонусов/акций могут меняться — проверяй правила на стороне 1win.
           </p>
         </div>
@@ -859,9 +919,10 @@
           </div>
         </div>
       </div>
+
+      <div class="heroEdge" aria-hidden="true"></div>
     </section>
 
-    <!-- ✅ Быстрый старт + калькулятор (вторая зона под промокодом) -->
     <section class="section" id="start">
       <div class="container">
         <div class="card reveal tilt" data-tilt>
@@ -925,7 +986,6 @@
       </div>
     </section>
 
-    <!-- О 1win -->
     <section class="section" id="about">
       <div class="container">
         <h2 class="sectionTitle">О 1Win</h2>
@@ -1008,7 +1068,6 @@
       </div>
     </section>
 
-    <!-- FAQ -->
     <section class="section" id="faq">
       <div class="container">
         <div class="card reveal tilt" data-tilt>
@@ -1123,6 +1182,9 @@
           <span class="k">500% • 70FS</span>
         </div>
         <div class="stickyHint">копировать</div>
+
+        <!-- ✅ бейдж "скопировано" -->
+        <div class="stickyBadge" id="stickyBadge">SMOG скопирован</div>
       </div>
 
       <a class="btn btn-primary" id="stickyGoBtn" data-cta href="#" target="_blank" rel="nofollow sponsored noopener" style="white-space:nowrap">
@@ -1211,7 +1273,7 @@
       if (scrollY > 420) float.classList.add("on"); else float.classList.remove("on");
 
       const heroBottom = hero ? (hero.getBoundingClientRect().bottom + scrollY) : 700;
-      if (scrollY > (heroBottom - innerHeight * 0.20)) stickyPromo?.classList.add("on");
+      if (scrollY > (heroBottom - innerHeight * 0.18)) stickyPromo?.classList.add("on");
       else stickyPromo?.classList.remove("on");
     }
     addEventListener("scroll", onScroll, {passive:true});
@@ -1256,6 +1318,7 @@
     const stickyGoBtn = document.getElementById("stickyGoBtn");
     const heroCtaBtn = document.getElementById("heroCtaBtn");
     const startCtaBtn = document.getElementById("startCtaBtn");
+    const stickyBadge = document.getElementById("stickyBadge");
 
     function flash(btn){
       if(!btn) return;
@@ -1266,7 +1329,6 @@
       btn._t = setTimeout(()=>btn.classList.remove("goFlash"), 1650);
     }
 
-    // micro dynamic
     const microCta = document.getElementById("microCta");
     const promoSub = document.getElementById("promoSub");
     const stickySub = document.getElementById("stickySub");
@@ -1279,10 +1341,10 @@
       if(!microCta) return;
       microCta.innerHTML = `
         <span class="pill"><span class="dot" aria-hidden="true"></span>Откроется в новой вкладке</span>
-        <span class="pill"><span class="dot" aria-hidden="true"></span><b style="font-weight:1200;color:#fff">Промокод SMOG скопирован</b> — жми «Перейти»</span>
+        <span class="pill"><span class="dot" aria-hidden="true"></span><b style="font-weight:1200;color:#fff">SMOG скопирован</b> — осталось нажать «Перейти»</span>
       `;
       clearTimeout(microCopied._t);
-      microCopied._t = setTimeout(()=>{ microCta.innerHTML = microDefault; }, 3200);
+      microCopied._t = setTimeout(()=>{ microCta.innerHTML = microDefault; }, 3400);
     }
 
     function promoHintCopied(){
@@ -1294,15 +1356,21 @@
       }
       if(stickySub){
         const prev = stickySub.textContent;
-        stickySub.textContent = "Скопировано • нажми «Перейти»";
+        stickySub.textContent = "Скопировано • осталось нажать «Перейти»";
         clearTimeout(promoHintCopied._t2);
         promoHintCopied._t2 = setTimeout(()=>{ stickySub.textContent = prev; }, 2800);
+      }
+      if(stickyBadge){
+        stickyBadge.classList.add("on");
+        clearTimeout(promoHintCopied._t3);
+        promoHintCopied._t3 = setTimeout(()=> stickyBadge.classList.remove("on"), 2800);
       }
     }
 
     // promo copy
     const promoValue = "SMOG";
     const promoCopy = document.getElementById("promoCopy");
+    const stickyCopy = document.getElementById("stickyCopy");
 
     function afterCopy(ok){
       showToast(ok ? ("Промокод: " + promoValue) : "Не удалось скопировать");
@@ -1321,8 +1389,6 @@
       if(e.key === "Enter" || e.key === " "){ e.preventDefault(); onPromoClick(); }
     });
 
-    // promo copy (sticky)
-    const stickyCopy = document.getElementById("stickyCopy");
     function onStickyCopy(){ copyText(promoValue).then(afterCopy); }
     stickyCopy?.addEventListener("click", onStickyCopy);
     stickyCopy?.addEventListener("keydown", (e)=>{
@@ -1364,7 +1430,7 @@
       render();
     })();
 
-    // ❄️ мягкий снег (меньше, тише, медленнее)
+    // ❄️ мягкий снег (меньше)
     (function(){
       const reduce = matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
       const canvas = document.getElementById("snowGlobal");
@@ -1373,7 +1439,7 @@
       const ctx = canvas.getContext("2d", { alpha: true });
       let w=0,h=0,dpr=1;
       const flakes = [];
-      const COUNT = 120; // меньше
+      const COUNT = 95;
 
       const rnd=(a,b)=>a+Math.random()*(b-a);
 
@@ -1386,15 +1452,15 @@
       }
 
       function makeFlake(){
-        const r = rnd(2.0, 5.0);
+        const r = rnd(2.0, 4.6);
         return {
           x: rnd(0,w),
           y: rnd(-h,0),
           r,
-          vy: rnd(0.30, 0.85) * (0.75 + r/6.2),
-          vx: rnd(-0.20, 0.20),
-          a: rnd(0.16, 0.52),
-          wob: rnd(0.6, 2.0),
+          vy: rnd(0.26, 0.72) * (0.75 + r/6.2),
+          vx: rnd(-0.16, 0.16),
+          a: rnd(0.14, 0.42),
+          wob: rnd(0.6, 1.8),
           seed: rnd(0, 9999)
         };
       }
@@ -1420,7 +1486,7 @@
       function tick(t){
         const dt = Math.min(32, t-last); last=t;
 
-        if(Math.random() < 0.008) windTarget = rnd(-0.35, 0.35);
+        if(Math.random() < 0.006) windTarget = rnd(-0.30, 0.30);
         wind += (windTarget - wind) * 0.02;
 
         ctx.clearRect(0,0,w,h);
@@ -1446,6 +1512,18 @@
       addEventListener("resize", resize, {passive:true});
       requestAnimationFrame(tick);
     })();
+
+    function onScroll(){
+      const h = document.documentElement.scrollHeight - innerHeight;
+      const p = h<=0 ? 0 : (scrollY/h);
+      progress.style.width = (p*100).toFixed(2)+"%";
+
+      if (scrollY > 420) float.classList.add("on"); else float.classList.remove("on");
+
+      const heroBottom = hero ? (hero.getBoundingClientRect().bottom + scrollY) : 700;
+      if (scrollY > (heroBottom - innerHeight * 0.18)) stickyPromo?.classList.add("on");
+      else stickyPromo?.classList.remove("on");
+    }
   </script>
 </body>
 </html>
