@@ -420,7 +420,7 @@
     /* ===== HERO (НЕ затемняем картинку) ===== */
     .hero{
       position:relative;
-      min-height: 100svh;   /* ✅ чтобы первая страница уходила до панели задач */
+      min-height: 100svh;
       display:flex;
       align-items:center;
       padding: 14px 0 18px;
@@ -428,25 +428,41 @@
       overflow:hidden;
     }
 
-    /* hero.png как фон */
     .heroBg{
       position:absolute; inset:0;
       background-image: url("hero.png");
       background-size: cover;
       background-position: right center;
-      /* ✅ без затемнения: только осветление/чуть контраста */
-      filter: brightness(1.25) contrast(1.03) saturate(1.08);
+      filter: brightness(1.28) contrast(1.03) saturate(1.10);
       transform: scale(1.02);
-      z-index:-2;
+      z-index:-3;
       will-change: transform;
     }
 
-    /* ✅ мягкий blur-шов между фото и фоном (без общей тёмной пелены) */
-    .heroBlend{
-      position:absolute; inset:0;
+    /* ✅ FIX: плавный переход снизу (там где стрелка). Делает мягкий fade фото в фон */
+    .heroFadeBottom{
+      position:absolute;
+      left:-10%;
+      right:-10%;
+      bottom:-1px;
+      height: 220px;            /* можно увеличить до 260 если нужно ещё мягче */
       z-index:-1;
       pointer-events:none;
-      /* затемнение ТОЛЬКО слева, чтобы фото не “резалось”, картинку не трогаем справа */
+      background:
+        linear-gradient(180deg,
+          rgba(4,7,18,0) 0%,
+          rgba(4,7,18,.28) 22%,
+          rgba(4,7,18,.62) 58%,
+          rgba(4,7,18,.92) 100%);
+      filter: blur(14px);
+      opacity:.98;
+    }
+
+    /* ✅ мягкий blur-шов слева (как было) */
+    .heroBlend{
+      position:absolute; inset:0;
+      z-index:-2;
+      pointer-events:none;
       background: linear-gradient(90deg,
         rgba(4,7,18,1) 0%,
         rgba(4,7,18,.92) 18%,
@@ -553,6 +569,38 @@
     .codeLabel{font-size: 12px;font-weight: 1000;color: rgba(234,240,255,.72);}
     .codeValue{font-size: 22px;font-weight: 1200;letter-spacing: 1.6px;color: rgba(234,240,255,.96);text-transform: uppercase;}
     .copyHint{font-size: 12px;color: rgba(234,240,255,.65);white-space: nowrap; position:relative; z-index:1;}
+
+    /* ✅ НОВОЕ: копирование промокода прямо в главной карточке (для телефона тоже) */
+    .copyChipRow{
+      display:flex;
+      justify-content:center;
+      margin-top: 10px;
+    }
+    .copyChip{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(69,227,255,.28);
+      background: rgba(7,12,22,.50);
+      backdrop-filter: blur(10px);
+      font-weight:1100;
+      color: rgba(234,240,255,.92);
+      cursor:pointer;
+      user-select:none;
+      transition: transform .18s var(--ease), border-color .18s var(--ease), background .18s var(--ease);
+      touch-action: manipulation;
+    }
+    .copyChip:hover{transform: translateY(-1px); border-color: rgba(69,227,255,.45); background: rgba(255,255,255,.04)}
+    .copyChip .tag{
+      padding:6px 10px;
+      border-radius:999px;
+      background: linear-gradient(135deg, rgba(69,227,255,.26), rgba(43,140,255,.18));
+      border:1px solid rgba(255,255,255,.10);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
 
     /* sections */
     .section{padding: 26px 0 42px; position:relative; z-index:20;}
@@ -765,52 +813,53 @@
     }
     @keyframes spin{to{transform: rotate(360deg)}}
 
-    /* ===== Mobile tweaks (меньше карточки/фото + без “двиганья” и без эффектов) ===== */
+    /* ===== Mobile tweaks ===== */
     @media (max-width: 720px){
       .topbar{padding-bottom: 44px;}
       .garlandStrip{top: 62px; height: 36px;}
       .garlandStrip::before, .garlandStrip::after{background-size: 200px 36px;}
       nav a:not(.btn){display:none}
-
       .heroBg{background-position: center 35%;}
+    }
+
+    /* ✅ на телефоне “О 1win” станет аккордеоном */
+    .aboutAccordion{display:none}
+    .aboutCards{display:block}
+
+    @media (max-width: 600px){
+      .aboutCards{display:none}
+      .aboutAccordion{display:block}
     }
 
     @media (max-width: 520px){
       .container{padding:0 14px}
 
-      /* ✅ карточки меньше */
       .card{padding:14px; border-radius:18px}
       .panel{padding:12px}
       .miniCard{padding:12px}
       .promoBar{padding: 12px 12px;}
       .codeValue{font-size: 20px}
 
-      /* ✅ фото/первый экран чуть компактнее */
       .hero{min-height: 92svh; padding: 10px 0 12px;}
       h1{font-size: clamp(24px, 7.2vw, 34px)}
       .lead{font-size: 14.8px}
 
-      /* ✅ снег чуть слабее и спокойнее */
       .snow{opacity:.12; animation-duration: 22s;}
       .aurora{opacity:.14}
 
-      /* чуть мягче шов */
       .heroBlend{filter: blur(20px); opacity:.90;}
+      .heroFadeBottom{height: 200px; filter: blur(16px);}
     }
 
-    /* ✅ ВАЖНО: на телефоне нельзя “двигать” карточки как на ПК, и убираем тяжелые анимации */
+    /* ✅ ВАЖНО: на телефоне убираем hover/transform (меньше лагов) */
     @media (hover:none) and (pointer:coarse){
       .card, .panel, .miniCard, details, .step{
         transform:none !important;
         transition: none !important;
       }
-      .card:hover, .panel:hover, .miniCard:hover, details:hover, .step:hover{
-        transform:none !important;
-      }
+      .card:hover, .panel:hover, .miniCard:hover, details:hover, .step:hover{transform:none !important;}
       .btn:hover{transform:none}
       .btn:active{transform:none}
-
-      /* убираем бегущую подсветку на кнопке (меньше лагов) */
       .btn-primary:before{display:none !important;}
     }
 
@@ -872,6 +921,7 @@
     <section class="hero" id="top">
       <div class="heroBg" id="heroBg" aria-hidden="true"></div>
       <div class="heroBlend" aria-hidden="true"></div>
+      <div class="heroFadeBottom" aria-hidden="true"></div>
 
       <div class="container heroGrid">
         <div class="card reveal heroMain">
@@ -891,6 +941,14 @@
             <a class="btn btn-primary" data-cta href="#" target="_blank" rel="nofollow sponsored noopener" style="min-width:240px;padding-left:18px;padding-right:18px">
               <span class="icon" aria-hidden="true"></span>Открыть 1win
             </a>
+          </div>
+
+          <!-- ✅ Копирование промокода прямо тут (на телефоне особенно удобно) -->
+          <div class="copyChipRow">
+            <div class="copyChip" id="heroCopy" role="button" tabindex="0" aria-label="Скопировать промокод SMOG">
+              <span class="muted small" style="font-weight:1100">Скопировать промокод</span>
+              <span class="tag">SMOG</span>
+            </div>
           </div>
 
           <p class="small muted" style="margin:12px 0 0">
@@ -1019,7 +1077,8 @@
             <p class="muted">Коротко по делу: поддержка, бонусы, игры, мобильный доступ и платежи.</p>
           </div>
 
-          <div class="cards3">
+          <!-- Desktop / tablet: карточки как было -->
+          <div class="cards3 aboutCards">
             <div class="miniCard">
               <h3>Помощь игрокам 24/7</h3>
               <ul>
@@ -1076,6 +1135,47 @@
               </ul>
             </div>
           </div>
+
+          <!-- ✅ Mobile: закрывающийся/открывающийся блок (аккордеон) -->
+          <details class="aboutAccordion" open>
+            <summary>Помощь игрокам и возможности 1win <span class="muted" style="font-weight:900">— открыть</span></summary>
+            <div style="margin-top:10px; display:grid; gap:12px">
+              <div class="miniCard" style="margin:0">
+                <h3>Помощь игрокам 24/7</h3>
+                <ul>
+                  <li>Онлайн-чат на главной странице.</li>
+                  <li>Связь через e-mail или телефон.</li>
+                  <li>Быстрые ответы по аккаунту.</li>
+                </ul>
+                <div class="note">Промокод <b>SMOG</b> вводится <b>при регистрации</b>.</div>
+              </div>
+
+              <div class="miniCard" style="margin:0">
+                <h3>Бонусы и акции</h3>
+                <ul>
+                  <li><b>500%</b> — ориентир приветственного бонуса (по правилам площадки).</li>
+                  <li>Кэшбэк/акции — по условиям недели.</li>
+                </ul>
+              </div>
+
+              <div class="miniCard" style="margin:0">
+                <h3>Игры и мобильный доступ</h3>
+                <ul>
+                  <li>Слоты, лайв-казино, настольные игры.</li>
+                  <li>Мобильная версия — работает в браузере.</li>
+                  <li>Приложение — если доступно на стороне 1win.</li>
+                </ul>
+              </div>
+
+              <div class="miniCard" style="margin:0">
+                <h3>Платежи</h3>
+                <ul>
+                  <li>Методы пополнения/вывода — в финансовом разделе.</li>
+                  <li>Срок зависит от метода и проверок.</li>
+                </ul>
+              </div>
+            </div>
+          </details>
 
           <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
             <a class="btn btn-primary" data-cta href="#" target="_blank" rel="nofollow sponsored noopener" style="min-width:240px">
@@ -1229,7 +1329,7 @@
     }
     toastClose?.addEventListener("click", ()=> toast.classList.remove("on"));
 
-    // promo copy
+    // copy helper
     const promoValue = "SMOG";
     async function copyText(txt){
       try{
@@ -1251,6 +1351,8 @@
         }
       }
     }
+
+    // promo copy bar
     const promoCopy = document.getElementById("promoCopy");
     function onPromoClick(){
       copyText(promoValue).then(ok=>{
@@ -1260,6 +1362,18 @@
     promoCopy?.addEventListener("click", onPromoClick);
     promoCopy?.addEventListener("keydown", (e)=>{
       if(e.key === "Enter" || e.key === " "){ e.preventDefault(); onPromoClick(); }
+    });
+
+    // ✅ hero copy chip
+    const heroCopy = document.getElementById("heroCopy");
+    function onHeroCopy(){
+      copyText(promoValue).then(ok=>{
+        showToast(ok ? ("Промокод (при регистрации): " + promoValue) : "Не удалось скопировать");
+      });
+    }
+    heroCopy?.addEventListener("click", onHeroCopy);
+    heroCopy?.addEventListener("keydown", (e)=>{
+      if(e.key === "Enter" || e.key === " "){ e.preventDefault(); onHeroCopy(); }
     });
 
     // калькулятор
