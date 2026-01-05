@@ -1,1563 +1,949 @@
 <!doctype html>
 <html lang="ru">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width,initial-scale=1,viewport-fit=cover"
-    />
-    <meta name="theme-color" content="#05070d" />
-    <title>1win Casino — бонусы, промокод, FAQ</title>
-    <meta
-      name="description"
-      content="1win: промокод SMOG при регистрации, быстрый старт, мини-калькулятор бонуса, FAQ."
-    />
-    <meta name="robots" content="index,follow,max-image-preview:large" />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#05070d" />
+  <title>1win Casino — бонусы, промокод, FAQ</title>
+  <meta name="description" content="1win: промокод SMOG при регистрации, быстрый старт, мини-калькулятор бонуса, FAQ." />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
 
-    <script>
-      document.documentElement.classList.add("js");
-    </script>
+  <script>document.documentElement.classList.add('js');</script>
 
-    <style>
-      :root {
-        --bg: #05070d;
-        --text: #eef2ff;
-        --muted: rgba(238, 242, 255, 0.72);
-        --line: rgba(255, 255, 255, 0.1);
-        --line2: rgba(255, 255, 255, 0.12);
-        --brand: #0b5cff;
-        --brand2: #18d0c4;
-        --shadow: 0 18px 60px rgba(0, 0, 0, 0.45);
-        --shadow2: 0 26px 90px rgba(0, 0, 0, 0.55);
-        --radius: 24px;
-        --max: 1200px;
-        --heroMax: 1200px;
-        --btnH: 52px;
+  <style>
+    :root{
+      --bg:#05070d;
+      --text:#eef2ff;
+      --muted:rgba(238,242,255,.72);
+      --line:rgba(255,255,255,.10);
+      --line2:rgba(255,255,255,.12);
 
-        /* bg images */
-        --bgDesktop: url("hero-desktop.png");
-        --bgMobile: url("вдофыв.png");
-        --bgImg: var(--bgDesktop);
+      --brand:#0b5cff;
+      --brand2:#18d0c4;
 
-        /* slight darkening */
-        --bgDim: rgba(0, 0, 0, 0.18);
-        --bgDimMobile: rgba(0, 0, 0, 0.2);
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --shadow2: 0 26px 90px rgba(0,0,0,.55);
 
-        /* warm garland palette */
-        --warm1: rgba(255, 196, 120, 1);
-        --warm2: rgba(255, 234, 190, 1);
-        --warm3: rgba(255, 115, 115, 1);
-        --warm4: rgba(255, 214, 120, 1);
+      --radius: 24px;
+      --max: 1200px;
+      --heroMax: 1200px;
+      --btnH: 52px;
 
-        --icicles: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='700'%20height='64'%20viewBox='0%200%20700%2064'%3E%3Cdefs%3E%3ClinearGradient%20id='g'%20x1='0'%20y1='0'%20x2='0'%20y2='1'%3E%3Cstop%20offset='0'%20stop-color='%23ffffff'%20stop-opacity='.18'/%3E%3Cstop%20offset='1'%20stop-color='%23ffffff'%20stop-opacity='0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20x='0'%20y='0'%20width='700'%20height='10'%20fill='%23ffffff'%20opacity='.08'/%3E%3Cpath%20d='M0%2010%20C35%2010%2060%2048%2090%2048%20C120%2048%20120%2020%20155%2020%20C190%2020%20190%2060%20225%2060%20C260%2060%20260%2024%20295%2024%20C330%2024%20330%2052%20365%2052%20C400%2052%20405%2018%20440%2018%20C475%2018%20480%2046%20510%2046%20C540%2046%20540%2022%20575%2022%20C610%2022%20610%2058%20645%2058%20C670%2058%20685%2030%20700%2030%20V10%20Z'%20fill='url(%23g)'/%3E%3C/svg%3E");
-        --garlandWire: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='1200'%20height='60'%20viewBox='0%200%201200%2060'%3E%3Cpath%20d='M0%2032%20C150%200%20300%2060%20450%2032%20C600%200%20750%2060%20900%2032%20C1050%200%201140%2046%201200%2032'%20fill='none'%20stroke='%23ffffff'%20stroke-opacity='.26'%20stroke-width='3'/%3E%3C/svg%3E");
+      /* bg images */
+      --bgDesktop: url("hero-desktop.png");
+      --bgMobile: url("вдофыв.png");
+      --bgImg: var(--bgDesktop);
+
+      /* slight darkening */
+      --bgDim: rgba(0,0,0,.18);
+      --bgDimMobile: rgba(0,0,0,.20);
+
+      /* warm garland palette */
+      --warm1: rgba(255,196,120,1);
+      --warm2: rgba(255,234,190,1);
+      --warm3: rgba(255,115,115,1);
+      --warm4: rgba(255,214,120,1);
+
+      --icicles: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='700'%20height='64'%20viewBox='0%200%20700%2064'%3E%3Cdefs%3E%3ClinearGradient%20id='g'%20x1='0'%20y1='0'%20x2='0'%20y2='1'%3E%3Cstop%20offset='0'%20stop-color='%23ffffff'%20stop-opacity='.18'/%3E%3Cstop%20offset='1'%20stop-color='%23ffffff'%20stop-opacity='0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20x='0'%20y='0'%20width='700'%20height='10'%20fill='%23ffffff'%20opacity='.08'/%3E%3Cpath%20d='M0%2010%20C35%2010%2060%2048%2090%2048%20C120%2048%20120%2020%20155%2020%20C190%2020%20190%2060%20225%2060%20C260%2060%20260%2024%20295%2024%20C330%2024%20330%2052%20365%2052%20C400%2052%20405%2018%20440%2018%20C475%2018%20480%2046%20510%2046%20C540%2046%20540%2022%20575%2022%20C610%2022%20610%2058%20645%2058%20C670%2058%20685%2030%20700%2030%20V10%20Z'%20fill='url(%23g)'/%3E%3C/svg%3E");
+
+      --garlandWire: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='1200'%20height='60'%20viewBox='0%200%201200%2060'%3E%3Cpath%20d='M0%2032%20C150%200%20300%2060%20450%2032%20C600%200%20750%2060%20900%2032%20C1050%200%201140%2046%201200%2032'%20fill='none'%20stroke='%23ffffff'%20stroke-opacity='.26'%20stroke-width='3'/%3E%3C/svg%3E");
+    }
+
+    *{box-sizing:border-box}
+    html, body{
+      width:100%;
+      max-width:100%;
+      overflow-x:hidden;
+      overscroll-behavior-x: none;
+    }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      touch-action: pan-y;
+      -webkit-tap-highlight-color: transparent;
+    }
+    main{max-width:100vw; overflow-x:hidden;}
+    img, svg{max-width:100%; height:auto;}
+    html{scroll-behavior:smooth}
+
+    /* ===== FULL-PAGE BG (one image for whole site) ===== */
+    .bg{
+      position:fixed; inset:0; z-index:-30;
+      background-image:
+        linear-gradient(180deg, var(--bgDim), rgba(0,0,0,.08) 55%, rgba(0,0,0,.22)),
+        var(--bgImg);
+      background-size: cover;
+      background-position: center top;
+      background-repeat:no-repeat;
+    }
+    /* smooth bottom “blend/blur” */
+    .bg::after{
+      content:"";
+      position:absolute; left:0; right:0; bottom:-40px;
+      height:240px;
+      background: inherit;
+      background-position: center bottom;
+      filter: blur(18px);
+      transform: scale(1.06);
+      opacity:.95;
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1));
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1));
+      pointer-events:none;
+    }
+    .vignette{
+      position:fixed; inset:0; z-index:-28;
+      pointer-events:none;
+      background:
+        radial-gradient(1200px 700px at 50% 20%, rgba(255,255,255,.06), rgba(0,0,0,0) 60%),
+        radial-gradient(900px 520px at 12% 18%, rgba(11,92,255,.16), rgba(0,0,0,0) 62%),
+        radial-gradient(900px 620px at 88% 70%, rgba(24,208,196,.12), rgba(0,0,0,0) 62%),
+        linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.22));
+      mix-blend-mode: screen;
+      opacity:.85;
+    }
+
+    /* ===== Snow (behind cards) ===== */
+    .snow{
+      position:fixed; inset:0; z-index:-26;
+      pointer-events:none;
+      mix-blend-mode: screen;
+      opacity:.26;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,.60) 0 1.2px, transparent 1.9px),
+        radial-gradient(circle, rgba(255,255,255,.46) 0 1.0px, transparent 1.8px),
+        radial-gradient(circle, rgba(255,255,255,.32) 0 .9px, transparent 1.6px);
+      background-size: 180px 180px, 260px 260px, 360px 360px;
+      background-position: 0 -240px, 0 -520px, 0 -760px;
+      animation: snowFall 16s linear infinite;
+    }
+    .snow.s2{
+      opacity:.18;
+      background-size: 240px 240px, 380px 380px, 520px 520px;
+      animation-duration: 22s;
+      animation-direction: reverse;
+      filter: blur(.2px);
+    }
+    .snow.s3{
+      opacity:.12;
+      background-size: 340px 340px, 520px 520px, 760px 760px;
+      animation-duration: 30s;
+      filter: blur(.35px);
+    }
+    @keyframes snowFall{
+      to{ background-position: 120px 1400px, -160px 1500px, 200px 1600px; }
+    }
+
+    .progress{
+      position:fixed; top:0; left:0; right:0; height:3px;
+      z-index:1000;
+      background: rgba(255,255,255,.06);
+    }
+    .progress > i{
+      display:block; height:100%;
+      transform-origin:left center;
+      transform:scaleX(0);
+      background: linear-gradient(90deg, rgba(11,92,255,1), rgba(24,208,196,1), rgba(255,255,255,.9));
+      box-shadow:0 10px 25px rgba(11,92,255,.25);
+    }
+
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      background: rgba(5,7,13,.52);
+      border-bottom:.5px solid var(--line);
+      isolation:isolate;
+      padding-bottom: 40px;
+    }
+    header::after{
+      content:"";
+      position:absolute; left:0; right:0; bottom:-1px;
+      height:18px;
+      background-image: var(--icicles);
+      background-repeat: repeat-x;
+      background-size: 700px 18px;
+      opacity:.20;
+      pointer-events:none;
+      z-index:1;
+    }
+
+    .garlandStrip{
+      position:absolute; left:0; right:0;
+      top: 70px; height: 34px;
+      z-index: 20;
+      pointer-events:none;
+      background-image: var(--garlandWire);
+      background-repeat: repeat-x;
+      background-size: 1200px 60px;
+      background-position: center;
+      filter:
+        drop-shadow(0 14px 34px rgba(255,190,120,.20))
+        drop-shadow(0 12px 30px rgba(255,150,90,.12));
+      opacity: 1;
+    }
+    .garlandStrip::before{
+      content:"";
+      position:absolute; inset:0;
+      background-repeat: repeat-x;
+      background-size: 200px 34px;
+      background-position: 0 0;
+      background-image:
+        radial-gradient(circle at 26px 16px, var(--warm1) 0 5.2px, transparent 6.4px),
+        radial-gradient(circle at 78px 16px, var(--warm2) 0 5.2px, transparent 6.4px),
+        radial-gradient(circle at 130px 16px, var(--warm3) 0 5.2px, transparent 6.4px),
+        radial-gradient(circle at 182px 16px, var(--warm4) 0 5.2px, transparent 6.4px);
+      opacity:.92;
+      filter:
+        drop-shadow(0 8px 18px rgba(255,214,140,.22))
+        drop-shadow(0 10px 26px rgba(255,165,100,.12));
+    }
+    .garlandStrip::after{
+      content:"";
+      position:absolute; inset:0;
+      background-repeat: repeat-x;
+      background-size: 200px 34px;
+      background-position: 100px 0;
+      background-image:
+        radial-gradient(circle at 26px 16px, var(--warm2) 0 5.0px, transparent 6.3px),
+        radial-gradient(circle at 78px 16px, var(--warm3) 0 5.0px, transparent 6.3px),
+        radial-gradient(circle at 130px 16px, var(--warm4) 0 5.0px, transparent 6.3px),
+        radial-gradient(circle at 182px 16px, var(--warm1) 0 5.0px, transparent 6.3px);
+      opacity:.32;
+      filter:
+        drop-shadow(0 8px 18px rgba(255,230,170,.14))
+        drop-shadow(0 10px 26px rgba(255,160,100,.10));
+    }
+
+    .wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:0 18px;
+      width:100%;
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; min-height:72px; padding:10px 0;
+      position:relative; z-index:30;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      text-decoration:none; color:var(--text);
+      min-width:180px;
+    }
+    .avatar{
+      width:44px; height:44px; border-radius:16px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow:0 18px 55px rgba(11,92,255,.22);
+      background: linear-gradient(135deg, rgba(11,92,255,.9), rgba(24,208,196,.75));
+    }
+    .brand strong{letter-spacing:.4px}
+    .brand small{display:block;color:rgba(238,242,255,.55);font-size:12px;font-weight:800}
+
+    .nav-right{
+      display:flex; align-items:center; justify-content:flex-end;
+      gap:8px; flex:1 1 auto;
+    }
+    .nav a.link{
+      color:var(--muted);
+      text-decoration:none;
+      font-weight:900;
+      padding:10px 12px;
+      border-radius:12px;
+      transition:.2s;
+      white-space:nowrap;
+    }
+    .nav a.link:hover{background:rgba(255,255,255,.06); color:var(--text); transform: translateY(-1px)}
+    .cta{
+      padding:10px 16px;
+      border-radius:999px;
+      color:#fff;
+      font-weight:1000;
+      text-decoration:none;
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      box-shadow:0 18px 55px rgba(11,92,255,.22);
+      transition:.2s;
+      white-space:nowrap;
+      position:relative;
+      overflow:hidden;
+    }
+    .cta::after{
+      content:"";
+      position:absolute; inset:-70% -80%;
+      background: radial-gradient(circle, rgba(255,255,255,.30), transparent 60%);
+      transform: translateX(-40%);
+      opacity:0;
+      transition:.25s;
+      mix-blend-mode: screen;
+    }
+    .cta:hover{transform: translateY(-1px) scale(1.02)}
+    .cta:hover::after{opacity:.9; transform: translateX(30%)}
+
+    .menuBtn{
+      display:none;
+      width:44px;height:44px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      cursor:pointer;
+      align-items:center;justify-content:center;
+      transition:.2s;
+    }
+    .menuBtn svg{width:18px;height:18px;opacity:.92}
+
+    .mnav{
+      position:fixed;
+      inset:0;
+      z-index:2000;
+      display:none;
+      background: rgba(5,7,13,.70);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+    .mnav.open{display:block}
+    .mnav .panel{
+      position:absolute;
+      top:12px; left:12px; right:12px;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      box-shadow: 0 30px 100px rgba(0,0,0,.55);
+      padding:14px;
+    }
+    .mnav .row{display:flex; align-items:center; justify-content:space-between; gap:10px}
+    .mnav .close{
+      width:44px;height:44px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      cursor:pointer;
+    }
+    .mnav .links{
+      display:grid;
+      gap:10px;
+      margin-top:12px;
+    }
+    .mnav a{
+      text-decoration:none;
+      color:var(--text);
+      font-weight:1000;
+      padding:14px 14px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+    }
+    .mnav a.primary{
+      border:none;
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      box-shadow:0 18px 55px rgba(11,92,255,.20);
+    }
+
+    section{padding:72px 0}
+    .hero{
+      padding:48px 0 26px;
+      min-height: calc(100svh - 150px);
+      display:flex;
+      align-items:center;
+    }
+
+    .grid2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:16px;
+      align-items:stretch;
+    }
+
+    .card{
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(10,16,30,.34);
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+      transform: translateZ(0);
+      -webkit-tap-highlight-color: transparent;
+    }
+    .card::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(900px 360px at 14% 8%, rgba(11,92,255,.18), transparent 60%),
+        radial-gradient(800px 360px at 92% 42%, rgba(24,208,196,.12), transparent 62%),
+        linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
+      opacity:.9;
+      pointer-events:none;
+    }
+    .card > *{position:relative}
+
+    .glass{
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    @media (hover:hover){
+      .card{transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;}
+      .card:hover{
+        transform: translateY(-4px);
+        box-shadow: var(--shadow2);
+        border-color: rgba(255,255,255,.20);
       }
+    }
+    @media (hover:none){
+      .card{transition:none !important}
+      .card:active{transform:none !important}
+    }
 
-      * {
-        box-sizing: border-box;
-      }
+    .hero-card{padding:26px; max-width: min(var(--heroMax), 96vw); margin:0 auto}
+    .hero-top{
+      display:flex; gap:10px; flex-wrap:wrap;
+      color:var(--muted);
+      font-weight:900;
+    }
+    .chip{
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.05);
+    }
 
-      html,
-      body {
-        width: 100%;
-        max-width: 100%;
-        overflow-x: hidden;
-        overscroll-behavior-x: none;
-      }
+    h1{
+      margin:14px 0 8px;
+      font-size: clamp(30px, 4.6vw, 58px);
+      line-height:1.06;
+      letter-spacing:-.8px;
+      text-shadow: 0 14px 40px rgba(0,0,0,.45);
+    }
+    .sub{
+      margin:0;
+      color:rgba(238,242,255,.74);
+      line-height:1.75;
+      font-size: 16.2px;
+      max-width: 64ch;
+      text-shadow: 0 12px 30px rgba(0,0,0,.35);
+    }
 
-      body {
-        margin: 0;
-        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
-          Arial, sans-serif;
-        background: var(--bg);
-        color: var(--text);
-        touch-action: pan-y;
-        -webkit-tap-highlight-color: transparent;
-      }
+    .hero-actions{display:flex; gap:12px; flex-wrap:wrap; margin-top:16px}
 
-      main {
-        max-width: 100vw;
-        overflow-x: hidden;
-      }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:14px 18px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.07);
+      color:var(--text);
+      text-decoration:none;
+      font-weight:1000;
+      transition:.2s;
+      min-width:180px;
+      height:52px;
+      position:relative;
+      overflow:hidden;
+      touch-action: manipulation;
+    }
+    .btn.primary{
+      border:none;
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      box-shadow:0 18px 55px rgba(11,92,255,.20);
+    }
+    @media (hover:hover){
+      .btn:hover{transform: translateY(-1px)}
+    }
 
-      img,
-      svg {
-        max-width: 100%;
-        height: auto;
-      }
+    .tiny{
+      font-size:13px;
+      line-height:1.6;
+      color:rgba(238,242,255,.58);
+    }
 
-      html {
-        scroll-behavior: smooth;
-      }
+    /* promo bar */
+    .promoBar{
+      margin-top:14px;
+      padding:16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .promoLeft{display:flex; flex-direction:column; gap:6px; min-width: 240px;}
+    .promoTitle{font-size: 14px;font-weight: 1000;color: rgba(238,242,255,.92);}
+    .promoSub{font-size: 13px;color: rgba(238,242,255,.70);}
 
-      /* ===== FULL-PAGE BG (one image for whole site) ===== */
-      .bg {
-        position: fixed;
-        inset: 0;
-        z-index: -30;
-        background-image: linear-gradient(
-            180deg,
-            var(--bgDim),
-            rgba(0, 0, 0, 0.08) 55%,
-            rgba(0, 0, 0, 0.22)
-          ),
+    .codeBox{
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+      padding: 12px 14px;border-radius: 18px;
+      border: 1px solid rgba(24,208,196,.24);
+      background: rgba(255,255,255,.06);
+      flex: 1; min-height: 54px;
+      cursor:pointer; user-select:none;
+      touch-action: manipulation;
+    }
+    .codeText{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;}
+    .codeLabel{font-size: 12px;font-weight: 900;color: rgba(238,242,255,.70);}
+    .codeValue{font-size: 20px;font-weight: 1100;letter-spacing: 1.6px;color: rgba(238,242,255,.96);text-transform: uppercase;}
+    .copyHint{font-size: 12px;color: rgba(238,242,255,.65);white-space: nowrap;}
+
+    /* quick start + calculator */
+    .special{padding:18px}
+    .special-head{display:flex; align-items:flex-start; justify-content:space-between; gap:10px}
+    .special-title{font-weight:1000; font-size:18px}
+    .callout{
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.05);
+      border-radius:16px;
+      padding:12px;
+      color:rgba(238,242,255,.74);
+      line-height:1.7;
+    }
+    .steps{
+      display:grid;
+      gap:10px;
+      margin-top:12px;
+    }
+    .step{
+      display:flex; gap:10px; align-items:flex-start;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      border-radius:16px;
+      padding:12px;
+    }
+    .n{
+      width:26px;height:26px;border-radius:10px;
+      display:flex;align-items:center;justify-content:center;
+      font-weight:1000;
+      background: linear-gradient(135deg, rgba(11,92,255,.60), rgba(24,208,196,.42));
+      border:1px solid rgba(255,255,255,.14);
+      flex:0 0 auto;
+    }
+    .step b{display:block}
+    .step span{display:block;color:rgba(238,242,255,.64);font-size:13px;line-height:1.5;margin-top:2px}
+
+    .calcRow{display:grid; gap:10px; margin-top:12px}
+    .inp{
+      width:100%;
+      height:44px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.18);
+      color:var(--text);
+      padding:0 12px;
+      outline:none;
+      font-weight:900;
+    }
+    .quickBtns{display:flex; gap:8px; flex-wrap:wrap}
+    .qbtn{
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color:rgba(238,242,255,.84);
+      border-radius:999px;
+      padding:8px 10px;
+      font-weight:1000;
+      cursor:pointer;
+      touch-action: manipulation;
+    }
+    .resGrid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+    .resBox{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      border-radius:16px;
+      padding:12px;
+      color:rgba(238,242,255,.78);
+      min-height:58px;
+    }
+    .resBox b{display:block;color:rgba(238,242,255,.92)}
+    .resBox span{display:block;margin-top:6px}
+
+    /* About */
+    .title{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:16px
+    }
+    .title h2{margin:0; font-size:26px; letter-spacing:-.3px}
+    .title p{margin:0; color:var(--muted); max-width:60ch; line-height:1.6}
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    .feature{
+      padding:16px;
+      border-radius:18px;
+      background: rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.12);
+      min-height: 96px;
+    }
+    .feature b{display:block; margin-top:2px; font-weight:1000}
+    .feature span{color:var(--muted); font-size:13.5px; line-height:1.5}
+
+    .about-acc{
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      padding: 10px 12px;
+    }
+    .about-acc summary{
+      cursor:pointer;
+      list-style:none;
+      font-weight:1000;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      user-select:none;
+      padding:10px 8px;
+      font-size:16px;
+    }
+    .about-acc summary::-webkit-details-marker{display:none}
+    .chev{opacity:.80}
+
+    /* FAQ */
+    .faq{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px
+    }
+    details.faqItem{
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:18px;
+      padding:14px;
+      overflow:hidden;
+    }
+    details.faqItem summary{
+      cursor:pointer;
+      font-weight:1000;
+      list-style:none
+    }
+    details.faqItem summary::-webkit-details-marker{display:none}
+    details.faqItem p{
+      margin:10px 0 0;
+      color:var(--muted);
+      line-height:1.7
+    }
+
+    footer{
+      padding:34px 0 64px;
+      color:rgba(238,242,255,.56);
+      border-top:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .foot{display:flex; justify-content:space-between; align-items:flex-start; gap:14px; flex-wrap:wrap}
+    .foot a{color:rgba(238,242,255,.76); text-decoration:none}
+    .foot a:hover{color:var(--text)}
+
+    .float{
+      position:fixed;right:16px;bottom:16px;z-index:80;
+      display:flex;align-items:center;gap:10px;
+      padding:10px 12px;border-radius:999px;
+      border:1px solid rgba(24,208,196,.30);
+      background: rgba(5,7,13,.58);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 22px 70px rgba(0,0,0,.55);
+      opacity:0;
+      pointer-events:none;
+      transform: translateY(10px);
+      transition:.25s ease;
+    }
+    .float.on{opacity:1;pointer-events:auto; transform: translateY(0)}
+    .float .d{width:10px;height:10px;border-radius:999px;background: radial-gradient(circle at 30% 30%, #fff, rgba(24,208,196,.95));box-shadow: 0 0 18px rgba(24,208,196,.40)}
+    .float .t{font-weight:1000;font-size:13px;line-height:1.1}
+    .float .s{font-size:12px;color: rgba(238,242,255,.68);margin-top:2px}
+    .float .go{margin-left:6px;padding:8px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background: rgba(255,255,255,.04);font-weight:1000;}
+
+    .toast{
+      position:fixed;left:50%;bottom:18px;transform: translateX(-50%);
+      background: rgba(5,7,13,.72);
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow: var(--shadow);
+      border-radius:16px;
+      padding:10px 12px;
+      display:none;
+      z-index:99;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      max-width:min(760px, calc(100% - 20px));
+    }
+    .toast.on{display:flex;align-items:center;gap:10px}
+    .dot{width:10px;height:10px;border-radius:999px;background: radial-gradient(circle at 30% 30%, #fff, rgba(24,208,196,.95));box-shadow: 0 0 18px rgba(24,208,196,.45)}
+    .toast .x{
+      margin-left:auto;border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);color:var(--text);
+      border-radius:12px;padding:6px 10px;cursor:pointer;font-weight:1000;
+    }
+
+    @media (max-width: 980px){
+      .faq{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr}
+      .grid2{grid-template-columns:1fr}
+    }
+
+    @media (max-width: 720px){
+      :root{ --bgImg: var(--bgMobile); }
+      .bg{
+        background-image:
+          linear-gradient(180deg, var(--bgDimMobile), rgba(0,0,0,.06) 55%, rgba(0,0,0,.18)),
           var(--bgImg);
-        background-size: cover;
         background-position: center top;
-        background-repeat: no-repeat;
       }
-
-      /* smooth bottom “blend/blur” */
-      .bg::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: -40px;
-        height: 240px;
-        background: inherit;
-        background-position: center bottom;
-        filter: blur(18px);
-        transform: scale(1.06);
-        opacity: 0.95;
-        -webkit-mask-image: linear-gradient(
-          to bottom,
-          rgba(0, 0, 0, 0),
-          rgba(0, 0, 0, 1)
-        );
-        mask-image: linear-gradient(
-          to bottom,
-          rgba(0, 0, 0, 0),
-          rgba(0, 0, 0, 1)
-        );
-        pointer-events: none;
-      }
-
-      .vignette {
-        position: fixed;
-        inset: 0;
-        z-index: -28;
-        pointer-events: none;
-        background: radial-gradient(
-            1200px 700px at 50% 20%,
-            rgba(255, 255, 255, 0.06),
-            rgba(0, 0, 0, 0) 60%
-          ),
-          radial-gradient(
-            900px 520px at 12% 18%,
-            rgba(11, 92, 255, 0.16),
-            rgba(0, 0, 0, 0) 62%
-          ),
-          radial-gradient(
-            900px 620px at 88% 70%,
-            rgba(24, 208, 196, 0.12),
-            rgba(0, 0, 0, 0) 62%
-          ),
-          linear-gradient(180deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.22));
-        mix-blend-mode: screen;
-        opacity: 0.85;
-      }
-
-      /* ===== Snow (behind cards) ===== */
-      .snow {
-        position: fixed;
-        inset: 0;
-        z-index: -26;
-        pointer-events: none;
-        mix-blend-mode: screen;
-        opacity: 0.26;
-        background-image: radial-gradient(
-            circle,
-            rgba(255, 255, 255, 0.6) 0 1.2px,
-            transparent 1.9px
-          ),
-          radial-gradient(
-            circle,
-            rgba(255, 255, 255, 0.46) 0 1px,
-            transparent 1.8px
-          ),
-          radial-gradient(
-            circle,
-            rgba(255, 255, 255, 0.32) 0 0.9px,
-            transparent 1.6px
-          );
-        background-size: 180px 180px, 260px 260px, 360px 360px;
-        background-position: 0 -240px, 0 -520px, 0 -760px;
-        animation: snowFall 16s linear infinite;
-      }
-
-      .snow.s2 {
-        opacity: 0.18;
-        background-size: 240px 240px, 380px 380px, 520px 520px;
-        animation-duration: 22s;
-        animation-direction: reverse;
-        filter: blur(0.2px);
-      }
-
-      .snow.s3 {
-        opacity: 0.12;
-        background-size: 340px 340px, 520px 520px, 760px 760px;
-        animation-duration: 30s;
-        filter: blur(0.35px);
-      }
-
-      @keyframes snowFall {
-        to {
-          background-position: 120px 1400px, -160px 1500px, 200px 1600px;
-        }
-      }
-
-      .progress {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
-        z-index: 1000;
-        background: rgba(255, 255, 255, 0.06);
-      }
-
-      .progress > i {
-        display: block;
-        height: 100%;
-        transform-origin: left center;
-        transform: scaleX(0);
-        background: linear-gradient(
-          90deg,
-          rgba(11, 92, 255, 1),
-          rgba(24, 208, 196, 1),
-          rgba(255, 255, 255, 0.9)
-        );
-        box-shadow: 0 10px 25px rgba(11, 92, 255, 0.25);
-      }
-
-      header {
-        position: sticky;
-        top: 0;
-        z-index: 50;
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
-        background: rgba(5, 7, 13, 0.52);
-        border-bottom: 0.5px solid var(--line);
-        isolation: isolate;
-        padding-bottom: 40px;
-      }
-
-      header::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: -1px;
-        height: 18px;
-        background-image: var(--icicles);
-        background-repeat: repeat-x;
-        background-size: 700px 18px;
-        opacity: 0.2;
-        pointer-events: none;
-        z-index: 1;
-      }
-
-      .garlandStrip {
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 70px;
-        height: 34px;
-        z-index: 20;
-        pointer-events: none;
-        background-image: var(--garlandWire);
-        background-repeat: repeat-x;
-        background-size: 1200px 60px;
-        background-position: center;
-        filter: drop-shadow(0 14px 34px rgba(255, 190, 120, 0.2))
-          drop-shadow(0 12px 30px rgba(255, 150, 90, 0.12));
-        opacity: 1;
-      }
-
-      .garlandStrip::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background-repeat: repeat-x;
-        background-size: 200px 34px;
-        background-position: 0 0;
-        background-image: radial-gradient(
-            circle at 26px 16px,
-            var(--warm1) 0 5.2px,
-            transparent 6.4px
-          ),
-          radial-gradient(
-            circle at 78px 16px,
-            var(--warm2) 0 5.2px,
-            transparent 6.4px
-          ),
-          radial-gradient(
-            circle at 130px 16px,
-            var(--warm3) 0 5.2px,
-            transparent 6.4px
-          ),
-          radial-gradient(
-            circle at 182px 16px,
-            var(--warm4) 0 5.2px,
-            transparent 6.4px
-          );
-        opacity: 0.92;
-        filter: drop-shadow(0 8px 18px rgba(255, 214, 140, 0.22))
-          drop-shadow(0 10px 26px rgba(255, 165, 100, 0.12));
-      }
-
-      .garlandStrip::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background-repeat: repeat-x;
-        background-size: 200px 34px;
-        background-position: 100px 0;
-        background-image: radial-gradient(
-            circle at 26px 16px,
-            var(--warm2) 0 5px,
-            transparent 6.3px
-          ),
-          radial-gradient(
-            circle at 78px 16px,
-            var(--warm3) 0 5px,
-            transparent 6.3px
-          ),
-          radial-gradient(
-            circle at 130px 16px,
-            var(--warm4) 0 5px,
-            transparent 6.3px
-          ),
-          radial-gradient(
-            circle at 182px 16px,
-            var(--warm1) 0 5px,
-            transparent 6.3px
-          );
-        opacity: 0.32;
-        filter: drop-shadow(0 8px 18px rgba(255, 230, 170, 0.14))
-          drop-shadow(0 10px 26px rgba(255, 160, 100, 0.1));
-      }
-
-      .wrap {
-        max-width: var(--max);
-        margin: 0 auto;
-        padding: 0 18px;
-        width: 100%;
-      }
-
-      .nav {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        min-height: 72px;
-        padding: 10px 0;
-        position: relative;
-        z-index: 30;
-      }
-
-      .brand {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        text-decoration: none;
-        color: var(--text);
-        min-width: 180px;
-      }
-
-      .avatar {
-        width: 44px;
-        height: 44px;
-        border-radius: 16px;
-        overflow: hidden;
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        box-shadow: 0 18px 55px rgba(11, 92, 255, 0.22);
-        background: linear-gradient(
-          135deg,
-          rgba(11, 92, 255, 0.9),
-          rgba(24, 208, 196, 0.75)
-        );
-      }
-
-      .brand strong {
-        letter-spacing: 0.4px;
-      }
-
-      .brand small {
-        display: block;
-        color: rgba(238, 242, 255, 0.55);
-        font-size: 12px;
-        font-weight: 800;
-      }
-
-      .nav-right {
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        gap: 8px;
-        flex: 1 1 auto;
-      }
-
-      .nav a.link {
-        color: var(--muted);
-        text-decoration: none;
-        font-weight: 900;
-        padding: 10px 12px;
-        border-radius: 12px;
-        transition: 0.2s;
-        white-space: nowrap;
-      }
-
-      .nav a.link:hover {
-        background: rgba(255, 255, 255, 0.06);
-        color: var(--text);
-        transform: translateY(-1px);
-      }
-
-      .cta {
-        padding: 10px 16px;
-        border-radius: 999px;
-        color: #fff;
-        font-weight: 1000;
-        text-decoration: none;
-        background: linear-gradient(135deg, var(--brand), var(--brand2));
-        box-shadow: 0 18px 55px rgba(11, 92, 255, 0.22);
-        transition: 0.2s;
-        white-space: nowrap;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .cta::after {
-        content: "";
-        position: absolute;
-        inset: -70% -80%;
-        background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent
-              60%);
-        transform: translateX(-40%);
-        opacity: 0;
-        transition: 0.25s;
-        mix-blend-mode: screen;
-      }
-
-      .cta:hover {
-        transform: translateY(-1px) scale(1.02);
-      }
-
-      .cta:hover::after {
-        opacity: 0.9;
-        transform: translateX(30%);
-      }
-
-      .menuBtn {
-        display: none;
-        width: 44px;
-        height: 44px;
-        border-radius: 14px;
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        background: rgba(255, 255, 255, 0.06);
-        color: var(--text);
-        cursor: pointer;
-        align-items: center;
-        justify-content: center;
-        transition: 0.2s;
-      }
-
-      .menuBtn svg {
-        width: 18px;
-        height: 18px;
-        opacity: 0.92;
-      }
-
-      .mnav {
-        position: fixed;
-        inset: 0;
-        z-index: 2000;
-        display: none;
-        background: rgba(5, 7, 13, 0.7);
-        backdrop-filter: blur(18px);
-        -webkit-backdrop-filter: blur(18px);
-      }
-
-      .mnav.open {
-        display: block;
-      }
-
-      .mnav .panel {
-        position: absolute;
-        top: 12px;
-        left: 12px;
-        right: 12px;
-        border-radius: 22px;
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        background: rgba(255, 255, 255, 0.06);
-        box-shadow: 0 30px 100px rgba(0, 0, 0, 0.55);
-        padding: 14px;
-      }
-
-      .mnav .row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 10px;
-      }
-
-      .mnav .close {
-        width: 44px;
-        height: 44px;
-        border-radius: 14px;
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        background: rgba(255, 255, 255, 0.06);
-        color: var(--text);
-        cursor: pointer;
-      }
-
-      .mnav .links {
-        display: grid;
-        gap: 10px;
-        margin-top: 12px;
-      }
-
-      .mnav a {
-        text-decoration: none;
-        color: var(--text);
-        font-weight: 1000;
-        padding: 14px 14px;
-        border-radius: 16px;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        background: rgba(255, 255, 255, 0.04);
-      }
-
-      .mnav a.primary {
-        border: none;
-        background: linear-gradient(135deg, var(--brand), var(--brand2));
-        box-shadow: 0 18px 55px rgba(11, 92, 255, 0.2);
-      }
-
-      section {
-        padding: 72px 0;
-      }
-
-      .hero {
-        padding: 48px 0 26px;
-        min-height: calc(100svh - 150px);
-        display: flex;
-        align-items: center;
-      }
-
-      .grid2 {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
-        align-items: stretch;
-      }
-
-      .card {
-        border-radius: var(--radius);
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        background: rgba(10, 16, 30, 0.34);
-        box-shadow: var(--shadow);
-        position: relative;
-        overflow: hidden;
-        transform: translateZ(0);
-        -webkit-tap-highlight-color: transparent;
-      }
-
-      .card::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: radial-gradient(
-            900px 360px at 14% 8%,
-            rgba(11, 92, 255, 0.18),
-            transparent 60%
-          ),
-          radial-gradient(
-            800px 360px at 92% 42%,
-            rgba(24, 208, 196, 0.12),
-            transparent 62%
-          ),
-          linear-gradient(
-            180deg,
-            rgba(255, 255, 255, 0.1),
-            rgba(255, 255, 255, 0.04)
-          );
-        opacity: 0.9;
-        pointer-events: none;
-      }
-
-      .card > * {
-        position: relative;
-      }
-
-      .glass {
-        backdrop-filter: blur(18px);
-        -webkit-backdrop-filter: blur(18px);
-      }
-
-      @media (hover: hover) {
-        .card {
-          transition: transform 0.22s ease, box-shadow 0.22s ease,
-            border-color 0.22s ease;
-        }
-
-        .card:hover {
-          transform: translateY(-4px);
-          box-shadow: var(--shadow2);
-          border-color: rgba(255, 255, 255, 0.2);
-        }
-      }
-
-      @media (hover: none) {
-        .card {
-          transition: none !important;
-        }
-
-        .card:active {
-          transform: none !important;
-        }
-      }
-
-      .hero-card {
-        padding: 26px;
-        max-width: min(var(--heroMax), 96vw);
-        margin: 0 auto;
-      }
-
-      .hero-top {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-        color: var(--muted);
-        font-weight: 900;
-      }
-
-      .chip {
-        padding: 8px 12px;
-        border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        background: rgba(255, 255, 255, 0.05);
-      }
-
-      h1 {
-        margin: 14px 0 8px;
-        font-size: clamp(30px, 4.6vw, 58px);
-        line-height: 1.06;
-        letter-spacing: -0.8px;
-        text-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
-      }
-
-      .sub {
-        margin: 0;
-        color: rgba(238, 242, 255, 0.74);
-        line-height: 1.75;
-        font-size: 16.2px;
-        max-width: 64ch;
-        text-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-      }
-
-      .hero-actions {
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-        margin-top: 16px;
-      }
-
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        padding: 14px 18px;
-        border-radius: 16px;
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        background: rgba(255, 255, 255, 0.07);
-        color: var(--text);
-        text-decoration: none;
-        font-weight: 1000;
-        transition: 0.2s;
-        min-width: 180px;
-        height: 52px;
-        position: relative;
-        overflow: hidden;
-        touch-action: manipulation;
-      }
-
-      .btn.primary {
-        border: none;
-        background: linear-gradient(135deg, var(--brand), var(--brand2));
-        box-shadow: 0 18px 55px rgba(11, 92, 255, 0.2);
-      }
-
-      @media (hover: hover) {
-        .btn:hover {
-          transform: translateY(-1px);
-        }
-      }
-
-      .tiny {
-        font-size: 13px;
-        line-height: 1.6;
-        color: rgba(238, 242, 255, 0.58);
-      }
-
-      /* promo bar */
-      .promoBar {
-        margin-top: 14px;
-        padding: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-      }
-
-      .promoLeft {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-        min-width: 240px;
-      }
-
-      .promoTitle {
-        font-size: 14px;
-        font-weight: 1000;
-        color: rgba(238, 242, 255, 0.92);
-      }
-
-      .promoSub {
-        font-size: 13px;
-        color: rgba(238, 242, 255, 0.7);
-      }
-
-      .codeBox {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 10px;
-        padding: 12px 14px;
-        border-radius: 18px;
-        border: 1px solid rgba(24, 208, 196, 0.24);
-        background: rgba(255, 255, 255, 0.06);
-        flex: 1;
-        min-height: 54px;
-        cursor: pointer;
-        user-select: none;
-        touch-action: manipulation;
-      }
-
-      .codeText {
-        display: flex;
-        align-items: baseline;
-        gap: 10px;
-        flex-wrap: wrap;
-      }
-
-      .codeLabel {
-        font-size: 12px;
-        font-weight: 900;
-        color: rgba(238, 242, 255, 0.7);
-      }
-
-      .codeValue {
-        font-size: 20px;
-        font-weight: 1100;
-        letter-spacing: 1.6px;
-        color: rgba(238, 242, 255, 0.96);
-        text-transform: uppercase;
-      }
-
-      .copyHint {
-        font-size: 12px;
-        color: rgba(238, 242, 255, 0.65);
-        white-space: nowrap;
-      }
-
-      /* quick start + calculator */
-      .special {
-        padding: 18px;
-      }
-
-      .special-head {
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-        gap: 10px;
-      }
-
-      .special-title {
-        font-weight: 1000;
-        font-size: 18px;
-      }
-
-      .callout {
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 16px;
-        padding: 12px;
-        color: rgba(238, 242, 255, 0.74);
-        line-height: 1.7;
-      }
-
-      .steps {
-        display: grid;
-        gap: 10px;
-        margin-top: 12px;
-      }
-
-      .step {
-        display: flex;
-        gap: 10px;
-        align-items: flex-start;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        background: rgba(255, 255, 255, 0.04);
-        border-radius: 16px;
-        padding: 12px;
-      }
-
-      .n {
-        width: 26px;
-        height: 26px;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 1000;
-        background: linear-gradient(
-          135deg,
-          rgba(11, 92, 255, 0.6),
-          rgba(24, 208, 196, 0.42)
-        );
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        flex: 0 0 auto;
-      }
-
-      .step b {
-        display: block;
-      }
-
-      .step span {
-        display: block;
-        color: rgba(238, 242, 255, 0.64);
-        font-size: 13px;
-        line-height: 1.5;
-        margin-top: 2px;
-      }
-
-      .calcRow {
-        display: grid;
-        gap: 10px;
-        margin-top: 12px;
-      }
-
-      .inp {
-        width: 100%;
-        height: 44px;
-        border-radius: 14px;
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        background: rgba(0, 0, 0, 0.18);
-        color: var(--text);
-        padding: 0 12px;
-        outline: none;
-        font-weight: 900;
-      }
-
-      .quickBtns {
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
-      }
-
-      .qbtn {
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        background: rgba(255, 255, 255, 0.06);
-        color: rgba(238, 242, 255, 0.84);
-        border-radius: 999px;
-        padding: 8px 10px;
-        font-weight: 1000;
-        cursor: pointer;
-        touch-action: manipulation;
-      }
-
-      .resGrid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-      }
-
-      .resBox {
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        background: rgba(255, 255, 255, 0.04);
-        border-radius: 16px;
-        padding: 12px;
-        color: rgba(238, 242, 255, 0.78);
-        min-height: 58px;
-      }
-
-      .resBox b {
-        display: block;
-        color: rgba(238, 242, 255, 0.92);
-      }
-
-      .resBox span {
-        display: block;
-        margin-top: 6px;
-      }
-
-      /* About */
-      .title {
-        display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
-        gap: 12px;
-        margin-bottom: 16px;
-      }
-
-      .title h2 {
-        margin: 0;
-        font-size: 26px;
-        letter-spacing: -0.3px;
-      }
-
-      .title p {
-        margin: 0;
-        color: var(--muted);
-        max-width: 60ch;
-        line-height: 1.6;
-      }
-
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 14px;
-      }
-
-      .feature {
-        padding: 16px;
-        border-radius: 18px;
-        background: rgba(255, 255, 255, 0.04);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        min-height: 96px;
-      }
-
-      .feature b {
-        display: block;
-        margin-top: 2px;
-        font-weight: 1000;
-      }
-
-      .feature span {
-        color: var(--muted);
-        font-size: 13.5px;
-        line-height: 1.5;
-      }
-
-      .about-acc {
-        border-radius: 22px;
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        background: rgba(255, 255, 255, 0.06);
-        padding: 10px 12px;
-      }
-
-      .about-acc summary {
-        cursor: pointer;
-        list-style: none;
-        font-weight: 1000;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 10px;
-        user-select: none;
-        padding: 10px 8px;
-        font-size: 16px;
-      }
-
-      .about-acc summary::-webkit-details-marker {
-        display: none;
-      }
-
-      .chev {
-        opacity: 0.8;
-      }
-
-      /* FAQ */
-      .faq {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-      }
-
-      details.faqItem {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 18px;
-        padding: 14px;
-        overflow: hidden;
-      }
-
-      details.faqItem summary {
-        cursor: pointer;
-        font-weight: 1000;
-        list-style: none;
-      }
-
-      details.faqItem summary::-webkit-details-marker {
-        display: none;
-      }
-
-      details.faqItem p {
-        margin: 10px 0 0;
-        color: var(--muted);
-        line-height: 1.7;
-      }
-
-      footer {
-        padding: 34px 0 64px;
-        color: rgba(238, 242, 255, 0.56);
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        background: rgba(0, 0, 0, 0.18);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-      }
-
-      .foot {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        gap: 14px;
-        flex-wrap: wrap;
-      }
-
-      .foot a {
-        color: rgba(238, 242, 255, 0.76);
-        text-decoration: none;
-      }
-
-      .foot a:hover {
-        color: var(--text);
-      }
-
-      .float {
-        position: fixed;
-        right: 16px;
-        bottom: 16px;
-        z-index: 80;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 10px 12px;
-        border-radius: 999px;
-        border: 1px solid rgba(24, 208, 196, 0.3);
-        background: rgba(5, 7, 13, 0.58);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        box-shadow: 0 22px 70px rgba(0, 0, 0, 0.55);
-        opacity: 0;
-        pointer-events: none;
-        transform: translateY(10px);
-        transition: 0.25s ease;
-      }
-
-      .float.on {
-        opacity: 1;
-        pointer-events: auto;
-        transform: translateY(0);
-      }
-
-      .float .d {
-        width: 10px;
-        height: 10px;
-        border-radius: 999px;
-        background: radial-gradient(circle at 30% 30%, #fff, rgba(24, 208, 196, 0.95));
-        box-shadow: 0 0 18px rgba(24, 208, 196, 0.4);
-      }
-
-      .float .t {
-        font-weight: 1000;
-        font-size: 13px;
-        line-height: 1.1;
-      }
-
-      .float .s {
-        font-size: 12px;
-        color: rgba(238, 242, 255, 0.68);
-        margin-top: 2px;
-      }
-
-      .float .go {
-        margin-left: 6px;
-        padding: 8px 10px;
-        border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        background: rgba(255, 255, 255, 0.04);
-        font-weight: 1000;
-      }
-
-      .toast {
-        position: fixed;
-        left: 50%;
-        bottom: 18px;
-        transform: translateX(-50%);
-        background: rgba(5, 7, 13, 0.72);
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        box-shadow: var(--shadow);
-        border-radius: 16px;
-        padding: 10px 12px;
-        display: none;
-        z-index: 99;
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        max-width: min(760px, calc(100% - 20px));
-      }
-
-      .toast.on {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 999px;
-        background: radial-gradient(circle at 30% 30%, #fff, rgba(24, 208, 196, 0.95));
-        box-shadow: 0 0 18px rgba(24, 208, 196, 0.45);
-      }
-
-      .toast .x {
-        margin-left: auto;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        background: rgba(255, 255, 255, 0.06);
-        color: var(--text);
-        border-radius: 12px;
-        padding: 6px 10px;
-        cursor: pointer;
-        font-weight: 1000;
-      }
-
-      @media (max-width: 980px) {
-        .faq {
-          grid-template-columns: 1fr;
-        }
-        .grid {
-          grid-template-columns: 1fr;
-        }
-        .grid2 {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 720px) {
-        :root {
-          --bgImg: var(--bgMobile);
-        }
-
-        .bg {
-          background-image: linear-gradient(
-              180deg,
-              var(--bgDimMobile),
-              rgba(0, 0, 0, 0.06) 55%,
-              rgba(0, 0, 0, 0.18)
-            ),
-            var(--bgImg);
-          background-position: center top;
-        }
-
-        .bg::after {
-          filter: none;
-          transform: none;
-          height: 180px;
-          background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.18));
-          -webkit-mask-image: none;
-          mask-image: none;
-          opacity: 1;
-        }
-
-        header {
-          padding-bottom: 44px;
-        }
-
-        .garlandStrip {
-          top: 66px;
-          height: 36px;
-        }
-
-        .garlandStrip::before,
-        .garlandStrip::after {
-          background-size: 200px 36px;
-        }
-
-        .nav-right {
-          display: none;
-        }
-
-        .menuBtn {
-          display: flex;
-        }
-
-        .hero {
-          min-height: calc(100svh - 160px);
-          padding: 40px 0 18px;
-        }
-
-        .hero-card {
-          padding: 18px;
-        }
-
-        .sub {
-          font-size: 14.8px;
-        }
-
-        .btn {
-          min-width: 0;
-          width: 100%;
-        }
-
-        .hero-actions {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: 10px;
-        }
-
-        .promoBar {
-          flex-direction: column;
-          align-items: stretch;
-        }
-
-        .promoLeft {
-          min-width: 0;
-        }
-
-        .codeValue {
-          font-size: 18px;
-        }
-
-        .snow {
-          opacity: 0.24;
-          animation-duration: 20s;
-        }
-
-        .snow.s2 {
-          opacity: 0.16;
-        }
-
-        .snow.s3 {
-          opacity: 0.11;
-        }
-
-        .glass {
-          backdrop-filter: blur(10px);
-          -webkit-backdrop-filter: blur(10px);
-        }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        html {
-          scroll-behavior: auto;
-        }
-
-        .snow {
-          animation: none;
-        }
-
-        .cta::after {
-          display: none;
-        }
-
-        .float {
-          transition: none;
-        }
-      }
-    </style>
-  </head>
-
-  <body>
-    <div class="bg" aria-hidden="true"></div>
-    <div class="vignette" aria-hidden="true"></div>
-
-    <div class="snow s1" aria-hidden="true"></div>
-    <div class="snow s2" aria-hidden="true"></div>
-    <div class="snow s3" aria-hidden="true"></div>
-
-    <div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
-
-    <header>
-      <div class="garlandStrip" aria-hidden="true"></div>
-
-      <div class="wrap">
-        <div class="nav">
-          <a class="brand" href="#top">
-            <div class="avatar" aria-hidden="true"></div>
-            <div>
-              <strong>1win Casino</strong>
-              <small>обзор • бонусы • FAQ</small>
-            </div>
-          </a>
-
-          <div class="nav-right">
-            <a class="link" href="#start">Старт</a>
-            <a class="link" href="#about">О 1win</a>
-            <a class="link" href="#faq">FAQ</a>
-            <a
-              class="cta"
-              data-cta
-              href="#"
-              target="_blank"
-              rel="nofollow sponsored noopener"
-              >Перейти на 1win</a
-            >
+      .bg::after{
+        filter:none;
+        transform:none;
+        height:180px;
+        background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,.18));
+        -webkit-mask-image:none;
+        mask-image:none;
+        opacity:1;
+      }
+
+      header{padding-bottom: 44px;}
+      .garlandStrip{top: 66px; height: 36px;}
+      .garlandStrip::before, .garlandStrip::after{background-size: 200px 36px;}
+
+      .nav-right{display:none}
+      .menuBtn{display:flex}
+
+      .hero{min-height: calc(100svh - 160px); padding:40px 0 18px;}
+      .hero-card{padding:18px;}
+      .sub{font-size:14.8px}
+      .btn{min-width:0; width:100%}
+      .hero-actions{display:grid; grid-template-columns:1fr; gap:10px}
+
+      .promoBar{flex-direction:column; align-items:stretch}
+      .promoLeft{min-width:0}
+      .codeValue{font-size:18px}
+
+      .snow{opacity:.24; animation-duration: 20s;}
+      .snow.s2{opacity:.16}
+      .snow.s3{opacity:.11}
+
+      .glass{
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      .snow{animation:none}
+      .cta::after{display:none}
+      .float{transition:none}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <div class="snow s1" aria-hidden="true"></div>
+  <div class="snow s2" aria-hidden="true"></div>
+  <div class="snow s3" aria-hidden="true"></div>
+
+  <div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
+
+  <header>
+    <div class="garlandStrip" aria-hidden="true"></div>
+
+    <div class="wrap">
+      <div class="nav">
+        <a class="brand" href="#top">
+          <div class="avatar" aria-hidden="true"></div>
+          <div>
+            <strong>1win Casino</strong>
+            <small>обзор • бонусы • FAQ</small>
           </div>
+        </a>
 
-          <button class="menuBtn" id="menuOpen" type="button" aria-label="Открыть меню">
-            <svg viewBox="0 0 24 24" fill="none">
-              <path
-                d="M5 7h14M5 12h14M5 17h14"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
-    </header>
-
-    <div class="mnav" id="mnav" aria-hidden="true">
-      <div class="panel glass">
-        <div class="row">
-          <div style="font-weight: 1000">Меню</div>
-          <button class="close" id="menuClose" type="button">✕</button>
+        <div class="nav-right">
+          <a class="link" href="#start">Старт</a>
+          <a class="link" href="#about">О 1win</a>
+          <a class="link" href="#faq">FAQ</a>
+          <a class="cta" data-cta href="#" target="_blank" rel="nofollow sponsored noopener">Перейти на 1win</a>
         </div>
 
-        <div class="links">
-          <a href="#start" class="mLink">Старт</a>
-          <a href="#about" class="mLink">О 1win</a>
-          <a href="#faq" class="mLink">FAQ</a>
-          <a
-            class="primary"
-            data-cta
-            href="#"
-            target="_blank"
-            rel="nofollow sponsored noopener"
-            >Перейти на 1win</a
-          >
-        </div>
+        <button class="menuBtn" id="menuOpen" type="button" aria-label="Открыть меню">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M5 7h14M5 12h14M5 17h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
       </div>
     </div>
+  </header>
 
-    <main id="top">
-      <section class="hero">
-        <div class="wrap">
-          <div class="card glass hero-card">
-            <div class="hero-top">
-              <span class="chip">500% к депозиту</span>
-              <span class="chip">70FS на старт</span>
-              <span class="chip">Промокод <b>SMOG</b> при регистрации</span>
+  <div class="mnav" id="mnav" aria-hidden="true">
+    <div class="panel glass">
+      <div class="row">
+        <div style="font-weight:1000">Меню</div>
+        <button class="close" id="menuClose" type="button">✕</button>
+      </div>
+      <div class="links">
+        <a href="#start" class="mLink">Старт</a>
+        <a href="#about" class="mLink">О 1win</a>
+        <a href="#faq" class="mLink">FAQ</a>
+        <a class="primary" data-cta href="#" target="_blank" rel="nofollow sponsored noopener">Перейти на 1win</a>
+      </div>
+    </div>
+  </div>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <div class="card glass hero-card">
+          <div class="hero-top">
+            <span class="chip">500% к депозиту</span>
+            <span class="chip">70FS на старт</span>
+            <span class="chip">Промокод <b>SMOG</b> при регистрации</span>
+         </div>
+
+          <h1>1win Casino — бонусы и фишки</h1>
+          <p class="sub">
+            Промокод, быстрый старт и короткие ответы на частые вопросы.
+            <br><b>Промокод SMOG вводится при регистрации.</b>
+          </p>
+
+          <!-- ✅ moved promo bar here, removed "Перейти" button inside it -->
+          <div class="card glass promoBar" style="margin-top:14px">
+            <div class="promoLeft">
+              <div class="promoTitle">Промокод на бонус</div>
+              <div class="promoSub">Нажми на код — он скопируется. Промокод вводится <b>при регистрации</b>.</div>
             </div>
 
-            <h1>1win Casino — бонусы и фишки</h1>
-
-            <p class="sub">
-              Промокод, быстрый старт и короткие ответы на частые вопросы. <br /><b
-                >Промокод SMOG вводится при регистрации.</b
-              >
-            </p>
-
-            <!-- ✅ moved promo bar here, removed "Перейти" button inside it -->
-            <div class="card glass promoBar" style="margin-top: 14px">
-              <div class="promoLeft">
-                <div class="promoTitle">Промокод на бонус</div>
-                <div class="promoSub">
-                  Нажми на код — он скопируется. Промокод вводится <b>при регистрации</b>.
-                </div>
+            <div class="codeBox glass" id="promoCopy" role="button" tabindex="0" aria-label="Скопировать промокод SMOG">
+              <div class="codeText">
+                <span class="codeLabel">ПРОМО:</span>
+                <span class="codeValue" id="promoValue">SMOG</span>
+                <span class="codeLabel">500% + 70FS</span>
               </div>
-
-              <div
-                class="codeBox glass"
-                id="promoCopy"
-                role="button"
-                tabindex="0"
-                aria-label="Скопировать промокод SMOG"
-              >
-                <div class="codeText">
-                  <span class="codeLabel">ПРОМО:</span>
-                  <span class="codeValue" id="promoValue">SMOG</span>
-                  <span class="codeLabel">500% + 70FS</span>
-                </div>
-                <div class="copyHint">копировать</div>
-              </div>
+              <div class="copyHint">копировать</div>
             </div>
+          </div>
 
-            <div class="hero-actions">
-              <a
-                class="btn primary"
-                data-cta
-                href="#"
-                target="_blank"
-                rel="nofollow sponsored noopener"
-                >Открыть 1win</a
-              >
-              <a class="btn" href="#start">Быстрый старт</a>
-            </div>
+          <div class="hero-actions">
+            <a class="btn primary" data-cta href="#" target="_blank" rel="nofollow sponsored noopener">Открыть 1win</a>
+            <a class="btn" href="#start">Быстрый старт</a>
+          </div>
 
-            <div class="tiny" style="margin-top: 12px">
-              18+ • Условия бонусов/акций могут меняться — проверяй правила на стороне 1win.
-            </div>
+          <div class="tiny" style="margin-top:12px">
+            18+ • Условия бонусов/акций могут меняться — проверяй правила на стороне 1win.
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="start">
-        <div class="wrap">
-          <div class="title">
-            <div>
-              <h2>Быстрый старт</h2>
-              <p>
-                3 шага за 20 секунд + мини-калькулятор (ориентир по бонусу, без гарантий —
-                условия смотри на стороне 1win).
-              </p>
+    <section id="start">
+      <div class="wrap">
+        <div class="title">
+          <div>
+            <h2>Быстрый старт</h2>
+            <p>3 шага за 20 секунд + мини-калькулятор (ориентир по бонусу, без гарантий — условия смотри на стороне 1win).</p>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="card glass special">
+            <div class="special-head">
+              <div class="special-title">3 шага за 20 секунд</div>
+            </div>
+
+            <div class="steps">
+              <div class="step">
+                <div class="n">1</div>
+                <div>
+                  <b>Открой 1win и зарегистрируйся</b>
+                  <span>Переход откроется в новой вкладке.</span>
+                </div>
+              </div>
+              <div class="step">
+                <div class="n">2</div>
+                <div>
+                  <b>Введи промокод <span style="letter-spacing:1px">SMOG</span> при регистрации</b>
+                  <span>Промокод можно скопировать одним нажатием выше.</span>
+                </div>
+              </div>
+              <div class="step">
+                <div class="n">3</div>
+                <div>
+                  <b>Сделай депозит и активируй бонус</b>
+                  <span>Точные условия/лимиты зависят от правил в аккаунте.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="callout" style="margin-top:12px">
+              <b>Подсказка:</b> регистрация → промокод → депозит. <span class="tiny"> </span>
             </div>
           </div>
 
-          <div class="grid2">
-            <div class="card glass special">
-              <div class="special-head">
-                <div class="special-title">3 шага за 20 секунд</div>
-              </div>
-
-              <div class="steps">
-                <div class="step">
-                  <div class="n">1</div>
-                  <div>
-                    <b>Открой 1win и зарегистрируйся</b>
-                    <span>Переход откроется в новой вкладке.</span>
-                  </div>
-                </div>
-
-                <div class="step">
-                  <div class="n">2</div>
-                  <div>
-                    <b>Введи промокод <span style="letter-spacing: 1px">SMOG</span> при регистрации</b>
-                    <span>Промокод можно скопировать одним нажатием выше.</span>
-                  </div>
-                </div>
-
-                <div class="step">
-                  <div class="n">3</div>
-                  <div>
-                    <b>Сделай депозит и активируй бонус</b>
-                    <span>Точные условия/лимиты зависят от правил в аккаунте.</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="callout" style="margin-top: 12px">
-                <b>Подсказка:</b> регистрация → промокод → депозит.
-                <span class="tiny"></span>
-              </div>
+          <div class="card glass special">
+            <div class="special-head">
+              <div class="special-title">Мини-калькулятор бонуса</div>
             </div>
 
-            <div class="card glass special">
-              <div class="special-head">
-                <div class="special-title">Мини-калькулятор бонуса</div>
+            <div class="calcRow">
+              <input class="inp" id="depInput" inputmode="numeric" placeholder="Депозит (например 1000)" aria-label="Депозит" />
+              <div class="quickBtns" aria-label="Быстрые суммы">
+                <button class="qbtn" type="button" data-amt="500">500 ₽</button>
+                <button class="qbtn" type="button" data-amt="1000">1000 ₽</button>
+                <button class="qbtn" type="button" data-amt="3000">3000 ₽</button>
+                <button class="qbtn" type="button" data-amt="5000">5000 ₽</button>
               </div>
 
-              <div class="calcRow">
-                <input
-                  class="inp"
-                  id="depInput"
-                  inputmode="numeric"
-                  placeholder="Депозит (например 1000)"
-                  aria-label="Депозит"
-                />
-
-                <div class="quickBtns" aria-label="Быстрые суммы">
-                  <button class="qbtn" type="button" data-amt="500">500 ₽</button>
-                  <button class="qbtn" type="button" data-amt="1000">1000 ₽</button>
-                  <button class="qbtn" type="button" data-amt="3000">3000 ₽</button>
-                  <button class="qbtn" type="button" data-amt="5000">5000 ₽</button>
+              <div class="resGrid">
+                <div class="resBox">
+                  <b>Бонус (≈ 500%)</b>
+                  <span id="bonusOut">—</span>
                 </div>
-
-                <div class="resGrid">
-                  <div class="resBox">
-                    <b>Бонус (≈ 500%)</b>
-                    <span id="bonusOut">—</span>
-                  </div>
-                  <div class="resBox">
-                    <b>Итого (депозит + бонус)</b>
-                    <span id="totalOut">—</span>
-                  </div>
+                <div class="resBox">
+                  <b>Итого (депозит + бонус)</b>
+                  <span id="totalOut">—</span>
                 </div>
+              </div>
 
-                <div class="tiny">
-                  Это ориентир по формуле «депозит × 5». Точные условия и лимиты — на стороне 1win.
-                  <br /><b>Промокод SMOG вводится при регистрации.</b>
-                </div>
+              <div class="tiny">
+                Это ориентир по формуле «депозит × 5». Точные условия и лимиты — на стороне 1win.
+                <br><b>Промокод SMOG вводится при регистрации.</b>
+              </div>
 
-                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 2px">
-                  <a
-                    class="btn primary"
-                    data-cta
-                    href="#"
-                    target="_blank"
-                    rel="nofollow sponsored noopener"
-                    style="flex: 1"
-                    >Перейти на 1win</a
-                  >
-                  <button class="btn" type="button" id="copyPromoBtn" style="flex: 1">
-                    Скопировать SMOG
-                  </button>
-                </div>
+              <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:2px">
+                <a class="btn primary" data-cta href="#" target="_blank" rel="nofollow sponsored noopener" style="flex:1">Перейти на 1win</a>
+                <button class="btn" type="button" id="copyPromoBtn" style="flex:1">Скопировать SMOG</button>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="about">
-        <div class="wrap">
-          <div class="title">
-            <div>
-              <h2>О 1win</h2>
-              <p>Коротко по карточкам: помощь, бонусы, игры + мобильная версия, платежи и игровой зал.</p>
-            </div>
+    <section id="about">
+      <div class="wrap">
+        <div class="title">
+          <div>
+            <h2>О 1win</h2>
+            <p>Коротко по карточкам: помощь, бонусы, игры + мобильная версия, платежи и игровой зал.</p>
           </div>
+        </div>
 
-          <details class="about-acc glass" id="aboutDetails">
-            <summary>
-              Раздел «О 1win» — открыть / закрыть
-              <span class="chev">▼</span>
-            </summary>
+        <details class="about-acc glass" id="aboutDetails">
+          <summary>
+            Раздел «О 1win» — открыть / закрыть
+            <span class="chev">▼</span>
+          </summary>
 
-            <div style="margin-top: 12px" class="grid">
-              <div class="card glass feature">
-                <b>Помощь игрокам</b>
-                <span>Поддержка 24/7: онлайн-чат на главной странице, e-mail и телефон.</span>
-              </div>
-              <div class="card glass feature">
-                <b>Бонусы в 1win</b>
-                <span>Приветственные начисления за первые 4 пополнения - (500% +70FS) и еженедельный кэшбэк 30%.</span>
-              </div>
-              <div class="card glass feature">
-                <b>Игры</b>
-                <span>Рулетки, блэкджек, покер, баккара, лайв-казино и слоты с разной тематикой и RTP.</span>
-              </div>
-              <div class="card glass feature">
-                <b>Мобильная версия и приложение</b>
-                <span>Платформа адаптируется под смартфон. Вход без повторной регистрации; приложение доступно для Android и IOS.</span>
-              </div>
-              <div class="card glass feature">
-                <b>Платежи</b>
-                <span>Пополнение — быстро и обычно без комиссии; вывод зависит от метода и может занимать до суток.</span>
-              </div>
-              <div class="card glass feature">
-                <b>Игровой зал</b>
-                <span>Есть демо-режим для ознакомления и игра на деньги. Управление простое, бонус-раунды повышают динамику.</span>
-              </div>
-            </div>
-          </details>
-
-          <div class="grid" id="aboutGridDesktop" style="margin-top: 12px">
+          <div style="margin-top:12px" class="grid">
             <div class="card glass feature">
               <b>Помощь игрокам</b>
               <span>Поддержка 24/7: онлайн-чат на главной странице, e-mail и телефон.</span>
@@ -1570,6 +956,7 @@
               <b>Игры</b>
               <span>Рулетки, блэкджек, покер, баккара, лайв-казино и слоты с разной тематикой и RTP.</span>
             </div>
+
             <div class="card glass feature">
               <b>Мобильная версия и приложение</b>
               <span>Платформа адаптируется под смартфон. Вход без повторной регистрации; приложение доступно для Android и IOS.</span>
@@ -1583,314 +970,279 @@
               <span>Есть демо-режим для ознакомления и игра на деньги. Управление простое, бонус-раунды повышают динамику.</span>
             </div>
           </div>
+        </details>
 
-          <div class="tiny" style="margin-top: 12px">Промокод <b>SMOG</b> вводится <b>при регистрации</b>.</div>
-        </div>
-      </section>
-
-      <section id="faq">
-        <div class="wrap">
-          <div class="title">
-            <div>
-              <h2>FAQ</h2>
-              <p>Частые вопросы — коротко и по делу. <b>Промокод SMOG вводится при регистрации.</b></p>
-            </div>
+        <div class="grid" id="aboutGridDesktop" style="margin-top:12px">
+          <div class="card glass feature">
+            <b>Помощь игрокам</b>
+            <span>Поддержка 24/7: онлайн-чат на главной странице, e-mail и телефон.</span>
+          </div>
+          <div class="card glass feature">
+            <b>Бонусы в 1win</b>
+            <span>Приветственные начисления за первые 4 пополнения - (500% +70FS) и еженедельный кэшбэк 30%.</span>
+          </div>
+          <div class="card glass feature">
+            <b>Игры</b>
+            <span>Рулетки, блэкджек, покер, баккара, лайв-казино и слоты с разной тематикой и RTP.</span>
           </div>
 
-          <div class="faq">
-            <details class="faqItem glass">
-              <summary>Безопасно ли играть на сайте 1win?</summary>
-              <p>
-                Площадка использует меры защиты аккаунтов и данных. Перед игрой проверь актуальные правила, лимиты и
-                юридическую информацию на стороне 1win.
-              </p>
-            </details>
-
-            <details class="faqItem glass">
-              <summary>Во что можно сыграть в 1win?</summary>
-              <p>Доступны настольные игры (рулетка, баккара, блэкджек), лайв-казино с дилером, а также игровые автоматы и другие форматы.</p>
-            </details>
-
-            <details class="faqItem glass">
-              <summary>Зачем нужна верификация?</summary>
-              <p>Подтверждение личности помогает защитить аккаунт. Обычно достаточно номера телефона/почты.</p>
-            </details>
-
-            <details class="faqItem glass">
-              <summary>Где вводить промокод SMOG?</summary>
-              <p><b>При регистрации</b> — в поле промокода (можно скопировать выше одним нажатием).</p>
-            </details>
-
-            <details class="faqItem glass">
-              <summary>Что делать, если бонус не начислился?</summary>
-              <p>Проверь: промокод введён <b>при регистрации</b>, выполнены условия акции и лимиты. Если не помогло — обратись в поддержку 24/7.</p>
-            </details>
-
-            <details class="faqItem glass">
-              <summary>Можно ли играть с телефона?</summary>
-              <p>Да. Есть мобильная версия, а также приложение (если доступно в твоём регионе/на твоей ОС). Вход — в тот же аккаунт.</p>
-            </details>
+          <div class="card glass feature">
+            <b>Мобильная версия и приложение</b>
+            <span>Платформа адаптируется под смартфон. Вход без повторной регистрации; приложение доступно для Android и IOS.</span>
           </div>
-
-          <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px">
-            <a class="btn primary" data-cta href="#" target="_blank" rel="nofollow sponsored noopener">Перейти на 1win</a>
-            <a class="btn" href="#top">Наверх</a>
+          <div class="card glass feature">
+            <b>Платежи</b>
+            <span>Пополнение — быстро и обычно без комиссии; вывод зависит от метода и может занимать до суток.</span>
+          </div>
+          <div class="card glass feature">
+            <b>Игровой зал</b>
+            <span>Есть демо-режим для ознакомления и игра на деньги. Управление простое, бонус-раунды повышают динамику.</span>
           </div>
         </div>
-      </section>
 
-      <footer>
-        <div class="wrap foot">
+        <div class="tiny" style="margin-top:12px">
+          Промокод <b>SMOG</b> вводится <b>при регистрации</b>.
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="wrap">
+        <div class="title">
           <div>
-            <div style="display: flex; align-items: center; gap: 12px">
-              <div class="avatar" aria-hidden="true" style="width: 40px; height: 40px; border-radius: 16px"></div>
-              <div>
-                <div style="font-weight: 1000">1win Casino — обзор</div>
-                <div class="tiny">Промокод SMOG при регистрации • FAQ</div>
-              </div>
-            </div>
-
-            <div class="tiny" style="margin-top: 12px">
-              Информация носит ознакомительный характер. Условия уточняй на стороне 1win.
-            </div>
-          </div>
-
-          <div style="display: flex; gap: 10px; flex-wrap: wrap">
-            <a href="#start">Старт</a>
-            <a href="#about">О 1win</a>
-            <a href="#faq">FAQ</a>
+            <h2>FAQ</h2>
+            <p>Частые вопросы — коротко и по делу. <b>Промокод SMOG вводится при регистрации.</b></p>
           </div>
         </div>
-      </footer>
-    </main>
 
-    <a
-      class="float"
-      id="float"
-      data-cta
-      href="#"
-      target="_blank"
-      rel="nofollow sponsored noopener"
-      aria-label="Перейти на 1win"
-    >
-      <span class="d" aria-hidden="true"></span>
-      <div>
-        <div class="t">Перейти на 1win</div>
-        <div class="s">регистрация / вход</div>
-      </div>
-      <span class="go">GO</span>
-    </a>
+        <div class="faq">
+          <details class="faqItem glass">
+            <summary>Безопасно ли играть на сайте 1win?</summary>
+            <p>Площадка использует меры защиты аккаунтов и данных. Перед игрой проверь актуальные правила, лимиты и юридическую информацию на стороне 1win.</p>
+          </details>
 
-    <div class="toast" id="toast" role="status" aria-live="polite">
-      <span class="dot" aria-hidden="true"></span>
-      <div>
-        <b>Скопировано</b>
-        <div class="tiny" id="toastText"></div>
+          <details class="faqItem glass">
+            <summary>Во что можно сыграть в 1win?</summary>
+            <p>Доступны настольные игры (рулетка, баккара, блэкджек), лайв-казино с дилером, а также игровые автоматы и другие форматы.</p>
+          </details>
+
+          <details class="faqItem glass">
+            <summary>Зачем нужна верификация?</summary>
+            <p>Подтверждение личности помогает защитить аккаунт. Обычно достаточно номера телефона/почты.</p>
+          </details>
+
+          <details class="faqItem glass">
+            <summary>Где вводить промокод SMOG?</summary>
+            <p><b>При регистрации</b> — в поле промокода (можно скопировать выше одним нажатием).</p>
+          </details>
+
+          <details class="faqItem glass">
+            <summary>Что делать, если бонус не начислился?</summary>
+            <p>Проверь: промокод введён <b>при регистрации</b>, выполнены условия акции и лимиты. Если не помогло — обратись в поддержку 24/7.</p>
+          </details>
+
+          <details class="faqItem glass">
+            <summary>Можно ли играть с телефона?</summary>
+            <p>Да. Есть мобильная версия, а также приложение (если доступно в твоём регионе/на твоей ОС). Вход — в тот же аккаунт.</p>
+          </details>
+        </div>
+
+        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:16px">
+          <a class="btn primary" data-cta href="#" target="_blank" rel="nofollow sponsored noopener">Перейти на 1win</a>
+          <a class="btn" href="#top">Наверх</a>
+        </div>
       </div>
-      <button class="x" type="button" id="toastClose">OK</button>
+    </section>
+
+    <footer>
+      <div class="wrap foot">
+        <div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="avatar" aria-hidden="true" style="width:40px;height:40px;border-radius:16px"></div>
+            <div>
+              <div style="font-weight:1000">1win Casino — обзор</div>
+              <div class="tiny">Промокод SMOG при регистрации • FAQ</div>
+            </div>
+          </div>
+          <div class="tiny" style="margin-top:12px">
+            Информация носит ознакомительный характер. Условия уточняй на стороне 1win.
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap">
+          <a href="#start">Старт</a>
+          <a href="#about">О 1win</a>
+          <a href="#faq">FAQ</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <a class="float" id="float" data-cta href="#" target="_blank" rel="nofollow sponsored noopener" aria-label="Перейти на 1win">
+    <span class="d" aria-hidden="true"></span>
+    <div>
+      <div class="t">Перейти на 1win</div>
+      <div class="s">регистрация / вход</div>
     </div>
+    <span class="go">GO</span>
+  </a>
 
-    <script>
-      // ===== Affiliate link =====
-      const AFF = "https://lkts.pro/5024";
-      document.querySelectorAll("[data-cta]").forEach((a) => {
-        a.href = AFF;
-        a.target = "_blank";
-        a.rel = "nofollow sponsored noopener";
-      });
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <span class="dot" aria-hidden="true"></span>
+    <div>
+      <b>Скопировано</b>
+      <div class="tiny" id="toastText"></div>
+    </div>
+    <button class="x" type="button" id="toastClose">OK</button>
+  </div>
 
-      // ===== Mobile menu =====
-      const mnav = document.getElementById("mnav");
-      const menuOpen = document.getElementById("menuOpen");
-      const menuClose = document.getElementById("menuClose");
+  <script>
+    // ===== Affiliate link =====
+    const AFF = "https://lkts.pro/5024";
+    document.querySelectorAll("[data-cta]").forEach(a => {
+      a.href = AFF;
+      a.target = "_blank";
+      a.rel = "nofollow sponsored noopener";
+    });
 
-      menuOpen?.addEventListener("click", () => {
-        mnav.classList.add("open");
-        mnav.setAttribute("aria-hidden", "false");
-      });
+    // ===== Mobile menu =====
+    const mnav = document.getElementById("mnav");
+    const menuOpen = document.getElementById("menuOpen");
+    const menuClose = document.getElementById("menuClose");
+    menuOpen?.addEventListener("click", ()=>{ mnav.classList.add("open"); mnav.setAttribute("aria-hidden","false"); });
+    menuClose?.addEventListener("click", ()=>{ mnav.classList.remove("open"); mnav.setAttribute("aria-hidden","true"); });
+    mnav?.addEventListener("click",(e)=>{ if(e.target === mnav){ mnav.classList.remove("open"); mnav.setAttribute("aria-hidden","true"); } });
+    document.querySelectorAll(".mLink").forEach(a=>{
+      a.addEventListener("click", ()=>{ mnav.classList.remove("open"); mnav.setAttribute("aria-hidden","true"); });
+    });
 
-      menuClose?.addEventListener("click", () => {
-        mnav.classList.remove("open");
-        mnav.setAttribute("aria-hidden", "true");
-      });
+    // ===== Smooth scroll =====
+    document.addEventListener("click", (e) => {
+      const a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+      const id = a.getAttribute("href");
+      const el = document.querySelector(id);
+      if (!el) return;
+      e.preventDefault();
+      el.scrollIntoView({behavior:"smooth", block:"start"});
+      history.replaceState(null, "", id);
+    });
 
-      mnav?.addEventListener("click", (e) => {
-        if (e.target === mnav) {
-          mnav.classList.remove("open");
-          mnav.setAttribute("aria-hidden", "true");
-        }
-      });
+    // ===== Progress + Floating CTA =====
+    const progressBar = document.getElementById("progressBar");
+    const float = document.getElementById("float");
+    function onScroll(){
+      const h = document.documentElement.scrollHeight - innerHeight;
+      const p = h<=0 ? 0 : (scrollY/h);
+      progressBar.style.transform = `scaleX(${p.toFixed(4)})`;
+      if (scrollY > 420) float.classList.add("on"); else float.classList.remove("on");
+    }
+    addEventListener("scroll", onScroll, {passive:true});
+    onScroll();
 
-      document.querySelectorAll(".mLink").forEach((a) => {
-        a.addEventListener("click", () => {
-          mnav.classList.remove("open");
-          mnav.setAttribute("aria-hidden", "true");
-        });
-      });
+    // ===== Toast =====
+    const toast = document.getElementById("toast");
+    const toastText = document.getElementById("toastText");
+    const toastClose = document.getElementById("toastClose");
+    function showToast(text){
+      toastText.textContent = text || "";
+      toast.classList.add("on");
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(()=> toast.classList.remove("on"), 2400);
+    }
+    toastClose?.addEventListener("click", ()=> toast.classList.remove("on"));
 
-      // ===== Smooth scroll =====
-      document.addEventListener("click", (e) => {
-        const a = e.target.closest('a[href^="#"]');
-        if (!a) return;
-
-        const id = a.getAttribute("href");
-        const el = document.querySelector(id);
-        if (!el) return;
-
-        e.preventDefault();
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-        history.replaceState(null, "", id);
-      });
-
-      // ===== Progress + Floating CTA =====
-      const progressBar = document.getElementById("progressBar");
-      const float = document.getElementById("float");
-
-      function onScroll() {
-        const h = document.documentElement.scrollHeight - innerHeight;
-        const p = h <= 0 ? 0 : scrollY / h;
-
-        // FIX: transform value must be a string
-        progressBar.style.transform = `scaleX(${p.toFixed(4)})`;
-
-        if (scrollY > 420) float.classList.add("on");
-        else float.classList.remove("on");
-      }
-
-      addEventListener("scroll", onScroll, { passive: true });
-      onScroll();
-
-      // ===== Toast =====
-      const toast = document.getElementById("toast");
-      const toastText = document.getElementById("toastText");
-      const toastClose = document.getElementById("toastClose");
-
-      function showToast(text) {
-        toastText.textContent = text || "";
-        toast.classList.add("on");
-        clearTimeout(showToast._t);
-        showToast._t = setTimeout(() => toast.classList.remove("on"), 2400);
-      }
-
-      toastClose?.addEventListener("click", () => toast.classList.remove("on"));
-
-      // ===== Copy helpers =====
-      const promoValue = "SMOG";
-
-      async function copyText(txt) {
-        try {
-          await navigator.clipboard.writeText(txt);
+    // ===== Copy helpers =====
+    const promoValue = "SMOG";
+    async function copyText(txt){
+      try{
+        await navigator.clipboard.writeText(txt);
+        return true;
+      }catch{
+        try{
+          const ta = document.createElement("textarea");
+          ta.value = txt;
+          ta.style.position = "fixed";
+          ta.style.left = "-9999px";
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          ta.remove();
           return true;
-        } catch {
-          try {
-            const ta = document.createElement("textarea");
-            ta.value = txt;
-            ta.style.position = "fixed";
-            ta.style.left = "-9999px";
-            document.body.appendChild(ta);
-            ta.select();
-            document.execCommand("copy");
-            ta.remove();
-            return true;
-          } catch {
-            return false;
-          }
+        }catch{
+          return false;
         }
       }
+    }
 
-      function attachCopy(el) {
-        if (!el) return;
-
-        const run = () =>
-          copyText(promoValue).then((ok) => {
-            showToast(
-              ok
-                ? "Промокод: " + promoValue + " (вводится при регистрации)"
-                : "Не удалось скопировать"
-            );
-          });
-
-        el.addEventListener("click", run);
-        el.addEventListener("keydown", (e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            run();
-          }
-        });
-      }
-
-      attachCopy(document.getElementById("promoCopy"));
-
-      document.getElementById("copyPromoBtn")?.addEventListener("click", () => {
-        copyText(promoValue).then((ok) => {
-          showToast(
-            ok ? "Промокод: " + promoValue + " (при регистрации)" : "Не удалось скопировать"
-          );
-        });
+    function attachCopy(el){
+      if(!el) return;
+      const run = ()=> copyText(promoValue).then(ok=>{
+        showToast(ok ? ("Промокод: " + promoValue + " (вводится при регистрации)") : "Не удалось скопировать");
       });
-
-      // ===== Calculator =====
-      const depInput = document.getElementById("depInput");
-      const bonusOut = document.getElementById("bonusOut");
-      const totalOut = document.getElementById("totalOut");
-
-      function fmt(n) {
-        if (!Number.isFinite(n)) return "—";
-        return n.toLocaleString("ru-RU") + " ₽";
-      }
-
-      function recalc(val) {
-        const dep = Math.max(
-          0,
-          Math.floor(Number(String(val).replace(/[^\d]/g, "")) || 0)
-        );
-
-        if (dep <= 0) {
-          bonusOut.textContent = "—";
-          totalOut.textContent = "—";
-          return;
-        }
-
-        const bonus = dep * 5; // 500%
-        const total = dep + bonus;
-
-        bonusOut.textContent = fmt(bonus);
-        totalOut.textContent = fmt(total);
-      }
-
-      depInput?.addEventListener("input", (e) => recalc(e.target.value));
-
-      document.querySelectorAll("[data-amt]").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const amt = Number(btn.getAttribute("data-amt")) || 0;
-          depInput.value = String(amt);
-          recalc(amt);
-        });
+      el.addEventListener("click", run);
+      el.addEventListener("keydown", (e)=>{
+        if(e.key === "Enter" || e.key === " "){ e.preventDefault(); run(); }
       });
+    }
+    attachCopy(document.getElementById("promoCopy"));
 
-      // ===== About: mobile closed by default, desktop grid shown =====
-      const aboutDetails = document.getElementById("aboutDetails");
-      const aboutGridDesktop = document.getElementById("aboutGridDesktop");
-      const mq = matchMedia("(max-width: 720px)");
+    document.getElementById("copyPromoBtn")?.addEventListener("click", ()=> {
+      copyText(promoValue).then(ok=>{
+        showToast(ok ? ("Промокод: " + promoValue + " (при регистрации)") : "Не удалось скопировать");
+      });
+    });
 
-      function syncAbout() {
-        if (mq.matches) {
-          aboutGridDesktop.style.display = "none";
-          aboutDetails.style.display = "block";
+    // ===== Calculator =====
+    const depInput = document.getElementById("depInput");
+    const bonusOut = document.getElementById("bonusOut");
+    const totalOut = document.getElementById("totalOut");
 
-          if (!aboutDetails.dataset.inited) {
-            aboutDetails.open = false;
-            aboutDetails.dataset.inited = "1";
-          }
-        } else {
-          aboutGridDesktop.style.display = "grid";
-          aboutDetails.style.display = "none";
-          aboutDetails.open = true;
-        }
+    function fmt(n){
+      if(!Number.isFinite(n)) return "—";
+      return n.toLocaleString("ru-RU") + " ₽";
+    }
+    function recalc(val){
+      const dep = Math.max(0, Math.floor(Number(String(val).replace(/[^\d]/g,'')) || 0));
+      if(dep <= 0){
+        bonusOut.textContent = "—";
+        totalOut.textContent = "—";
+        return;
       }
+      const bonus = dep * 5; // 500%
+      const total = dep + bonus;
+      bonusOut.textContent = fmt(bonus);
+      totalOut.textContent = fmt(total);
+    }
+    depInput?.addEventListener("input", (e)=> recalc(e.target.value));
+    document.querySelectorAll("[data-amt]").forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        const amt = Number(btn.getAttribute("data-amt")) || 0;
+        depInput.value = String(amt);
+        recalc(amt);
+      });
+    });
 
-      syncAbout();
-      mq.addEventListener("change", syncAbout);
-    </script>
-  </body>
+    // ===== About: mobile closed by default, desktop grid shown =====
+    const aboutDetails = document.getElementById("aboutDetails");
+    const aboutGridDesktop = document.getElementById("aboutGridDesktop");
+    const mq = matchMedia("(max-width: 720px)");
+
+    function syncAbout(){
+      if(mq.matches){
+        aboutGridDesktop.style.display = "none";
+        aboutDetails.style.display = "block";
+        if(!aboutDetails.dataset.inited){
+          aboutDetails.open = false;
+          aboutDetails.dataset.inited = "1";
+        }
+      }else{
+        aboutGridDesktop.style.display = "grid";
+        aboutDetails.style.display = "none";
+        aboutDetails.open = true;
+      }
+    }
+    syncAbout();
+    mq.addEventListener("change", syncAbout);
+  </script>
+</body>
 </html>
