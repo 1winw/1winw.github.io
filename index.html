@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#05070d" />
   <title>1win Casino — бонусы, промокод, FAQ</title>
-  <meta name="description" content="1win: промокод SMOG при регистрации, быстрый старт, мини-калькулятор бонуса, FAQ. 18+." />
+  <meta name="description" content="1win: промокод SMOG при регистрации, быстрый старт, мини-калькулятор бонуса, FAQ." />
   <meta name="robots" content="index,follow,max-image-preview:large" />
 
   <script>document.documentElement.classList.add('js');</script>
@@ -78,7 +78,7 @@
       background-position: center top;
       background-repeat:no-repeat;
     }
-    /* smooth bottom “blend/blur” to avoid any hard edge feeling */
+    /* smooth bottom “blend/blur” */
     .bg::after{
       content:"";
       position:absolute; left:0; right:0; bottom:-40px;
@@ -92,7 +92,6 @@
       mask-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1));
       pointer-events:none;
     }
-    /* vignette for premium depth */
     .vignette{
       position:fixed; inset:0; z-index:-28;
       pointer-events:none;
@@ -110,7 +109,7 @@
       position:fixed; inset:0; z-index:-26;
       pointer-events:none;
       mix-blend-mode: screen;
-      opacity:.26; /* усилено */
+      opacity:.26;
       background-image:
         radial-gradient(circle, rgba(255,255,255,.60) 0 1.2px, transparent 1.9px),
         radial-gradient(circle, rgba(255,255,255,.46) 0 1.0px, transparent 1.8px),
@@ -136,7 +135,6 @@
       to{ background-position: 120px 1400px, -160px 1500px, 200px 1600px; }
     }
 
-    /* ===== Progress ===== */
     .progress{
       position:fixed; top:0; left:0; right:0; height:3px;
       z-index:1000;
@@ -150,7 +148,6 @@
       box-shadow:0 10px 25px rgba(11,92,255,.25);
     }
 
-    /* ===== Header + Garland ===== */
     header{
       position:sticky; top:0; z-index:50;
       backdrop-filter: blur(14px);
@@ -158,7 +155,7 @@
       background: rgba(5,7,13,.52);
       border-bottom:.5px solid var(--line);
       isolation:isolate;
-      padding-bottom: 40px; /* place for garland */
+      padding-bottom: 40px;
     }
     header::after{
       content:"";
@@ -171,19 +168,16 @@
       pointer-events:none;
       z-index:1;
     }
+
     .garlandStrip{
-      position:absolute;
-      left:0; right:0;
-      top: 70px;
-      height: 34px;
+      position:absolute; left:0; right:0;
+      top: 70px; height: 34px;
       z-index: 20;
       pointer-events:none;
-
       background-image: var(--garlandWire);
       background-repeat: repeat-x;
       background-size: 1200px 60px;
       background-position: center;
-
       filter:
         drop-shadow(0 14px 34px rgba(255,190,120,.20))
         drop-shadow(0 12px 30px rgba(255,150,90,.12));
@@ -191,8 +185,7 @@
     }
     .garlandStrip::before{
       content:"";
-      position:absolute;
-      inset:0;
+      position:absolute; inset:0;
       background-repeat: repeat-x;
       background-size: 200px 34px;
       background-position: 0 0;
@@ -208,8 +201,7 @@
     }
     .garlandStrip::after{
       content:"";
-      position:absolute;
-      inset:0;
+      position:absolute; inset:0;
       background-repeat: repeat-x;
       background-size: 200px 34px;
       background-position: 100px 0;
@@ -233,8 +225,7 @@
     .nav{
       display:flex; align-items:center; justify-content:space-between;
       gap:12px; min-height:72px; padding:10px 0;
-      position:relative;
-      z-index:30;
+      position:relative; z-index:30;
     }
     .brand{
       display:flex; align-items:center; gap:12px;
@@ -351,7 +342,6 @@
       box-shadow:0 18px 55px rgba(11,92,255,.20);
     }
 
-    /* ===== Sections ===== */
     section{padding:72px 0}
     .hero{
       padding:48px 0 26px;
@@ -367,7 +357,6 @@
       align-items:stretch;
     }
 
-    /* Glass card */
     .card{
       border-radius:var(--radius);
       border:1px solid rgba(255,255,255,.14);
@@ -390,13 +379,11 @@
     }
     .card > *{position:relative}
 
-    /* real blur like other cards */
     .glass{
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
     }
 
-    /* hover only on desktop pointers */
     @media (hover:hover){
       .card{transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;}
       .card:hover{
@@ -405,7 +392,6 @@
         border-color: rgba(255,255,255,.20);
       }
     }
-    /* no “light/lag” on touch */
     @media (hover:none){
       .card{transition:none !important}
       .card:active{transform:none !important}
@@ -467,28 +453,13 @@
       .btn:hover{transform: translateY(-1px)}
     }
 
-    /* Promo pill copy inside hero (for mobile too) */
-    .promoPill{
-      margin-top:14px;
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-      padding:12px 14px;
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      cursor:pointer;
-      user-select:none;
-      touch-action: manipulation;
-    }
-    .promoPill b{letter-spacing:1.2px}
-    .promoPill .hint{font-size:12px;color:rgba(238,242,255,.60);white-space:nowrap}
-
     .tiny{
       font-size:13px;
       line-height:1.6;
       color:rgba(238,242,255,.58);
     }
 
-    /* promo bar under hero */
+    /* promo bar */
     .promoBar{
       margin-top:14px;
       padding:16px;
@@ -615,7 +586,6 @@
     .feature b{display:block; margin-top:2px; font-weight:1000}
     .feature span{color:var(--muted); font-size:13.5px; line-height:1.5}
 
-    /* About accordion (mobile) */
     .about-acc{
       border-radius:22px;
       border:1px solid rgba(255,255,255,.14);
@@ -674,7 +644,6 @@
     .foot a{color:rgba(238,242,255,.76); text-decoration:none}
     .foot a:hover{color:var(--text)}
 
-    /* Floating CTA */
     .float{
       position:fixed;right:16px;bottom:16px;z-index:80;
       display:flex;align-items:center;gap:10px;
@@ -695,7 +664,6 @@
     .float .s{font-size:12px;color: rgba(238,242,255,.68);margin-top:2px}
     .float .go{margin-left:6px;padding:8px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background: rgba(255,255,255,.04);font-weight:1000;}
 
-    /* Toast */
     .toast{
       position:fixed;left:50%;bottom:18px;transform: translateX(-50%);
       background: rgba(5,7,13,.72);
@@ -717,7 +685,6 @@
       border-radius:12px;padding:6px 10px;cursor:pointer;font-weight:1000;
     }
 
-    /* ===== Responsive ===== */
     @media (max-width: 980px){
       .faq{grid-template-columns:1fr}
       .grid{grid-template-columns:1fr}
@@ -725,16 +692,13 @@
     }
 
     @media (max-width: 720px){
-      :root{
-        --bgImg: var(--bgMobile);
-      }
+      :root{ --bgImg: var(--bgMobile); }
       .bg{
         background-image:
           linear-gradient(180deg, var(--bgDimMobile), rgba(0,0,0,.06) 55%, rgba(0,0,0,.18)),
           var(--bgImg);
         background-position: center top;
       }
-      /* mobile: no heavy blur layer */
       .bg::after{
         filter:none;
         transform:none;
@@ -766,7 +730,6 @@
       .snow.s2{opacity:.16}
       .snow.s3{opacity:.11}
 
-      /* reduce blur cost on mobile to remove lag */
       .glass{
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
@@ -786,7 +749,6 @@
   <div class="bg" aria-hidden="true"></div>
   <div class="vignette" aria-hidden="true"></div>
 
-  <!-- snow behind content -->
   <div class="snow s1" aria-hidden="true"></div>
   <div class="snow s2" aria-hidden="true"></div>
   <div class="snow s3" aria-hidden="true"></div>
@@ -802,7 +764,7 @@
           <div class="avatar" aria-hidden="true"></div>
           <div>
             <strong>1win Casino</strong>
-            <small>обзор • бонусы • FAQ • 18+</small>
+            <small>обзор • бонусы • FAQ</small>
           </div>
         </a>
 
@@ -822,7 +784,6 @@
     </div>
   </header>
 
-  <!-- Mobile menu -->
   <div class="mnav" id="mnav" aria-hidden="true">
     <div class="panel glass">
       <div class="row">
@@ -839,7 +800,6 @@
   </div>
 
   <main id="top">
-    <!-- HERO -->
     <section class="hero">
       <div class="wrap">
         <div class="card glass hero-card">
@@ -847,38 +807,16 @@
             <span class="chip">500% к депозиту</span>
             <span class="chip">70FS на старт</span>
             <span class="chip">Промокод <b>SMOG</b> при регистрации</span>
-            <span class="chip">18+</span>
-          </div>
+         </div>
 
           <h1>1win Casino — бонусы и фишки</h1>
           <p class="sub">
-            Промокод, быстрый старт и короткие ответы на частые вопросы — оформлено в премиальном стиле.
+            Промокод, быстрый старт и короткие ответы на частые вопросы.
             <br><b>Промокод SMOG вводится при регистрации.</b>
           </p>
 
-          <!-- copy on hero (works on mobile) -->
-          <div class="promoPill glass" id="heroPromoCopy" role="button" tabindex="0" aria-label="Скопировать промокод SMOG">
-            <div>
-              <div class="tiny" style="margin-bottom:4px">ПРОМОКОД</div>
-              <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap">
-                <b style="font-size:18px;letter-spacing:1.2px">SMOG</b>
-                <span class="tiny">вводится при регистрации</span>
-              </div>
-            </div>
-            <div class="hint">нажми — скопировать</div>
-          </div>
-
-          <div class="hero-actions">
-            <a class="btn primary" data-cta href="#" target="_blank" rel="nofollow sponsored noopener">Открыть 1win</a>
-            <a class="btn" href="#start">Быстрый старт</a>
-          </div>
-
-          <div class="tiny" style="margin-top:12px">
-            18+ • Условия бонусов/акций могут меняться — проверяй правила на стороне 1win.
-          </div>
-
-          <!-- Promo bar -->
-          <div class="card glass promoBar" style="margin-top:16px">
+          <!-- ✅ moved promo bar here, removed "Перейти" button inside it -->
+          <div class="card glass promoBar" style="margin-top:14px">
             <div class="promoLeft">
               <div class="promoTitle">Промокод на бонус</div>
               <div class="promoSub">Нажми на код — он скопируется. Промокод вводится <b>при регистрации</b>.</div>
@@ -892,14 +830,20 @@
               </div>
               <div class="copyHint">копировать</div>
             </div>
+          </div>
 
-            <a class="btn primary" data-cta href="#" target="_blank" rel="nofollow sponsored noopener" style="min-width:160px">Перейти</a>
+          <div class="hero-actions">
+            <a class="btn primary" data-cta href="#" target="_blank" rel="nofollow sponsored noopener">Открыть 1win</a>
+            <a class="btn" href="#start">Быстрый старт</a>
+          </div>
+
+          <div class="tiny" style="margin-top:12px">
+            18+ • Условия бонусов/акций могут меняться — проверяй правила на стороне 1win.
           </div>
         </div>
       </div>
     </section>
 
-    <!-- QUICK START -->
     <section id="start">
       <div class="wrap">
         <div class="title">
@@ -940,7 +884,7 @@
             </div>
 
             <div class="callout" style="margin-top:12px">
-              <b>Подсказка:</b> регистрация → промокод → депозит. <span class="tiny">18+</span>
+              <b>Подсказка:</b> регистрация → промокод → депозит. <span class="tiny"> </span>
             </div>
           </div>
 
@@ -984,7 +928,6 @@
       </div>
     </section>
 
-    <!-- ABOUT -->
     <section id="about">
       <div class="wrap">
         <div class="title">
@@ -994,7 +937,6 @@
           </div>
         </div>
 
-        <!-- mobile collapsible -->
         <details class="about-acc glass" id="aboutDetails">
           <summary>
             Раздел «О 1win» — открыть / закрыть
@@ -1008,7 +950,7 @@
             </div>
             <div class="card glass feature">
               <b>Бонусы в 1win</b>
-              <span>Приветственные начисления за первые пополнения (до 500% суммарно) и еженедельный кэшбэк 1–20%.</span>
+              <span>Приветственные начисления за первые 4 пополнения - (500% +70FS) и еженедельный кэшбэк 30%.</span>
             </div>
             <div class="card glass feature">
               <b>Игры</b>
@@ -1017,7 +959,7 @@
 
             <div class="card glass feature">
               <b>Мобильная версия и приложение</b>
-              <span>Платформа адаптируется под смартфон. Вход без повторной регистрации; приложение доступно для Android.</span>
+              <span>Платформа адаптируется под смартфон. Вход без повторной регистрации; приложение доступно для Android и IOS.</span>
             </div>
             <div class="card glass feature">
               <b>Платежи</b>
@@ -1030,7 +972,6 @@
           </div>
         </details>
 
-        <!-- desktop grid (shown via CSS on wide screens) -->
         <div class="grid" id="aboutGridDesktop" style="margin-top:12px">
           <div class="card glass feature">
             <b>Помощь игрокам</b>
@@ -1038,7 +979,7 @@
           </div>
           <div class="card glass feature">
             <b>Бонусы в 1win</b>
-            <span>Приветственные начисления за первые пополнения (до 500% суммарно) и еженедельный кэшбэк 1–20%.</span>
+            <span>Приветственные начисления за первые 4 пополнения - (500% +70FS) и еженедельный кэшбэк 30%.</span>
           </div>
           <div class="card glass feature">
             <b>Игры</b>
@@ -1047,7 +988,7 @@
 
           <div class="card glass feature">
             <b>Мобильная версия и приложение</b>
-            <span>Платформа адаптируется под смартфон. Вход без повторной регистрации; приложение доступно для Android.</span>
+            <span>Платформа адаптируется под смартфон. Вход без повторной регистрации; приложение доступно для Android и IOS.</span>
           </div>
           <div class="card glass feature">
             <b>Платежи</b>
@@ -1060,12 +1001,11 @@
         </div>
 
         <div class="tiny" style="margin-top:12px">
-          Промокод <b>SMOG</b> вводится <b>при регистрации</b>. 18+
+          Промокод <b>SMOG</b> вводится <b>при регистрации</b>.
         </div>
       </div>
     </section>
 
-    <!-- FAQ -->
     <section id="faq">
       <div class="wrap">
         <div class="title">
@@ -1088,7 +1028,7 @@
 
           <details class="faqItem glass">
             <summary>Зачем нужна верификация?</summary>
-            <p>Подтверждение личности помогает защитить аккаунт и выполнить требования по возрасту. Обычно достаточно фото/скана документа по правилам сервиса.</p>
+            <p>Подтверждение личности помогает защитить аккаунт. Обычно достаточно номера телефона/почты.</p>
           </details>
 
           <details class="faqItem glass">
@@ -1121,11 +1061,11 @@
             <div class="avatar" aria-hidden="true" style="width:40px;height:40px;border-radius:16px"></div>
             <div>
               <div style="font-weight:1000">1win Casino — обзор</div>
-              <div class="tiny">Промокод SMOG при регистрации • FAQ • 18+</div>
+              <div class="tiny">Промокод SMOG при регистрации • FAQ</div>
             </div>
           </div>
           <div class="tiny" style="margin-top:12px">
-            18+ • Информация носит ознакомительный характер. Условия уточняй на стороне 1win.
+            Информация носит ознакомительный характер. Условия уточняй на стороне 1win.
           </div>
         </div>
         <div style="display:flex; gap:10px; flex-wrap:wrap">
@@ -1157,7 +1097,7 @@
 
   <script>
     // ===== Affiliate link =====
-    const AFF = "https://1wfafs.life/casino/list?open=register&p=7jns";
+    const AFF = "https://lkts.pro/5024";
     document.querySelectorAll("[data-cta]").forEach(a => {
       a.href = AFF;
       a.target = "_blank";
@@ -1244,9 +1184,8 @@
         if(e.key === "Enter" || e.key === " "){ e.preventDefault(); run(); }
       });
     }
-
     attachCopy(document.getElementById("promoCopy"));
-    attachCopy(document.getElementById("heroPromoCopy"));
+
     document.getElementById("copyPromoBtn")?.addEventListener("click", ()=> {
       copyText(promoValue).then(ok=>{
         showToast(ok ? ("Промокод: " + promoValue + " (при регистрации)") : "Не удалось скопировать");
@@ -1283,26 +1222,23 @@
       });
     });
 
-    // ===== About: mobile closed by default, desktop open =====
+    // ===== About: mobile closed by default, desktop grid shown =====
     const aboutDetails = document.getElementById("aboutDetails");
     const aboutGridDesktop = document.getElementById("aboutGridDesktop");
     const mq = matchMedia("(max-width: 720px)");
 
     function syncAbout(){
       if(mq.matches){
-        // mobile: show accordion, hide desktop grid, keep CLOSED by default
         aboutGridDesktop.style.display = "none";
         aboutDetails.style.display = "block";
-        // only force close on first load; do not auto-close on scroll
         if(!aboutDetails.dataset.inited){
           aboutDetails.open = false;
           aboutDetails.dataset.inited = "1";
         }
       }else{
-        // desktop: show grid, hide accordion
         aboutGridDesktop.style.display = "grid";
         aboutDetails.style.display = "none";
-        aboutDetails.open = true; // not visible anyway
+        aboutDetails.open = true;
       }
     }
     syncAbout();
