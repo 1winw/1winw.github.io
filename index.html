@@ -8,10 +8,6 @@
   <meta name="description" content="1win: промокод SMOG при регистрации, быстрый старт, мини-калькулятор бонуса, FAQ." />
   <meta name="robots" content="index,follow,max-image-preview:large" />
 
-  <!-- favicon (чтобы лого было и во вкладке) -->
-  <link rel="icon" href="logo.png" />
-  <link rel="apple-touch-icon" href="logo.png" />
-
   <script>document.documentElement.classList.add('js');</script>
 
   <style>
@@ -20,6 +16,7 @@
       --text:#eef2ff;
       --muted:rgba(238,242,255,.72);
       --line:rgba(255,255,255,.10);
+      --line2:rgba(255,255,255,.12);
 
       --brand:#0b5cff;
       --brand2:#18d0c4;
@@ -31,14 +28,19 @@
       --max: 1200px;
       --heroMax: 1200px;
 
-      /* ✅ фон: десктоп / мобила */
+      /* ✅ IMPORTANT FILES */
+      --logo: url("logo.png");
+
+      /* bg images */
       --bgDesktop: url("hero-desktop.png");
       --bgMobile: url("hero-mobile.png");
       --bgImg: var(--bgDesktop);
 
+      /* slight darkening */
       --bgDim: rgba(0,0,0,.18);
       --bgDimMobile: rgba(0,0,0,.20);
 
+      /* warm garland palette */
       --warm1: rgba(255,196,120,1);
       --warm2: rgba(255,234,190,1);
       --warm3: rgba(255,115,115,1);
@@ -50,12 +52,7 @@
     }
 
     *{box-sizing:border-box}
-    html, body{
-      width:100%;
-      max-width:100%;
-      overflow-x:hidden;
-      overscroll-behavior-x: none;
-    }
+    html, body{width:100%;max-width:100%;overflow-x:hidden;overscroll-behavior-x:none;}
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -68,7 +65,7 @@
     img, svg{max-width:100%; height:auto;}
     html{scroll-behavior:smooth}
 
-    /* ===== BG ===== */
+    /* ===== FULL-PAGE BG ===== */
     .bg{
       position:fixed; inset:0; z-index:-30;
       background-image:
@@ -77,6 +74,7 @@
       background-size: cover;
       background-position: center top;
       background-repeat:no-repeat;
+      transform: translateZ(0);
     }
     .bg::after{
       content:"";
@@ -91,7 +89,6 @@
       mask-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1));
       pointer-events:none;
     }
-
     .vignette{
       position:fixed; inset:0; z-index:-28;
       pointer-events:none;
@@ -104,7 +101,7 @@
       opacity:.85;
     }
 
-    /* Snow */
+    /* ===== Snow ===== */
     .snow{
       position:fixed; inset:0; z-index:-26;
       pointer-events:none;
@@ -118,22 +115,9 @@
       background-position: 0 -240px, 0 -520px, 0 -760px;
       animation: snowFall 16s linear infinite;
     }
-    .snow.s2{
-      opacity:.18;
-      background-size: 240px 240px, 380px 380px, 520px 520px;
-      animation-duration: 22s;
-      animation-direction: reverse;
-      filter: blur(.2px);
-    }
-    .snow.s3{
-      opacity:.12;
-      background-size: 340px 340px, 520px 520px, 760px 760px;
-      animation-duration: 30s;
-      filter: blur(.35px);
-    }
-    @keyframes snowFall{
-      to{ background-position: 120px 1400px, -160px 1500px, 200px 1600px; }
-    }
+    .snow.s2{opacity:.18;background-size:240px 240px,380px 380px,520px 520px;animation-duration:22s;animation-direction:reverse;filter:blur(.2px)}
+    .snow.s3{opacity:.12;background-size:340px 340px,520px 520px,760px 760px;animation-duration:30s;filter:blur(.35px)}
+    @keyframes snowFall{to{ background-position: 120px 1400px, -160px 1500px, 200px 1600px; }}
 
     .progress{
       position:fixed; top:0; left:0; right:0; height:3px;
@@ -150,8 +134,8 @@
 
     header{
       position:sticky; top:0; z-index:50;
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(16px) saturate(140%);
+      -webkit-backdrop-filter: blur(16px) saturate(140%);
       background: rgba(5,7,13,.52);
       border-bottom:.5px solid var(--line);
       isolation:isolate;
@@ -182,7 +166,10 @@
         drop-shadow(0 14px 34px rgba(255,190,120,.20))
         drop-shadow(0 12px 30px rgba(255,150,90,.12));
       opacity: 1;
+      animation: wireFloat 6.5s ease-in-out infinite;
     }
+    @keyframes wireFloat{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(2px)} }
+
     .garlandStrip::before{
       content:"";
       position:absolute; inset:0;
@@ -198,8 +185,9 @@
       filter:
         drop-shadow(0 8px 18px rgba(255,214,140,.22))
         drop-shadow(0 10px 26px rgba(255,165,100,.12));
-      animation: twinkle 3.8s ease-in-out infinite;
+      animation: bulbsGlow 2.8s ease-in-out infinite;
     }
+    @keyframes bulbsGlow{ 0%,100%{opacity:.82} 50%{opacity:1} }
     .garlandStrip::after{
       content:"";
       position:absolute; inset:0;
@@ -215,55 +203,37 @@
       filter:
         drop-shadow(0 8px 18px rgba(255,230,170,.14))
         drop-shadow(0 10px 26px rgba(255,160,100,.10));
-      animation: twinkle 4.6s ease-in-out infinite reverse;
-    }
-    @keyframes twinkle{
-      0%,100%{opacity:.95}
-      50%{opacity:.62}
     }
 
-    .wrap{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:0 18px;
-      width:100%;
-    }
-
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 18px; width:100%;}
     .nav{
       display:flex; align-items:center; justify-content:space-between;
       gap:12px; min-height:72px; padding:10px 0;
       position:relative; z-index:30;
     }
-
     .brand{
       display:flex; align-items:center; gap:12px;
       text-decoration:none; color:var(--text);
-      min-width:180px;
+      min-width:0;
     }
 
-    /* ✅ ЛОГО (чтобы показывалось) */
+    /* ✅ LOGO (первое фото) */
     .avatar{
       width:44px; height:44px; border-radius:16px;
       overflow:hidden;
       border:1px solid rgba(255,255,255,.14);
       box-shadow:0 18px 55px rgba(11,92,255,.22);
-      background: linear-gradient(135deg, rgba(11,92,255,.9), rgba(24,208,196,.75));
-      display:flex; align-items:center; justify-content:center;
-    }
-    .avatar img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
+      background-image: var(--logo), linear-gradient(135deg, rgba(11,92,255,.9), rgba(24,208,196,.75));
+      background-size: cover, cover;
+      background-position: center, center;
+      background-repeat:no-repeat, no-repeat;
+      flex:0 0 auto;
     }
 
     .brand strong{letter-spacing:.4px}
     .brand small{display:block;color:rgba(238,242,255,.55);font-size:12px;font-weight:800}
 
-    .nav-right{
-      display:flex; align-items:center; justify-content:flex-end;
-      gap:8px; flex:1 1 auto;
-    }
+    .nav-right{display:flex; align-items:center; justify-content:flex-end; gap:8px; flex:1 1 auto;}
     .nav a.link{
       color:var(--muted);
       text-decoration:none;
@@ -274,7 +244,6 @@
       white-space:nowrap;
     }
     .nav a.link:hover{background:rgba(255,255,255,.06); color:var(--text); transform: translateY(-1px)}
-
     .cta{
       padding:10px 16px;
       border-radius:999px;
@@ -314,14 +283,14 @@
     .menuBtn svg{width:18px;height:18px;opacity:.92}
 
     .mnav{
-      position:fixed;
-      inset:0;
-      z-index:2000;
+      position:fixed; inset:0; z-index:2000;
       display:none;
       background: rgba(5,7,13,.70);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
+      animation: fadeIn .18s ease both;
     }
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
     .mnav.open{display:block}
     .mnav .panel{
       position:absolute;
@@ -331,7 +300,10 @@
       background: rgba(255,255,255,.06);
       box-shadow: 0 30px 100px rgba(0,0,0,.55);
       padding:14px;
+      transform-origin: top right;
+      animation: pop .22s ease both;
     }
+    @keyframes pop{from{transform:scale(.98) translateY(-6px); opacity:.6}to{transform:scale(1) translateY(0); opacity:1}}
     .mnav .row{display:flex; align-items:center; justify-content:space-between; gap:10px}
     .mnav .close{
       width:44px;height:44px;
@@ -341,11 +313,7 @@
       color:var(--text);
       cursor:pointer;
     }
-    .mnav .links{
-      display:grid;
-      gap:10px;
-      margin-top:12px;
-    }
+    .mnav .links{display:grid; gap:10px; margin-top:12px;}
     .mnav a{
       text-decoration:none;
       color:var(--text);
@@ -361,32 +329,31 @@
       box-shadow:0 18px 55px rgba(11,92,255,.20);
     }
 
-    section{padding:72px 0}
+    section{padding:84px 0}
 
-    /* ✅ Десктоп: делаем hero выше, чтобы "Быстрый старт" НЕ был виден при входе */
+    /* ✅ HERO: на десктопе старт НЕ виден при входе */
     .hero{
-      padding:52px 0 30px;
-      min-height: calc(100vh - 30px);
+      padding:64px 0 30px;
+      min-height: calc(100vh - 120px);
       display:flex;
       align-items:center;
     }
 
-    .grid2{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:16px;
-      align-items:stretch;
-    }
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch;}
 
+    /* ✅ GLASS/BLUR УСИЛЕН НА ВСЕХ КАРТОЧКАХ */
     .card{
       border-radius:var(--radius);
       border:1px solid rgba(255,255,255,.14);
-      background: rgba(10,16,30,.34);
+      background: rgba(10,16,30,.22);
       box-shadow: var(--shadow);
       position:relative;
       overflow:hidden;
       transform: translateZ(0);
       -webkit-tap-highlight-color: transparent;
+
+      backdrop-filter: blur(22px) saturate(150%);
+      -webkit-backdrop-filter: blur(22px) saturate(150%);
     }
     .card::before{
       content:"";
@@ -394,55 +361,42 @@
       background:
         radial-gradient(900px 360px at 14% 8%, rgba(11,92,255,.18), transparent 60%),
         radial-gradient(800px 360px at 92% 42%, rgba(24,208,196,.12), transparent 62%),
-        linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
-      opacity:.9;
+        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      opacity:.65;
       pointer-events:none;
     }
     .card > *{position:relative}
 
-    .glass{
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-    }
+    /* reveal animations */
+    .reveal{opacity:0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease;}
+    .reveal.in{opacity:1; transform: translateY(0);}
+    body.loaded .hero-card{transition: opacity .6s ease, transform .6s ease;}
 
     @media (hover:hover){
       .card{transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;}
-      .card:hover{
-        transform: translateY(-4px);
-        box-shadow: var(--shadow2);
-        border-color: rgba(255,255,255,.20);
-      }
-    }
-    @media (hover:none){
-      .card{transition:none !important}
-      .card:active{transform:none !important}
+      .card:hover{transform: translateY(-4px); box-shadow: var(--shadow2); border-color: rgba(255,255,255,.20);}
     }
 
-    /* ✅ анимация появления */
-    .reveal{
-      opacity:0;
-      transform: translateY(14px);
-      filter: blur(2px);
-      transition: opacity .55s ease, transform .55s ease, filter .55s ease;
-      will-change: opacity, transform, filter;
-    }
-    .reveal.in{
-      opacity:1;
-      transform:none;
-      filter:none;
+    /* ✅ HERO CARD higher on desktop */
+    .hero-card{
+      padding:34px 34px 28px;
+      max-width: min(var(--heroMax), 96vw);
+      margin:0 auto;
+      min-height: 560px;           /* повыше */
+      display:flex;
+      flex-direction:column;
+      justify-content:center;      /* центрируем красиво */
+      gap:10px;
     }
 
-    .hero-card{padding:26px; max-width: min(var(--heroMax), 96vw); margin:0 auto}
-    .hero-top{
-      display:flex; gap:10px; flex-wrap:wrap;
-      color:var(--muted);
-      font-weight:900;
-    }
+    .hero-top{display:flex; gap:10px; flex-wrap:wrap; color:var(--muted); font-weight:900;}
     .chip{
       padding:8px 12px;
       border-radius:999px;
       border:1px solid rgba(255,255,255,.14);
       background:rgba(255,255,255,.05);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
 
     h1{
@@ -461,48 +415,44 @@
       text-shadow: 0 12px 30px rgba(0,0,0,.35);
     }
 
-    /* ✅ Кнопка по центру, как ты хотел */
-    .hero-cta{
-      display:flex;
-      justify-content:center;
+    /* ✅ CTA по центру (как на твоём скрине) */
+    .hero-actions{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
       margin-top:16px;
+      width:100%;
+      max-width: 720px;
     }
 
     .btn{
       display:inline-flex; align-items:center; justify-content:center; gap:10px;
       padding:14px 18px;
-      border-radius:16px;
+      border-radius:18px;
       border:1px solid rgba(255,255,255,.14);
       background:rgba(255,255,255,.07);
       color:var(--text);
       text-decoration:none;
       font-weight:1000;
       transition:.2s;
-      min-width:180px;
-      height:52px;
+      height:56px;
       position:relative;
       overflow:hidden;
       touch-action: manipulation;
+      backdrop-filter: blur(14px) saturate(140%);
+      -webkit-backdrop-filter: blur(14px) saturate(140%);
     }
     .btn.primary{
       border:none;
       background: linear-gradient(135deg, var(--brand), var(--brand2));
       box-shadow:0 18px 55px rgba(11,92,255,.20);
+      font-size: 18px;
     }
-    .btn.big{
-      width:min(520px, 100%);
-      border-radius:18px;
-    }
-    @media (hover:hover){
-      .btn:hover{transform: translateY(-1px)}
-    }
+    @media (hover:hover){ .btn:hover{transform: translateY(-1px)} }
 
-    .tiny{
-      font-size:13px;
-      line-height:1.6;
-      color:rgba(238,242,255,.58);
-    }
+    .tiny{font-size:13px; line-height:1.6; color:rgba(238,242,255,.58);}
 
+    /* promo bar */
     .promoBar{
       margin-top:14px;
       padding:16px;
@@ -510,6 +460,7 @@
       align-items:center;
       justify-content:space-between;
       gap:12px;
+      border-radius: 22px;
     }
     .promoLeft{display:flex; flex-direction:column; gap:6px; min-width: 240px;}
     .promoTitle{font-size: 14px;font-weight: 1000;color: rgba(238,242,255,.92);}
@@ -520,23 +471,109 @@
       padding: 12px 14px;border-radius: 18px;
       border: 1px solid rgba(24,208,196,.24);
       background: rgba(255,255,255,.06);
-      flex: 1; min-height: 54px;
+      flex: 1; min-height: 56px;
       cursor:pointer; user-select:none;
       touch-action: manipulation;
+      backdrop-filter: blur(16px) saturate(140%);
+      -webkit-backdrop-filter: blur(16px) saturate(140%);
     }
     .codeText{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;}
     .codeLabel{font-size: 12px;font-weight: 900;color: rgba(238,242,255,.70);}
     .codeValue{font-size: 20px;font-weight: 1100;letter-spacing: 1.6px;color: rgba(238,242,255,.96);text-transform: uppercase;}
     .copyHint{font-size: 12px;color: rgba(238,242,255,.65);white-space: nowrap;}
 
-    .hero-actions{
-      display:flex;
-      justify-content:center;
-      margin-top:14px;
+    /* quick start + calculator */
+    .special{padding:18px}
+    .special-head{display:flex; align-items:flex-start; justify-content:space-between; gap:10px}
+    .special-title{font-weight:1000; font-size:18px}
+    .callout{
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.05);
+      border-radius:16px;
+      padding:12px;
+      color:rgba(238,242,255,.74);
+      line-height:1.7;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
     }
-    .hero-actions .btn{
-      width:min(360px, 100%);
+    .steps{display:grid; gap:10px; margin-top:12px;}
+    .step{
+      display:flex; gap:10px; align-items:flex-start;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      border-radius:16px;
+      padding:12px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
     }
+    .n{
+      width:26px;height:26px;border-radius:10px;
+      display:flex;align-items:center;justify-content:center;
+      font-weight:1000;
+      background: linear-gradient(135deg, rgba(11,92,255,.60), rgba(24,208,196,.42));
+      border:1px solid rgba(255,255,255,.14);
+      flex:0 0 auto;
+    }
+    .step b{display:block}
+    .step span{display:block;color:rgba(238,242,255,.64);font-size:13px;line-height:1.5;margin-top:2px}
+
+    /* ✅ BEAUTY CALC (как на скрине) */
+    .calcRow{display:grid; gap:10px; margin-top:12px}
+
+    .inp{
+      width:100%;
+      height:52px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color:var(--text);
+      padding:0 14px;
+      outline:none;
+      font-weight:900;
+      backdrop-filter: blur(16px) saturate(140%);
+      -webkit-backdrop-filter: blur(16px) saturate(140%);
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+    .inp::placeholder{color: rgba(238,242,255,.55); font-weight:800}
+
+    .quickBtns{
+      display:grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap:8px;
+    }
+    .qbtn{
+      height:40px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color:rgba(238,242,255,.88);
+      border-radius:14px;
+      font-weight:1000;
+      cursor:pointer;
+      touch-action: manipulation;
+      backdrop-filter: blur(14px) saturate(140%);
+      -webkit-backdrop-filter: blur(14px) saturate(140%);
+      transition: transform .15s ease, background .15s ease;
+    }
+    .qbtn:hover{transform: translateY(-1px)}
+    .qbtn:active{transform: translateY(0)}
+    .qbtn.on{
+      border-color: rgba(24,208,196,.45);
+      background: linear-gradient(135deg, rgba(11,92,255,.35), rgba(24,208,196,.25));
+    }
+
+    .resGrid{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+    .resBox{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      border-radius:16px;
+      padding:12px;
+      color:rgba(238,242,255,.78);
+      min-height:62px;
+      backdrop-filter: blur(18px) saturate(140%);
+      -webkit-backdrop-filter: blur(18px) saturate(140%);
+    }
+    .resBox b{display:block;color:rgba(238,242,255,.92)}
+    .resBox span{display:block;margin-top:6px}
 
     /* About */
     .title{
@@ -549,17 +586,15 @@
     .title h2{margin:0; font-size:26px; letter-spacing:-.3px}
     .title p{margin:0; color:var(--muted); max-width:60ch; line-height:1.6}
 
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:14px;
-    }
+    .grid{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px;}
     .feature{
       padding:16px;
       border-radius:18px;
       background: rgba(255,255,255,.04);
       border:1px solid rgba(255,255,255,.12);
       min-height: 96px;
+      backdrop-filter: blur(18px) saturate(140%);
+      -webkit-backdrop-filter: blur(18px) saturate(140%);
     }
     .feature b{display:block; margin-top:2px; font-weight:1000}
     .feature span{color:var(--muted); font-size:13.5px; line-height:1.5}
@@ -569,6 +604,8 @@
       border:1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.06);
       padding: 10px 12px;
+      backdrop-filter: blur(18px) saturate(140%);
+      -webkit-backdrop-filter: blur(18px) saturate(140%);
     }
     .about-acc summary{
       cursor:pointer;
@@ -586,29 +623,19 @@
     .chev{opacity:.80}
 
     /* FAQ */
-    .faq{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px
-    }
+    .faq{display:grid; grid-template-columns: 1fr 1fr; gap:12px}
     details.faqItem{
       background:rgba(255,255,255,.05);
       border:1px solid rgba(255,255,255,.12);
       border-radius:18px;
       padding:14px;
       overflow:hidden;
+      backdrop-filter: blur(18px) saturate(140%);
+      -webkit-backdrop-filter: blur(18px) saturate(140%);
     }
-    details.faqItem summary{
-      cursor:pointer;
-      font-weight:1000;
-      list-style:none
-    }
+    details.faqItem summary{cursor:pointer; font-weight:1000; list-style:none}
     details.faqItem summary::-webkit-details-marker{display:none}
-    details.faqItem p{
-      margin:10px 0 0;
-      color:var(--muted);
-      line-height:1.7
-    }
+    details.faqItem p{margin:10px 0 0; color:var(--muted); line-height:1.7}
 
     footer{
       padding:34px 0 64px;
@@ -667,9 +694,9 @@
       .faq{grid-template-columns:1fr}
       .grid{grid-template-columns:1fr}
       .grid2{grid-template-columns:1fr}
+      .hero{min-height: calc(100vh - 120px);}
     }
 
-    /* ✅ МОБИЛА: hero-mobile.png + карточки чуть меньше */
     @media (max-width: 720px){
       :root{ --bgImg: var(--bgMobile); }
 
@@ -696,26 +723,40 @@
       .nav-right{display:none}
       .menuBtn{display:flex}
 
-      /* меньше и аккуратнее */
-      .hero{min-height: calc(100svh - 110px); padding:36px 0 18px;}
-      .hero-card{padding:14px;}
-      h1{font-size: clamp(26px, 8.2vw, 36px);}
-      .sub{font-size:14.2px; line-height:1.6}
-      .chip{padding:7px 10px; font-size:12.5px}
-      .promoBar{padding:12px; border-radius:20px}
+      /* ✅ mobile: чтобы ВСЯ главная карточка влезала */
+      section{padding:64px 0}
+      .hero{
+        min-height: calc(100svh - 150px);
+        padding:32px 0 14px;
+        align-items:flex-start;
+      }
+      .hero-card{
+        padding:18px;
+        min-height: unset;     /* важно для мобилы */
+        gap:10px;
+      }
+      .chip{padding:7px 10px; font-size:13px}
+      .sub{font-size:14.6px}
+
+      /* ✅ cards slightly smaller on mobile */
+      .special{padding:14px}
+      .feature{padding:14px}
+      details.faqItem{padding:12px}
+
+      /* ✅ remove promo sentence on mobile */
+      .promoSub{display:none;}
+
+      .promoBar{flex-direction:column; align-items:stretch}
+      .promoLeft{min-width:0; gap:2px}
       .codeValue{font-size:18px}
-      .btn{height:50px; border-radius:14px}
-      .btn.big{border-radius:16px}
-      .hero-actions .btn{width:100%}
+
+      /* ✅ calc beauty on mobile */
+      .quickBtns{grid-template-columns: repeat(2, minmax(0,1fr));}
+      .resGrid{grid-template-columns:1fr;}
 
       .snow{opacity:.24; animation-duration: 20s;}
       .snow.s2{opacity:.16}
       .snow.s3{opacity:.11}
-
-      .glass{
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-      }
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -724,7 +765,6 @@
       .cta::after{display:none}
       .float{transition:none}
       .reveal{transition:none}
-      .garlandStrip::before, .garlandStrip::after{animation:none}
     }
   </style>
 </head>
@@ -739,15 +779,13 @@
 
   <div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
 
-  <header class="reveal">
+  <header>
     <div class="garlandStrip" aria-hidden="true"></div>
 
     <div class="wrap">
       <div class="nav">
         <a class="brand" href="#top">
-          <div class="avatar" aria-hidden="true">
-            <img src="logo.png" alt="">
-          </div>
+          <div class="avatar" aria-hidden="true"></div>
           <div>
             <strong>1win Casino</strong>
             <small>обзор • бонусы • FAQ</small>
@@ -771,7 +809,7 @@
   </header>
 
   <div class="mnav" id="mnav" aria-hidden="true">
-    <div class="panel glass">
+    <div class="panel">
       <div class="row">
         <div style="font-weight:1000">Меню</div>
         <button class="close" id="menuClose" type="button">✕</button>
@@ -788,7 +826,7 @@
   <main id="top">
     <section class="hero">
       <div class="wrap">
-        <div class="card glass hero-card reveal">
+        <div class="card hero-card">
           <div class="hero-top">
             <span class="chip">500% к депозиту</span>
             <span class="chip">70FS на старт</span>
@@ -801,19 +839,13 @@
             <br><b>Промокод SMOG вводится при регистрации.</b>
           </p>
 
-          <!-- ✅ Кнопка по центру -->
-          <div class="hero-cta">
-            <a class="btn primary big" data-cta href="#" target="_blank" rel="nofollow sponsored noopener">Открыть 1win</a>
-          </div>
-
-          <!-- промо -->
-          <div class="card glass promoBar" style="margin-top:14px">
+          <div class="card promoBar" style="margin-top:14px">
             <div class="promoLeft">
               <div class="promoTitle">Промокод на бонус</div>
               <div class="promoSub">Нажми на код — он скопируется. Промокод вводится <b>при регистрации</b>.</div>
             </div>
 
-            <div class="codeBox glass" id="promoCopy" role="button" tabindex="0" aria-label="Скопировать промокод SMOG">
+            <div class="codeBox" id="promoCopy" role="button" tabindex="0" aria-label="Скопировать промокод SMOG">
               <div class="codeText">
                 <span class="codeLabel">ПРОМО:</span>
                 <span class="codeValue" id="promoValue">SMOG</span>
@@ -823,19 +855,20 @@
             </div>
           </div>
 
-          <!-- вторичная кнопка -->
+          <!-- ✅ CTA centered -->
           <div class="hero-actions">
+            <a class="btn primary" data-cta href="#" target="_blank" rel="nofollow sponsored noopener">Открыть 1win</a>
             <a class="btn" href="#start">Быстрый старт</a>
           </div>
 
-          <div class="tiny" style="margin-top:12px">
+          <div class="tiny" style="margin-top:10px">
             18+ • Условия бонусов/акций могут меняться — проверяй правила на стороне 1win.
           </div>
         </div>
       </div>
     </section>
 
-    <section id="start" class="reveal">
+    <section id="start">
       <div class="wrap">
         <div class="title">
           <div>
@@ -845,48 +878,46 @@
         </div>
 
         <div class="grid2">
-          <div class="card glass" style="padding:18px">
-            <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:10px">
-              <div style="font-weight:1000; font-size:18px">3 шага за 20 секунд</div>
+          <div class="card special">
+            <div class="special-head">
+              <div class="special-title">3 шага за 20 секунд</div>
             </div>
 
-            <div style="display:grid; gap:10px; margin-top:12px">
-              <div style="display:flex; gap:10px; align-items:flex-start; border:1px solid rgba(255,255,255,.10); background:rgba(255,255,255,.04); border-radius:16px; padding:12px;">
-                <div style="width:26px;height:26px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:1000;background: linear-gradient(135deg, rgba(11,92,255,.60), rgba(24,208,196,.42)); border:1px solid rgba(255,255,255,.14); flex:0 0 auto;">1</div>
+            <div class="steps">
+              <div class="step">
+                <div class="n">1</div>
                 <div>
                   <b>Открой 1win и зарегистрируйся</b>
-                  <span style="display:block;color:rgba(238,242,255,.64);font-size:13px;line-height:1.5;margin-top:2px">Переход откроется в новой вкладке.</span>
+                  <span>Переход откроется в новой вкладке.</span>
                 </div>
               </div>
-
-              <div style="display:flex; gap:10px; align-items:flex-start; border:1px solid rgba(255,255,255,.10); background:rgba(255,255,255,.04); border-radius:16px; padding:12px;">
-                <div style="width:26px;height:26px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:1000;background: linear-gradient(135deg, rgba(11,92,255,.60), rgba(24,208,196,.42)); border:1px solid rgba(255,255,255,.14); flex:0 0 auto;">2</div>
+              <div class="step">
+                <div class="n">2</div>
                 <div>
                   <b>Введи промокод <span style="letter-spacing:1px">SMOG</span> при регистрации</b>
-                  <span style="display:block;color:rgba(238,242,255,.64);font-size:13px;line-height:1.5;margin-top:2px">Промокод можно скопировать одним нажатием выше.</span>
+                  <span>Промокод можно скопировать одним нажатием выше.</span>
                 </div>
               </div>
-
-              <div style="display:flex; gap:10px; align-items:flex-start; border:1px solid rgba(255,255,255,.10); background:rgba(255,255,255,.04); border-radius:16px; padding:12px;">
-                <div style="width:26px;height:26px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:1000;background: linear-gradient(135deg, rgba(11,92,255,.60), rgba(24,208,196,.42)); border:1px solid rgba(255,255,255,.14); flex:0 0 auto;">3</div>
+              <div class="step">
+                <div class="n">3</div>
                 <div>
                   <b>Сделай депозит и активируй бонус</b>
-                  <span style="display:block;color:rgba(238,242,255,.64);font-size:13px;line-height:1.5;margin-top:2px">Точные условия/лимиты зависят от правил в аккаунте.</span>
+                  <span>Точные условия/лимиты зависят от правил в аккаунте.</span>
                 </div>
               </div>
             </div>
 
-            <div style="border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.05); border-radius:16px; padding:12px; color:rgba(238,242,255,.74); line-height:1.7; margin-top:12px">
+            <div class="callout" style="margin-top:12px">
               <b>Подсказка:</b> регистрация → промокод → депозит.
             </div>
           </div>
 
-          <div class="card glass" style="padding:18px">
-            <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:10px">
-              <div style="font-weight:1000; font-size:18px">Мини-калькулятор бонуса</div>
+          <div class="card special">
+            <div class="special-head">
+              <div class="special-title">Мини-калькулятор бонуса</div>
             </div>
 
-            <div style="display:grid; gap:10px; margin-top:12px">
+            <div class="calcRow">
               <input class="inp" id="depInput" inputmode="numeric" placeholder="Депозит (например 1000)" aria-label="Депозит" />
 
               <div class="quickBtns" aria-label="Быстрые суммы">
@@ -922,7 +953,7 @@
       </div>
     </section>
 
-    <section id="about" class="reveal">
+    <section id="about">
       <div class="wrap">
         <div class="title">
           <div>
@@ -931,35 +962,35 @@
           </div>
         </div>
 
-        <details class="about-acc glass" id="aboutDetails">
+        <details class="about-acc" id="aboutDetails">
           <summary>
             Раздел «О 1win» — открыть / закрыть
             <span class="chev">▼</span>
           </summary>
 
           <div style="margin-top:12px" class="grid">
-            <div class="card glass feature">
+            <div class="card feature">
               <b>Помощь игрокам</b>
               <span>Поддержка 24/7: онлайн-чат на главной странице, e-mail и телефон.</span>
             </div>
-            <div class="card glass feature">
+            <div class="card feature">
               <b>Бонусы в 1win</b>
               <span>Приветственные начисления за первые 4 пополнения - (500% +70FS) и еженедельный кэшбэк 30%.</span>
             </div>
-            <div class="card glass feature">
+            <div class="card feature">
               <b>Игры</b>
               <span>Рулетки, блэкджек, покер, баккара, лайв-казино и слоты с разной тематикой и RTP.</span>
             </div>
 
-            <div class="card glass feature">
+            <div class="card feature">
               <b>Мобильная версия и приложение</b>
               <span>Платформа адаптируется под смартфон. Вход без повторной регистрации; приложение доступно для Android и IOS.</span>
             </div>
-            <div class="card glass feature">
+            <div class="card feature">
               <b>Платежи</b>
               <span>Пополнение — быстро и обычно без комиссии; вывод зависит от метода и может занимать до суток.</span>
             </div>
-            <div class="card glass feature">
+            <div class="card feature">
               <b>Игровой зал</b>
               <span>Есть демо-режим для ознакомления и игра на деньги. Управление простое, бонус-раунды повышают динамику.</span>
             </div>
@@ -967,28 +998,28 @@
         </details>
 
         <div class="grid" id="aboutGridDesktop" style="margin-top:12px">
-          <div class="card glass feature">
+          <div class="card feature">
             <b>Помощь игрокам</b>
             <span>Поддержка 24/7: онлайн-чат на главной странице, e-mail и телефон.</span>
           </div>
-          <div class="card glass feature">
+          <div class="card feature">
             <b>Бонусы в 1win</b>
             <span>Приветственные начисления за первые 4 пополнения - (500% +70FS) и еженедельный кэшбэк 30%.</span>
           </div>
-          <div class="card glass feature">
+          <div class="card feature">
             <b>Игры</b>
             <span>Рулетки, блэкджек, покер, баккара, лайв-казино и слоты с разной тематикой и RTP.</span>
           </div>
 
-          <div class="card glass feature">
+          <div class="card feature">
             <b>Мобильная версия и приложение</b>
             <span>Платформа адаптируется под смартфон. Вход без повторной регистрации; приложение доступно для Android и IOS.</span>
           </div>
-          <div class="card glass feature">
+          <div class="card feature">
             <b>Платежи</b>
             <span>Пополнение — быстро и обычно без комиссии; вывод зависит от метода и может занимать до суток.</span>
           </div>
-          <div class="card glass feature">
+          <div class="card feature">
             <b>Игровой зал</b>
             <span>Есть демо-режим для ознакомления и игра на деньги. Управление простое, бонус-раунды повышают динамику.</span>
           </div>
@@ -1000,7 +1031,7 @@
       </div>
     </section>
 
-    <section id="faq" class="reveal">
+    <section id="faq">
       <div class="wrap">
         <div class="title">
           <div>
@@ -1010,32 +1041,32 @@
         </div>
 
         <div class="faq">
-          <details class="faqItem glass">
+          <details class="faqItem">
             <summary>Безопасно ли играть на сайте 1win?</summary>
             <p>Площадка использует меры защиты аккаунтов и данных. Перед игрой проверь актуальные правила, лимиты и юридическую информацию на стороне 1win.</p>
           </details>
 
-          <details class="faqItem glass">
+          <details class="faqItem">
             <summary>Во что можно сыграть в 1win?</summary>
             <p>Доступны настольные игры (рулетка, баккара, блэкджек), лайв-казино с дилером, а также игровые автоматы и другие форматы.</p>
           </details>
 
-          <details class="faqItem glass">
+          <details class="faqItem">
             <summary>Зачем нужна верификация?</summary>
             <p>Подтверждение личности помогает защитить аккаунт. Обычно достаточно номера телефона/почты.</p>
           </details>
 
-          <details class="faqItem glass">
+          <details class="faqItem">
             <summary>Где вводить промокод SMOG?</summary>
             <p><b>При регистрации</b> — в поле промокода (можно скопировать выше одним нажатием).</p>
           </details>
 
-          <details class="faqItem glass">
+          <details class="faqItem">
             <summary>Что делать, если бонус не начислился?</summary>
             <p>Проверь: промокод введён <b>при регистрации</b>, выполнены условия акции и лимиты. Если не помогло — обратись в поддержку 24/7.</p>
           </details>
 
-          <details class="faqItem glass">
+          <details class="faqItem">
             <summary>Можно ли играть с телефона?</summary>
             <p>Да. Есть мобильная версия, а также приложение (если доступно в твоём регионе/на твоей ОС). Вход — в тот же аккаунт.</p>
           </details>
@@ -1052,9 +1083,7 @@
       <div class="wrap foot">
         <div>
           <div style="display:flex;align-items:center;gap:12px">
-            <div class="avatar" aria-hidden="true" style="width:40px;height:40px;border-radius:16px">
-              <img src="logo.png" alt="">
-            </div>
+            <div class="avatar" aria-hidden="true" style="width:40px;height:40px;border-radius:16px"></div>
             <div>
               <div style="font-weight:1000">1win Casino — обзор</div>
               <div class="tiny">Промокод SMOG при регистрации • FAQ</div>
@@ -1098,6 +1127,23 @@
       a.href = AFF;
       a.target = "_blank";
       a.rel = "nofollow sponsored noopener";
+    });
+
+    // ✅ loaded class (animations)
+    addEventListener("DOMContentLoaded", ()=>{
+      document.body.classList.add("loaded");
+
+      // reveal on scroll
+      const items = Array.from(document.querySelectorAll(".card, details.faqItem, .about-acc, footer"));
+      items.forEach(el => el.classList.add("reveal"));
+
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting) e.target.classList.add("in");
+        });
+      }, {threshold: 0.12});
+
+      items.forEach(el=> io.observe(el));
     });
 
     // ===== Mobile menu =====
@@ -1210,8 +1256,13 @@
       totalOut.textContent = fmt(total);
     }
     depInput?.addEventListener("input", (e)=> recalc(e.target.value));
-    document.querySelectorAll("[data-amt]").forEach(btn=>{
+
+    // nice active state for quick buttons
+    const qbtns = Array.from(document.querySelectorAll("[data-amt]"));
+    qbtns.forEach(btn=>{
       btn.addEventListener("click", ()=>{
+        qbtns.forEach(b=>b.classList.remove("on"));
+        btn.classList.add("on");
         const amt = Number(btn.getAttribute("data-amt")) || 0;
         depInput.value = String(amt);
         recalc(amt);
@@ -1239,30 +1290,6 @@
     }
     syncAbout();
     mq.addEventListener("change", syncAbout);
-
-    // ===== Reveal animations =====
-    const prefersReduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if(!prefersReduce){
-      const els = Array.from(document.querySelectorAll(".reveal"));
-      const io = new IntersectionObserver((entries)=>{
-        entries.forEach(e=>{
-          if(e.isIntersecting){
-            e.target.classList.add("in");
-            io.unobserve(e.target);
-          }
-        });
-      }, {threshold: 0.12});
-      els.forEach((el, i)=>{
-        el.style.transitionDelay = Math.min(i * 80, 260) + "ms";
-        io.observe(el);
-      });
-      // чтобы хедер/герой появились сразу
-      requestAnimationFrame(()=> els.forEach(el=>{
-        if(el.getBoundingClientRect().top < innerHeight) el.classList.add("in");
-      }));
-    }else{
-      document.querySelectorAll(".reveal").forEach(el=> el.classList.add("in"));
-    }
   </script>
 </body>
 </html>
