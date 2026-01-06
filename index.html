@@ -8,6 +8,10 @@
   <meta name="description" content="1win: промокод SMOG при регистрации, быстрый старт, мини-калькулятор бонуса, FAQ." />
   <meta name="robots" content="index,follow,max-image-preview:large" />
 
+  <!-- favicon (чтобы лого было и во вкладке) -->
+  <link rel="icon" href="logo.png" />
+  <link rel="apple-touch-icon" href="logo.png" />
+
   <script>document.documentElement.classList.add('js');</script>
 
   <style>
@@ -25,9 +29,9 @@
 
       --radius: 24px;
       --max: 1200px;
-      --heroMax: 1100px;
+      --heroMax: 1200px;
 
-      /* ✅ ФОНЫ: desktop vs mobile */
+      /* ✅ фон: десктоп / мобила */
       --bgDesktop: url("hero-desktop.png");
       --bgMobile: url("hero-mobile.png");
       --bgImg: var(--bgDesktop);
@@ -35,7 +39,6 @@
       --bgDim: rgba(0,0,0,.18);
       --bgDimMobile: rgba(0,0,0,.20);
 
-      /* warm garland palette */
       --warm1: rgba(255,196,120,1);
       --warm2: rgba(255,234,190,1);
       --warm3: rgba(255,115,115,1);
@@ -65,7 +68,7 @@
     img, svg{max-width:100%; height:auto;}
     html{scroll-behavior:smooth}
 
-    /* ===== FULL-PAGE BG ===== */
+    /* ===== BG ===== */
     .bg{
       position:fixed; inset:0; z-index:-30;
       background-image:
@@ -74,7 +77,6 @@
       background-size: cover;
       background-position: center top;
       background-repeat:no-repeat;
-      transform: translateZ(0);
     }
     .bg::after{
       content:"";
@@ -102,7 +104,7 @@
       opacity:.85;
     }
 
-    /* ===== Snow ===== */
+    /* Snow */
     .snow{
       position:fixed; inset:0; z-index:-26;
       pointer-events:none;
@@ -133,7 +135,6 @@
       to{ background-position: 120px 1400px, -160px 1500px, 200px 1600px; }
     }
 
-    /* ===== Progress ===== */
     .progress{
       position:fixed; top:0; left:0; right:0; height:3px;
       z-index:1000;
@@ -154,7 +155,7 @@
       background: rgba(5,7,13,.52);
       border-bottom:.5px solid var(--line);
       isolation:isolate;
-      padding-bottom: 26px; /* ✅ меньше, чтобы карточка влезала */
+      padding-bottom: 40px;
     }
     header::after{
       content:"";
@@ -170,7 +171,7 @@
 
     .garlandStrip{
       position:absolute; left:0; right:0;
-      top: 66px; height: 34px;
+      top: 70px; height: 34px;
       z-index: 20;
       pointer-events:none;
       background-image: var(--garlandWire);
@@ -197,6 +198,7 @@
       filter:
         drop-shadow(0 8px 18px rgba(255,214,140,.22))
         drop-shadow(0 10px 26px rgba(255,165,100,.12));
+      animation: twinkle 3.8s ease-in-out infinite;
     }
     .garlandStrip::after{
       content:"";
@@ -213,6 +215,11 @@
       filter:
         drop-shadow(0 8px 18px rgba(255,230,170,.14))
         drop-shadow(0 10px 26px rgba(255,160,100,.10));
+      animation: twinkle 4.6s ease-in-out infinite reverse;
+    }
+    @keyframes twinkle{
+      0%,100%{opacity:.95}
+      50%{opacity:.62}
     }
 
     .wrap{
@@ -234,19 +241,18 @@
       min-width:180px;
     }
 
-    /* ✅ ЛОГО в "окне" (первое фото) */
+    /* ✅ ЛОГО (чтобы показывалось) */
     .avatar{
       width:44px; height:44px; border-radius:16px;
       overflow:hidden;
       border:1px solid rgba(255,255,255,.14);
       box-shadow:0 18px 55px rgba(11,92,255,.22);
       background: linear-gradient(135deg, rgba(11,92,255,.9), rgba(24,208,196,.75));
-      flex:0 0 auto;
-      display:grid;
-      place-items:center;
+      display:flex; align-items:center; justify-content:center;
     }
     .avatar img{
-      width:100%; height:100%;
+      width:100%;
+      height:100%;
       object-fit:cover;
       display:block;
     }
@@ -325,12 +331,6 @@
       background: rgba(255,255,255,.06);
       box-shadow: 0 30px 100px rgba(0,0,0,.55);
       padding:14px;
-      transform-origin: top center;
-      animation: popIn .22s ease both;
-    }
-    @keyframes popIn{
-      from{opacity:0; transform: translateY(-8px) scale(.98);}
-      to{opacity:1; transform: translateY(0) scale(1);}
     }
     .mnav .row{display:flex; align-items:center; justify-content:space-between; gap:10px}
     .mnav .close{
@@ -363,15 +363,12 @@
 
     section{padding:72px 0}
 
-    /* ✅ HERO: убрали жесткую высоту, чтобы карточка влезала */
+    /* ✅ Десктоп: делаем hero выше, чтобы "Быстрый старт" НЕ был виден при входе */
     .hero{
-      padding:26px 0 18px;
-      min-height:auto;
+      padding:52px 0 30px;
+      min-height: calc(100vh - 30px);
       display:flex;
-      align-items:flex-start;
-    }
-    @media (min-width: 721px){
-      .hero{ align-items:center; padding:48px 0 26px; }
+      align-items:center;
     }
 
     .grid2{
@@ -421,17 +418,21 @@
       .card:active{transform:none !important}
     }
 
-    .hero-card{
-      padding:24px;
-      max-width: min(var(--heroMax), 96vw);
-      margin:0 auto;
-      animation: heroEnter .55s cubic-bezier(.2,.9,.2,1) both;
+    /* ✅ анимация появления */
+    .reveal{
+      opacity:0;
+      transform: translateY(14px);
+      filter: blur(2px);
+      transition: opacity .55s ease, transform .55s ease, filter .55s ease;
+      will-change: opacity, transform, filter;
     }
-    @keyframes heroEnter{
-      from{opacity:0; transform: translateY(14px) scale(.99);}
-      to{opacity:1; transform: translateY(0) scale(1);}
+    .reveal.in{
+      opacity:1;
+      transform:none;
+      filter:none;
     }
 
+    .hero-card{padding:26px; max-width: min(var(--heroMax), 96vw); margin:0 auto}
     .hero-top{
       display:flex; gap:10px; flex-wrap:wrap;
       color:var(--muted);
@@ -442,18 +443,11 @@
       border-radius:999px;
       border:1px solid rgba(255,255,255,.14);
       background:rgba(255,255,255,.05);
-      animation: chipFloat 3.6s ease-in-out infinite;
-    }
-    .chip:nth-child(2){animation-delay:.12s}
-    .chip:nth-child(3){animation-delay:.24s}
-    @keyframes chipFloat{
-      0%,100%{transform: translateY(0)}
-      50%{transform: translateY(-3px)}
     }
 
     h1{
       margin:14px 0 8px;
-      font-size: clamp(30px, 4.6vw, 56px);
+      font-size: clamp(30px, 4.6vw, 58px);
       line-height:1.06;
       letter-spacing:-.8px;
       text-shadow: 0 14px 40px rgba(0,0,0,.45);
@@ -461,20 +455,17 @@
     .sub{
       margin:0;
       color:rgba(238,242,255,.74);
-      line-height:1.7;
-      font-size: 16px;
+      line-height:1.75;
+      font-size: 16.2px;
       max-width: 64ch;
       text-shadow: 0 12px 30px rgba(0,0,0,.35);
     }
 
-    /* ✅ Кнопка в середине главной карточки */
-    .hero-mid{
-      margin-top:14px;
+    /* ✅ Кнопка по центру, как ты хотел */
+    .hero-cta{
       display:flex;
       justify-content:center;
-    }
-    .midCta{
-      width:min(520px, 100%);
+      margin-top:16px;
     }
 
     .btn{
@@ -492,23 +483,16 @@
       position:relative;
       overflow:hidden;
       touch-action: manipulation;
-      will-change: transform;
     }
     .btn.primary{
       border:none;
       background: linear-gradient(135deg, var(--brand), var(--brand2));
       box-shadow:0 18px 55px rgba(11,92,255,.20);
     }
-    .btn.primary::after{
-      content:"";
-      position:absolute; inset:-60% -70%;
-      background: radial-gradient(circle, rgba(255,255,255,.32), transparent 62%);
-      transform: translateX(-30%);
-      opacity:.0;
-      transition:.25s;
-      mix-blend-mode: screen;
+    .btn.big{
+      width:min(520px, 100%);
+      border-radius:18px;
     }
-    .btn.primary:hover::after{opacity:.9; transform: translateX(30%)}
     @media (hover:hover){
       .btn:hover{transform: translateY(-1px)}
     }
@@ -519,7 +503,6 @@
       color:rgba(238,242,255,.58);
     }
 
-    /* promo bar */
     .promoBar{
       margin-top:14px;
       padding:16px;
@@ -540,87 +523,20 @@
       flex: 1; min-height: 54px;
       cursor:pointer; user-select:none;
       touch-action: manipulation;
-      transition: transform .2s ease, border-color .2s ease;
     }
-    .codeBox:hover{transform: translateY(-1px); border-color: rgba(24,208,196,.38)}
     .codeText{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;}
     .codeLabel{font-size: 12px;font-weight: 900;color: rgba(238,242,255,.70);}
     .codeValue{font-size: 20px;font-weight: 1100;letter-spacing: 1.6px;color: rgba(238,242,255,.96);text-transform: uppercase;}
     .copyHint{font-size: 12px;color: rgba(238,242,255,.65);white-space: nowrap;}
 
-    /* quick start + calculator */
-    .special{padding:18px}
-    .special-head{display:flex; align-items:flex-start; justify-content:space-between; gap:10px}
-    .special-title{font-weight:1000; font-size:18px}
-    .callout{
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.05);
-      border-radius:16px;
-      padding:12px;
-      color:rgba(238,242,255,.74);
-      line-height:1.7;
+    .hero-actions{
+      display:flex;
+      justify-content:center;
+      margin-top:14px;
     }
-    .steps{
-      display:grid;
-      gap:10px;
-      margin-top:12px;
+    .hero-actions .btn{
+      width:min(360px, 100%);
     }
-    .step{
-      display:flex; gap:10px; align-items:flex-start;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.04);
-      border-radius:16px;
-      padding:12px;
-    }
-    .n{
-      width:26px;height:26px;border-radius:10px;
-      display:flex;align-items:center;justify-content:center;
-      font-weight:1000;
-      background: linear-gradient(135deg, rgba(11,92,255,.60), rgba(24,208,196,.42));
-      border:1px solid rgba(255,255,255,.14);
-      flex:0 0 auto;
-    }
-    .step b{display:block}
-    .step span{display:block;color:rgba(238,242,255,.64);font-size:13px;line-height:1.5;margin-top:2px}
-
-    .calcRow{display:grid; gap:10px; margin-top:12px}
-    .inp{
-      width:100%;
-      height:44px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(0,0,0,.18);
-      color:var(--text);
-      padding:0 12px;
-      outline:none;
-      font-weight:900;
-    }
-    .quickBtns{display:flex; gap:8px; flex-wrap:wrap}
-    .qbtn{
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      color:rgba(238,242,255,.84);
-      border-radius:999px;
-      padding:8px 10px;
-      font-weight:1000;
-      cursor:pointer;
-      touch-action: manipulation;
-    }
-    .resGrid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:10px;
-    }
-    .resBox{
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      border-radius:16px;
-      padding:12px;
-      color:rgba(238,242,255,.78);
-      min-height:58px;
-    }
-    .resBox b{display:block;color:rgba(238,242,255,.92)}
-    .resBox span{display:block;margin-top:6px}
 
     /* About */
     .title{
@@ -753,7 +669,7 @@
       .grid2{grid-template-columns:1fr}
     }
 
-    /* ✅ MOBILE: только hero-mobile.png + компактнее, чтобы карточка вся помещалась */
+    /* ✅ МОБИЛА: hero-mobile.png + карточки чуть меньше */
     @media (max-width: 720px){
       :root{ --bgImg: var(--bgMobile); }
 
@@ -766,31 +682,32 @@
       .bg::after{
         filter:none;
         transform:none;
-        height:160px;
+        height:180px;
         background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,.18));
         -webkit-mask-image:none;
         mask-image:none;
         opacity:1;
       }
 
-      header{padding-bottom: 22px;}
-      .garlandStrip{top: 64px; height: 34px;}
+      header{padding-bottom: 44px;}
+      .garlandStrip{top: 66px; height: 36px;}
+      .garlandStrip::before, .garlandStrip::after{background-size: 200px 36px;}
 
       .nav-right{display:none}
       .menuBtn{display:flex}
 
-      .hero{padding:14px 0 10px;}
-      .hero-card{padding:16px;}
-      .chip{padding:6px 10px; font-size:12.5px}
-      h1{font-size: 34px;}
-      .sub{font-size:14.5px; line-height:1.6}
-
-      .promoBar{flex-direction:column; align-items:stretch; padding:14px}
-      .promoLeft{min-width:0}
+      /* меньше и аккуратнее */
+      .hero{min-height: calc(100svh - 110px); padding:36px 0 18px;}
+      .hero-card{padding:14px;}
+      h1{font-size: clamp(26px, 8.2vw, 36px);}
+      .sub{font-size:14.2px; line-height:1.6}
+      .chip{padding:7px 10px; font-size:12.5px}
+      .promoBar{padding:12px; border-radius:20px}
       .codeValue{font-size:18px}
+      .btn{height:50px; border-radius:14px}
+      .btn.big{border-radius:16px}
+      .hero-actions .btn{width:100%}
 
-      .btn{width:100%; min-width:0}
-      .midCta{width:100%}
       .snow{opacity:.24; animation-duration: 20s;}
       .snow.s2{opacity:.16}
       .snow.s3{opacity:.11}
@@ -805,10 +722,9 @@
       html{scroll-behavior:auto}
       .snow{animation:none}
       .cta::after{display:none}
-      .chip{animation:none}
-      .hero-card{animation:none}
-      .mnav .panel{animation:none}
       .float{transition:none}
+      .reveal{transition:none}
+      .garlandStrip::before, .garlandStrip::after{animation:none}
     }
   </style>
 </head>
@@ -823,15 +739,14 @@
 
   <div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
 
-  <header>
+  <header class="reveal">
     <div class="garlandStrip" aria-hidden="true"></div>
 
     <div class="wrap">
       <div class="nav">
         <a class="brand" href="#top">
-          <!-- ✅ СЮДА СТАВИШЬ ПЕРВОЕ ФОТО: положи рядом файл logo.png -->
           <div class="avatar" aria-hidden="true">
-            <img src="logo.png" alt="1win" loading="eager" />
+            <img src="logo.png" alt="">
           </div>
           <div>
             <strong>1win Casino</strong>
@@ -873,7 +788,7 @@
   <main id="top">
     <section class="hero">
       <div class="wrap">
-        <div class="card glass hero-card">
+        <div class="card glass hero-card reveal">
           <div class="hero-top">
             <span class="chip">500% к депозиту</span>
             <span class="chip">70FS на старт</span>
@@ -886,12 +801,12 @@
             <br><b>Промокод SMOG вводится при регистрации.</b>
           </p>
 
-          <!-- ✅ Кнопка ПО ЦЕНТРУ (в середине главной карточки) -->
-          <div class="hero-mid">
-            <a class="btn primary midCta" data-cta href="#" target="_blank" rel="nofollow sponsored noopener">Открыть 1win</a>
+          <!-- ✅ Кнопка по центру -->
+          <div class="hero-cta">
+            <a class="btn primary big" data-cta href="#" target="_blank" rel="nofollow sponsored noopener">Открыть 1win</a>
           </div>
 
-          <!-- promo bar -->
+          <!-- промо -->
           <div class="card glass promoBar" style="margin-top:14px">
             <div class="promoLeft">
               <div class="promoTitle">Промокод на бонус</div>
@@ -908,8 +823,9 @@
             </div>
           </div>
 
-          <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:12px; justify-content:center">
-            <a class="btn" href="#start" style="min-width:220px">Быстрый старт</a>
+          <!-- вторичная кнопка -->
+          <div class="hero-actions">
+            <a class="btn" href="#start">Быстрый старт</a>
           </div>
 
           <div class="tiny" style="margin-top:12px">
@@ -919,7 +835,7 @@
       </div>
     </section>
 
-    <section id="start">
+    <section id="start" class="reveal">
       <div class="wrap">
         <div class="title">
           <div>
@@ -929,47 +845,50 @@
         </div>
 
         <div class="grid2">
-          <div class="card glass special">
-            <div class="special-head">
-              <div class="special-title">3 шага за 20 секунд</div>
+          <div class="card glass" style="padding:18px">
+            <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:10px">
+              <div style="font-weight:1000; font-size:18px">3 шага за 20 секунд</div>
             </div>
 
-            <div class="steps">
-              <div class="step">
-                <div class="n">1</div>
+            <div style="display:grid; gap:10px; margin-top:12px">
+              <div style="display:flex; gap:10px; align-items:flex-start; border:1px solid rgba(255,255,255,.10); background:rgba(255,255,255,.04); border-radius:16px; padding:12px;">
+                <div style="width:26px;height:26px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:1000;background: linear-gradient(135deg, rgba(11,92,255,.60), rgba(24,208,196,.42)); border:1px solid rgba(255,255,255,.14); flex:0 0 auto;">1</div>
                 <div>
                   <b>Открой 1win и зарегистрируйся</b>
-                  <span>Переход откроется в новой вкладке.</span>
+                  <span style="display:block;color:rgba(238,242,255,.64);font-size:13px;line-height:1.5;margin-top:2px">Переход откроется в новой вкладке.</span>
                 </div>
               </div>
-              <div class="step">
-                <div class="n">2</div>
+
+              <div style="display:flex; gap:10px; align-items:flex-start; border:1px solid rgba(255,255,255,.10); background:rgba(255,255,255,.04); border-radius:16px; padding:12px;">
+                <div style="width:26px;height:26px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:1000;background: linear-gradient(135deg, rgba(11,92,255,.60), rgba(24,208,196,.42)); border:1px solid rgba(255,255,255,.14); flex:0 0 auto;">2</div>
                 <div>
                   <b>Введи промокод <span style="letter-spacing:1px">SMOG</span> при регистрации</b>
-                  <span>Промокод можно скопировать одним нажатием выше.</span>
+                  <span style="display:block;color:rgba(238,242,255,.64);font-size:13px;line-height:1.5;margin-top:2px">Промокод можно скопировать одним нажатием выше.</span>
                 </div>
               </div>
-              <div class="step">
-                <div class="n">3</div>
+
+              <div style="display:flex; gap:10px; align-items:flex-start; border:1px solid rgba(255,255,255,.10); background:rgba(255,255,255,.04); border-radius:16px; padding:12px;">
+                <div style="width:26px;height:26px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:1000;background: linear-gradient(135deg, rgba(11,92,255,.60), rgba(24,208,196,.42)); border:1px solid rgba(255,255,255,.14); flex:0 0 auto;">3</div>
                 <div>
                   <b>Сделай депозит и активируй бонус</b>
-                  <span>Точные условия/лимиты зависят от правил в аккаунте.</span>
+                  <span style="display:block;color:rgba(238,242,255,.64);font-size:13px;line-height:1.5;margin-top:2px">Точные условия/лимиты зависят от правил в аккаунте.</span>
                 </div>
               </div>
             </div>
 
-            <div class="callout" style="margin-top:12px">
+            <div style="border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.05); border-radius:16px; padding:12px; color:rgba(238,242,255,.74); line-height:1.7; margin-top:12px">
               <b>Подсказка:</b> регистрация → промокод → депозит.
             </div>
           </div>
 
-          <div class="card glass special">
-            <div class="special-head">
-              <div class="special-title">Мини-калькулятор бонуса</div>
+          <div class="card glass" style="padding:18px">
+            <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:10px">
+              <div style="font-weight:1000; font-size:18px">Мини-калькулятор бонуса</div>
             </div>
 
-            <div class="calcRow">
+            <div style="display:grid; gap:10px; margin-top:12px">
               <input class="inp" id="depInput" inputmode="numeric" placeholder="Депозит (например 1000)" aria-label="Депозит" />
+
               <div class="quickBtns" aria-label="Быстрые суммы">
                 <button class="qbtn" type="button" data-amt="500">500 ₽</button>
                 <button class="qbtn" type="button" data-amt="1000">1000 ₽</button>
@@ -1003,7 +922,7 @@
       </div>
     </section>
 
-    <section id="about">
+    <section id="about" class="reveal">
       <div class="wrap">
         <div class="title">
           <div>
@@ -1031,6 +950,7 @@
               <b>Игры</b>
               <span>Рулетки, блэкджек, покер, баккара, лайв-казино и слоты с разной тематикой и RTP.</span>
             </div>
+
             <div class="card glass feature">
               <b>Мобильная версия и приложение</b>
               <span>Платформа адаптируется под смартфон. Вход без повторной регистрации; приложение доступно для Android и IOS.</span>
@@ -1059,6 +979,7 @@
             <b>Игры</b>
             <span>Рулетки, блэкджек, покер, баккара, лайв-казино и слоты с разной тематикой и RTP.</span>
           </div>
+
           <div class="card glass feature">
             <b>Мобильная версия и приложение</b>
             <span>Платформа адаптируется под смартфон. Вход без повторной регистрации; приложение доступно для Android и IOS.</span>
@@ -1079,7 +1000,7 @@
       </div>
     </section>
 
-    <section id="faq">
+    <section id="faq" class="reveal">
       <div class="wrap">
         <div class="title">
           <div>
@@ -1132,7 +1053,7 @@
         <div>
           <div style="display:flex;align-items:center;gap:12px">
             <div class="avatar" aria-hidden="true" style="width:40px;height:40px;border-radius:16px">
-              <img src="logo.png" alt="1win" loading="lazy" />
+              <img src="logo.png" alt="">
             </div>
             <div>
               <div style="font-weight:1000">1win Casino — обзор</div>
@@ -1318,6 +1239,30 @@
     }
     syncAbout();
     mq.addEventListener("change", syncAbout);
+
+    // ===== Reveal animations =====
+    const prefersReduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if(!prefersReduce){
+      const els = Array.from(document.querySelectorAll(".reveal"));
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting){
+            e.target.classList.add("in");
+            io.unobserve(e.target);
+          }
+        });
+      }, {threshold: 0.12});
+      els.forEach((el, i)=>{
+        el.style.transitionDelay = Math.min(i * 80, 260) + "ms";
+        io.observe(el);
+      });
+      // чтобы хедер/герой появились сразу
+      requestAnimationFrame(()=> els.forEach(el=>{
+        if(el.getBoundingClientRect().top < innerHeight) el.classList.add("in");
+      }));
+    }else{
+      document.querySelectorAll(".reveal").forEach(el=> el.classList.add("in"));
+    }
   </script>
 </body>
 </html>
