@@ -1,0 +1,12 @@
+КАК ИСПОЛЬЗОВАТЬ (SEO traffic pack)
+==================================
+1) Закинь все файлы из этого архива в корень репозитория (рядом с index.html).
+2) В index.html:
+   - В <head> вставь содержимое SEO_HEAD_SNIPPET.txt
+   - И добавь JSON-LD (structured-data.json) внутрь:
+     <script type="application/ld+json"> ... </script>
+3) Если домен отличается — замени его в robots.txt / sitemap.xml / structured-data.json / SEO_HEAD_SNIPPET.txt.
+
+Важно:
+- robots.txt + sitemap.xml — это база для индексации.
+- og-image.png — картинка для шаринга (Telegram/ВК/соцсети), тоже помогает CTR.

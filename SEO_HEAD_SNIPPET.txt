@@ -1,0 +1,26 @@
+SEO HEAD SNIPPET (вставь в <head>)
+=================================
+
+<!-- Canonical -->
+<link rel="canonical" href="https://1winw.github.io/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="1win Casino">
+<meta property="og:title" content="1win промокод SMOG — бонус 500% + 70FS, условия, FAQ">
+<meta property="og:description" content="Рабочий промокод 1win SMOG вводится при регистрации. Условия бонуса 500% + 70 фриспинов, вейджер/отыгрыш, быстрый старт и ответы на вопросы.">
+<meta property="og:url" content="https://1winw.github.io/">
+<meta property="og:image" content="https://1winw.github.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ru_RU">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="1win промокод SMOG — бонус 500% + 70FS">
+<meta name="twitter:description" content="Актуальный промокод 1win SMOG при регистрации. Условия бонуса 500% + 70FS, вейджер, вход/регистрация, приложение.">
+<meta name="twitter:image" content="https://1winw.github.io/og-image.png">
+
+<!-- Basic -->
+<meta name="description" content="1win промокод SMOG при регистрации: бонус 500% + 70 фриспинов. Условия, вейджер/отыгрыш, где вводить промокод, вход/регистрация, приложение Android/iOS, FAQ.">
+<meta name="keywords" content="1win промокод, промокод 1win, рабочий промокод 1win, актуальный промокод 1win, 1win бонус 500%, 70 фриспинов 1win, 1win вейджер, где вводить промокод 1win, 1win регистрация, 1win вход, 1win приложение android ios">
